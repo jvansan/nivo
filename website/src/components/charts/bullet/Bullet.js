@@ -7,19 +7,17 @@
  * file that was distributed with this source code.
  */
 import React, { Component } from 'react'
-import MediaQuery from 'react-responsive'
 import shuffle from 'lodash/shuffle'
 import { ResponsiveBullet, BulletDefaultProps } from '@nivo/bullet'
 import { generateBulletData } from '@nivo/generators'
 import nivoTheme from '../../../nivoTheme'
 import ChartHeader from '../../ChartHeader'
 import ChartTabs from '../../ChartTabs'
-import BulletControls from './BulletControls'
+import Settings from '../../Settings'
+import { groupsByScope } from './BulletControls'
 import Stories from '../../Stories'
 import { bulletStories } from './stories'
 import generateCode from '../../../lib/generateChartCode'
-import ComponentPropsDocumentation from '../../properties/ComponentPropsDocumentation'
-import properties from './props'
 
 const generateData = () => [
     generateBulletData('temp.', shuffle([100, 120, 140])[0]),
@@ -100,60 +98,39 @@ export default class Bullet extends Component {
             defaults: BulletDefaultProps,
         })
 
-        const header = (
-            <ChartHeader chartClass="Bullet" tags={['@nivo/bullet', 'svg', 'isomorphic']} />
-        )
-
-        const description = (
-            <div className="chart-description">
-                <p className="description">
-                    Bullet chart supporting multiple ranges/measures/markers.
-                    {/*Many properties can be overridden for a specific item using <code>overrides</code> property.*/}
-                </p>
-                <p className="description">
-                    You can fully customize this chart using custom components via{' '}
-                    <code>rangeComponent</code>, <code>measureComponent</code> and{' '}
-                    <code>markerComponent</code> properties.
-                </p>
-                <p className="description">
-                    The responsive alternative of this component is <code>ResponsiveBullet</code>.
-                </p>
-            </div>
-        )
-
-        const stories = <Stories stories={bulletStories} />
-
         return (
-            <div className="page_content grid">
-                <div className="chart-page_main">
-                    <MediaQuery query="(max-width: 1000px)">
-                        {header}
-                        {description}
-                    </MediaQuery>
-                    <ChartTabs chartClass="bullet" code={code} data={data} diceRoll={this.diceRoll}>
-                        <ResponsiveBullet
-                            data={data}
-                            {...settings}
-                            onRangeClick={this.handleRangeClick}
-                            onMeasureClick={this.handleMeasureClick}
-                            onMarkerClick={this.handleMarkerClick}
-                        />
-                    </ChartTabs>
-                    <BulletControls
-                        scope="Bullet"
-                        settings={settings}
-                        onChange={this.handleSettingsUpdate}
+            <div className="chart_page">
+                <ChartHeader chartClass="Bullet" tags={['@nivo/bullet', 'svg', 'isomorphic']} />
+                <div className="chart-description">
+                    <p className="description">
+                        Bullet chart supporting multiple ranges/measures/markers.
+                        {/*Many properties can be overridden for a specific item using <code>overrides</code> property.*/}
+                    </p>
+                    <p className="description">
+                        You can fully customize this chart using custom components via{' '}
+                        <code>rangeComponent</code>, <code>measureComponent</code> and{' '}
+                        <code>markerComponent</code> properties.
+                    </p>
+                    <p className="description">
+                        The responsive alternative of this component is <code>ResponsiveBullet</code>.
+                    </p>
+                </div>
+                <ChartTabs chartClass="bullet" code={code} data={data} diceRoll={this.diceRoll}>
+                    <ResponsiveBullet
+                        data={data}
+                        {...settings}
+                        onRangeClick={this.handleRangeClick}
+                        onMeasureClick={this.handleMeasureClick}
+                        onMarkerClick={this.handleMarkerClick}
                     />
-                    <MediaQuery query="(max-width: 1000px)">{stories}</MediaQuery>
-                    <ComponentPropsDocumentation chartClass="Bullet" properties={properties} />
-                </div>
-                <div className="chart-page_aside">
-                    <MediaQuery query="(min-width: 1000px)">
-                        {header}
-                        {description}
-                        {stories}
-                    </MediaQuery>
-                </div>
+                </ChartTabs>
+                <Settings
+                    component="Bullet"
+                    settings={settings}
+                    onChange={this.handleSettingsUpdate}
+                    groups={groupsByScope.Bullet}
+                />
+                <Stories stories={bulletStories} />
             </div>
         )
     }

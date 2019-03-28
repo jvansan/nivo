@@ -8,6 +8,7 @@
  */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import Label from './Label'
 
 class ColorPickerControl extends Component {
     handleChange = e => {
@@ -15,18 +16,21 @@ class ColorPickerControl extends Component {
     }
 
     render() {
-        const { value, label, help } = this.props
+        const { id, value, label, help } = this.props
 
         return (
-            <div className="control control-color">
-                <label className="control_label">
-                    {label}: <code className="code code-string">'{value}'</code>
-                </label>
+            <>
+                <Label htmlFor={id}>
+                    {label}
+                </Label>
                 <div>
-                    <input type="color" onChange={this.handleChange} value={value} />
+                    <input type="color" id={id} onChange={this.handleChange} value={value} />
+                    &nbsp;&nbsp;&nbsp;
+                    <code className="code code-string">{value}</code>
                 </div>
+                <span/>
                 <div className="control-help">{help}</div>
-            </div>
+            </>
         )
     }
 }

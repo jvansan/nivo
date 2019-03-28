@@ -9,7 +9,6 @@
 import React from 'react'
 import { ScatterPlotDefaultProps as defaults } from '@nivo/scatterplot'
 import {
-    marginProperties,
     axesProperties,
     motionProperties,
 } from '../../../lib/componentProperties'
@@ -223,6 +222,15 @@ export default [
         },
     },
     {
+        key: 'margin',
+        scopes: '*',
+        description: 'Chart margin.',
+        type: '{object}',
+        required: false,
+        controlType: 'margin',
+        controlGroup: 'Base',
+    },
+    {
         key: 'colors',
         scopes: '*',
         description: 'Defines color range.',
@@ -268,7 +276,6 @@ export default [
             max: 24,
         },
     },
-    ...marginProperties,
     {
         key: 'enableGridX',
         scopes: '*',

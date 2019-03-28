@@ -9,7 +9,7 @@
 import React from 'react'
 import dedent from 'dedent-js'
 import { BulletDefaultProps as defaults } from '@nivo/bullet'
-import { marginProperties, motionProperties } from '../../../lib/componentProperties'
+import { motionProperties } from '../../../lib/componentProperties'
 
 export default [
     {
@@ -109,6 +109,15 @@ export default [
         controlGroup: 'Base',
     },
     {
+        key: 'margin',
+        scopes: '*',
+        description: 'Chart margin.',
+        type: '{object}',
+        required: false,
+        controlType: 'margin',
+        controlGroup: 'Base',
+    },
+    {
         key: 'spacing',
         scopes: '*',
         description: 'define spacing between items (px).',
@@ -153,7 +162,6 @@ export default [
             step: 0.05,
         },
     },
-    ...marginProperties,
     {
         key: 'rangeComponent',
         scopes: ['Bullet'],

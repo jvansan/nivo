@@ -8,14 +8,12 @@
  */
 import React, { Component } from 'react'
 import range from 'lodash/range'
-import MediaQuery from 'react-responsive'
 import { ResponsiveVoronoi, VoronoiDefaultProps } from '@nivo/voronoi'
 import ChartHeader from '../../ChartHeader'
 import ChartTabs from '../../ChartTabs'
-import VoronoiControls from './VoronoiControls'
+import Settings from '../../Settings'
+import { groupsByScope } from './VoronoiControls'
 import generateCode from '../../../lib/generateChartCode'
-import ComponentPropsDocumentation from '../../properties/ComponentPropsDocumentation'
-import properties from './props'
 
 const xDomain = [0, 100]
 const yDomain = [0, 100]
@@ -77,66 +75,43 @@ export default class Voronoi extends Component {
             defaults: VoronoiDefaultProps,
         })
 
-        const header = (
-            <ChartHeader chartClass="Voronoi" tags={['@nivo/voronoi', 'svg', 'experimental']} />
-        )
-
-        const description = (
-            <div className="chart-description">
-                <p className="description">
-                    Delaunay/Voronoi Tessellation, uses{' '}
-                    <a
-                        href="https://github.com/d3/d3-delaunay"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        d3-delaunay
-                    </a>
-                    . The responsive alternative of this component is <code>ResponsiveVoronoi</code>
-                    .
-                </p>
-            </div>
-        )
-
         return (
-            <div className="page_content grid">
-                <div className="chart-page_main">
-                    <MediaQuery query="(max-width: 1000px)">
-                        {header}
-                        {description}
-                    </MediaQuery>
-                    <ChartTabs
-                        chartClass="voronoi"
-                        code={code}
+            <div className="chart_page">
+                <ChartHeader chartClass="Voronoi" tags={['@nivo/voronoi', 'svg', 'experimental']} />
+                <div className="chart-description">
+                    <p className="description">
+                        Delaunay/Voronoi Tessellation, uses{' '}
+                        <a
+                            href="https://github.com/d3/d3-delaunay"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            d3-delaunay
+                        </a>
+                        . The responsive alternative of this component is <code>ResponsiveVoronoi</code>
+                        .
+                    </p>
+                </div>
+                <ChartTabs chartClass="voronoi" code={code} data={data} diceRoll={this.diceRoll}>
+                    <ResponsiveVoronoi
+                        margin={{
+                            top: 20,
+                            right: 20,
+                            bottom: 20,
+                            left: 20,
+                        }}
                         data={data}
-                        diceRoll={this.diceRoll}
-                    >
-                        <ResponsiveVoronoi
-                            margin={{
-                                top: 20,
-                                right: 20,
-                                bottom: 20,
-                                left: 20,
-                            }}
-                            data={data}
-                            xDomain={xDomain}
-                            yDomain={yDomain}
-                            {...settings}
-                        />
-                    </ChartTabs>
-                    <VoronoiControls
-                        scope="Voronoi"
-                        settings={settings}
-                        onChange={this.handleSettingsUpdate}
+                        xDomain={xDomain}
+                        yDomain={yDomain}
+                        {...settings}
                     />
-                    <ComponentPropsDocumentation chartClass="Voronoi" properties={properties} />
-                </div>
-                <div className="chart-page_aside">
-                    <MediaQuery query="(min-width: 1000px)">
-                        {header}
-                        {description}
-                    </MediaQuery>
-                </div>
+                </ChartTabs>
+                <Settings
+                    component="Voronoi"
+                    settings={settings}
+                    onChange={this.handleSettingsUpdate}
+                    groups={groupsByScope.Voronoi}
+                />
             </div>
         )
     }

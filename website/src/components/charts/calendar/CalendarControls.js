@@ -12,7 +12,7 @@ import ChartControlGroups from '../../controls/ChartControlGroups'
 import { getPropertiesGroupsControls } from '../../../lib/componentProperties'
 import properties from './props'
 
-const groupsByScope = {
+export const groupsByScope = {
     Calendar: getPropertiesGroupsControls(properties, 'Calendar'),
     CalendarCanvas: getPropertiesGroupsControls(properties, 'CalendarCanvas'),
     api: getPropertiesGroupsControls(properties, 'api'),

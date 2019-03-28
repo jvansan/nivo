@@ -8,7 +8,7 @@
  */
 import React from 'react'
 import { GeoMapDefaultProps, ChoroplethDefaultProps } from '@nivo/geo'
-import { marginProperties, defsProperties, getLegendsProps } from '../../../lib/componentProperties'
+import { defsProperties, getLegendsProps } from '../../../lib/componentProperties'
 
 export default [
     {
@@ -52,13 +52,22 @@ export default [
         },
     },
     {
+        key: 'margin',
+        scopes: '*',
+        description: 'Chart margin.',
+        type: '{object}',
+        required: false,
+        controlType: 'margin',
+        controlGroup: 'Base',
+    },
+    {
         key: 'projectionType',
         scopes: '*',
         description: 'Defines the projection to use.',
         required: false,
         default: GeoMapDefaultProps.projectionType,
         controlType: 'choices',
-        controlGroup: 'Base',
+        controlGroup: 'Projection',
         controlOptions: {
             choices: [
                 { label: 'azimuthalEqualArea', value: 'azimuthalEqualArea' },
@@ -81,7 +90,7 @@ export default [
         required: false,
         default: GeoMapDefaultProps.projectionScale,
         controlType: 'range',
-        controlGroup: 'Base',
+        controlGroup: 'Projection',
         controlOptions: {
             min: 0,
             max: 200,
@@ -94,35 +103,17 @@ export default [
         description: 'Projection x/y translation.',
         required: false,
         default: GeoMapDefaultProps.projectionTranslation,
-    },
-    {
-        key: 'projectionTranslation[0]',
-        excludeFromDoc: true,
-        scopes: '*',
-        description: 'Projection x translation.',
-        required: false,
-        default: GeoMapDefaultProps.projectionTranslation[0],
-        controlType: 'range',
-        controlGroup: 'Base',
+        controlType: 'numberArray',
+        controlGroup: 'Projection',
         controlOptions: {
-            min: -1,
-            max: 1,
-            step: 0.05,
-        },
-    },
-    {
-        key: 'projectionTranslation[1]',
-        excludeFromDoc: true,
-        scopes: '*',
-        description: 'Projection y translation.',
-        required: false,
-        default: GeoMapDefaultProps.projectionTranslation[1],
-        controlType: 'range',
-        controlGroup: 'Base',
-        controlOptions: {
-            min: -1,
-            max: 1,
-            step: 0.05,
+            items: [
+                {
+                    label: 'x',
+                },
+                {
+                    label: 'y'
+                },
+            ]
         },
     },
     {
@@ -132,47 +123,20 @@ export default [
         description: 'Projection rotation.',
         required: false,
         default: GeoMapDefaultProps.projectionRotation,
-    },
-    {
-        key: 'projectionRotation[0]',
-        excludeFromDoc: true,
-        scopes: '*',
-        description: 'Projection rotation lambda (λ).',
-        required: false,
-        default: GeoMapDefaultProps.projectionRotation[0],
-        controlType: 'range',
-        controlGroup: 'Base',
+        controlType: 'numberArray',
+        controlGroup: 'Projection',
         controlOptions: {
-            min: -400,
-            max: 400,
-        },
-    },
-    {
-        key: 'projectionRotation[1]',
-        excludeFromDoc: true,
-        scopes: '*',
-        description: 'Projection rotation phi (φ).',
-        required: false,
-        default: GeoMapDefaultProps.projectionRotation[1],
-        controlType: 'range',
-        controlGroup: 'Base',
-        controlOptions: {
-            min: -400,
-            max: 400,
-        },
-    },
-    {
-        key: 'projectionRotation[2]',
-        excludeFromDoc: true,
-        scopes: '*',
-        description: 'Projection rotation gamma (γ).',
-        required: false,
-        default: GeoMapDefaultProps.projectionRotation[2],
-        controlType: 'range',
-        controlGroup: 'Base',
-        controlOptions: {
-            min: -400,
-            max: 400,
+            items: [
+                {
+                    label: 'lambda (λ)',
+                },
+                {
+                    label: 'phi (φ)'
+                },
+                {
+                    label: 'gamma (γ)'
+                }
+            ]
         },
     },
     {
@@ -263,12 +227,9 @@ export default [
         type: '{number}',
         required: false,
         default: GeoMapDefaultProps.borderWidth,
-        controlType: 'range',
+        controlType: 'lineWidth',
         controlGroup: 'Style',
         controlOptions: {
-            unit: 'px',
-            min: 0,
-            max: 10,
             step: 0.5,
         },
     },
@@ -322,7 +283,6 @@ export default [
         controlGroup: 'Graticule',
     },
     ...defsProperties(['GeoMap']),
-    ...marginProperties,
     {
         key: 'isInteractive',
         scopes: ['GeoMap', 'GeoMapCanvas', 'Choropleth', 'ChoroplethCanvas'],

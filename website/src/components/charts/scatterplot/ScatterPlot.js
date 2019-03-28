@@ -8,7 +8,6 @@
  */
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import MediaQuery from 'react-responsive'
 import { ResponsiveScatterPlot, ScatterPlotDefaultProps } from '@nivo/scatterplot'
 import config from '../../../config'
 import nivoTheme from '../../../nivoTheme'
@@ -16,9 +15,8 @@ import ChartHeader from '../../ChartHeader'
 import ChartTabs from '../../ChartTabs'
 import Stories from '../../Stories'
 import generateCode from '../../../lib/generateChartCode'
-import ComponentPropsDocumentation from '../../properties/ComponentPropsDocumentation'
-import ScatterPlotControls from './ScatterPlotControls'
-import properties from './props'
+import Settings from '../../Settings'
+import { groupsByScope } from './ScatterPlotControls'
 import propsMapper from './propsMapper'
 import { generateLightDataSet as generateData } from './generators'
 import { scatterPlotStories } from './stories'
@@ -164,80 +162,60 @@ export default class ScatterPlot extends Component {
             { pkg: '@nivo/scatterplot', defaults: ScatterPlotDefaultProps }
         )
 
-        const header = (
-            <ChartHeader
-                chartClass="ScatterPlot"
-                tags={['@nivo/scatterplot', 'svg', 'isomorphic']}
-            />
-        )
-
-        const description = (
-            <div className="chart-description">
-                <p className="description">
-                    A scatter plot chart, which can display several data series.
-                </p>
-                <p className="description">
-                    The responsive alternative of this component is{' '}
-                    <code>ResponsiveScatterPlot</code>, it also offers another implementation, see{' '}
-                    <Link to="/scatterplot/canvas">ScatterPlotCanvas</Link>. You can also see more
-                    example usages in{' '}
-                    <a
-                        href={`${
-                            config.storybookUrl
-                        }?selectedKind=ScatterPlot&selectedStory=default`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        the storybook
-                    </a>
-                    .
-                </p>
-                <p className="description">
-                    Alternatively, you can set <code>useMesh</code> to <code>true</code>
-                    to have finer interactions.
-                </p>
-                <p className="description">
-                    See the <Link to="/guides/legends">dedicated guide</Link> on how to setup
-                    legends for this component.
-                </p>
-            </div>
-        )
-
-        const stories = <Stories stories={scatterPlotStories} />
-
         return (
-            <div className="page_content grid">
-                <div className="chart-page_main">
-                    <MediaQuery query="(max-width: 1000px)">
-                        {header}
-                        {description}
-                    </MediaQuery>
-                    <ChartTabs
-                        chartClass="scatterplot"
-                        code={code}
+            <div className="chart_page">
+                <ChartHeader
+                    chartClass="ScatterPlot"
+                    tags={['@nivo/scatterplot', 'svg', 'isomorphic']}
+                />
+                <div className="chart-description">
+                    <p className="description">
+                        A scatter plot chart, which can display several data series.
+                    </p>
+                    <p className="description">
+                        The responsive alternative of this component is{' '}
+                        <code>ResponsiveScatterPlot</code>, it also offers another implementation, see{' '}
+                        <Link to="/scatterplot/canvas">ScatterPlotCanvas</Link>. You can also see more
+                        example usages in{' '}
+                        <a
+                            href={`${
+                                config.storybookUrl
+                            }?selectedKind=ScatterPlot&selectedStory=default`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            the storybook
+                        </a>
+                        .
+                    </p>
+                    <p className="description">
+                        Alternatively, you can set <code>useMesh</code> to <code>true</code>
+                        to have finer interactions.
+                    </p>
+                    <p className="description">
+                        See the <Link to="/guides/legends">dedicated guide</Link> on how to setup
+                        legends for this component.
+                    </p>
+                </div>
+                <ChartTabs
+                    chartClass="scatterplot"
+                    code={code}
+                    data={data}
+                    diceRoll={this.diceRoll}
+                >
+                    <ResponsiveScatterPlot
                         data={data}
-                        diceRoll={this.diceRoll}
-                    >
-                        <ResponsiveScatterPlot
-                            data={data}
-                            {...mappedSettings}
-                            onClick={this.handleNodeClick}
-                        />
-                    </ChartTabs>
-                    <ScatterPlotControls
-                        scope="ScatterPlot"
-                        settings={settings}
-                        onChange={this.handleSettingsUpdate}
+                        {...mappedSettings}
+                        onClick={this.handleNodeClick}
                     />
-                    <ComponentPropsDocumentation chartClass="ScatterPlot" properties={properties} />
-                </div>
-                <div className="chart-page_aside">
-                    <MediaQuery query="(min-width: 1000px)">
-                        {header}
-                        {description}
-                        {stories}
-                    </MediaQuery>
-                </div>
+                </ChartTabs>
+                <Settings
+                    component="ScatterPlot"
+                    settings={settings}
+                    onChange={this.handleSettingsUpdate}
+                    groups={groupsByScope.ScatterPlot}
+                />
+                <Stories stories={scatterPlotStories} />
             </div>
         )
     }

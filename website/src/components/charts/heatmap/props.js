@@ -11,7 +11,6 @@ import { Link } from 'react-router-dom'
 import dedent from 'dedent-js'
 import { HeatMapDefaultProps as defaults } from '@nivo/heatmap'
 import {
-    marginProperties,
     axesProperties,
     motionProperties,
 } from '../../../lib/componentProperties'
@@ -147,6 +146,15 @@ export default [
         controlGroup: 'Base',
     },
     {
+        key: 'margin',
+        scopes: '*',
+        description: 'Chart margin.',
+        type: '{object}',
+        required: false,
+        controlType: 'margin',
+        controlGroup: 'Base',
+    },
+    {
         key: 'sizeVariation',
         scopes: '*',
         description: `Size variation (0~1), if value is 0 size won't be affected. If you use for example the value 0.3, cell width/height will vary between 0.7~1 according to its corresponding value.`,
@@ -236,13 +244,8 @@ export default [
         required: false,
         default: defaults.cellOpacity,
         type: '{number}',
-        controlType: 'range',
+        controlType: 'opacity',
         controlGroup: 'Style',
-        controlOptions: {
-            min: 0,
-            max: 1,
-            step: 0.05,
-        },
     },
     {
         key: 'cellBorderWidth',
@@ -251,13 +254,8 @@ export default [
         required: false,
         default: defaults.cellBorderWidth,
         type: '{number}',
-        controlType: 'range',
+        controlType: 'lineWidth',
         controlGroup: 'Style',
-        controlOptions: {
-            unit: 'px',
-            min: 0,
-            max: 10,
-        },
     },
     {
         key: 'cellBorderColor',
@@ -312,7 +310,6 @@ export default [
             withCustomColor: true,
         },
     },
-    ...marginProperties,
     {
         key: 'enableGridX',
         scopes: '*',
@@ -409,13 +406,8 @@ export default [
         required: false,
         default: defaults.cellHoverOpacity,
         type: '{number}',
-        controlType: 'range',
+        controlType: 'opacity',
         controlGroup: 'Interactivity',
-        controlOptions: {
-            min: 0,
-            max: 1,
-            step: 0.05,
-        },
     },
     {
         key: 'cellHoverOthersOpacity',
@@ -424,18 +416,8 @@ export default [
         required: false,
         default: defaults.cellHoverOthersOpacity,
         type: '{number}',
-        controlType: 'range',
+        controlType: 'opacity',
         controlGroup: 'Interactivity',
-        controlOptions: {
-            min: 0,
-            max: 1,
-            step: 0.05,
-        },
     },
-    /*——————————————————————————————————————————————————————————————————————————
-
-      Motion
-
-    ————————————————————————————————————————————————————————————————————————————*/
     ...motionProperties(['HeatMap'], defaults),
 ]

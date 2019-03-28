@@ -36,7 +36,6 @@ export const shouldRenderControl = (config, context) => {
 
 export default class ChartControls extends Component {
     static propTypes = {
-        ns: PropTypes.string.isRequired,
         name: PropTypes.string.isRequired,
         controls: PropTypes.array.isRequired,
         settings: PropTypes.object.isRequired,

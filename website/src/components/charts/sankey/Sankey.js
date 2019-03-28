@@ -8,14 +8,12 @@
  */
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import MediaQuery from 'react-responsive'
 import { ResponsiveSankey, SankeyDefaultProps } from '@nivo/sankey'
 import ChartHeader from '../../ChartHeader'
 import ChartTabs from '../../ChartTabs'
-import SankeyControls from './SankeyControls'
+import Settings from '../../Settings'
+import { groupsByScope } from './SankeyControls'
 import generateCode from '../../../lib/generateChartCode'
-import ComponentPropsDocumentation from '../../properties/ComponentPropsDocumentation'
-import properties from './props'
 import config from '../../../config'
 import nivoTheme from '../../../nivoTheme'
 import propsMapper from './propsMapper'
@@ -102,88 +100,69 @@ const Sankey = ({ data, randomizeLinkValues }) => {
         defaults: SankeyDefaultProps,
     })
 
-    const header = (
-        <ChartHeader
-            chartClass="Sankey"
-            tags={['@nivo/sankey', 'relational', 'flow', 'svg', 'isomorphic']}
-        />
-    )
-
-    const description = (
-        <div className="chart-description">
-            <p className="description">
-                Computes a sankey diagram from nodes and links, built on top of{' '}
-                <a href="https://github.com/d3/d3-sankey" target="_blank" rel="noopener noreferrer">
-                    d3-sankey
-                </a>
-                . The responsive alternative of this component is <code>ResponsiveSankey</code>.
-            </p>
-            <p className="description">
-                Please be careful with the data you use for this chart as it does not support cyclic
-                dependencies.
-                <br />
-                For example, something like <code>A —> A</code> or <code>A —> B —> C —> A</code>{' '}
-                will crash.
-            </p>
-            <p className="description">
-                This component is available in the{' '}
-                <a
-                    href="https://github.com/plouc/nivo-api"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    nivo-api
-                </a>
-                , see{' '}
-                <a
-                    href={`${config.nivoApiUrl}/samples/sankey.svg`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    sample
-                </a>{' '}
-                or <Link to="/sankey/api">try it using the API client</Link>. You can also see more
-                example usages in{' '}
-                <a
-                    href={`${config.storybookUrl}?selectedKind=Sankey&selectedStory=default`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    the storybook
-                </a>
-                .
-            </p>
-            <p className="description">
-                See the <Link to="/guides/legends">dedicated guide</Link> on how to setup legends
-                for this component.
-            </p>
-        </div>
-    )
-
     return (
-        <div className="page_content grid">
-            <div className="chart-page_main">
-                <MediaQuery query="(max-width: 1000px)">
-                    {header}
-                    {description}
-                </MediaQuery>
-                <ChartTabs
-                    chartClass="sankey"
-                    code={code}
-                    data={data}
-                    diceRoll={randomizeLinkValues}
-                >
-                    <ResponsiveSankey data={data} {...mappedSettings} theme={nivoTheme} />
-                </ChartTabs>
-                <SankeyControls scope="Sankey" settings={settings} onChange={setSettings} />
-                <ComponentPropsDocumentation chartClass="Sankey" properties={properties} />
+        <div className="chart_page">
+            <ChartHeader
+                chartClass="Sankey"
+                tags={['@nivo/sankey', 'relational', 'flow', 'svg', 'isomorphic']}
+            />
+            <div className="chart-description">
+                <p className="description">
+                    Computes a sankey diagram from nodes and links, built on top of{' '}
+                    <a href="https://github.com/d3/d3-sankey" target="_blank" rel="noopener noreferrer">
+                        d3-sankey
+                    </a>
+                    . The responsive alternative of this component is <code>ResponsiveSankey</code>.
+                </p>
+                <p className="description">
+                    Please be careful with the data you use for this chart as it does not support cyclic
+                    dependencies.
+                    <br />
+                    For example, something like <code>A —> A</code> or <code>A —> B —> C —> A</code>{' '}
+                    will crash.
+                </p>
+                <p className="description">
+                    This component is available in the{' '}
+                    <a
+                        href="https://github.com/plouc/nivo-api"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        nivo-api
+                    </a>
+                    , see{' '}
+                    <a
+                        href={`${config.nivoApiUrl}/samples/sankey.svg`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        sample
+                    </a>{' '}
+                    or <Link to="/sankey/api">try it using the API client</Link>. You can also see more
+                    example usages in{' '}
+                    <a
+                        href={`${config.storybookUrl}?selectedKind=Sankey&selectedStory=default`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        the storybook
+                    </a>
+                    .
+                </p>
+                <p className="description">
+                    See the <Link to="/guides/legends">dedicated guide</Link> on how to setup legends
+                    for this component.
+                </p>
             </div>
-            <div className="chart-page_aside">
-                <MediaQuery query="(min-width: 1000px)">
-                    {header}
-                    {description}
-                </MediaQuery>
-            </div>
+            <ChartTabs chartClass="sankey" code={code} data={data} diceRoll={randomizeLinkValues}>
+                <ResponsiveSankey data={data} {...mappedSettings} theme={nivoTheme} />
+            </ChartTabs>
+            <Settings
+                component="Sankey"
+                settings={settings}
+                onChange={setSettings}
+                groups={groupsByScope.Sankey}
+            />
         </div>
     )
 }

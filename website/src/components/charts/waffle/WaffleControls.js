@@ -12,9 +12,9 @@ import ChartControlGroups from '../../controls/ChartControlGroups'
 import { getPropertiesGroupsControls } from '../../../lib/componentProperties'
 import properties from './props'
 
-const groupsByScope = {
+export const groupsByScope = {
     Waffle: getPropertiesGroupsControls(properties, 'Waffle'),
-    WaffleHTML: getPropertiesGroupsControls(properties, 'WaffleHtml'),
+    WaffleHtml: getPropertiesGroupsControls(properties, 'WaffleHtml'),
     WaffleCanvas: getPropertiesGroupsControls(properties, 'WaffleCanvas'),
     api: getPropertiesGroupsControls(properties, 'api'),
 }

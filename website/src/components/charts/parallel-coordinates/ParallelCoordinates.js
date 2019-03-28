@@ -8,7 +8,6 @@
  */
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import MediaQuery from 'react-responsive'
 import merge from 'lodash/merge'
 import {
     ResponsiveParallelCoordinates,
@@ -18,10 +17,9 @@ import { generateParallelCoordinatesData } from '@nivo/generators'
 import nivoTheme from '../../../nivoTheme'
 import ChartHeader from '../../ChartHeader'
 import ChartTabs from '../../ChartTabs'
-import ParallelCoordinatesControls from './ParallelCoordinatesControls'
+import Settings from '../../Settings'
+import { groupsByScope } from './ParallelCoordinatesControls'
 import generateCode from '../../../lib/generateChartCode'
-import ComponentPropsDocumentation from '../../properties/ComponentPropsDocumentation'
-import properties from './props'
 import propsMapper from './propsMapper'
 import variables from './variables'
 
@@ -84,73 +82,52 @@ export default class ParallelCoordinates extends Component {
             defaults: defaultProps,
         })
 
-        const header = (
-            <ChartHeader
-                chartClass="ParallelCoordinates"
-                tags={['@nivo/parallel-coordinates', 'svg', 'isomorphic']}
-            />
-        )
-
-        const description = (
-            <div className="chart-description">
-                <p className="description">
-                    Parallel coordinates chart, supports continuous numerical variables and discrete
-                    values.
-                </p>
-                <p className="description">
-                    The responsive alternative of this component is{' '}
-                    <code>ResponsiveParallelCoordinates</code>, it also offers another
-                    implementation, see{' '}
-                    <Link to="/parallel-coordinates/canvas">ParallelCoordinatesCanvas</Link>.
-                </p>
-                <p className="description">
-                    The <code>@nivo/parallel-coordinates</code> package also exposes a{' '}
-                    <code>ParallelCoordinatesLayout</code> component which can be used to build your
-                    very own chart. You can see how it's used to build the{' '}
-                    <code>ParallelCoordinates</code> component{' '}
-                    <a
-                        href="https://github.com/plouc/nivo/blob/master/packages/parallel-coordinates/src/ParallelCoordinates.js"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        here
-                    </a>
-                    .
-                </p>
-            </div>
-        )
-
         return (
-            <div className="page_content grid">
-                <div className="chart-page_main">
-                    <MediaQuery query="(max-width: 1000px)">
-                        {header}
-                        {description}
-                    </MediaQuery>
-                    <ChartTabs
-                        chartClass="parallel-coordinates"
-                        code={code}
-                        data={data}
-                        diceRoll={this.diceRoll}
-                    >
-                        <ResponsiveParallelCoordinates data={data} {...mappedSettings} />
-                    </ChartTabs>
-                    <ParallelCoordinatesControls
-                        scope="ParallelCoordinates"
-                        settings={settings}
-                        onChange={this.handleSettingsUpdate}
-                    />
-                    <ComponentPropsDocumentation
-                        chartClass="ParallelCoordinates"
-                        properties={properties}
-                    />
+            <div className="chart_page">
+                <ChartHeader
+                    chartClass="ParallelCoordinates"
+                    tags={['@nivo/parallel-coordinates', 'svg', 'isomorphic']}
+                />
+                <div className="chart-description">
+                    <p className="description">
+                        Parallel coordinates chart, supports continuous numerical variables and discrete
+                        values.
+                    </p>
+                    <p className="description">
+                        The responsive alternative of this component is{' '}
+                        <code>ResponsiveParallelCoordinates</code>, it also offers another
+                        implementation, see{' '}
+                        <Link to="/parallel-coordinates/canvas">ParallelCoordinatesCanvas</Link>.
+                    </p>
+                    <p className="description">
+                        The <code>@nivo/parallel-coordinates</code> package also exposes a{' '}
+                        <code>ParallelCoordinatesLayout</code> component which can be used to build your
+                        very own chart. You can see how it's used to build the{' '}
+                        <code>ParallelCoordinates</code> component{' '}
+                        <a
+                            href="https://github.com/plouc/nivo/blob/master/packages/parallel-coordinates/src/ParallelCoordinates.js"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            here
+                        </a>
+                        .
+                    </p>
                 </div>
-                <div className="chart-page_aside">
-                    <MediaQuery query="(min-width: 1000px)">
-                        {header}
-                        {description}
-                    </MediaQuery>
-                </div>
+                <ChartTabs
+                    chartClass="parallel-coordinates"
+                    code={code}
+                    data={data}
+                    diceRoll={this.diceRoll}
+                >
+                    <ResponsiveParallelCoordinates data={data} {...mappedSettings} />
+                </ChartTabs>
+                <Settings
+                    component="ParallelCoordinates"
+                    settings={settings}
+                    onChange={this.handleSettingsUpdate}
+                    groups={groupsByScope.ParallelCoordinates}
+                />
             </div>
         )
     }

@@ -10,7 +10,6 @@ import React from 'react'
 import dedent from 'dedent-js'
 import { boxAlignments } from '@nivo/core'
 import { CalendarDefaultProps as defaults } from '@nivo/calendar'
-import { marginProperties } from '../../../lib/componentProperties'
 
 export default [
     {
@@ -114,12 +113,21 @@ export default [
         },
     },
     {
+        key: 'margin',
+        scopes: '*',
+        description: 'Chart margin.',
+        type: '{object}',
+        required: false,
+        controlType: 'margin',
+        controlGroup: 'Base',
+    },
+    {
         key: 'align',
         description: 'defines how calendar should be aligned inside chart container.',
         type: '{string}',
         required: false,
         default: defaults.align,
-        controlType: 'choices',
+        controlType: 'boxAnchor',
         controlGroup: 'Base',
         controlOptions: {
             choices: boxAlignments.map(align => ({
@@ -264,13 +272,8 @@ export default [
         type: '{number}',
         required: false,
         default: defaults.monthBorderWidth,
-        controlType: 'range',
+        controlType: 'lineWidth',
         controlGroup: 'Months',
-        controlOptions: {
-            unit: 'px',
-            min: 0,
-            max: 6,
-        },
     },
     {
         key: 'monthBorderColor',
@@ -335,13 +338,8 @@ export default [
         type: '{number}',
         required: false,
         default: defaults.dayBorderWidth,
-        controlType: 'range',
+        controlType: 'lineWidth',
         controlGroup: 'Days',
-        controlOptions: {
-            unit: 'px',
-            min: 0,
-            max: 6,
-        },
     },
     {
         key: 'dayBorderColor',
@@ -352,7 +350,6 @@ export default [
         controlType: 'colorPicker',
         controlGroup: 'Days',
     },
-    ...marginProperties,
     {
         key: 'isInteractive',
         scopes: ['Calendar', 'CalendarCanvas'],

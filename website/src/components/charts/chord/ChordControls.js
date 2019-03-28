@@ -12,7 +12,7 @@ import ChartControlGroups from '../../controls/ChartControlGroups'
 import { getPropertiesGroupsControls } from '../../../lib/componentProperties'
 import properties from './props'
 
-const groupsByScope = {
+export const groupsByScope = {
     Chord: getPropertiesGroupsControls(properties, 'Chord'),
     ChordCanvas: getPropertiesGroupsControls(properties, 'ChordCanvas'),
     api: getPropertiesGroupsControls(properties, 'api'),

@@ -8,14 +8,12 @@
  */
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import MediaQuery from 'react-responsive'
 import { ResponsiveWaffleHtml, WaffleDefaultProps } from '@nivo/waffle'
 import ChartHeader from '../../ChartHeader'
 import ChartTabs from '../../ChartTabs'
-import WaffleControls from './WaffleControls'
+import Settings from '../../Settings'
+import { groupsByScope } from './WaffleControls'
 import generateCode from '../../../lib/generateChartCode'
-import ComponentPropsDocumentation from '../../properties/ComponentPropsDocumentation'
-import properties from './props'
 import config from '../../../config'
 import nivoTheme from '../../../nivoTheme'
 import propsMapper from './propsMapper'
@@ -127,83 +125,68 @@ export default class WaffleHtml extends Component {
             }
         )
 
-        const header = (
-            <ChartHeader chartClass="WaffleHtml" tags={['@nivo/waffle', 'html', 'isomorphic']} />
-        )
-
-        const description = (
-            <div className="chart-description">
-                <p className="description">
-                    A variation around the <Link to="/waffle">Waffle</Link> component, using HTML
-                    elements.
-                </p>
-                <p className="description">
-                    You can fully customize it using <code>cellComponent</code> property to define
-                    your own cell component, if you wish to do so you should have a look at{' '}
-                    <a
-                        href="https://github.com/plouc/nivo/blob/master/packages/nivo-waffle/src/WaffleCellHtml.js"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        native HTML component
-                    </a>{' '}
-                    for available properties.
-                </p>
-                <p className="description">
-                    You can also see more example usages in{' '}
-                    <a
-                        href={`${
-                            config.storybookUrl
-                        }?selectedKind=WaffleHtml&selectedStory=default`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        the storybook
-                    </a>
-                    .
-                </p>
-                <p className="description">
-                    The responsive alternative of this component is{' '}
-                    <code>ResponsiveWaffleHtml</code>, it also offers other implementations, see{' '}
-                    <Link to="/waffle">Waffle</Link> and{' '}
-                    <Link to="/waffle/canvas">WaffleCanvas</Link>.
-                </p>
-            </div>
-        )
-
         return (
-            <div className="page_content grid">
-                <div className="chart-page_main">
-                    <MediaQuery query="(max-width: 1000px)">
-                        {header}
-                        {description}
-                    </MediaQuery>
-                    <ChartTabs
-                        chartClass="waffle"
-                        code={code}
+            <div className="chart_page">
+                <ChartHeader
+                    chartClass="WaffleHtml"
+                    tags={['@nivo/waffle', 'html', 'isomorphic']}
+                />
+                <div className="chart-description">
+                    <p className="description">
+                        A variation around the <Link to="/waffle">Waffle</Link> component, using HTML
+                        elements.
+                    </p>
+                    <p className="description">
+                        You can fully customize it using <code>cellComponent</code> property to define
+                        your own cell component, if you wish to do so you should have a look at{' '}
+                        <a
+                            href="https://github.com/plouc/nivo/blob/master/packages/nivo-waffle/src/WaffleCellHtml.js"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            native HTML component
+                        </a>{' '}
+                        for available properties.
+                    </p>
+                    <p className="description">
+                        You can also see more example usages in{' '}
+                        <a
+                            href={`${
+                                config.storybookUrl
+                            }?selectedKind=WaffleHtml&selectedStory=default`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            the storybook
+                        </a>
+                        .
+                    </p>
+                    <p className="description">
+                        The responsive alternative of this component is{' '}
+                        <code>ResponsiveWaffleHtml</code>, it also offers other implementations, see{' '}
+                        <Link to="/waffle">Waffle</Link> and{' '}
+                        <Link to="/waffle/canvas">WaffleCanvas</Link>.
+                    </p>
+                </div>
+                <ChartTabs
+                    chartClass="waffle"
+                    code={code}
+                    data={data}
+                    diceRoll={this.diceRoll}
+                    nodeCount={settings.rows * settings.columns}
+                >
+                    <ResponsiveWaffleHtml
                         data={data}
-                        diceRoll={this.diceRoll}
-                        nodeCount={settings.rows * settings.columns}
-                    >
-                        <ResponsiveWaffleHtml
-                            data={data}
-                            {...mappedSettings}
-                            onClick={this.handleNodeClick}
-                        />
-                    </ChartTabs>
-                    <WaffleControls
-                        scope="Waffle"
-                        settings={settings}
-                        onChange={this.handleSettingsUpdate}
+                        {...mappedSettings}
+                        onClick={this.handleNodeClick}
                     />
-                    <ComponentPropsDocumentation chartClass="WaffleHtml" properties={properties} />
-                </div>
-                <div className="chart-page_aside">
-                    <MediaQuery query="(min-width: 1000px)">
-                        {header}
-                        {description}
-                    </MediaQuery>
-                </div>
+                </ChartTabs>
+                <Settings
+                    component="WaffleHtml"
+                    settings={settings}
+                    onChange={this.handleSettingsUpdate}
+                    groups={groupsByScope.WaffleHtml}
+                />
             </div>
         )
     }

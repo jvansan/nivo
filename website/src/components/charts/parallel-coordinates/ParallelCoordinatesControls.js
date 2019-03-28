@@ -12,7 +12,7 @@ import ChartControlGroups from '../../controls/ChartControlGroups'
 import { getPropertiesGroupsControls } from '../../../lib/componentProperties'
 import properties from './props'
 
-const groupsByScope = {
+export const groupsByScope = {
     ParallelCoordinates: getPropertiesGroupsControls(properties, 'ParallelCoordinates'),
     ParallelCoordinatesCanvas: getPropertiesGroupsControls(properties, 'ParallelCoordinatesCanvas'),
     api: getPropertiesGroupsControls(properties, 'api'),

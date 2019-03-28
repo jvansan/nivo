@@ -8,15 +8,13 @@
  */
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import MediaQuery from 'react-responsive'
 import { ResponsiveHeatMapCanvas } from '@nivo/heatmap'
 import isFunction from 'lodash/isFunction'
 import ChartHeader from '../../ChartHeader'
 import ChartTabs from '../../ChartTabs'
-import HeatMapControls from './HeatMapControls'
+import Settings from '../../Settings'
+import { groupsByScope } from './HeatMapControls'
 import generateCode from '../../../lib/generateChartCode'
-import ComponentPropsDocumentation from '../../properties/ComponentPropsDocumentation'
-import properties from './props'
 import nivoTheme from '../../../nivoTheme'
 import { generateHeavyDataSet } from './generators'
 import propsMapper from './propsMapper'
@@ -149,8 +147,6 @@ export default class HeatMap extends Component {
             { pkg: '@nivo/heatmap' }
         )
 
-        const header = <ChartHeader chartClass="HeatMapCanvas" tags={['@nivo/heatmap', 'canvas']} />
-
         const description = (
             <div className="chart-description">
                 <p className="description">
@@ -167,43 +163,30 @@ export default class HeatMap extends Component {
         )
 
         return (
-            <div className="page_content grid">
-                <div className="chart-page_main">
-                    <MediaQuery query="(max-width: 1000px)">
-                        {header}
-                        {description}
-                    </MediaQuery>
-                    <ChartTabs
-                        chartClass="heatmap"
-                        code={code}
+            <div className="chart_page">
+                <ChartHeader chartClass="HeatMapCanvas" tags={['@nivo/heatmap', 'canvas']} />
+                {description}
+                <ChartTabs
+                    chartClass="heatmap"
+                    code={code}
+                    data={data}
+                    diceRoll={this.diceRoll}
+                    nodeCount={data.length * keys.length}
+                >
+                    <ResponsiveHeatMapCanvas
                         data={data}
-                        diceRoll={this.diceRoll}
-                        nodeCount={data.length * keys.length}
-                    >
-                        <ResponsiveHeatMapCanvas
-                            data={data}
-                            keys={keys}
-                            {...mappedSettings}
-                            onClick={this.handleNodeClick}
-                            theme={nivoTheme}
-                        />
-                    </ChartTabs>
-                    <HeatMapControls
-                        scope="HeatMapCanvas"
-                        settings={settings}
-                        onChange={this.handleSettingsUpdate}
+                        keys={keys}
+                        {...mappedSettings}
+                        onClick={this.handleNodeClick}
+                        theme={nivoTheme}
                     />
-                    <ComponentPropsDocumentation
-                        chartClass="HeatMapCanvas"
-                        properties={properties}
-                    />
-                </div>
-                <div className="chart-page_aside">
-                    <MediaQuery query="(min-width: 1000px)">
-                        {header}
-                        {description}
-                    </MediaQuery>
-                </div>
+                </ChartTabs>
+                <Settings
+                    component="HeatMapCanvas"
+                    settings={settings}
+                    onChange={this.handleSettingsUpdate}
+                    groups={groupsByScope.HeatMapCanvas}
+                />
             </div>
         )
     }

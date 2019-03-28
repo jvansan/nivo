@@ -1,11 +1,6 @@
 .chart-tabs {
-    width: 100%;
-    position: relative;
-    overflow: hidden;
-    height: 510px;
-    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.1);
-    margin-bottom: 40px;
     background: var(--card-background-color);
+    margin: 0;
 }
 
 .chart-tabs--horizontal {
@@ -71,6 +66,7 @@
     top: 46px;
     bottom: 0;
     width: 100%;
+    background: #fff;
 }
 
 .chart_header {

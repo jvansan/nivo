@@ -10,7 +10,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import dedent from 'dedent-js'
 import { PieDefaultProps as defaults } from '@nivo/pie'
-import { marginProperties, defsProperties } from '../../../lib/componentProperties'
+import { defsProperties } from '../../../lib/componentProperties'
 
 export default [
     {
@@ -187,6 +187,15 @@ export default [
         controlType: 'switch',
         controlGroup: 'Base',
     },
+    {
+        key: 'margin',
+        scopes: '*',
+        description: 'Chart margin.',
+        type: '{object}',
+        required: false,
+        controlType: 'margin',
+        controlGroup: 'Base',
+    },
     /*
     ————————————————————————————————————————————————————————————————————————————
 
@@ -246,14 +255,8 @@ export default [
         type: '{number}',
         required: false,
         default: defaults.borderWidth,
-        controlType: 'range',
+        controlType: 'lineWidth',
         controlGroup: 'Style',
-        controlOptions: {
-            unit: 'px',
-            min: 0,
-            max: 12,
-            step: 1,
-        },
     },
     {
         key: 'borderColor',
@@ -267,7 +270,6 @@ export default [
             withCustomColor: true,
         },
     },
-    ...marginProperties,
     {
         key: 'enableRadialLabels',
         description: 'Enable/disable radial labels.',
@@ -373,15 +375,8 @@ export default [
         description: 'Links stroke width.',
         type: '{number}',
         required: false,
-        //default
-        controlType: 'range',
+        controlType: 'lineWidth',
         controlGroup: 'Radial labels',
-        controlOptions: {
-            unit: 'px',
-            min: 1,
-            max: 10,
-            step: 1,
-        },
     },
     {
         key: 'radialLabelsTextColor',

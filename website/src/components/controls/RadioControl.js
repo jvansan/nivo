@@ -9,6 +9,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import className from 'classnames'
+import Label from './Label'
 
 export default class RadioControl extends Component {
     static propTypes = {
@@ -33,7 +34,7 @@ export default class RadioControl extends Component {
 
         return (
             <div className="chart-controls_item">
-                <span className="control_label">{label}</span>
+                <Label>{label}</Label>
                 <div className="control-radio">
                     {choices.map(choice => (
                         <label
@@ -52,7 +53,10 @@ export default class RadioControl extends Component {
                         </label>
                     ))}
                 </div>
+                {/*
+                <span/>
                 <div className="control-help">{help}</div>
+                */}
             </div>
         )
     }

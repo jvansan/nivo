@@ -13,7 +13,6 @@ import ChartControls from './ChartControls'
 
 export default class ObjectControl extends PureComponent {
     static propTypes = {
-        ns: PropTypes.string.isRequired,
         label: PropTypes.string.isRequired,
         help: PropTypes.node.isRequired,
         onChange: PropTypes.func.isRequired,
@@ -36,7 +35,7 @@ export default class ObjectControl extends PureComponent {
     }
 
     render() {
-        const { ns, label, help, value, props, onChange } = this.props
+        const { label, help, value, props, onChange } = this.props
         const { isOpened } = this.state
 
         return (
@@ -54,7 +53,6 @@ export default class ObjectControl extends PureComponent {
                 </div>
                 {isOpened && (
                     <ChartControls
-                        ns={ns}
                         name={label}
                         controls={props}
                         settings={value}

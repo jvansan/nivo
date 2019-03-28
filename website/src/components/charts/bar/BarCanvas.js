@@ -8,14 +8,12 @@
  */
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import MediaQuery from 'react-responsive'
 import { ResponsiveBarCanvas } from '@nivo/bar'
 import ChartHeader from '../../ChartHeader'
 import ChartTabs from '../../ChartTabs'
-import BarControls from './BarControls'
+import { groupsByScope } from './BarControls'
+import Settings from '../../Settings'
 import generateCode from '../../../lib/generateChartCode'
-import ComponentPropsDocumentation from '../../properties/ComponentPropsDocumentation'
-import properties from './props'
 import nivoTheme from '../../../nivoTheme'
 import { generateHeavyDataSet as generateData } from './generators'
 import propsMapper from './propsMapper'
@@ -137,8 +135,6 @@ export default class BarCanvas extends Component {
             { pkg: '@nivo/bar' }
         )
 
-        const header = <ChartHeader chartClass="BarCanvas" tags={['@nivo/bar', 'canvas']} />
-
         const description = (
             <div className="chart-description">
                 <p className="description">
@@ -155,39 +151,29 @@ export default class BarCanvas extends Component {
         )
 
         return (
-            <div className="page_content grid">
-                <div className="chart-page_main">
-                    <MediaQuery query="(max-width: 1000px)">
-                        {header}
-                        {description}
-                    </MediaQuery>
-                    <ChartTabs
-                        chartClass="bar"
-                        code={code}
+            <div className="chart_page">
+                <ChartHeader chartClass="BarCanvas" tags={['@nivo/bar', 'canvas']} />
+                {description}
+                <ChartTabs
+                    chartClass="bar"
+                    code={code}
+                    data={data}
+                    diceRoll={this.diceRoll}
+                    nodeCount={data.length * keys.length}
+                >
+                    <ResponsiveBarCanvas
                         data={data}
-                        diceRoll={this.diceRoll}
-                        nodeCount={data.length * keys.length}
-                    >
-                        <ResponsiveBarCanvas
-                            data={data}
-                            keys={keys}
-                            {...mappedSettings}
-                            onClick={this.handleNodeClick}
-                        />
-                    </ChartTabs>
-                    <BarControls
-                        scope="BarCanvas"
-                        settings={settings}
-                        onChange={this.handleSettingsUpdate}
+                        keys={keys}
+                        {...mappedSettings}
+                        onClick={this.handleNodeClick}
                     />
-                    <ComponentPropsDocumentation chartClass="Bar" properties={properties} />
-                </div>
-                <div className="chart-page_aside">
-                    <MediaQuery query="(min-width: 1000px)">
-                        {header}
-                        {description}
-                    </MediaQuery>
-                </div>
+                </ChartTabs>
+                <Settings
+                    component="BarCanvas"
+                    settings={settings}
+                    onChange={this.handleSettingsUpdate}
+                    groups={groupsByScope.BarCanvas}
+                />
             </div>
         )
     }

@@ -9,16 +9,14 @@
 import React, { Component } from 'react'
 import omit from 'lodash/omit'
 import { Link } from 'react-router-dom'
-import MediaQuery from 'react-responsive'
 import { ResponsiveLine, LineDefaultProps } from '@nivo/line'
 import ChartHeader from '../../ChartHeader'
 import ChartTabs from '../../ChartTabs'
-import LineControls from './LineControls'
 import generateCode from '../../../lib/generateChartCode'
 import Stories from '../../Stories'
 import { lineStories } from './stories'
-import ComponentPropsDocumentation from '../../properties/ComponentPropsDocumentation'
-import properties from './props'
+import Settings from '../../Settings'
+import { groupsByScope } from './LineControls'
 import config from '../../../config'
 import nivoTheme from '../../../nivoTheme'
 import defaultProps from './defaultProps'
@@ -75,73 +73,54 @@ export default class Line extends Component {
             defaults: LineDefaultProps,
         })
 
-        const header = <ChartHeader chartClass="Line" tags={['@nivo/line', 'svg', 'isomorphic']} />
-
-        const description = (
-            <div className="chart-description">
-                <p className="description">Line chart with stacking ability.</p>
-                <p>
-                    Given an array of data series having an id and a nested array of points (with x,
-                    y properties), it will compute the line for each data serie. All datum having
-                    null x or y will be treated as holes, thus portions of the corresponding line
-                    will be skipped.
-                </p>
-                <p className="description">
-                    The responsive alternative of this component is <code>ResponsiveLine</code>.
-                </p>
-                <p className="description">
-                    This component is available in the{' '}
-                    <a
-                        href="https://github.com/plouc/nivo-api"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        nivo-api
-                    </a>
-                    , see{' '}
-                    <a
-                        href={`${config.nivoApiUrl}/samples/line.svg`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        sample
-                    </a>{' '}
-                    or <Link to="/line/api">try it using the API client</Link>.
-                </p>
-                <p className="description">
-                    See the <Link to="/guides/legends">dedicated guide</Link> on how to setup
-                    legends for this component.
-                </p>
-            </div>
-        )
-
-        const stories = <Stories stories={lineStories} />
-
         return (
-            <div className="page_content grid">
-                <div className="chart-page_main">
-                    <MediaQuery query="(max-width: 1000px)">
-                        {header}
-                        {description}
-                    </MediaQuery>
-                    <ChartTabs chartClass="line" code={code} data={data} diceRoll={diceRoll}>
-                        <ResponsiveLine data={data} {...mappedSettings} theme={nivoTheme} />
-                    </ChartTabs>
-                    <LineControls
-                        scope="Line"
-                        settings={settings}
-                        onChange={this.handleSettingsUpdate}
-                    />
-                    <MediaQuery query="(max-width: 1000px)">{stories}</MediaQuery>
-                    <ComponentPropsDocumentation chartClass="Line" properties={properties} />
+            <div className="chart_page">
+                <ChartHeader chartClass="Line" tags={['@nivo/line', 'svg', 'isomorphic']} />
+                <div className="chart-description">
+                    <p className="description">Line chart with stacking ability.</p>
+                    <p>
+                        Given an array of data series having an id and a nested array of points (with x,
+                        y properties), it will compute the line for each data serie. All datum having
+                        null x or y will be treated as holes, thus portions of the corresponding line
+                        will be skipped.
+                    </p>
+                    <p className="description">
+                        The responsive alternative of this component is <code>ResponsiveLine</code>.
+                    </p>
+                    <p className="description">
+                        This component is available in the{' '}
+                        <a
+                            href="https://github.com/plouc/nivo-api"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            nivo-api
+                        </a>
+                        , see{' '}
+                        <a
+                            href={`${config.nivoApiUrl}/samples/line.svg`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            sample
+                        </a>{' '}
+                        or <Link to="/line/api">try it using the API client</Link>.
+                    </p>
+                    <p className="description">
+                        See the <Link to="/guides/legends">dedicated guide</Link> on how to setup
+                        legends for this component.
+                    </p>
                 </div>
-                <div className="chart-page_aside">
-                    <MediaQuery query="(min-width: 1000px)">
-                        {header}
-                        {description}
-                        {stories}
-                    </MediaQuery>
-                </div>
+                <ChartTabs chartClass="line" code={code} data={data} diceRoll={diceRoll}>
+                    <ResponsiveLine data={data} {...mappedSettings} theme={nivoTheme} />
+                </ChartTabs>
+                <Settings
+                    component="Line"
+                    settings={settings}
+                    onChange={this.handleSettingsUpdate}
+                    groups={groupsByScope.Line}
+                />
+                <Stories stories={lineStories} />
             </div>
         )
     }

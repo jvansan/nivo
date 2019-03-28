@@ -8,15 +8,13 @@
  */
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import MediaQuery from 'react-responsive'
 import { ResponsiveTreeMapHtml, TreeMapDefaultProps } from '@nivo/treemap'
 import ChartHeader from '../../ChartHeader'
-import TreeMapControls from './TreeMapControls'
 import generateCode from '../../../lib/generateChartCode'
 import ChartTabs from '../../ChartTabs'
 import config from '../../../config'
-import ComponentPropsDocumentation from '../../properties/ComponentPropsDocumentation'
-import properties from './props'
+import Settings from '../../Settings'
+import { groupsByScope } from './TreeMapControls'
 import nivoTheme from '../../../nivoTheme'
 import propsMapper from './propsMapper'
 import { generateLightDataSet as generateData } from './generators'
@@ -25,7 +23,6 @@ export default class TreeMapHtml extends Component {
     state = {
         ...generateData(),
         settings: {
-            // data
             identity: 'name',
             value: 'loc',
             tile: 'squarify',
@@ -40,7 +37,6 @@ export default class TreeMapHtml extends Component {
                 left: 10,
             },
 
-            // labels
             enableLabel: true,
             label: 'loc',
             labelFormat: '.0s',
@@ -51,7 +47,6 @@ export default class TreeMapHtml extends Component {
             },
             orientLabel: true,
 
-            // styling
             colors: 'set2',
             colorBy: 'name',
             borderWidth: 0,
@@ -91,104 +86,81 @@ export default class TreeMapHtml extends Component {
             defaults: TreeMapDefaultProps,
         })
 
-        const header = (
-            <ChartHeader
-                chartClass="TreeMapHtml"
-                tags={['@nivo/treemap', 'hierarchy', 'html', 'isomorphic']}
-            />
-        )
-
-        const description = (
-            <div className="chart-description">
-                <p className="description">
-                    A tree map component using{' '}
-                    <a
-                        href="https://github.com/d3/d3-hierarchy#treemap"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        d3-hierarchy.treemap
-                    </a>
-                    , see{' '}
-                    <a
-                        href="http://bl.ocks.org/mbostock/6bbb0a7ff7686b124d80"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        this block
-                    </a>
-                    . You can fully customize it using <code>nodeComponent</code> property to define
-                    your own node component, if you wish to do so you should have a look at{' '}
-                    <a
-                        href="https://github.com/plouc/nivo/blob/master/src/components/charts/treemap/TreeMapHtmlNode.js"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        native HTML node component
-                    </a>{' '}
-                    for available properties.
-                </p>
-                <p className="description">
-                    The responsive alternative of this component is{' '}
-                    <code>ResponsiveTreeMapHtml</code>, it also offers other implementations, see{' '}
-                    <Link to="/treemap">TreeMap</Link> and{' '}
-                    <Link to="/treemap/canvas">TreeMapCanvas</Link>.
-                </p>
-                <p className="description">
-                    The <code>TreeMap</code> component is also available in the{' '}
-                    <a
-                        href="https://github.com/plouc/nivo-api"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        nivo-api
-                    </a>
-                    , see{' '}
-                    <a
-                        href={`${config.nivoApiUrl}/samples/treemap`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        sample
-                    </a>{' '}
-                    or <Link to="/treemap/api">try it using the API client</Link>.
-                </p>
-            </div>
-        )
-
         return (
-            <div className="page_content grid">
-                <div className="chart-page_main">
-                    <MediaQuery query="(max-width: 1000px)">
-                        {header}
-                        {description}
-                    </MediaQuery>
-                    <ChartTabs
-                        chartClass="treemap"
-                        code={code}
-                        data={root}
-                        diceRoll={this.diceRoll}
-                    >
-                        <ResponsiveTreeMapHtml
-                            root={root}
-                            {...mappedSettings}
-                            theme={nivoTheme}
-                            onClick={this.handleNodeClick}
-                        />
-                    </ChartTabs>
-                    <TreeMapControls
-                        scope="TreeMapHTML"
-                        settings={settings}
-                        onChange={this.handleSettingsUpdate}
+            <div className="chart_page">
+                <ChartHeader
+                    chartClass="TreeMapHtml"
+                    tags={['@nivo/treemap', 'hierarchy', 'html', 'isomorphic']}
+                />
+                <div className="chart-description">
+                    <p className="description">
+                        A tree map component using{' '}
+                        <a
+                            href="https://github.com/d3/d3-hierarchy#treemap"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            d3-hierarchy.treemap
+                        </a>
+                        , see{' '}
+                        <a
+                            href="http://bl.ocks.org/mbostock/6bbb0a7ff7686b124d80"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            this block
+                        </a>
+                        . You can fully customize it using <code>nodeComponent</code> property to define
+                        your own node component, if you wish to do so you should have a look at{' '}
+                        <a
+                            href="https://github.com/plouc/nivo/blob/master/src/components/charts/treemap/TreeMapHtmlNode.js"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            native HTML node component
+                        </a>{' '}
+                        for available properties.
+                    </p>
+                    <p className="description">
+                        The responsive alternative of this component is{' '}
+                        <code>ResponsiveTreeMapHtml</code>, it also offers other implementations, see{' '}
+                        <Link to="/treemap">TreeMap</Link> and{' '}
+                        <Link to="/treemap/canvas">TreeMapCanvas</Link>.
+                    </p>
+                    <p className="description">
+                        The <code>TreeMap</code> component is also available in the{' '}
+                        <a
+                            href="https://github.com/plouc/nivo-api"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            nivo-api
+                        </a>
+                        , see{' '}
+                        <a
+                            href={`${config.nivoApiUrl}/samples/treemap`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            sample
+                        </a>{' '}
+                        or <Link to="/treemap/api">try it using the API client</Link>.
+                    </p>
+                </div>
+                <ChartTabs chartClass="treemap" code={code} data={root} diceRoll={this.diceRoll}>
+                    <ResponsiveTreeMapHtml
+                        root={root}
+                        {...mappedSettings}
+                        theme={nivoTheme}
+                        onClick={this.handleNodeClick}
                     />
-                    <ComponentPropsDocumentation chartClass="TreeMapHTML" properties={properties} />
-                </div>
-                <div className="chart-page_aside">
-                    <MediaQuery query="(min-width: 1000px)">
-                        {header}
-                        {description}
-                    </MediaQuery>
-                </div>
+                </ChartTabs>
+                <Settings
+                    component="TreeMapHTML"
+                    settings={settings}
+                    onChange={this.handleSettingsUpdate}
+                    groups={groupsByScope.TreeMapHTML}
+                />
             </div>
         )
     }

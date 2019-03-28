@@ -1,9 +1,9 @@
 :root {
     --header-height: 60px;
     --sidebar-width: 260px;
-    --content-margin: 50px;
-    --mini-nav-width: 80px;
-    --mini-nav-item-size: 56px; /* if this value is updated, it has to be updated in the MiniNav component too */
+    --content-margin: 40px;
+    --mini-nav-item-size: 66px;
+    --mini-nav-width: calc(var(--mini-nav-item-size) * 2);
     --header-bottom-offset: 130px;
 
     --control-switch-width: 36px;

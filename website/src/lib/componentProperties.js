@@ -78,20 +78,6 @@ export const motionProperties = (scopes, defaults) => [
     },
 ]
 
-export const marginProperties = ['top', 'right', 'bottom', 'left'].map(marginType => ({
-    key: `margin.${marginType}`,
-    scopes: '*',
-    description: `${upperFirst(marginType)} margin (px).`,
-    type: '{number}',
-    controlType: 'range',
-    controlGroup: 'Margin',
-    controlOptions: {
-        unit: 'px',
-        min: 0,
-        max: 320,
-    },
-}))
-
 export const axesProperties = [
     {
         position: 'top',
@@ -190,22 +176,8 @@ export const getLegendsProps = () => [
         key: 'anchor',
         description: `Defines legend anchor relative to chart's viewport.`,
         type: '{string}',
-        controlType: 'choices',
+        controlType: 'boxAnchor',
         controlOptions: {
-            choices: [
-                'top',
-                'top-right',
-                'right',
-                'bottom-right',
-                'bottom',
-                'bottom-left',
-                'left',
-                'top-left',
-                'center',
-            ].map(v => ({
-                label: v,
-                value: v,
-            })),
         },
     },
     {

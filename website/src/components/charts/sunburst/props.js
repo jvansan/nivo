@@ -8,7 +8,6 @@
  */
 import React from 'react'
 import { SunburstDefaultProps as defaults } from '@nivo/sunburst'
-import { marginProperties } from '../../../lib/componentProperties'
 
 export default [
     {
@@ -54,6 +53,15 @@ export default [
             max: 1000,
             step: 5,
         },
+    },
+    {
+        key: 'margin',
+        scopes: '*',
+        description: 'Chart margin.',
+        type: '{object}',
+        required: false,
+        controlType: 'margin',
+        controlGroup: 'Base',
     },
     {
         key: 'identity',
@@ -159,7 +167,6 @@ export default [
             step: 1,
         },
     },
-    ...marginProperties,
     {
         key: 'isInteractive',
         scopes: ['Sunburst'],

@@ -10,7 +10,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import dedent from 'dedent-js'
 import { ChordDefaultProps as defaults } from '@nivo/chord'
-import { marginProperties, motionProperties } from '../../../lib/componentProperties'
+import { motionProperties } from '../../../lib/componentProperties'
 
 export default [
     {
@@ -118,6 +118,15 @@ export default [
         },
     },
     {
+        key: 'margin',
+        scopes: '*',
+        description: 'Chart margin.',
+        type: '{object}',
+        required: false,
+        controlType: 'margin',
+        controlGroup: 'Base',
+    },
+    {
         key: 'padAngle',
         scopes: '*',
         description: 'Padding angle.',
@@ -184,13 +193,8 @@ export default [
         required: false,
         default: defaults.arcOpacity,
         type: '{number}',
-        controlType: 'range',
+        controlType: 'opacity',
         controlGroup: 'Style',
-        controlOptions: {
-            min: 0,
-            max: 1,
-            step: 0.05,
-        },
     },
     {
         key: 'arcBorderWidth',
@@ -199,13 +203,8 @@ export default [
         required: false,
         default: defaults.arcBorderWidth,
         type: '{number}',
-        controlType: 'range',
+        controlType: 'lineWidth',
         controlGroup: 'Style',
-        controlOptions: {
-            unit: 'px',
-            min: 0,
-            max: 12,
-        },
     },
     {
         key: 'arcBorderColor',
@@ -227,13 +226,8 @@ export default [
         required: false,
         default: defaults.ribbonOpacity,
         type: '{number}',
-        controlType: 'range',
+        controlType: 'opacity',
         controlGroup: 'Style',
-        controlOptions: {
-            min: 0,
-            max: 1,
-            step: 0.05,
-        },
     },
     {
         key: 'ribbonBorderWidth',
@@ -242,14 +236,8 @@ export default [
         required: false,
         default: defaults.ribbonBorderWidth,
         type: '{number}',
-        controlType: 'range',
+        controlType: 'lineWidth',
         controlGroup: 'Style',
-        controlOptions: {
-            unit: 'px',
-            min: 0,
-            max: 12,
-            step: 1,
-        },
     },
     {
         key: 'ribbonBorderColor',
@@ -264,7 +252,6 @@ export default [
             withCustomColor: true,
         },
     },
-    ...marginProperties,
     /*##################################################################################################################
 
         Labels
@@ -368,13 +355,8 @@ export default [
         required: false,
         default: defaults.arcHoverOpacity,
         type: '{number}',
-        controlType: 'range',
+        controlType: 'opacity',
         controlGroup: 'Interactivity',
-        controlOptions: {
-            min: 0,
-            max: 1,
-            step: 0.05,
-        },
     },
     {
         key: 'arcHoverOthersOpacity',
@@ -383,13 +365,8 @@ export default [
         required: false,
         default: defaults.arcHoverOthersOpacity,
         type: '{number}',
-        controlType: 'range',
+        controlType: 'opacity',
         controlGroup: 'Interactivity',
-        controlOptions: {
-            min: 0,
-            max: 1,
-            step: 0.05,
-        },
     },
     {
         key: 'ribbonHoverOpacity',
@@ -398,13 +375,8 @@ export default [
         required: false,
         default: defaults.ribbonHoverOpacity,
         type: '{number}',
-        controlType: 'range',
+        controlType: 'opacity',
         controlGroup: 'Interactivity',
-        controlOptions: {
-            min: 0,
-            max: 1,
-            step: 0.05,
-        },
     },
     {
         key: 'ribbonHoverOthersOpacity',
@@ -413,13 +385,8 @@ export default [
         required: false,
         default: defaults.ribbonHoverOthersOpacity,
         type: '{number}',
-        controlType: 'range',
+        controlType: 'opacity',
         controlGroup: 'Interactivity',
-        controlOptions: {
-            min: 0,
-            max: 1,
-            step: 0.05,
-        },
     },
     ...motionProperties(['Chord'], defaults),
 ]

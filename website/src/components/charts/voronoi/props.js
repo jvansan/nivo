@@ -8,7 +8,6 @@
  */
 import React from 'react'
 import dedent from 'dedent-js'
-import { marginProperties } from '../../../lib/componentProperties'
 import { VoronoiDefaultProps as defaults } from '@nivo/voronoi'
 
 export default [
@@ -91,6 +90,15 @@ export default [
             max: 1000,
             step: 5,
         },
+    },
+    {
+        key: 'margin',
+        scopes: '*',
+        description: 'Chart margin.',
+        type: '{object}',
+        required: false,
+        controlType: 'margin',
+        controlGroup: 'Base',
     },
     {
         key: 'layers',
@@ -211,5 +219,4 @@ export default [
         controlType: 'colorPicker',
         controlGroup: 'Points',
     },
-    ...marginProperties,
 ]

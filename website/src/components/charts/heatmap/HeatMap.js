@@ -8,16 +8,14 @@
  */
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import MediaQuery from 'react-responsive'
 import { ResponsiveHeatMap, HeatMapDefaultProps } from '@nivo/heatmap'
 import { patternLinesDef } from '@nivo/core'
 import isFunction from 'lodash/isFunction'
 import ChartHeader from '../../ChartHeader'
 import ChartTabs from '../../ChartTabs'
-import HeatMapControls from './HeatMapControls'
+import Settings from '../../Settings'
+import { groupsByScope } from './HeatMapControls'
 import generateCode from '../../../lib/generateChartCode'
-import ComponentPropsDocumentation from '../../properties/ComponentPropsDocumentation'
-import properties from './props'
 import nivoTheme from '../../../nivoTheme'
 import config from '../../../config'
 import { generateLightDataSet } from './generators'
@@ -160,85 +158,62 @@ export default class HeatMap extends Component {
             { pkg: '@nivo/heatmap', defaults: HeatMapDefaultProps }
         )
 
-        const header = (
-            <ChartHeader chartClass="HeatMap" tags={['@nivo/heatmap', 'svg', 'isomorphic']} />
-        )
-
-        const description = (
-            <div className="chart-description">
-                <p className="description">
-                    An heat map matrix, you can chose between various colors scales or pass yours,
-                    you also have the ability to change the cell shape for rectangle or circle and
-                    even use a custom rendering function.
-                </p>
-                <p className="description">
-                    The responsive alternative of this component is <code>ResponsiveHeatMap</code>.
-                </p>
-                <p className="description">
-                    This component is available in the{' '}
-                    <a
-                        href="https://github.com/plouc/nivo-api"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        nivo-api
-                    </a>
-                    , see{' '}
-                    <a
-                        href={`${config.nivoApiUrl}/samples/heatmap.svg`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        sample
-                    </a>{' '}
-                    or <Link to="/heatmap/api">try it using the API client</Link>. You can also see
-                    more example usages in{' '}
-                    <a
-                        href={`${config.storybookUrl}?selectedKind=HeatMap&selectedStory=default`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        the storybook
-                    </a>
-                    .
-                </p>
-            </div>
-        )
-
         return (
-            <div className="page_content grid">
-                <div className="chart-page_main">
-                    <MediaQuery query="(max-width: 1000px)">
-                        {header}
-                        {description}
-                    </MediaQuery>
-                    <ChartTabs
-                        chartClass="heatmap"
-                        code={code}
+            <div className="chart_page">
+                <ChartHeader chartClass="HeatMap" tags={['@nivo/heatmap', 'svg', 'isomorphic']} />
+                <div className="chart-description">
+                    <p className="description">
+                        An heat map matrix, you can chose between various colors scales or pass yours,
+                        you also have the ability to change the cell shape for rectangle or circle and
+                        even use a custom rendering function.
+                    </p>
+                    <p className="description">
+                        The responsive alternative of this component is <code>ResponsiveHeatMap</code>.
+                    </p>
+                    <p className="description">
+                        This component is available in the{' '}
+                        <a
+                            href="https://github.com/plouc/nivo-api"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            nivo-api
+                        </a>
+                        , see{' '}
+                        <a
+                            href={`${config.nivoApiUrl}/samples/heatmap.svg`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            sample
+                        </a>{' '}
+                        or <Link to="/heatmap/api">try it using the API client</Link>. You can also see
+                        more example usages in{' '}
+                        <a
+                            href={`${config.storybookUrl}?selectedKind=HeatMap&selectedStory=default`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            the storybook
+                        </a>
+                        .
+                    </p>
+                </div>
+                <ChartTabs chartClass="heatmap" code={code} data={data} diceRoll={this.diceRoll}>
+                    <ResponsiveHeatMap
                         data={data}
-                        diceRoll={this.diceRoll}
-                    >
-                        <ResponsiveHeatMap
-                            data={data}
-                            keys={keys}
-                            {...mappedSettings}
-                            onClick={this.handleNodeClick}
-                            theme={nivoTheme}
-                        />
-                    </ChartTabs>
-                    <HeatMapControls
-                        scope="HeatMap"
-                        settings={settings}
-                        onChange={this.handleSettingsUpdate}
+                        keys={keys}
+                        {...mappedSettings}
+                        onClick={this.handleNodeClick}
+                        theme={nivoTheme}
                     />
-                    <ComponentPropsDocumentation chartClass="HeatMap" properties={properties} />
-                </div>
-                <div className="chart-page_aside">
-                    <MediaQuery query="(min-width: 1000px)">
-                        {header}
-                        {description}
-                    </MediaQuery>
-                </div>
+                </ChartTabs>
+                <Settings
+                    component="HeatMap"
+                    settings={settings}
+                    onChange={this.handleSettingsUpdate}
+                    groups={groupsByScope.HeatMap}
+                />
             </div>
         )
     }

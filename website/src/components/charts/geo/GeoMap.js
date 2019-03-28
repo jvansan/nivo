@@ -8,15 +8,13 @@
  */
 import React, { useState, useCallback } from 'react'
 import { Link } from 'react-router-dom'
-import MediaQuery from 'react-responsive'
 import { ResponsiveGeoMap, GeoMapDefaultProps } from '@nivo/geo'
 import nivoTheme from '../../../nivoTheme'
 import generateCode from '../../../lib/generateChartCode'
 import ChartHeader from '../../ChartHeader'
 import ChartTabs from '../../ChartTabs'
-import ComponentPropsDocumentation from '../../properties/ComponentPropsDocumentation'
-import GeoControls from './GeoControls'
-import properties from './props'
+import Settings from '../../Settings'
+import { groupsByScope } from './GeoControls'
 import countries from './world_countries'
 // import propsMapper from './propsMapper'
 
@@ -73,56 +71,38 @@ const GeoMap = () => {
         }
     )
 
-    const header = (
-        <ChartHeader chartClass="GeoMap" tags={['@nivo/geo', 'map', 'svg', 'isomorphic']} />
-    )
-
-    const description = (
-        <div className="chart-description">
-            <p className="description">
-                This component can be used to draw maps, it takes an array of features which
-                determine the geometries to render on the map. It can be used to build more complex
-                maps such as the <Link to="/choropleth">Choropleth</Link>.
-            </p>
-            <p className="description">
-                Using this component requires some knowledge about the <code>d3-geo</code> library,
-                projections, geoJSON… please have a look at the{' '}
-                <a href="https://github.com/d3/d3-geo" target="_blank" rel="noopener noreferrer">
-                    official d3 documentation
-                </a>{' '}
-                for further information.
-            </p>
-            <p className="description">
-                The responsive alternative of this component is <code>ResponsiveGeoMap</code>, it
-                also offers a canvas implementations, see{' '}
-                <Link to="/geomap/canvas">GeoMapCanvas</Link>.
-            </p>
-        </div>
-    )
-
     return (
-        <div className="page_content grid">
-            <div className="chart-page_main">
-                <MediaQuery query="(max-width: 1000px)">
-                    {header}
-                    {description}
-                </MediaQuery>
-                <ChartTabs chartClass="geomap" code={code}>
-                    <ResponsiveGeoMap
-                        features={countries.features}
-                        onClick={onClick}
-                        {...settings}
-                    />
-                </ChartTabs>
-                <GeoControls scope="GeoMap" settings={settings} onChange={setSettings} />
-                <ComponentPropsDocumentation chartClass="GeoMap" properties={properties} />
+        <div className="chart_page">
+            <ChartHeader chartClass="GeoMap" tags={['@nivo/geo', 'map', 'svg', 'isomorphic']} />
+            <div className="chart-description">
+                <p className="description">
+                    This component can be used to draw maps, it takes an array of features which
+                    determine the geometries to render on the map. It can be used to build more complex
+                    maps such as the <Link to="/choropleth">Choropleth</Link>.
+                </p>
+                <p className="description">
+                    Using this component requires some knowledge about the <code>d3-geo</code> library,
+                    projections, geoJSON… please have a look at the{' '}
+                    <a href="https://github.com/d3/d3-geo" target="_blank" rel="noopener noreferrer">
+                        official d3 documentation
+                    </a>{' '}
+                    for further information.
+                </p>
+                <p className="description">
+                    The responsive alternative of this component is <code>ResponsiveGeoMap</code>, it
+                    also offers a canvas implementations, see{' '}
+                    <Link to="/geomap/canvas">GeoMapCanvas</Link>.
+                </p>
             </div>
-            <div className="chart-page_aside">
-                <MediaQuery query="(min-width: 1000px)">
-                    {header}
-                    {description}
-                </MediaQuery>
-            </div>
+            <ChartTabs chartClass="geomap" code={code}>
+                <ResponsiveGeoMap features={countries.features} onClick={onClick} {...settings} />
+            </ChartTabs>
+            <Settings
+                component="GeoMap"
+                settings={settings}
+                onChange={setSettings}
+                groups={groupsByScope.GeoMap}
+            />
         </div>
     )
 }

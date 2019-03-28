@@ -15,7 +15,6 @@ import ChartControls from './ChartControls'
 
 export default class ArrayControl extends PureComponent {
     static propTypes = {
-        ns: PropTypes.string.isRequired,
         label: PropTypes.string.isRequired,
         help: PropTypes.node.isRequired,
         onChange: PropTypes.func.isRequired,
@@ -84,7 +83,6 @@ export default class ArrayControl extends PureComponent {
 
     render() {
         const {
-            ns,
             label,
             help,
             value,
@@ -135,7 +133,6 @@ export default class ArrayControl extends PureComponent {
                         </div>
                         {activeItems.includes(index) && (
                             <ChartControls
-                                ns={ns}
                                 name={label}
                                 controls={props}
                                 settings={item}

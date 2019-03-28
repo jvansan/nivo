@@ -11,7 +11,6 @@ import { Link } from 'react-router-dom'
 import { areaCurvePropKeys, stackOrderPropKeys, stackOffsetPropKeys } from '@nivo/core'
 import { StreamDefaultProps as defaults } from '@nivo/stream'
 import {
-    marginProperties,
     axesProperties,
     motionProperties,
     defsProperties,
@@ -124,6 +123,15 @@ export default [
         },
     },
     {
+        key: 'margin',
+        scopes: '*',
+        description: 'Chart margin.',
+        type: '{object}',
+        required: false,
+        controlType: 'margin',
+        controlGroup: 'Base',
+    },
+    {
         key: 'colors',
         scopes: '*',
         description: 'Defines how to compute line color.',
@@ -139,13 +147,8 @@ export default [
         type: '{number}',
         required: false,
         default: defaults.fillOpacity,
-        controlType: 'range',
+        controlType: 'opacity',
         controlGroup: 'Style',
-        controlOptions: {
-            min: 0,
-            max: 1,
-            step: 0.05,
-        },
     },
     {
         key: 'borderWidth',
@@ -182,7 +185,6 @@ export default [
         },
     },
     ...defsProperties(['Stream']),
-    ...marginProperties,
     {
         key: 'enableGridX',
         scopes: '*',

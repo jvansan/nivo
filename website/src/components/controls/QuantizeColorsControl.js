@@ -57,7 +57,7 @@ export default class QuantizeColorsControl extends Component {
         const { help, value } = this.props
 
         return (
-            <div className="control control-colors">
+            <>
                 <label className="control_label">
                     colors:&nbsp;
                     <code className="code code-string">'{value}'</code>
@@ -74,8 +74,9 @@ export default class QuantizeColorsControl extends Component {
                     value={value}
                     clearable={false}
                 />
+                <span/>
                 {help && <div className="control-help">{help}</div>}
-            </div>
+            </>
         )
     }
 }

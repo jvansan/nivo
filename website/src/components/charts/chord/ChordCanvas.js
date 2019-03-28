@@ -8,14 +8,12 @@
  */
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import MediaQuery from 'react-responsive'
 import { ResponsiveChordCanvas } from '@nivo/chord'
 import ChartHeader from '../../ChartHeader'
 import ChartTabs from '../../ChartTabs'
-import ChordControls from './ChordControls'
+import Settings from '../../Settings'
+import { groupsByScope } from './ChordControls'
 import generateCode from '../../../lib/generateChartCode'
-import ComponentPropsDocumentation from '../../properties/ComponentPropsDocumentation'
-import properties from './props'
 import nivoTheme from '../../../nivoTheme'
 import { generateChordData } from '@nivo/generators'
 import propsMapper from './propsMapper'
@@ -103,59 +101,44 @@ export default class ChordCanvas extends Component {
             }
         )
 
-        const header = (
-            <ChartHeader chartClass="ChordCanvas" tags={['@nivo/chord', 'relational', 'canvas']} />
-        )
-
-        const description = (
-            <div className="chart-description">
-                <p className="description">
-                    A variation around the <Link to="/chord">Chord</Link> component. Well suited for
-                    large data sets as it does not impact DOM tree depth and does not involve React
-                    diffing stuff (not that useful when using canvas), however you'll lose the
-                    isomorphic ability and transitions (for now).
-                </p>
-                <p className="description">
-                    The responsive alternative of this component is{' '}
-                    <code>ResponsiveChordCanvas</code>.
-                </p>
-            </div>
-        )
-
         return (
-            <div className="page_content grid">
-                <div className="chart-page_main">
-                    <MediaQuery query="(max-width: 1000px)">
-                        {header}
-                        {description}
-                    </MediaQuery>
-                    <ChartTabs
-                        chartClass="chord"
-                        code={code}
-                        data={matrix}
-                        diceRoll={this.diceRoll}
-                        nodeCount={MATRIX_SIZE * MATRIX_SIZE + MATRIX_SIZE}
-                    >
-                        <ResponsiveChordCanvas
-                            matrix={matrix}
-                            keys={keys}
-                            {...mappedSettings}
-                            theme={nivoTheme}
-                        />
-                    </ChartTabs>
-                    <ChordControls
-                        scope="ChordCanvas"
-                        settings={settings}
-                        onChange={this.handleSettingsUpdate}
+            <div className="chart_page">
+                <ChartHeader
+                    chartClass="ChordCanvas"
+                    tags={['@nivo/chord', 'relational', 'canvas']}
+                />
+                <div className="chart-description">
+                    <p className="description">
+                        A variation around the <Link to="/chord">Chord</Link> component. Well suited for
+                        large data sets as it does not impact DOM tree depth and does not involve React
+                        diffing stuff (not that useful when using canvas), however you'll lose the
+                        isomorphic ability and transitions (for now).
+                    </p>
+                    <p className="description">
+                        The responsive alternative of this component is{' '}
+                        <code>ResponsiveChordCanvas</code>.
+                    </p>
+                </div>
+                <ChartTabs
+                    chartClass="chord"
+                    code={code}
+                    data={matrix}
+                    diceRoll={this.diceRoll}
+                    nodeCount={MATRIX_SIZE * MATRIX_SIZE + MATRIX_SIZE}
+                >
+                    <ResponsiveChordCanvas
+                        matrix={matrix}
+                        keys={keys}
+                        {...mappedSettings}
+                        theme={nivoTheme}
                     />
-                    <ComponentPropsDocumentation chartClass="ChordCanvas" properties={properties} />
-                </div>
-                <div className="chart-page_aside">
-                    <MediaQuery query="(min-width: 1000px)">
-                        {header}
-                        {description}
-                    </MediaQuery>
-                </div>
+                </ChartTabs>
+                <Settings
+                    component="ChordCanvas"
+                    settings={settings}
+                    onChange={this.handleSettingsUpdate}
+                    groups={groupsByScope.ChordCanvas}
+                />
             </div>
         )
     }

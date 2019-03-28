@@ -12,7 +12,7 @@ import ChartControlGroups from '../../controls/ChartControlGroups'
 import { getPropertiesGroupsControls } from '../../../lib/componentProperties'
 import properties from './props'
 
-const groupsByScope = {
+export const groupsByScope = {
     Radar: getPropertiesGroupsControls(properties, 'Radar'),
     api: getPropertiesGroupsControls(properties, 'api'),
 }

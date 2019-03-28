@@ -11,7 +11,6 @@ import { Link } from 'react-router-dom'
 import dedent from 'dedent-js'
 import { BarDefaultProps as defaults } from '@nivo/bar'
 import {
-    marginProperties,
     axesProperties,
     motionProperties,
     defsProperties,
@@ -197,6 +196,15 @@ export default [
         },
     },
     {
+        key: 'margin',
+        scopes: '*',
+        description: 'Chart margin.',
+        type: '{object}',
+        required: false,
+        controlType: 'margin',
+        controlGroup: 'Base',
+    },
+    {
         key: 'padding',
         scopes: '*',
         description: 'Padding between each bar (ratio).',
@@ -284,13 +292,8 @@ export default [
         type: '{number}',
         required: false,
         default: defaults.borderWidth,
-        controlType: 'range',
+        controlType: 'lineWidth',
         controlGroup: 'Style',
-        controlOptions: {
-            unit: 'px',
-            min: 0,
-            max: 10,
-        },
     },
     {
         key: 'borderColor',
@@ -312,7 +315,6 @@ export default [
         },
     },
     ...defsProperties(['Bar']),
-    ...marginProperties,
     {
         key: 'enableLabel',
         scopes: '*',

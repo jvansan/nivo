@@ -12,7 +12,7 @@ import ChartControlGroups from '../../controls/ChartControlGroups'
 import { getPropertiesGroupsControls } from '../../../lib/componentProperties'
 import properties from './props'
 
-const groupsByScope = {
+export const groupsByScope = {
     ScatterPlot: getPropertiesGroupsControls(properties, 'ScatterPlot'),
     ScatterPlotCanvas: getPropertiesGroupsControls(properties, 'ScatterPlotCanvas'),
 }

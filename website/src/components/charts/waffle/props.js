@@ -8,7 +8,6 @@
  */
 import React from 'react'
 import {
-    marginProperties,
     motionProperties,
     defsProperties,
     getLegendsProps,
@@ -160,6 +159,15 @@ export default [
         },
     },
     {
+        key: 'margin',
+        scopes: '*',
+        description: 'Chart margin.',
+        type: '{object}',
+        required: false,
+        controlType: 'margin',
+        controlGroup: 'Base',
+    },
+    {
         key: 'cellComponent',
         scopes: ['Waffle', 'WaffleHtml'],
         description: 'Override default cell component.',
@@ -224,13 +232,8 @@ export default [
         required: false,
         default: defaults.emptyOpacity,
         type: '{number}',
-        controlType: 'range',
+        controlType: 'opacity',
         controlGroup: 'Style',
-        controlOptions: {
-            min: 0,
-            max: 1,
-            step: 0.05,
-        },
     },
     {
         key: 'borderWidth',
@@ -261,7 +264,6 @@ export default [
         },
     },
     ...defsProperties(['Waffle']),
-    ...marginProperties,
     {
         key: 'isInteractive',
         scopes: ['Waffle', 'WaffleHtml', 'WaffleCanvas'],

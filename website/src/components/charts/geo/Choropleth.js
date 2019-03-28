@@ -8,15 +8,13 @@
  */
 import React, { useState, useCallback } from 'react'
 import { Link } from 'react-router-dom'
-import MediaQuery from 'react-responsive'
 import { ResponsiveChoropleth, ChoroplethDefaultProps } from '@nivo/geo'
 import nivoTheme from '../../../nivoTheme'
 import generateCode from '../../../lib/generateChartCode'
 import ChartHeader from '../../ChartHeader'
 import ChartTabs from '../../ChartTabs'
-import ComponentPropsDocumentation from '../../properties/ComponentPropsDocumentation'
-import GeoControls from './GeoControls'
-import properties from './props'
+import Settings from '../../Settings'
+import { groupsByScope } from './GeoControls'
 import countries from './world_countries'
 import { generateChoroplethData } from './generators'
 import propsMapper from './propsMapper'
@@ -100,6 +98,7 @@ const initialSettings = {
 const Choropleth = () => {
     const [settings, setSettings] = useState(initialSettings)
     const [data, setData] = useState(generateChoroplethData())
+    const diceRoll = useCallback(() => setData(generateChoroplethData()), [setData])
     const onClick = useCallback((feature, event) => {
         alert(
             `${feature.properties.name} (${feature.id})\nclicked at x: ${event.clientX}, y: ${
@@ -107,7 +106,6 @@ const Choropleth = () => {
             }`
         )
     })
-    const diceRoll = useCallback(() => setData(generateChoroplethData()), [setData])
 
     const mappedSettings = propsMapper(settings)
 
@@ -124,64 +122,50 @@ const Choropleth = () => {
         }
     )
 
-    const header = (
-        <ChartHeader chartClass="Choropleth" tags={['@nivo/geo', 'map', 'svg', 'isomorphic']} />
-    )
-
-    const description = (
-        <div className="chart-description">
-            <p className="description">
-                The Choropleth component displays divided geographical areas shaded in relation to
-                some data variable. It's build on top of primitives from the{' '}
-                <Link to="/geomap">GeoMap</Link> component.
-            </p>
-            <p className="description">
-                Using this component requires some knowledge about the <code>d3-geo</code> library,
-                projections, geoJSON… please have a look at the{' '}
-                <a href="https://github.com/d3/d3-geo" target="_blank" rel="noopener noreferrer">
-                    official d3 documentation
-                </a>{' '}
-                for further information.
-            </p>
-            <p className="description">
-                Like for <Link to="/geomap">GeoMap</Link>, you must pass an array of features which
-                determine the geometries to render on the map, then you pass an array of data which,
-                each datum is merged with its corresponding feature using the <code>match</code>{' '}
-                property, the value is picked according to the <code>value</code> accessor.
-            </p>
-            <p className="description">
-                The responsive alternative of this component is <code>ResponsiveChoropleth</code>.
-                This component also have a canvas implementations,{' '}
-                <Link to="/choropleth/canvas">ChoroplethCanvas</Link>, which should be used when you
-                have complex geometries as it offers better performance.
-            </p>
-        </div>
-    )
-
     return (
-        <div className="page_content grid">
-            <div className="chart-page_main">
-                <MediaQuery query="(max-width: 1000px)">
-                    {header}
-                    {description}
-                </MediaQuery>
-                <ChartTabs chartClass="choropleth" code={code} data={data} diceRoll={diceRoll}>
-                    <ResponsiveChoropleth
-                        features={countries.features}
-                        data={data}
-                        onClick={onClick}
-                        {...mappedSettings}
-                    />
-                </ChartTabs>
-                <GeoControls scope="Choropleth" settings={settings} onChange={setSettings} />
-                <ComponentPropsDocumentation chartClass="Choropleth" properties={properties} />
+        <div className="chart_page">
+            <ChartHeader chartClass="Choropleth" tags={['@nivo/geo', 'map', 'svg', 'isomorphic']} />
+            <div className="chart-description">
+                <p className="description">
+                    The Choropleth component displays divided geographical areas shaded in relation to
+                    some data variable. It's build on top of primitives from the{' '}
+                    <Link to="/geomap">GeoMap</Link> component.
+                </p>
+                <p className="description">
+                    Using this component requires some knowledge about the <code>d3-geo</code> library,
+                    projections, geoJSON… please have a look at the{' '}
+                    <a href="https://github.com/d3/d3-geo" target="_blank" rel="noopener noreferrer">
+                        official d3 documentation
+                    </a>{' '}
+                    for further information.
+                </p>
+                <p className="description">
+                    Like for <Link to="/geomap">GeoMap</Link>, you must pass an array of features which
+                    determine the geometries to render on the map, then you pass an array of data which,
+                    each datum is merged with its corresponding feature using the <code>match</code>{' '}
+                    property, the value is picked according to the <code>value</code> accessor.
+                </p>
+                <p className="description">
+                    The responsive alternative of this component is <code>ResponsiveChoropleth</code>.
+                    This component also have a canvas implementations,{' '}
+                    <Link to="/choropleth/canvas">ChoroplethCanvas</Link>, which should be used when you
+                    have complex geometries as it offers better performance.
+                </p>
             </div>
-            <div className="chart-page_aside">
-                <MediaQuery query="(min-width: 1000px)">
-                    {header}
-                    {description}
-                </MediaQuery>
-            </div>
+            <ChartTabs chartClass="choropleth" code={code} data={data} diceRoll={diceRoll}>
+                <ResponsiveChoropleth
+                    features={countries.features}
+                    data={data}
+                    onClick={onClick}
+                    {...mappedSettings}
+                />
+            </ChartTabs>
+            <Settings
+                component="Choropleth"
+                settings={settings}
+                onChange={setSettings}
+                groups={groupsByScope.Choropleth}
+            />
         </div>
     )
 }

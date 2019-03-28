@@ -10,7 +10,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import dedent from 'dedent-js'
 import { SankeyDefaultProps as defaults, sankeyAlignmentPropKeys } from '@nivo/sankey'
-import { marginProperties, motionProperties } from '../../../lib/componentProperties'
+import { motionProperties } from '../../../lib/componentProperties'
 
 const alignOptions = []
 sankeyAlignmentPropKeys.forEach((align, i) => {
@@ -197,6 +197,15 @@ export default [
         controlGroup: 'Base',
     },
     {
+        key: 'margin',
+        scopes: '*',
+        description: 'Chart margin.',
+        type: '{object}',
+        required: false,
+        controlType: 'margin',
+        controlGroup: 'Base',
+    },
+    {
         key: 'nodeThickness',
         scopes: ['Sankey'],
         description: 'Node thickness (px).',
@@ -218,13 +227,8 @@ export default [
         required: false,
         default: defaults.nodeOpacity,
         type: '{number}',
-        controlType: 'range',
+        controlType: 'opacity',
         controlGroup: 'Nodes',
-        controlOptions: {
-            min: 0,
-            max: 1,
-            step: 0.05,
-        },
     },
     {
         key: 'nodeHoverOpacity',
@@ -233,13 +237,8 @@ export default [
         required: false,
         default: defaults.nodeHoverOpacity,
         type: '{number}',
-        controlType: 'range',
+        controlType: 'opacity',
         controlGroup: 'Nodes',
-        controlOptions: {
-            min: 0,
-            max: 1,
-            step: 0.05,
-        },
     },
     {
         key: 'nodeSpacing',
@@ -312,13 +311,8 @@ export default [
         required: false,
         default: defaults.linkOpacity,
         type: '{number}',
-        controlType: 'range',
+        controlType: 'opacity',
         controlGroup: 'Links',
-        controlOptions: {
-            min: 0,
-            max: 1,
-            step: 0.05,
-        },
     },
     {
         key: 'linkHoverOpacity',
@@ -327,13 +321,8 @@ export default [
         required: false,
         default: defaults.linkHoverOpacity,
         type: '{number}',
-        controlType: 'range',
+        controlType: 'opacity',
         controlGroup: 'Links',
-        controlOptions: {
-            min: 0,
-            max: 1,
-            step: 0.05,
-        },
     },
     {
         key: 'linkContract',
@@ -481,7 +470,6 @@ export default [
             })),
         },
     },
-    ...marginProperties,
     {
         key: 'isInteractive',
         scopes: ['Sankey'],

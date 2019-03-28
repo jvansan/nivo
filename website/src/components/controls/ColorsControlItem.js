@@ -15,7 +15,7 @@ class ColorsControlItem extends Component {
         const { id, colors } = this.props
 
         return (
-            <div className="colors_item">
+            <>
                 <span className="colors_item_label">{id}</span>
                 <div className="colors_item_colors">
                     {colors.map(color => (
@@ -26,7 +26,7 @@ class ColorsControlItem extends Component {
                         />
                     ))}
                 </div>
-            </div>
+            </>
         )
     }
 }

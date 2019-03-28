@@ -92,10 +92,6 @@
         grid-row-gap: 0;
         padding: 0;
     }
-    .chart-controls_item {
-        padding: 16px;
-        border-bottom: 1px solid #eee;
-    }
     .chart-controls_header {
         grid-column: span 1;
         margin: 0;
@@ -115,7 +111,7 @@
 .control-switch {
     display: inline-block;
     vertical-align: text-bottom;
-    margin: 0 3px;
+    margin: 0;
 }
 
 .cmn-toggle {
@@ -179,14 +175,10 @@
     margin-bottom: 7px;
 }
 
-.chart-controls_item select {
-    width: 100%;
-}
-
 .control-help {
     font-size: 12px;
     color: #777;
-    margin: 7px 0;
+    margin: 0;
     line-height: 16px;
 }
 
@@ -230,11 +222,11 @@
     display: grid;
     align-items: center;
     grid-template-columns: 1fr 1fr;
-    margin-bottom: 7px;
     border: 1px solid #ccc;
     font-size: 14px;
     border-right-width: 0;
     border-bottom-width: 0;
+    max-width: 240px;
 }
 
 .control-radio-item {
@@ -265,3 +257,61 @@
 .control-radio-item input {
     display: none;
 }
+
+.chart-controls_item {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    padding: 9px 20px;
+    grid-column-gap: 16px;
+    grid-row-gap: 7px;
+    border-bottom: 1px solid #f4f4f4;
+}
+
+.chart-controls_item:last-child {
+    border-bottom-width: 0;
+}
+
+.chart-controls_item > *:first-child {
+    align-self: center;
+    font-weight: 600;
+}
+
+.chart-controls_item > *:nth-child(2) {
+    align-self: center;
+}
+
+.MarginControl {
+    display: grid;
+    grid-template-columns: 1fr 40px 1fr;
+    grid-column-gap: 12px;
+    grid-row-gap: 9px;
+    align-items: center;
+    justify-items: center;
+  }
+  
+  .MarginControl_Box {
+    display: block;
+    width: 60px;
+    height: 28px;
+    border: 1px solid red;
+  }
+  
+  .MarginControl_Box._top {
+    border-top: 3px solid black;
+  }
+  
+  .MarginControl_Box._right {
+    border-right: 3px solid black;
+  }
+  
+  .MarginControl_Box._bottom {
+    border-bottom: 3px solid black;
+  }
+  
+  .MarginControl_Box._left {
+    border-left: 3px solid black;
+  }
+  
+  .MarginControl input[type=text] {
+    width: 60px;
+  }

@@ -15,8 +15,10 @@ export default class Header extends Component {
 
         return (
             <header>
+                <Link className="brand" to="/">
+                    <span className="sprite-icons-nivo-logo" />
+                </Link>
                 <span className="nav_toggle" onClick={onNavToggle} />
-                <Link className="brand" to="/" />
                 <nav className="HeaderNav">
                     {miscItems.map(item => {
                         if (item.children && item.children.length > 0) {

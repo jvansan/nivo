@@ -11,14 +11,12 @@ import cloneDeep from 'lodash/cloneDeep'
 import range from 'lodash/range'
 import random from 'lodash/random'
 import { Link } from 'react-router-dom'
-import MediaQuery from 'react-responsive'
 import { ResponsiveBubbleCanvas, BubbleCanvasDefaultProps } from '@nivo/circle-packing'
 import ChartHeader from '../../ChartHeader'
 import ChartTabs from '../../ChartTabs'
 import generateCode from '../../../lib/generateChartCode'
-import BubbleControls from './BubbleControls'
-import ComponentPropsDocumentation from '../../properties/ComponentPropsDocumentation'
-import properties from './props'
+import Settings from '../../Settings'
+import { groupsByScope } from './BubbleControls'
 import nivoTheme from '../../../nivoTheme'
 import propsMapper from './propsMapper'
 
@@ -98,13 +96,6 @@ export default class BubbleCanvas extends Component {
             defaults: BubbleCanvasDefaultProps,
         })
 
-        const header = (
-            <ChartHeader
-                chartClass="BubbleCanvas"
-                tags={['@nivo/circle-packing', 'hierarchy', 'canvas']}
-            />
-        )
-
         const description = (
             <div className="chart-description">
                 <p className="description">
@@ -122,41 +113,31 @@ export default class BubbleCanvas extends Component {
         )
 
         return (
-            <div className="page_content grid">
-                <div className="chart-page_main">
-                    <MediaQuery query="(max-width: 1000px)">
-                        {header}
-                        {description}
-                    </MediaQuery>
-                    <ChartTabs
-                        chartClass="circle-packing"
-                        code={code}
-                        data={root}
-                        nodeCount={NODE_COUNT}
-                        diceRoll={diceRoll}
-                    >
-                        <ResponsiveBubbleCanvas
-                            root={cloneDeep(root)}
-                            {...mappedSettings}
-                            theme={nivoTheme}
-                        />
-                    </ChartTabs>
-                    <BubbleControls
-                        scope="BubbleCanvas"
-                        settings={settings}
-                        onChange={this.handleSettingsUpdate}
+            <div className="chart_page">
+                <ChartHeader
+                    chartClass="BubbleCanvas"
+                    tags={['@nivo/circle-packing', 'hierarchy', 'canvas']}
+                />
+                {description}
+                <ChartTabs
+                    chartClass="circle-packing"
+                    code={code}
+                    data={root}
+                    nodeCount={NODE_COUNT}
+                    diceRoll={diceRoll}
+                >
+                    <ResponsiveBubbleCanvas
+                        root={cloneDeep(root)}
+                        {...mappedSettings}
+                        theme={nivoTheme}
                     />
-                    <ComponentPropsDocumentation
-                        chartClass="BubbleCanvas"
-                        properties={properties}
-                    />
-                </div>
-                <div className="chart-page_aside">
-                    <MediaQuery query="(min-width: 1000px)">
-                        {header}
-                        {description}
-                    </MediaQuery>
-                </div>
+                </ChartTabs>
+                <Settings
+                    component="BubbleCanvas"
+                    settings={settings}
+                    onChange={this.handleSettingsUpdate}
+                    groups={groupsByScope.Bubble}
+                />
             </div>
         )
     }

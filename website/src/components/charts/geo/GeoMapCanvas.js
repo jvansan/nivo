@@ -8,15 +8,13 @@
  */
 import React, { useState, useCallback } from 'react'
 import { Link } from 'react-router-dom'
-import MediaQuery from 'react-responsive'
 import { ResponsiveGeoMapCanvas, GeoMapCanvasDefaultProps } from '@nivo/geo'
 import ChartHeader from '../../ChartHeader'
 import ChartTabs from '../../ChartTabs'
 import generateCode from '../../../lib/generateChartCode'
-import GeoControls from './GeoControls'
-import ComponentPropsDocumentation from '../../properties/ComponentPropsDocumentation'
+import Settings from '../../Settings'
+import { groupsByScope } from './GeoControls'
 import nivoTheme from '../../../nivoTheme'
-import properties from './props'
 import countries from './world_countries'
 // import propsMapper from './propsMapper'
 
@@ -75,44 +73,32 @@ const GeoMapCanvas = () => {
         }
     )
 
-    const header = <ChartHeader chartClass="GeoMapCanvas" tags={['@nivo/geo', 'map', 'canvas']} />
-
-    const description = (
-        <div className="chart-description">
-            <p className="description">
-                A canvas implementation of the <Link to="/geomap">GeoMap</Link> component, should be
-                used used when you have complex geometries as it offers better performance than its
-                SVG counterpart.
-            </p>
-            <p className="description">
-                The responsive alternative of this component is <code>ResponsiveGeoMap</code>.
-            </p>
-        </div>
-    )
-
     return (
-        <div className="page_content grid">
-            <div className="chart-page_main">
-                <MediaQuery query="(max-width: 1000px)">
-                    {header}
-                    {description}
-                </MediaQuery>
-                <ChartTabs chartClass="geomap" code={code}>
-                    <ResponsiveGeoMapCanvas
-                        features={countries.features}
-                        onClick={onClick}
-                        {...settings}
-                    />
-                </ChartTabs>
-                <GeoControls scope="GeoMapCanvas" settings={settings} onChange={setSettings} />
-                <ComponentPropsDocumentation chartClass="GeoMapCanvas" properties={properties} />
+        <div className="chart_page">
+            <ChartHeader chartClass="GeoMapCanvas" tags={['@nivo/geo', 'map', 'canvas']} />
+            <div className="chart-description">
+                <p className="description">
+                    A canvas implementation of the <Link to="/geomap">GeoMap</Link> component, should be
+                    used used when you have complex geometries as it offers better performance than its
+                    SVG counterpart.
+                </p>
+                <p className="description">
+                    The responsive alternative of this component is <code>ResponsiveGeoMap</code>.
+                </p>
             </div>
-            <div className="chart-page_aside">
-                <MediaQuery query="(min-width: 1000px)">
-                    {header}
-                    {description}
-                </MediaQuery>
-            </div>
+            <ChartTabs chartClass="geomap" code={code}>
+                <ResponsiveGeoMapCanvas
+                    features={countries.features}
+                    onClick={onClick}
+                    {...settings}
+                />
+            </ChartTabs>
+            <Settings
+                component="GeoMapCanvas"
+                settings={settings}
+                onChange={setSettings}
+                groups={groupsByScope.GeoMapCanvas}
+            />
         </div>
     )
 }

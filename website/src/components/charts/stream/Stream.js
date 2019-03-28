@@ -8,14 +8,12 @@
  */
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import MediaQuery from 'react-responsive'
 import { ResponsiveStream, StreamDefaultProps } from '@nivo/stream'
 import ChartHeader from '../../ChartHeader'
 import ChartTabs from '../../ChartTabs'
-import StreamControls from './StreamControls'
 import generateCode from '../../../lib/generateChartCode'
-import ComponentPropsDocumentation from '../../properties/ComponentPropsDocumentation'
-import properties from './props'
+import Settings from '../../Settings'
+import { groupsByScope } from './StreamControls'
 import nivoTheme from '../../../nivoTheme'
 import { generateLightDataSet } from './generators'
 import defaultProps from './defaultProps'
@@ -77,54 +75,36 @@ export default class Stream extends Component {
             }
         )
 
-        const header = (
-            <ChartHeader
-                chartClass="Stream"
-                tags={['@nivo/stream', 'stacked', 'svg', 'isomorphic']}
-            />
-        )
-
-        const description = (
-            <div className="chart-description">
-                <p className="description">Stream chart.</p>
-                <p className="description">
-                    The responsive alternative of this component is <code>ResponsiveStream</code>.
-                </p>
-                <p className="description">
-                    See the <Link to="/guides/legends">dedicated guide</Link> on how to setup
-                    legends for this component.
-                </p>
-            </div>
-        )
-
         return (
-            <div className="page_content grid">
-                <div className="chart-page_main">
-                    <MediaQuery query="(max-width: 1000px)">
-                        {header}
-                        {description}
-                    </MediaQuery>
-                    <ChartTabs chartClass="stream" code={code} data={data} diceRoll={this.diceRoll}>
-                        <ResponsiveStream
-                            data={data}
-                            keys={keys}
-                            {...mappedSettings}
-                            theme={nivoTheme}
-                        />
-                    </ChartTabs>
-                    <StreamControls
-                        scope="Stream"
-                        settings={settings}
-                        onChange={this.handleSettingsUpdate}
+            <div className="chart_page">
+                <ChartHeader
+                    chartClass="Stream"
+                    tags={['@nivo/stream', 'stacked', 'svg', 'isomorphic']}
+                />
+                <div className="chart-description">
+                    <p className="description">Stream chart.</p>
+                    <p className="description">
+                        The responsive alternative of this component is <code>ResponsiveStream</code>.
+                    </p>
+                    <p className="description">
+                        See the <Link to="/guides/legends">dedicated guide</Link> on how to setup
+                        legends for this component.
+                    </p>
+                </div>
+                <ChartTabs chartClass="stream" code={code} data={data} diceRoll={this.diceRoll}>
+                    <ResponsiveStream
+                        data={data}
+                        keys={keys}
+                        {...mappedSettings}
+                        theme={nivoTheme}
                     />
-                    <ComponentPropsDocumentation chartClass="Stream" properties={properties} />
-                </div>
-                <div className="chart-page_aside">
-                    <MediaQuery query="(min-width: 1000px)">
-                        {header}
-                        {description}
-                    </MediaQuery>
-                </div>
+                </ChartTabs>
+                <Settings
+                    component="Stream"
+                    settings={settings}
+                    onChange={this.handleSettingsUpdate}
+                    groups={groupsByScope.Stream}
+                />
             </div>
         )
     }

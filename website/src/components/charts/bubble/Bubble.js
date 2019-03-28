@@ -9,17 +9,15 @@
 import React, { Component } from 'react'
 import cloneDeep from 'lodash/cloneDeep'
 import { Link } from 'react-router-dom'
-import MediaQuery from 'react-responsive'
 import { ResponsiveBubble, BubbleDefaultProps } from '@nivo/circle-packing'
 import { patternLinesDef } from '@nivo/core'
 import ChartHeader from '../../ChartHeader'
 import ChartTabs from '../../ChartTabs'
 import generateCode from '../../../lib/generateChartCode'
+import Settings from '../../Settings'
+import { groupsByScope } from './BubbleControls'
 import Stories from '../../Stories'
 import { bubbleStories } from './stories'
-import BubbleControls from './BubbleControls'
-import ComponentPropsDocumentation from '../../properties/ComponentPropsDocumentation'
-import properties from './props'
 import config from '../../../config'
 import nivoTheme from '../../../nivoTheme'
 import propsMapper from './propsMapper'
@@ -93,101 +91,75 @@ export default class Bubble extends Component {
             defaults: BubbleDefaultProps,
         })
 
-        const header = (
-            <ChartHeader
-                chartClass="Bubble"
-                tags={['@nivo/circle-packing', 'hierarchy', 'svg', 'isomorphic']}
-            />
-        )
-
-        const description = (
-            <div className="chart-description">
-                <p className="description">
-                    Bubble chart using circle packing with zooming ability. You can fully customize
-                    it using <code>nodeComponent</code> property to define your own node component,
-                    if you wish to do so you should have a look at{' '}
-                    <a
-                        href="https://github.com/plouc/nivo/blob/master/src/components/charts/bubble/BubbleNode.js"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        native SVG node component
-                    </a>{' '}
-                    for available properties.
-                </p>
-                <p className="description">
-                    The responsive alternative of this component is <code>ResponsiveBubble</code>.
-                    It also offers various implementations, see{' '}
-                    <Link to="/bubble/html">BubbleHtml</Link> and{' '}
-                    <Link to="/bubble/canvas">BubbleCanvas</Link>.
-                </p>
-                <p className="description">
-                    This component is available in the{' '}
-                    <a
-                        href="https://github.com/plouc/nivo-api"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        nivo-api
-                    </a>
-                    , see{' '}
-                    <a
-                        href={`${config.nivoApiUrl}/samples/bubble.svg`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        sample
-                    </a>{' '}
-                    or <Link to="/bubble/api">try it using the API client</Link>. You can also see
-                    more example usages in{' '}
-                    <a
-                        href={`${config.storybookUrl}?selectedKind=Bubble&selectedStory=default`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        the storybook
-                    </a>
-                    .
-                </p>
-            </div>
-        )
-
-        const stories = <Stories stories={bubbleStories} />
-
         return (
-            <div className="page_content grid">
-                <div className="chart-page_main">
-                    <MediaQuery query="(max-width: 1000px)">
-                        {header}
-                        {description}
-                    </MediaQuery>
-                    <ChartTabs
-                        chartClass="circle-packing"
-                        code={code}
-                        data={root}
-                        diceRoll={diceRoll}
-                    >
-                        <ResponsiveBubble
-                            root={cloneDeep(root)}
-                            {...mappedSettings}
-                            theme={nivoTheme}
-                        />
-                    </ChartTabs>
-                    <BubbleControls
-                        scope="Bubble"
-                        settings={settings}
-                        onChange={this.handleSettingsUpdate}
+            <div className="chart_page">
+                <ChartHeader
+                    chartClass="Bubble"
+                    tags={['@nivo/circle-packing', 'hierarchy', 'svg', 'isomorphic']}
+                />
+                <div className="chart-description">
+                    <p className="description">
+                        Bubble chart using circle packing with zooming ability. You can fully customize
+                        it using <code>nodeComponent</code> property to define your own node component,
+                        if you wish to do so you should have a look at{' '}
+                        <a
+                            href="https://github.com/plouc/nivo/blob/master/src/components/charts/bubble/BubbleNode.js"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            native SVG node component
+                        </a>{' '}
+                        for available properties.
+                    </p>
+                    <p className="description">
+                        The responsive alternative of this component is <code>ResponsiveBubble</code>.
+                        It also offers various implementations, see{' '}
+                        <Link to="/bubble/html">BubbleHtml</Link> and{' '}
+                        <Link to="/bubble/canvas">BubbleCanvas</Link>.
+                    </p>
+                    <p className="description">
+                        This component is available in the{' '}
+                        <a
+                            href="https://github.com/plouc/nivo-api"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            nivo-api
+                        </a>
+                        , see{' '}
+                        <a
+                            href={`${config.nivoApiUrl}/samples/bubble.svg`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            sample
+                        </a>{' '}
+                        or <Link to="/bubble/api">try it using the API client</Link>. You can also see
+                        more example usages in{' '}
+                        <a
+                            href={`${config.storybookUrl}?selectedKind=Bubble&selectedStory=default`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            the storybook
+                        </a>
+                        .
+                    </p>
+                </div>
+                <ChartTabs chartClass="circle-packing" code={code} data={root} diceRoll={diceRoll}>
+                    <ResponsiveBubble
+                        root={cloneDeep(root)}
+                        {...mappedSettings}
+                        theme={nivoTheme}
                     />
-                    <MediaQuery query="(max-width: 1000px)">{stories}</MediaQuery>
-                    <ComponentPropsDocumentation chartClass="Bubble" properties={properties} />
-                </div>
-                <div className="chart-page_aside">
-                    <MediaQuery query="(min-width: 1000px)">
-                        {header}
-                        {description}
-                        {stories}
-                    </MediaQuery>
-                </div>
+                </ChartTabs>
+                <Settings
+                    component="Bubble"
+                    settings={settings}
+                    onChange={this.handleSettingsUpdate}
+                    groups={groupsByScope.Bubble}
+                />
+                <Stories stories={bubbleStories} />
             </div>
         )
     }

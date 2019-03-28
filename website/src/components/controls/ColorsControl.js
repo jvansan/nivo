@@ -12,6 +12,7 @@ import PropTypes from 'prop-types'
 import { colorSchemeIds, colorSchemes, colorInterpolatorIds, colorInterpolators } from '@nivo/core'
 import Select from 'react-select'
 import ColorsControlItem from './ColorsControlItem'
+import Label from './Label'
 
 const colors = colorSchemeIds.map(id => ({
     id,
@@ -72,12 +73,12 @@ export default class ColorsControl extends PureComponent {
         }
 
         return (
-            <div className="control control-colors">
-                <label className="control_label">
+            <div className="chart-controls_item">
+                <Label>
                     {label}
                     :&nbsp;
                     <code className="code code-string">'{value}'</code>
-                </label>
+                </Label>
                 <Select
                     options={options.map(({ id, colors }) => ({
                         label: id,
@@ -90,6 +91,7 @@ export default class ColorsControl extends PureComponent {
                     value={value}
                     clearable={false}
                 />
+                <span/>
                 <div className="control-help">{help}</div>
             </div>
         )

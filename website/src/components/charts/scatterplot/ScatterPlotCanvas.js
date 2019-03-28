@@ -8,16 +8,14 @@
  */
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import MediaQuery from 'react-responsive'
 import { ResponsiveScatterPlotCanvas, ScatterPlotDefaultProps } from '@nivo/scatterplot'
 import nivoTheme from '../../../nivoTheme'
 import ChartHeader from '../../ChartHeader'
 import ChartTabs from '../../ChartTabs'
 import Stories from '../../Stories'
 import generateCode from '../../../lib/generateChartCode'
-import ComponentPropsDocumentation from '../../properties/ComponentPropsDocumentation'
-import ScatterPlotControls from './ScatterPlotControls'
-import properties from './props'
+import Settings from '../../Settings'
+import { groupsByScope } from './ScatterPlotControls'
 import propsMapper from './propsMapper'
 import { generateHeavyDataSet as generateData } from './generators'
 import { scatterPlotCanvasStories } from './stories'
@@ -148,66 +146,46 @@ export default class ScatterPlotCanvas extends Component {
             { pkg: '@nivo/scatterplot', defaults: ScatterPlotDefaultProps }
         )
 
-        const header = (
-            <ChartHeader chartClass="ScatterPlotCanvas" tags={['@nivo/scatterplot', 'canvas']} />
-        )
-
-        const description = (
-            <div className="chart-description">
-                <p className="description">
-                    A variation around the <Link to="/scatterplot">ScatterPlot</Link> component.
-                    Well suited for large data sets as it does not impact DOM tree depth and does
-                    not involve React diffing stuff for children (not that useful when using
-                    canvas), however you'll lose the isomorphic ability and transitions.
-                </p>
-                <p className="description">
-                    The responsive alternative of this component is{' '}
-                    <code>ResponsiveScatterPlotCanvas</code>, it also offers another implementation,
-                    see <Link to="/scatterplot">ScatterPlot</Link>.
-                </p>
-            </div>
-        )
-
-        const stories = <Stories stories={scatterPlotCanvasStories} />
-
         return (
-            <div className="page_content grid">
-                <div className="chart-page_main">
-                    <MediaQuery query="(max-width: 1000px)">
-                        {header}
-                        {description}
-                    </MediaQuery>
-                    <ChartTabs
-                        chartClass="scatterplot"
-                        code={code}
+            <div className="chart_page">
+                <ChartHeader
+                    chartClass="ScatterPlotCanvas"
+                    tags={['@nivo/scatterplot', 'canvas']}
+                />
+                <div className="chart-description">
+                    <p className="description">
+                        A variation around the <Link to="/scatterplot">ScatterPlot</Link> component.
+                        Well suited for large data sets as it does not impact DOM tree depth and does
+                        not involve React diffing stuff for children (not that useful when using
+                        canvas), however you'll lose the isomorphic ability and transitions.
+                    </p>
+                    <p className="description">
+                        The responsive alternative of this component is{' '}
+                        <code>ResponsiveScatterPlotCanvas</code>, it also offers another implementation,
+                        see <Link to="/scatterplot">ScatterPlot</Link>.
+                    </p>
+                </div>
+                <ChartTabs
+                    chartClass="scatterplot"
+                    code={code}
+                    data={data}
+                    diceRoll={this.diceRoll}
+                    nodeCount={data.length * data[0].data.length}
+                >
+                    <ResponsiveScatterPlotCanvas
                         data={data}
-                        diceRoll={this.diceRoll}
-                        nodeCount={data.length * data[0].data.length}
-                    >
-                        <ResponsiveScatterPlotCanvas
-                            data={data}
-                            {...mappedSettings}
-                            theme={nivoTheme}
-                            onClick={this.handleNodeClick}
-                        />
-                    </ChartTabs>
-                    <ScatterPlotControls
-                        scope="ScatterPlotCanvas"
-                        settings={settings}
-                        onChange={this.handleSettingsUpdate}
+                        {...mappedSettings}
+                        theme={nivoTheme}
+                        onClick={this.handleNodeClick}
                     />
-                    <ComponentPropsDocumentation
-                        chartClass="ScatterPlotCanvas"
-                        properties={properties}
-                    />
-                </div>
-                <div className="chart-page_aside">
-                    <MediaQuery query="(min-width: 1000px)">
-                        {header}
-                        {description}
-                        {stories}
-                    </MediaQuery>
-                </div>
+                </ChartTabs>
+                <Settings
+                    component="ScatterPlotCanvas"
+                    settings={settings}
+                    onChange={this.handleSettingsUpdate}
+                    groups={groupsByScope.ScatterPlotCanvas}
+                />
+                <Stories stories={scatterPlotCanvasStories} />
             </div>
         )
     }

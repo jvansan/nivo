@@ -42,6 +42,7 @@ body {
         'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
 }
 
@@ -93,15 +94,17 @@ p:first-child {
     margin-top: 0;
 }
 
+
 .brand {
-    display: none;
-    background-image: url('../assets/nivo-logo.png');
-    width: var(--sidebar-width);
-    height: var(--header-height);
-    background-position: 15px center;
-    background-size: 40%;
+    cursor: pointer;
+    width: var(--mini-nav-item-size);
+    height: var(--mini-nav-item-size);
+    display: block;
+    background-color: white;
+    background-image: url('../assets/icons/nivo-logo.png');
+    background-size: 66%;
+    background-position: center center;
     background-repeat: no-repeat;
-    margin-left: 35px;
 }
 
 .dice-roll {

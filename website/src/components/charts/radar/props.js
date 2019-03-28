@@ -11,7 +11,7 @@ import dedent from 'dedent-js'
 import { closedCurvePropKeys } from '@nivo/core'
 import { DotsItemDefaultProps as dotDefaults } from '@nivo/core'
 import { RadarDefaultProps as defaults, RadarDots } from '@nivo/radar'
-import { marginProperties, motionProperties } from '../../../lib/componentProperties'
+import { motionProperties } from '../../../lib/componentProperties'
 
 const dotsDefaults = RadarDots.defaultProps
 
@@ -187,18 +187,22 @@ export default [
         },
     },
     {
+        key: 'margin',
+        scopes: '*',
+        description: 'Chart margin.',
+        type: '{object}',
+        required: false,
+        controlType: 'margin',
+        controlGroup: 'Base',
+    },
+    {
         key: 'fillOpacity',
         description: 'Shape fill opacity.',
         type: '{number}',
         required: false,
         default: defaults.borderWidth,
-        controlType: 'range',
+        controlType: 'opacity',
         controlGroup: 'Base',
-        controlOptions: {
-            min: 0,
-            max: 1,
-            step: 0.05,
-        },
     },
     {
         key: 'borderWidth',
@@ -227,7 +231,6 @@ export default [
             withCustomColor: true,
         },
     },
-    ...marginProperties,
     {
         key: 'gridLevels',
         description: 'Number of levels to display for grid',

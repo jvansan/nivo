@@ -8,15 +8,13 @@
  */
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import MediaQuery from 'react-responsive'
 import { ResponsiveTreeMapCanvas, TreeMapCanvasDefaultProps } from '@nivo/treemap'
 import ChartHeader from '../../ChartHeader'
 import ChartTabs from '../../ChartTabs'
-import TreeMapControls from './TreeMapControls'
 import generateCode from '../../../lib/generateChartCode'
 import config from '../../../config'
-import ComponentPropsDocumentation from '../../properties/ComponentPropsDocumentation'
-import properties from './props'
+import Settings from '../../Settings'
+import { groupsByScope } from './TreeMapControls'
 import nivoTheme from '../../../nivoTheme'
 import propsMapper from './propsMapper'
 import { generateHeavyDataSet as generateData } from './generators'
@@ -85,86 +83,65 @@ export default class TreeMapCanvas extends Component {
             defaults: TreeMapCanvasDefaultProps,
         })
 
-        const header = (
-            <ChartHeader
-                chartClass="TreeMapCanvas"
-                tags={['@nivo/treemap', 'hierarchy', 'canvas']}
-            />
-        )
-
-        const description = (
-            <div className="chart-description">
-                <p className="description">
-                    A variation around the <Link to="/treemap">TreeMap</Link> component. Well suited
-                    for large data sets as it does not impact DOM tree depth and does not involve
-                    React diffing stuff (not that useful when using canvas), however you'll lose the
-                    isomorphic ability and transitions (for now).
-                </p>
-                <p className="description">
-                    The responsive alternative of this component is{' '}
-                    <code>ResponsiveTreeMapCanvas</code>, it also offers other implementations, see{' '}
-                    <Link to="/treemap">TreeMap</Link> and{' '}
-                    <Link to="/treemap/html">TreeMapHtml</Link>.
-                </p>
-                <p className="description">
-                    The <code>TreeMap</code> component is also available in the{' '}
-                    <a
-                        href="https://github.com/plouc/nivo-api"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        nivo-api
-                    </a>
-                    , see{' '}
-                    <a
-                        href={`${config.nivoApiUrl}/samples/treemap`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        sample
-                    </a>{' '}
-                    or <Link to="/treemap/api">try it using the API client</Link>.
-                </p>
-            </div>
-        )
-
         return (
-            <div className="page_content grid">
-                <div className="chart-page_main">
-                    <MediaQuery query="(max-width: 1000px)">
-                        {header}
-                        {description}
-                    </MediaQuery>
-                    <ChartTabs
-                        chartClass="treemap"
-                        code={code}
-                        data={root}
-                        diceRoll={this.diceRoll}
-                        nodeCount={nodeCount}
-                    >
-                        <ResponsiveTreeMapCanvas
-                            root={root}
-                            {...mappedSettings}
-                            theme={nivoTheme}
-                            onClick={this.handleNodeClick}
-                        />
-                    </ChartTabs>
-                    <TreeMapControls
-                        scope="TreeMapCanvas"
-                        settings={settings}
-                        onChange={this.handleSettingsUpdate}
-                    />
-                    <ComponentPropsDocumentation
-                        chartClass="TreeMapCanvas"
-                        properties={properties}
-                    />
+            <div className="chart_page">
+                <ChartHeader
+                    chartClass="TreeMapCanvas"
+                    tags={['@nivo/treemap', 'hierarchy', 'canvas']}
+                />
+                <div className="chart-description">
+                    <p className="description">
+                        A variation around the <Link to="/treemap">TreeMap</Link> component. Well suited
+                        for large data sets as it does not impact DOM tree depth and does not involve
+                        React diffing stuff (not that useful when using canvas), however you'll lose the
+                        isomorphic ability and transitions (for now).
+                    </p>
+                    <p className="description">
+                        The responsive alternative of this component is{' '}
+                        <code>ResponsiveTreeMapCanvas</code>, it also offers other implementations, see{' '}
+                        <Link to="/treemap">TreeMap</Link> and{' '}
+                        <Link to="/treemap/html">TreeMapHtml</Link>.
+                    </p>
+                    <p className="description">
+                        The <code>TreeMap</code> component is also available in the{' '}
+                        <a
+                            href="https://github.com/plouc/nivo-api"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            nivo-api
+                        </a>
+                        , see{' '}
+                        <a
+                            href={`${config.nivoApiUrl}/samples/treemap`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            sample
+                        </a>{' '}
+                        or <Link to="/treemap/api">try it using the API client</Link>.
+                    </p>
                 </div>
-                <div className="chart-page_aside">
-                    <MediaQuery query="(min-width: 1000px)">
-                        {header}
-                        {description}
-                    </MediaQuery>
-                </div>
+                <ChartTabs
+                    chartClass="treemap"
+                    code={code}
+                    data={root}
+                    diceRoll={this.diceRoll}
+                    nodeCount={nodeCount}
+                >
+                    <ResponsiveTreeMapCanvas
+                        root={root}
+                        {...mappedSettings}
+                        theme={nivoTheme}
+                        onClick={this.handleNodeClick}
+                    />
+                </ChartTabs>
+                <Settings
+                    component="TreeMapCanvas"
+                    settings={settings}
+                    onChange={this.handleSettingsUpdate}
+                    groups={groupsByScope.TreeMapCanvas}
+                />
             </div>
         )
     }

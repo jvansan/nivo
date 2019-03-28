@@ -7,7 +7,6 @@
  * file that was distributed with this source code.
  */
 import React, { Component } from 'react'
-import MediaQuery from 'react-responsive'
 import merge from 'lodash/merge'
 import { Link } from 'react-router-dom'
 import {
@@ -18,10 +17,9 @@ import { generateParallelCoordinatesData } from '@nivo/generators'
 import nivoTheme from '../../../nivoTheme'
 import ChartHeader from '../../ChartHeader'
 import ChartTabs from '../../ChartTabs'
-import ParallelCoordinatesControls from './ParallelCoordinatesControls'
+import Settings from '../../Settings'
+import { groupsByScope } from './ParallelCoordinatesControls'
 import generateCode from '../../../lib/generateChartCode'
-import ComponentPropsDocumentation from '../../properties/ComponentPropsDocumentation'
-import properties from './props'
 import propsMapper from './propsMapper'
 import variables from './variables'
 
@@ -84,62 +82,41 @@ export default class ParallelCoordinatesCanvas extends Component {
             defaults: defaultProps,
         })
 
-        const header = (
-            <ChartHeader
-                chartClass="ParallelCoordinatesCanvas"
-                tags={['@nivo/parallel-coordinates', 'canvas']}
-            />
-        )
-
-        const description = (
-            <div className="chart-description">
-                <p className="description">
-                    A variation around the{' '}
-                    <Link to="/parallel-coordinates">ParallelCoordinates</Link> component. Well
-                    suited for large data sets as it does not impact DOM tree depth and does not
-                    involve React diffing stuff for children (not that useful when using canvas),
-                    however you'll lose the isomorphic ability and transitions.
-                </p>
-                <p className="description">
-                    The responsive alternative of this component is{' '}
-                    <code>ResponsiveParallelCoordinatesCanvas</code>.
-                </p>
-            </div>
-        )
-
         return (
-            <div className="page_content grid">
-                <div className="chart-page_main">
-                    <MediaQuery query="(max-width: 1000px)">
-                        {header}
-                        {description}
-                    </MediaQuery>
-                    <ChartTabs
-                        chartClass="parallel-coordinates"
-                        code={code}
-                        data={data}
-                        diceRoll={this.diceRoll}
-                        nodeCount={lineCount}
-                        nodeCountWording="lines"
-                    >
-                        <ResponsiveParallelCoordinatesCanvas data={data} {...mappedSettings} />
-                    </ChartTabs>
-                    <ParallelCoordinatesControls
-                        scope="ParallelCoordinatesCanvas"
-                        settings={settings}
-                        onChange={this.handleSettingsUpdate}
-                    />
-                    <ComponentPropsDocumentation
-                        chartClass="ParallelCoordinatesCanvas"
-                        properties={properties}
-                    />
+            <div className="chart_page">
+                <ChartHeader
+                    chartClass="ParallelCoordinatesCanvas"
+                    tags={['@nivo/parallel-coordinates', 'canvas']}
+                />
+                <div className="chart-description">
+                    <p className="description">
+                        A variation around the{' '}
+                        <Link to="/parallel-coordinates">ParallelCoordinates</Link> component. Well
+                        suited for large data sets as it does not impact DOM tree depth and does not
+                        involve React diffing stuff for children (not that useful when using canvas),
+                        however you'll lose the isomorphic ability and transitions.
+                    </p>
+                    <p className="description">
+                        The responsive alternative of this component is{' '}
+                        <code>ResponsiveParallelCoordinatesCanvas</code>.
+                    </p>
                 </div>
-                <div className="chart-page_aside">
-                    <MediaQuery query="(min-width: 1000px)">
-                        {header}
-                        {description}
-                    </MediaQuery>
-                </div>
+                <ChartTabs
+                    chartClass="parallel-coordinates"
+                    code={code}
+                    data={data}
+                    diceRoll={this.diceRoll}
+                    nodeCount={lineCount}
+                    nodeCountWording="lines"
+                >
+                    <ResponsiveParallelCoordinatesCanvas data={data} {...mappedSettings} />
+                </ChartTabs>
+                <Settings
+                    component="ParallelCoordinatesCanvas"
+                    settings={settings}
+                    onChange={this.handleSettingsUpdate}
+                    groups={groupsByScope.ParallelCoordinatesCanvas}
+                />
             </div>
         )
     }

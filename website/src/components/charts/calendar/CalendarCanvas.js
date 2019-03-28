@@ -8,15 +8,13 @@
  */
 import React, { useState, useCallback } from 'react'
 import { Link } from 'react-router-dom'
-import MediaQuery from 'react-responsive'
 import ChartHeader from '../../ChartHeader'
 import ChartTabs from '../../ChartTabs'
 import generateCode from '../../../lib/generateChartCode'
-import CalendarControls from './CalendarControls'
+import Settings from '../../Settings'
+import { groupsByScope } from './CalendarControls'
 import { ResponsiveCalendarCanvas, CalendarCanvasDefaultProps } from '@nivo/calendar'
-import ComponentPropsDocumentation from '../../properties/ComponentPropsDocumentation'
 import nivoTheme from '../../../nivoTheme'
-import properties from './props'
 import propsMapper from './propsMapper'
 
 const Tooltip = data => {
@@ -105,8 +103,6 @@ const CalendarCanvas = ({ data }) => {
         }
     )
 
-    const header = <ChartHeader chartClass="CalendarCanvas" tags={['@nivo/calendar', 'canvas']} />
-
     const description = (
         <div className="chart-description">
             <p className="description">
@@ -122,34 +118,24 @@ const CalendarCanvas = ({ data }) => {
     )
 
     return (
-        <div className="page_content grid">
-            <div className="chart-page_main">
-                <MediaQuery query="(max-width: 1000px)">
-                    {header}
-                    {description}
-                </MediaQuery>
-                <ChartTabs chartClass="calendar" code={code} data={data}>
-                    <ResponsiveCalendarCanvas
-                        from={settings.from}
-                        to={settings.to}
-                        data={data}
-                        onClick={onDayClick}
-                        {...mappedSettings}
-                    />
-                </ChartTabs>
-                <CalendarControls
-                    scope="CalendarCanvas"
-                    settings={settings}
-                    onChange={setSettings}
+        <div className="chart_page">
+            <ChartHeader chartClass="CalendarCanvas" tags={['@nivo/calendar', 'canvas']} />
+            {description}
+            <ChartTabs chartClass="calendar" code={code} data={data}>
+                <ResponsiveCalendarCanvas
+                    from={settings.from}
+                    to={settings.to}
+                    data={data}
+                    onClick={onDayClick}
+                    {...mappedSettings}
                 />
-                <ComponentPropsDocumentation chartClass="CalendarCanvas" properties={properties} />
-            </div>
-            <div className="chart-page_aside">
-                <MediaQuery query="(min-width: 1000px)">
-                    {header}
-                    {description}
-                </MediaQuery>
-            </div>
+            </ChartTabs>
+            <Settings
+                component="CalendarCanvas"
+                settings={settings}
+                onChange={setSettings}
+                groups={groupsByScope.CalendarCanvas}
+            />
         </div>
     )
 }

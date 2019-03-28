@@ -12,7 +12,7 @@ import ChartControlGroups from '../../controls/ChartControlGroups'
 import { getPropertiesGroupsControls } from '../../../lib/componentProperties'
 import properties from './props'
 
-const groupsByScope = {
+export const groupsByScope = {
     HeatMap: getPropertiesGroupsControls(properties, 'HeatMap'),
     HeatMapCanvas: getPropertiesGroupsControls(properties, 'HeatMapCanvas'),
     api: getPropertiesGroupsControls(properties, 'api'),

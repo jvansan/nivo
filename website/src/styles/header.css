@@ -1,11 +1,8 @@
 .nav_toggle {
     display: block;
-    height: var(--header-height);
+    width: var(--mini-nav-item-size);
+    height: var(--mini-nav-item-size);
     cursor: pointer;
-    background-image: url('../assets/nivo-nav-bars.png');
-    background-size: 26px 26px;
-    background-repeat: no-repeat;
-    background-position: center center;
 }
 
 header {

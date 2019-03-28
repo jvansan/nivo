@@ -12,12 +12,14 @@ import React, { Component } from 'react'
 import { render } from 'react-dom'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Helmet from 'react-helmet'
+import { ThemeProvider } from 'styled-components'
 import Nav from './components/nav/Nav'
 import MiniNav from './components/nav/MiniNav'
 import Home from './components/pages/Home'
 import Header from './components/Header'
 import ScrollToTop from './components/ScrollToTop'
 import { getRoutes } from './SiteMap'
+import theme from './styles/theme'
 // import registerServiceWorker from './registerServiceWorker'
 
 class App extends Component {
@@ -46,15 +48,17 @@ class App extends Component {
             location !== undefined && location.search.indexOf('capture') !== -1 ? 'isCapturing' : ''
 
         return (
-            <div className={rootClass}>
-                <Helmet titleTemplate="%s | nivo" />
-                <Header onNavToggle={this.handleNavToggle} />
-                <MiniNav location={location} />
-                {nav && <Nav onNavClose={this.handleNavClose} />}
-                <div className="content">
-                    <Switch>{getRoutes()}</Switch>
+            <ThemeProvider theme={theme.light}>
+                <div className={rootClass}>
+                    <Helmet titleTemplate="%s | nivo" />
+                    <Header onNavToggle={this.handleNavToggle} />
+                    <MiniNav location={location} />
+                    {nav && <Nav onNavClose={this.handleNavClose} />}
+                    <div className="content">
+                        <Switch>{getRoutes()}</Switch>
+                    </div>
                 </div>
-            </div>
+            </ThemeProvider>
         )
     }
 }

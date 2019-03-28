@@ -12,7 +12,7 @@ import ChartControlGroups from '../../controls/ChartControlGroups'
 import { getPropertiesGroupsControls } from '../../../lib/componentProperties'
 import properties from './props'
 
-const groupsByScope = {
+export const groupsByScope = {
     TreeMap: getPropertiesGroupsControls(properties, 'TreeMap'),
     TreeMapHTML: getPropertiesGroupsControls(properties, 'TreeMapHTML'),
     TreeMapCanvas: getPropertiesGroupsControls(properties, 'TreeMapCanvas'),

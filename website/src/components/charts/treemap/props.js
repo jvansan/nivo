@@ -8,7 +8,6 @@
  */
 import React from 'react'
 import {
-    marginProperties,
     motionProperties,
     defsProperties,
 } from '../../../lib/componentProperties'
@@ -158,6 +157,15 @@ export default [
             max: 32,
         },
     },
+    {
+        key: 'margin',
+        scopes: '*',
+        description: 'Chart margin.',
+        type: '{object}',
+        required: false,
+        controlType: 'margin',
+        controlGroup: 'Base',
+    },
     /*—————————————————————————————————————————————————————————————————————————————
 
       Styling
@@ -229,7 +237,6 @@ export default [
         },
     },
     ...defsProperties(['TreeMap']),
-    ...marginProperties,
     {
         key: 'enableLabel',
         scopes: '*',

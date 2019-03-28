@@ -637,6 +637,7 @@ const SITEMAP = [
                 label: 'About',
                 component: About,
             },
+            /*
             {
                 // component injected at the end of this file
                 // because of cyclic dependency
@@ -644,6 +645,7 @@ const SITEMAP = [
                 path: '/components',
                 label: 'Components',
             },
+            */
             {
                 className: 'guides',
                 label: 'Guides',
@@ -764,6 +766,8 @@ const allComponents = getSectionItems('Components').reduce((acc, item) => {
 }, [])
 
 miscItems.find(({ label }) => label === 'Guides').children = guideItems
+/*
 miscItems.find(({ label }) => label === 'Components').component = props => {
     return React.createElement(Components, { ...props, components: allComponents })
 }
+*/

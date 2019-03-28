@@ -10,7 +10,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { BubbleDefaultProps as defaults } from '@nivo/circle-packing'
 import {
-    marginProperties,
     motionProperties,
     defsProperties,
 } from '../../../lib/componentProperties'
@@ -116,6 +115,15 @@ export default [
         controlGroup: 'Base',
     },
     {
+        key: 'margin',
+        scopes: '*',
+        description: 'Chart margin.',
+        type: '{object}',
+        required: false,
+        controlType: 'margin',
+        controlGroup: 'Base',
+    },
+    {
         key: 'padding',
         scopes: '*',
         description: (
@@ -200,13 +208,8 @@ export default [
         type: '{number}',
         required: false,
         default: defaults.borderWidth,
-        controlType: 'range',
+        controlType: 'lineWidth',
         controlGroup: 'Style',
-        controlOptions: {
-            unit: 'px',
-            min: 0,
-            max: 10,
-        },
     },
     {
         key: 'borderColor',
@@ -228,7 +231,6 @@ export default [
         },
     },
     ...defsProperties(['Bubble']),
-    ...marginProperties,
     {
         key: 'enableLabel',
         scopes: '*',

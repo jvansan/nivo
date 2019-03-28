@@ -9,7 +9,7 @@
 import React from 'react'
 import { lineCurvePropKeys } from '@nivo/core'
 import { commonDefaultProps as defaults } from '@nivo/parallel-coordinates'
-import { marginProperties, motionProperties } from '../../../lib/componentProperties'
+import { motionProperties } from '../../../lib/componentProperties'
 
 const curveOptions = []
 lineCurvePropKeys.forEach((curve, i) => {
@@ -160,6 +160,15 @@ export default [
         },
     },
     {
+        key: 'margin',
+        scopes: '*',
+        description: 'Chart margin.',
+        type: '{object}',
+        required: false,
+        controlType: 'margin',
+        controlGroup: 'Base',
+    },
+    {
         key: 'layout',
         scopes: '*',
         description: `Chart layout, must be one of: 'horizontal', 'vertical'.`,
@@ -270,13 +279,8 @@ export default [
         type: '{number}',
         required: false,
         default: defaults.strokeWidth,
-        controlType: 'range',
+        controlType: 'lineWidth',
         controlGroup: 'Style',
-        controlOptions: {
-            unit: 'px',
-            min: 1,
-            max: 12,
-        },
     },
     {
         key: 'lineOpacity',
@@ -285,14 +289,8 @@ export default [
         type: '{number}',
         required: false,
         default: defaults.lineOpacity,
-        controlType: 'range',
+        controlType: 'opacity',
         controlGroup: 'Style',
-        controlOptions: {
-            min: 0,
-            max: 1,
-            step: 0.05,
-        },
     },
-    ...marginProperties,
     ...motionProperties(['ParallelCoordinates'], defaults),
 ]

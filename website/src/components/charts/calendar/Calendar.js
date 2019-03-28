@@ -8,15 +8,13 @@
  */
 import React, { useState, useCallback } from 'react'
 import { Link } from 'react-router-dom'
-import MediaQuery from 'react-responsive'
 import ChartHeader from '../../ChartHeader'
 import ChartTabs from '../../ChartTabs'
 import generateCode from '../../../lib/generateChartCode'
-import CalendarControls from './CalendarControls'
+import Settings from '../../Settings'
+import { groupsByScope } from './CalendarControls'
 import { ResponsiveCalendar, CalendarDefaultProps } from '@nivo/calendar'
-import ComponentPropsDocumentation from '../../properties/ComponentPropsDocumentation'
 import nivoTheme from '../../../nivoTheme'
-import properties from './props'
 import propsMapper from './propsMapper'
 
 const Tooltip = data => {
@@ -100,60 +98,46 @@ const Calendar = ({ data }) => {
         }
     )
 
-    const header = (
-        <ChartHeader chartClass="Calendar" tags={['@nivo/calendar', 'svg', 'isomorphic']} />
-    )
-
-    const description = (
-        <div className="chart-description">
-            <p className="description">
-                This component is heavily inspired by{' '}
-                <a
-                    href="https://observablehq.com/@d3/calendar-view"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    this demo
-                </a>
-                .
-            </p>
-            <p className="description">
-                The responsive alternative of this component is <code>ResponsiveCalendar</code>, it
-                also offers a canvas implementations, see{' '}
-                <Link to="/calendar/canvas">CalendarCanvas</Link>.
-            </p>
-            <p className="description">
-                See the <Link to="/guides/legends">dedicated guide</Link> on how to setup legends
-                for this component.
-            </p>
-        </div>
-    )
-
     return (
-        <div className="page_content grid">
-            <div className="chart-page_main">
-                <MediaQuery query="(max-width: 1000px)">
-                    {header}
-                    {description}
-                </MediaQuery>
-                <ChartTabs chartClass="calendar" code={code} data={data}>
-                    <ResponsiveCalendar
-                        from={settings.from}
-                        to={settings.to}
-                        data={data}
-                        onClick={onDayClick}
-                        {...mappedSettings}
-                    />
-                </ChartTabs>
-                <CalendarControls scope="Calendar" settings={settings} onChange={setSettings} />
-                <ComponentPropsDocumentation chartClass="Calendar" properties={properties} />
+        <div className="chart_page">
+            <ChartHeader chartClass="Calendar" tags={['@nivo/calendar', 'svg', 'isomorphic']} />
+            <div className="chart-description">
+                <p className="description">
+                    This component is heavily inspired by{' '}
+                    <a
+                        href="https://observablehq.com/@d3/calendar-view"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        this demo
+                    </a>
+                    .
+                </p>
+                <p className="description">
+                    The responsive alternative of this component is <code>ResponsiveCalendar</code>, it
+                    also offers a canvas implementations, see{' '}
+                    <Link to="/calendar/canvas">CalendarCanvas</Link>.
+                </p>
+                <p className="description">
+                    See the <Link to="/guides/legends">dedicated guide</Link> on how to setup legends
+                    for this component.
+                </p>
             </div>
-            <div className="chart-page_aside">
-                <MediaQuery query="(min-width: 1000px)">
-                    {header}
-                    {description}
-                </MediaQuery>
-            </div>
+            <ChartTabs chartClass="calendar" code={code} data={data}>
+                <ResponsiveCalendar
+                    from={settings.from}
+                    to={settings.to}
+                    data={data}
+                    onClick={onDayClick}
+                    {...mappedSettings}
+                />
+            </ChartTabs>
+            <Settings
+                component="Calendar"
+                settings={settings}
+                onChange={setSettings}
+                groups={groupsByScope.Calendar}
+            />
         </div>
     )
 }

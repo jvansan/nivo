@@ -8,15 +8,13 @@
  */
 import React, { useState, useCallback } from 'react'
 import { Link } from 'react-router-dom'
-import MediaQuery from 'react-responsive'
 import { ResponsiveChoroplethCanvas, ChoroplethCanvasDefaultProps } from '@nivo/geo'
 import nivoTheme from '../../../nivoTheme'
 import generateCode from '../../../lib/generateChartCode'
 import ChartHeader from '../../ChartHeader'
 import ChartTabs from '../../ChartTabs'
-import ComponentPropsDocumentation from '../../properties/ComponentPropsDocumentation'
-import GeoControls from './GeoControls'
-import properties from './props'
+import Settings from '../../Settings'
+import { groupsByScope } from './GeoControls'
 import countries from './world_countries'
 import { generateChoroplethData } from './generators'
 import propsMapper from './propsMapper'
@@ -105,50 +103,33 @@ const ChoroplethCanvas = () => {
         }
     )
 
-    const header = (
-        <ChartHeader chartClass="ChoroplethCanvas" tags={['@nivo/geo', 'map', 'canvas']} />
-    )
-
-    const description = (
-        <div className="chart-description">
-            <p className="description">
-                A canvas implementation of the <Link to="/choropleth">Choropleth</Link> component,
-                should be used used when you have complex geometries as it offers better performance
-                than its SVG counterpart.
-            </p>
-            <p className="description">
-                The responsive alternative of this component is <code>ResponsiveChoropleth</code>.
-            </p>
-        </div>
-    )
-
     return (
-        <div className="page_content grid">
-            <div className="chart-page_main">
-                <MediaQuery query="(max-width: 1000px)">
-                    {header}
-                    {description}
-                </MediaQuery>
-                <ChartTabs chartClass="choropleth" code={code} data={data} diceRoll={diceRoll}>
-                    <ResponsiveChoroplethCanvas
-                        features={countries.features}
-                        data={data}
-                        onClick={onClick}
-                        {...mappedSettings}
-                    />
-                </ChartTabs>
-                <GeoControls scope="ChoroplethCanvas" settings={settings} onChange={setSettings} />
-                <ComponentPropsDocumentation
-                    chartClass="ChoroplethCanvas"
-                    properties={properties}
+        <div className="chart_page">
+            <ChartHeader chartClass="ChoroplethCanvas" tags={['@nivo/geo', 'map', 'canvas']} />
+            <div className="chart-description">
+                <p className="description">
+                    A canvas implementation of the <Link to="/choropleth">Choropleth</Link> component,
+                    should be used used when you have complex geometries as it offers better performance
+                    than its SVG counterpart.
+                </p>
+                <p className="description">
+                    The responsive alternative of this component is <code>ResponsiveChoropleth</code>.
+                </p>
+            </div>
+            <ChartTabs chartClass="choropleth" code={code} data={data} diceRoll={diceRoll}>
+                <ResponsiveChoroplethCanvas
+                    features={countries.features}
+                    data={data}
+                    onClick={onClick}
+                    {...mappedSettings}
                 />
-            </div>
-            <div className="chart-page_aside">
-                <MediaQuery query="(min-width: 1000px)">
-                    {header}
-                    {description}
-                </MediaQuery>
-            </div>
+            </ChartTabs>
+            <Settings
+                component="ChoroplethCanvas"
+                settings={settings}
+                onChange={setSettings}
+                groups={groupsByScope.ChoroplethCanvas}
+            />
         </div>
     )
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import Label from './Label'
 
 export default class SwitchControl extends Component {
     static propTypes = {
@@ -19,6 +20,7 @@ export default class SwitchControl extends Component {
 
         return (
             <div className="chart-controls_item">
+                <Label htmlFor={id}>{label}</Label>
                 <span className="control-switch">
                     <input
                         className="cmn-toggle"
@@ -29,9 +31,10 @@ export default class SwitchControl extends Component {
                     />
                     <label htmlFor={id} />
                 </span>
-                &nbsp;
-                <label htmlFor={id}>{label}</label>
+                {/*
+                <span/>
                 <div className="control-help">{help}</div>
+                */}
             </div>
         )
     }

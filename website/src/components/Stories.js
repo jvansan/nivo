@@ -27,20 +27,22 @@ export default class Stories extends Component {
         const { stories } = this.props
 
         return (
-            <CollapsibleCard title="Recipes" expandedByDefault={true}>
-                {stories.map((story, i) => (
-                    <a
-                        key={i}
-                        className="stories__item"
-                        href={buildStoryLink(story.link)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        {story.label}
-                        <VisitIcon size={20} color="#bbb" />
-                    </a>
-                ))}
-            </CollapsibleCard>
+            <div className="stories">
+                <CollapsibleCard title="Recipes" expandedByDefault={true}>
+                    {stories.map((story, i) => (
+                        <a
+                            key={i}
+                            className="stories__item"
+                            href={buildStoryLink(story.link)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            {story.label}
+                            <VisitIcon size={20} color="#bbb" />
+                        </a>
+                    ))}
+                </CollapsibleCard>
+            </div>
         )
     }
 }

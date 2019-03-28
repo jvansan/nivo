@@ -8,14 +8,12 @@
  */
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import MediaQuery from 'react-responsive'
 import { ResponsiveWaffleCanvas, WaffleDefaultProps } from '@nivo/waffle'
 import ChartHeader from '../../ChartHeader'
 import ChartTabs from '../../ChartTabs'
-import WaffleControls from './WaffleControls'
+import Settings from '../../Settings'
+import { groupsByScope } from './WaffleControls'
 import generateCode from '../../../lib/generateChartCode'
-import ComponentPropsDocumentation from '../../properties/ComponentPropsDocumentation'
-import properties from './props'
 import nivoTheme from '../../../nivoTheme'
 import config from '../../../config'
 import propsMapper from './propsMapper'
@@ -173,73 +171,54 @@ export default class WaffleCanvas extends Component {
             }
         )
 
-        const header = <ChartHeader chartClass="WaffleCanvas" tags={['@nivo/waffle', 'canvas']} />
-
-        const description = (
-            <div className="chart-description">
-                <p className="description">
-                    A variation around the <Link to="/waffle">Waffle</Link> component. Well suited
-                    for large data sets as it does not impact DOM tree depth and does not involve
-                    React diffing stuff for children (not that useful when using canvas), however
-                    you'll lose the isomorphic ability and transitions (for now).
-                </p>
-                <p className="description">
-                    You can also see more example usages in{' '}
-                    <a
-                        href={`${
-                            config.storybookUrl
-                        }?selectedKind=WaffleCanvas&selectedStory=default`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        the storybook
-                    </a>
-                    .
-                </p>
-                <p className="description">
-                    The responsive alternative of this component is{' '}
-                    <code>ResponsiveWaffleCanvas</code>, it also offers other implementations, see{' '}
-                    <Link to="/waffle">Waffle</Link> and <Link to="/waffle/html">WaffleHtml</Link>.
-                </p>
-            </div>
-        )
-
         return (
-            <div className="page_content grid">
-                <div className="chart-page_main">
-                    <MediaQuery query="(max-width: 1000px)">
-                        {header}
-                        {description}
-                    </MediaQuery>
-                    <ChartTabs
-                        chartClass="waffle"
-                        code={code}
+            <div className="chart_page">
+                <ChartHeader chartClass="WaffleCanvas" tags={['@nivo/waffle', 'canvas']} />
+                <div className="chart-description">
+                    <p className="description">
+                        A variation around the <Link to="/waffle">Waffle</Link> component. Well suited
+                        for large data sets as it does not impact DOM tree depth and does not involve
+                        React diffing stuff for children (not that useful when using canvas), however
+                        you'll lose the isomorphic ability and transitions (for now).
+                    </p>
+                    <p className="description">
+                        You can also see more example usages in{' '}
+                        <a
+                            href={`${
+                                config.storybookUrl
+                            }?selectedKind=WaffleCanvas&selectedStory=default`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            the storybook
+                        </a>
+                        .
+                    </p>
+                    <p className="description">
+                        The responsive alternative of this component is{' '}
+                        <code>ResponsiveWaffleCanvas</code>, it also offers other implementations, see{' '}
+                        <Link to="/waffle">Waffle</Link> and <Link to="/waffle/html">WaffleHtml</Link>.
+                    </p>
+                </div>
+                <ChartTabs
+                    chartClass="waffle"
+                    code={code}
+                    data={data}
+                    diceRoll={this.diceRoll}
+                    nodeCount={settings.rows * settings.columns}
+                >
+                    <ResponsiveWaffleCanvas
                         data={data}
-                        diceRoll={this.diceRoll}
-                        nodeCount={settings.rows * settings.columns}
-                    >
-                        <ResponsiveWaffleCanvas
-                            data={data}
-                            {...mappedSettings}
-                            onClick={this.handleNodeClick}
-                        />
-                    </ChartTabs>
-                    <WaffleControls
-                        scope="WaffleCanvas"
-                        settings={settings}
-                        onChange={this.handleSettingsUpdate}
+                        {...mappedSettings}
+                        onClick={this.handleNodeClick}
                     />
-                    <ComponentPropsDocumentation
-                        chartClass="WaffleCanvas"
-                        properties={properties}
-                    />
-                </div>
-                <div className="chart-page_aside">
-                    <MediaQuery query="(min-width: 1000px)">
-                        {header}
-                        {description}
-                    </MediaQuery>
-                </div>
+                </ChartTabs>
+                <Settings
+                    component="WaffleCanvas"
+                    settings={settings}
+                    onChange={this.handleSettingsUpdate}
+                    groups={groupsByScope.WaffleCanvas}
+                />
             </div>
         )
     }

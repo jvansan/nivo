@@ -31,13 +31,13 @@ export default class MiniNavLink extends Component {
     }
 
     render() {
-        const { path, className, label, style, exact } = this.props
+        const { path, className, label, style } = this.props
         const { isHover } = this.state
 
         return (
             <Route
                 path={path}
-                exact={!!exact}
+                exact={false}
                 children={({ match }) => (
                     <Link
                         className={`mini-nav_item${match ? ' active' : ''}`}
@@ -47,7 +47,6 @@ export default class MiniNavLink extends Component {
                         onMouseEnter={this.handleMouseEnter}
                         onMouseLeave={this.handleMouseLeave}
                     >
-                        <span className="mini-nav_item_feedback" />
                         <span
                             className={`mini-nav_icon sprite-icons-${className}-${
                                 match || isHover ? 'red' : 'grey'

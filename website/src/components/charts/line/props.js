@@ -11,7 +11,6 @@ import dedent from 'dedent-js'
 import { lineCurvePropKeys, DotsItemDefaultProps as dotDefaults } from '@nivo/core'
 import { LineDefaultProps as defaults } from '@nivo/line'
 import {
-    marginProperties,
     axesProperties,
     motionProperties,
     getLegendsProps,
@@ -90,6 +89,15 @@ export default [
             max: 1000,
             step: 5,
         },
+    },
+    {
+        key: 'margin',
+        scopes: '*',
+        description: 'Chart margin.',
+        type: '{object}',
+        required: false,
+        controlType: 'margin',
+        controlGroup: 'Base',
     },
     {
         key: 'layers',
@@ -254,13 +262,8 @@ export default [
         type: '{number}',
         required: false,
         default: defaults.lineWidth,
-        controlType: 'range',
+        controlType: 'lineWidth',
         controlGroup: 'Style',
-        controlOptions: {
-            unit: 'px',
-            min: 1,
-            max: 16,
-        },
     },
     {
         key: 'enableArea',
@@ -299,13 +302,8 @@ export default [
         required: false,
         default: defaults.areaOpacity,
         type: '{number}',
-        controlType: 'range',
+        controlType: 'opacity',
         controlGroup: 'Style',
-        controlOptions: {
-            min: 0,
-            max: 1,
-            step: 0.05,
-        },
     },
     {
         key: 'areaBlendMode',
@@ -352,7 +350,6 @@ export default [
             })),
         },
     },
-    ...marginProperties,
     {
         key: 'enableDots',
         scopes: '*',
@@ -403,13 +400,8 @@ export default [
         type: '{number}',
         required: false,
         default: defaults.dotBorderWidth,
-        controlType: 'range',
+        controlType: 'lineWidth',
         controlGroup: 'Dots',
-        controlOptions: {
-            unit: 'px',
-            min: 0,
-            max: 10,
-        },
     },
     {
         key: 'dotBorderColor',
