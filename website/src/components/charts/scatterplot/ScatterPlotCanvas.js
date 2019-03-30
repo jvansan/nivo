@@ -19,6 +19,7 @@ import { groupsByScope } from './ScatterPlotControls'
 import propsMapper from './propsMapper'
 import { generateHeavyDataSet as generateData } from './generators'
 import { scatterPlotCanvasStories } from './stories'
+import ChartPage from '../ChartPage'
 
 export default class ScatterPlotCanvas extends Component {
     state = {
@@ -147,7 +148,7 @@ export default class ScatterPlotCanvas extends Component {
         )
 
         return (
-            <div className="chart_page">
+            <ChartPage>
                 <ChartHeader
                     chartClass="ScatterPlotCanvas"
                     tags={['@nivo/scatterplot', 'canvas']}
@@ -155,14 +156,14 @@ export default class ScatterPlotCanvas extends Component {
                 <div className="chart-description">
                     <p className="description">
                         A variation around the <Link to="/scatterplot">ScatterPlot</Link> component.
-                        Well suited for large data sets as it does not impact DOM tree depth and does
-                        not involve React diffing stuff for children (not that useful when using
-                        canvas), however you'll lose the isomorphic ability and transitions.
+                        Well suited for large data sets as it does not impact DOM tree depth and
+                        does not involve React diffing stuff for children (not that useful when
+                        using canvas), however you'll lose the isomorphic ability and transitions.
                     </p>
                     <p className="description">
                         The responsive alternative of this component is{' '}
-                        <code>ResponsiveScatterPlotCanvas</code>, it also offers another implementation,
-                        see <Link to="/scatterplot">ScatterPlot</Link>.
+                        <code>ResponsiveScatterPlotCanvas</code>, it also offers another
+                        implementation, see <Link to="/scatterplot">ScatterPlot</Link>.
                     </p>
                 </div>
                 <ChartTabs
@@ -186,7 +187,7 @@ export default class ScatterPlotCanvas extends Component {
                     groups={groupsByScope.ScatterPlotCanvas}
                 />
                 <Stories stories={scatterPlotCanvasStories} />
-            </div>
+            </ChartPage>
         )
     }
 }

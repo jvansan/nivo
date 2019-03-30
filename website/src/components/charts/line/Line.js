@@ -21,6 +21,7 @@ import config from '../../../config'
 import nivoTheme from '../../../nivoTheme'
 import defaultProps from './defaultProps'
 import propsMapper from './propsMapper'
+import ChartPage from '../ChartPage'
 
 export default class Line extends Component {
     state = {
@@ -74,15 +75,15 @@ export default class Line extends Component {
         })
 
         return (
-            <div className="chart_page">
+            <ChartPage>
                 <ChartHeader chartClass="Line" tags={['@nivo/line', 'svg', 'isomorphic']} />
                 <div className="chart-description">
                     <p className="description">Line chart with stacking ability.</p>
                     <p>
-                        Given an array of data series having an id and a nested array of points (with x,
-                        y properties), it will compute the line for each data serie. All datum having
-                        null x or y will be treated as holes, thus portions of the corresponding line
-                        will be skipped.
+                        Given an array of data series having an id and a nested array of points
+                        (with x, y properties), it will compute the line for each data serie. All
+                        datum having null x or y will be treated as holes, thus portions of the
+                        corresponding line will be skipped.
                     </p>
                     <p className="description">
                         The responsive alternative of this component is <code>ResponsiveLine</code>.
@@ -121,7 +122,7 @@ export default class Line extends Component {
                     groups={groupsByScope.Line}
                 />
                 <Stories stories={lineStories} />
-            </div>
+            </ChartPage>
         )
     }
 }

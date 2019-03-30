@@ -7,11 +7,7 @@
  * file that was distributed with this source code.
  */
 import React from 'react'
-import {
-    motionProperties,
-    defsProperties,
-    getLegendsProps,
-} from '../../../lib/componentProperties'
+import { motionProperties, defsProperties, getLegendsProps } from '../../../lib/componentProperties'
 import { WaffleDefaultProps } from '@nivo/waffle'
 import dedent from 'dedent-js'
 
@@ -67,7 +63,7 @@ export default [
         description: 'Number of rows.',
         required: true,
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             min: 1,
             max: 100,
@@ -80,7 +76,7 @@ export default [
         description: 'Number of columns.',
         required: true,
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             min: 1,
             max: 100,
@@ -94,7 +90,7 @@ export default [
         required: false,
         default: defaults.fillDirection,
         controlType: 'choices',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             choices: [
                 { label: 'top', value: 'top' },
@@ -111,7 +107,7 @@ export default [
         description: 'Padding between each cell (px).',
         required: true,
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             unit: 'px',
             min: 0,
@@ -152,7 +148,7 @@ export default [
         default: 'Depends on device',
         type: `{number}`,
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             min: 1,
             max: 2,
@@ -165,7 +161,7 @@ export default [
         type: '{object}',
         required: false,
         controlType: 'margin',
-        controlGroup: 'Base',
+        group: 'Base',
     },
     {
         key: 'cellComponent',
@@ -174,7 +170,7 @@ export default [
         type: '{Function}',
         required: false,
         controlType: 'choices',
-        controlGroup: 'Style',
+        group: 'Style',
         controlOptions: {
             choices: ['default', 'Custom(props) => (…)'].map(key => ({
                 label: key,
@@ -190,7 +186,7 @@ export default [
         required: false,
         default: 'nivo',
         controlType: 'colors',
-        controlGroup: 'Style',
+        group: 'Style',
     },
     {
         key: 'colorBy',
@@ -201,7 +197,7 @@ export default [
         required: false,
         default: 'id',
         controlType: 'choices',
-        controlGroup: 'Style',
+        group: 'Style',
         controlOptions: {
             choices: [
                 {
@@ -223,7 +219,7 @@ export default [
         required: false,
         default: defaults.emptyColor,
         controlType: 'colorPicker',
-        controlGroup: 'Style',
+        group: 'Style',
     },
     {
         key: 'emptyOpacity',
@@ -233,7 +229,7 @@ export default [
         default: defaults.emptyOpacity,
         type: '{number}',
         controlType: 'opacity',
-        controlGroup: 'Style',
+        group: 'Style',
     },
     {
         key: 'borderWidth',
@@ -243,7 +239,7 @@ export default [
         required: false,
         default: defaults.borderWidth,
         controlType: 'range',
-        controlGroup: 'Style',
+        group: 'Style',
         controlOptions: {
             unit: 'px',
             min: 0,
@@ -258,7 +254,7 @@ export default [
         required: false,
         default: defaults.borderColor,
         controlType: 'color',
-        controlGroup: 'Style',
+        group: 'Style',
         controlOptions: {
             withCustomColor: true,
         },
@@ -272,7 +268,7 @@ export default [
         required: false,
         default: defaults.isInteractive,
         controlType: 'switch',
-        controlGroup: 'Interactivity',
+        group: 'Interactivity',
     },
     {
         key: 'onClick',
@@ -293,7 +289,7 @@ export default [
         ),
         type: '{boolean}',
         controlType: 'switch',
-        controlGroup: 'Interactivity',
+        group: 'Interactivity',
     },
     {
         key: 'tooltip',
@@ -328,7 +324,7 @@ export default [
         scopes: ['Waffle', 'WaffleCanvas'],
         type: '{Array<object>}',
         description: `Optional chart's legends.`,
-        controlGroup: 'Legends',
+        group: 'Legends',
         controlType: 'array',
         controlOptions: {
             props: getLegendsProps(),

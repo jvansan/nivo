@@ -39,7 +39,7 @@ export default [
                 <code>point</code> variables are suitable for discrete values such as gender.
             </div>
         ),
-        controlGroup: 'Variables',
+        group: 'Variables',
         controlType: 'array',
         controlOptions: {
             shouldCreate: false,
@@ -116,7 +116,7 @@ export default [
         type: '{number}',
         required: true,
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             unit: 'px',
             min: 100,
@@ -137,7 +137,7 @@ export default [
         type: '{number}',
         required: true,
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             unit: 'px',
             min: 100,
@@ -153,7 +153,7 @@ export default [
         default: 'Depends on device',
         type: `{number}`,
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             min: 1,
             max: 2,
@@ -166,7 +166,7 @@ export default [
         type: '{object}',
         required: false,
         controlType: 'margin',
-        controlGroup: 'Base',
+        group: 'Base',
     },
     {
         key: 'layout',
@@ -176,7 +176,7 @@ export default [
         required: false,
         default: defaults.layout,
         controlType: 'radio',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             choices: [
                 { label: 'horizontal', value: 'horizontal' },
@@ -199,7 +199,7 @@ export default [
         required: false,
         default: defaults.curve,
         controlType: 'choices',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             choices: lineCurvePropKeys.map(key => ({
                 label: key,
@@ -215,7 +215,7 @@ export default [
         required: false,
         default: defaults.axesPlan,
         controlType: 'radio',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             choices: [
                 { label: 'foreground', value: 'foreground' },
@@ -231,7 +231,7 @@ export default [
         required: false,
         default: defaults.axesTicksPosition,
         controlType: 'radio',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             choices: [{ label: 'before', value: 'before' }, { label: 'after', value: 'after' }],
         },
@@ -244,7 +244,7 @@ export default [
         required: false,
         default: defaults.colors,
         controlType: 'colors',
-        controlGroup: 'Style',
+        group: 'Style',
     },
     {
         key: 'colorBy',
@@ -254,7 +254,7 @@ export default [
         required: false,
         default: defaults.colorBy,
         controlType: 'choices',
-        controlGroup: 'Style',
+        group: 'Style',
         controlOptions: {
             choices: [
                 {
@@ -280,7 +280,7 @@ export default [
         required: false,
         default: defaults.strokeWidth,
         controlType: 'lineWidth',
-        controlGroup: 'Style',
+        group: 'Style',
     },
     {
         key: 'lineOpacity',
@@ -290,7 +290,7 @@ export default [
         required: false,
         default: defaults.lineOpacity,
         controlType: 'opacity',
-        controlGroup: 'Style',
+        group: 'Style',
     },
     ...motionProperties(['ParallelCoordinates'], defaults),
 ]

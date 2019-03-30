@@ -18,6 +18,7 @@ import { groupsByScope } from './TreeMapControls'
 import nivoTheme from '../../../nivoTheme'
 import propsMapper from './propsMapper'
 import { generateLightDataSet as generateData } from './generators'
+import ChartPage from '../ChartPage'
 
 export default class TreeMapHtml extends Component {
     state = {
@@ -87,7 +88,7 @@ export default class TreeMapHtml extends Component {
         })
 
         return (
-            <div className="chart_page">
+            <ChartPage>
                 <ChartHeader
                     chartClass="TreeMapHtml"
                     tags={['@nivo/treemap', 'hierarchy', 'html', 'isomorphic']}
@@ -110,8 +111,9 @@ export default class TreeMapHtml extends Component {
                         >
                             this block
                         </a>
-                        . You can fully customize it using <code>nodeComponent</code> property to define
-                        your own node component, if you wish to do so you should have a look at{' '}
+                        . You can fully customize it using <code>nodeComponent</code> property to
+                        define your own node component, if you wish to do so you should have a look
+                        at{' '}
                         <a
                             href="https://github.com/plouc/nivo/blob/master/src/components/charts/treemap/TreeMapHtmlNode.js"
                             target="_blank"
@@ -123,8 +125,8 @@ export default class TreeMapHtml extends Component {
                     </p>
                     <p className="description">
                         The responsive alternative of this component is{' '}
-                        <code>ResponsiveTreeMapHtml</code>, it also offers other implementations, see{' '}
-                        <Link to="/treemap">TreeMap</Link> and{' '}
+                        <code>ResponsiveTreeMapHtml</code>, it also offers other implementations,
+                        see <Link to="/treemap">TreeMap</Link> and{' '}
                         <Link to="/treemap/canvas">TreeMapCanvas</Link>.
                     </p>
                     <p className="description">
@@ -161,7 +163,7 @@ export default class TreeMapHtml extends Component {
                     onChange={this.handleSettingsUpdate}
                     groups={groupsByScope.TreeMapHTML}
                 />
-            </div>
+            </ChartPage>
         )
     }
 }

@@ -18,6 +18,7 @@ import generateCode from '../../../lib/generateChartCode'
 import nivoTheme from '../../../nivoTheme'
 import config from '../../../config'
 import propsMapper from './propsMapper'
+import ChartPage from '../ChartPage'
 
 const DATASET_SIZE = 18
 const generateData = () =>
@@ -126,18 +127,18 @@ export default class Pie extends Component {
         })
 
         return (
-            <div className="chart_page">
+            <ChartPage>
                 <ChartHeader chartClass="PieCanvas" tags={['@nivo/pie', 'radial', 'canvas']} />
                 <div className="chart-description">
                     <p className="description">
                         A variation around the <Link to="/pie">Pie</Link> component. Well suited for
-                        large data sets as it does not impact DOM tree depth and does not involve React
-                        diffing stuff for children (not that useful when using canvas), however you'll
-                        lose the isomorphic ability and transitions.
+                        large data sets as it does not impact DOM tree depth and does not involve
+                        React diffing stuff for children (not that useful when using canvas),
+                        however you'll lose the isomorphic ability and transitions.
                     </p>
                     <p className="description">
-                        The responsive alternative of this component is <code>ResponsiveCanvasPie</code>
-                        .
+                        The responsive alternative of this component is{' '}
+                        <code>ResponsiveCanvasPie</code>.
                     </p>
                     <p className="description">
                         This component is available in the{' '}
@@ -156,10 +157,12 @@ export default class Pie extends Component {
                         >
                             sample
                         </a>{' '}
-                        or <Link to="/pie/api">try it using the API client</Link>. You can also see more
-                        example usages in{' '}
+                        or <Link to="/pie/api">try it using the API client</Link>. You can also see
+                        more example usages in{' '}
                         <a
-                            href={`${config.storybookUrl}?selectedKind=PieCanvas&selectedStory=default`}
+                            href={`${
+                                config.storybookUrl
+                            }?selectedKind=PieCanvas&selectedStory=default`}
                             target="_blank"
                             rel="noopener noreferrer"
                         >
@@ -185,7 +188,7 @@ export default class Pie extends Component {
                     onChange={this.handleSettingsUpdate}
                     groups={groupsByScope.PieCanvas}
                 />
-            </div>
+            </ChartPage>
         )
     }
 }

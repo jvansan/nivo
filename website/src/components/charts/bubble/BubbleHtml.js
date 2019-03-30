@@ -18,6 +18,7 @@ import { groupsByScope } from './BubbleControls'
 import config from '../../../config'
 import nivoTheme from '../../../nivoTheme'
 import propsMapper from './propsMapper'
+import ChartPage from '../ChartPage'
 
 export default class BubbleHtml extends Component {
     state = {
@@ -79,16 +80,16 @@ export default class BubbleHtml extends Component {
         })
 
         return (
-            <div className="chart_page">
+            <ChartPage>
                 <ChartHeader
                     chartClass="BubbleHtml"
                     tags={['@nivo/circle-packing', 'hierarchy', 'html', 'isomorphic']}
                 />
                 <div className="chart-description">
                     <p className="description">
-                        Bubble chart using circle packing with zooming ability. You can fully customize
-                        it using <code>nodeComponent</code> property to define your own node component,
-                        if you wish to do so you should have a look at{' '}
+                        Bubble chart using circle packing with zooming ability. You can fully
+                        customize it using <code>nodeComponent</code> property to define your own
+                        node component, if you wish to do so you should have a look at{' '}
                         <a
                             href="https://github.com/plouc/nivo/blob/master/src/components/charts/bubble/BubbleHtmlNode.js"
                             target="_blank"
@@ -100,8 +101,8 @@ export default class BubbleHtml extends Component {
                     </p>
                     <p className="description">
                         The responsive alternative of this component is{' '}
-                        <code>ResponsiveBubbleHtml</code>. It also offers various implementations, see{' '}
-                        <Link to="/bubble">Bubble</Link> and{' '}
+                        <code>ResponsiveBubbleHtml</code>. It also offers various implementations,
+                        see <Link to="/bubble">Bubble</Link> and{' '}
                         <Link to="/bubble/canvas">BubbleCanvas</Link>.
                     </p>
                     <p className="description">
@@ -121,10 +122,12 @@ export default class BubbleHtml extends Component {
                         >
                             sample
                         </a>{' '}
-                        or <Link to="/bubble/api">try it using the API client</Link>. You can also see
-                        more example usages in{' '}
+                        or <Link to="/bubble/api">try it using the API client</Link>. You can also
+                        see more example usages in{' '}
                         <a
-                            href={`${config.storybookUrl}?selectedKind=Bubble&selectedStory=default`}
+                            href={`${
+                                config.storybookUrl
+                            }?selectedKind=Bubble&selectedStory=default`}
                             target="_blank"
                             rel="noopener noreferrer"
                         >
@@ -146,7 +149,7 @@ export default class BubbleHtml extends Component {
                     onChange={this.handleSettingsUpdate}
                     groups={groupsByScope.Bubble}
                 />
-            </div>
+            </ChartPage>
         )
     }
 }

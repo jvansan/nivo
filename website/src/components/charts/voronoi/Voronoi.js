@@ -14,6 +14,7 @@ import ChartTabs from '../../ChartTabs'
 import Settings from '../../Settings'
 import { groupsByScope } from './VoronoiControls'
 import generateCode from '../../../lib/generateChartCode'
+import ChartPage from '../ChartPage'
 
 const xDomain = [0, 100]
 const yDomain = [0, 100]
@@ -76,7 +77,7 @@ export default class Voronoi extends Component {
         })
 
         return (
-            <div className="chart_page">
+            <ChartPage>
                 <ChartHeader chartClass="Voronoi" tags={['@nivo/voronoi', 'svg', 'experimental']} />
                 <div className="chart-description">
                     <p className="description">
@@ -88,8 +89,8 @@ export default class Voronoi extends Component {
                         >
                             d3-delaunay
                         </a>
-                        . The responsive alternative of this component is <code>ResponsiveVoronoi</code>
-                        .
+                        . The responsive alternative of this component is{' '}
+                        <code>ResponsiveVoronoi</code>.
                     </p>
                 </div>
                 <ChartTabs chartClass="voronoi" code={code} data={data} diceRoll={this.diceRoll}>
@@ -112,7 +113,7 @@ export default class Voronoi extends Component {
                     onChange={this.handleSettingsUpdate}
                     groups={groupsByScope.Voronoi}
                 />
-            </div>
+            </ChartPage>
         )
     }
 }

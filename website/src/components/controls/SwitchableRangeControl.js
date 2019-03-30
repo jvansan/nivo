@@ -57,14 +57,15 @@ export default class SwitchableRangeControl extends Component {
                     <div className="SwitchableRangeControl">
                         <div className="SwitchableRangeControl_Header">
                             <span className="control_label">
-                                {isSliderEnabled && <code className="code code-number">{value}</code>}
-                                {isSliderEnabled &&
-                                    unit && (
-                                        <span className="unit">
-                                            &nbsp;
-                                            {unit}
-                                        </span>
-                                    )}
+                                {isSliderEnabled && (
+                                    <code className="code code-number">{value}</code>
+                                )}
+                                {isSliderEnabled && unit && (
+                                    <span className="unit">
+                                        &nbsp;
+                                        {unit}
+                                    </span>
+                                )}
                             </span>
                             <span className="control-switch">
                                 <input
@@ -77,7 +78,10 @@ export default class SwitchableRangeControl extends Component {
                                 <label htmlFor={`${id}.switch`} />
                             </span>
                             <span
-                                style={{ marginLeft: 7, color: isSliderEnabled ? '#bbb' : 'inherit' }}
+                                style={{
+                                    marginLeft: 7,
+                                    color: isSliderEnabled ? '#bbb' : 'inherit',
+                                }}
                             >
                                 {disabledValue}
                             </span>
@@ -93,7 +97,8 @@ export default class SwitchableRangeControl extends Component {
                         />
                     )}
                 </div>
-                {/*<div className="control-help">{help}</div>*/}
+                <span />
+                <div className="control-help">{help}</div>
             </div>
         )
     }

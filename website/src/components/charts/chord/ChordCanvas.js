@@ -17,6 +17,7 @@ import generateCode from '../../../lib/generateChartCode'
 import nivoTheme from '../../../nivoTheme'
 import { generateChordData } from '@nivo/generators'
 import propsMapper from './propsMapper'
+import ChartPage from '../ChartPage'
 
 const MATRIX_SIZE = 38
 
@@ -102,17 +103,17 @@ export default class ChordCanvas extends Component {
         )
 
         return (
-            <div className="chart_page">
+            <ChartPage>
                 <ChartHeader
                     chartClass="ChordCanvas"
                     tags={['@nivo/chord', 'relational', 'canvas']}
                 />
                 <div className="chart-description">
                     <p className="description">
-                        A variation around the <Link to="/chord">Chord</Link> component. Well suited for
-                        large data sets as it does not impact DOM tree depth and does not involve React
-                        diffing stuff (not that useful when using canvas), however you'll lose the
-                        isomorphic ability and transitions (for now).
+                        A variation around the <Link to="/chord">Chord</Link> component. Well suited
+                        for large data sets as it does not impact DOM tree depth and does not
+                        involve React diffing stuff (not that useful when using canvas), however
+                        you'll lose the isomorphic ability and transitions (for now).
                     </p>
                     <p className="description">
                         The responsive alternative of this component is{' '}
@@ -139,7 +140,7 @@ export default class ChordCanvas extends Component {
                     onChange={this.handleSettingsUpdate}
                     groups={groupsByScope.ChordCanvas}
                 />
-            </div>
+            </ChartPage>
         )
     }
 }

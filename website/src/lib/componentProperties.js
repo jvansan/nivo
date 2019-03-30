@@ -41,7 +41,7 @@ export const motionProperties = (scopes, defaults) => [
         required: false,
         default: defaults.animate !== undefined ? defaults.animate : defaultAnimate,
         controlType: 'switch',
-        controlGroup: 'Motion',
+        group: 'Motion',
     },
     {
         key: 'motionStiffness',
@@ -54,7 +54,7 @@ export const motionProperties = (scopes, defaults) => [
                 ? defaults.motionStiffness
                 : defaultMotionStiffness,
         controlType: 'range',
-        controlGroup: 'Motion',
+        group: 'Motion',
         controlOptions: {
             min: 0,
             max: 300,
@@ -70,7 +70,7 @@ export const motionProperties = (scopes, defaults) => [
         default:
             defaults.motionDamping !== undefined ? defaults.motionDamping : defaultMotionDamping,
         controlType: 'range',
-        controlGroup: 'Motion',
+        group: 'Motion',
         controlOptions: {
             min: 0,
             max: 40,
@@ -105,7 +105,7 @@ export const axesProperties = [
             description: `${axisKey} axis configuration.`,
             type: '{object}',
             required: false,
-            controlGroup: 'Grid & Axes',
+            group: 'Grid & Axes',
             controlType: 'object',
             controlOptions: {
                 props: [
@@ -177,8 +177,7 @@ export const getLegendsProps = () => [
         description: `Defines legend anchor relative to chart's viewport.`,
         type: '{string}',
         controlType: 'boxAnchor',
-        controlOptions: {
-        },
+        controlOptions: {},
     },
     {
         key: 'direction',
@@ -313,7 +312,7 @@ export const getPropertiesGroupControls = (properties, group, scope) => {
     const scopeFilter = filterPropertyByScope(scope)
 
     return properties
-        .filter(property => property.controlGroup === group && scopeFilter(property))
+        .filter(property => property.group === group && scopeFilter(property))
         .map(property => ({
             name: property.key,
             help: property.help || property.description,
@@ -327,8 +326,8 @@ export const getPropertiesGroupsControls = (properties, scope) => {
 
     const groups = uniq(
         properties
-            .filter(property => property.controlGroup !== undefined && scopeFilter(property))
-            .map(property => property.controlGroup)
+            .filter(property => property.group !== undefined && scopeFilter(property))
+            .map(property => property.group)
     )
 
     return groups.reduce((acc, group) => {
@@ -336,7 +335,7 @@ export const getPropertiesGroupsControls = (properties, scope) => {
             ...acc,
             {
                 name: group,
-                controls: getPropertiesGroupControls(properties, group, scope),
+                properties: getPropertiesGroupControls(properties, group, scope),
             },
         ]
     }, [])

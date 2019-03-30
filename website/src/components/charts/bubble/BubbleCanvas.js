@@ -19,6 +19,7 @@ import Settings from '../../Settings'
 import { groupsByScope } from './BubbleControls'
 import nivoTheme from '../../../nivoTheme'
 import propsMapper from './propsMapper'
+import ChartPage from '../ChartPage'
 
 const NODE_COUNT = 2000
 
@@ -113,7 +114,7 @@ export default class BubbleCanvas extends Component {
         )
 
         return (
-            <div className="chart_page">
+            <ChartPage>
                 <ChartHeader
                     chartClass="BubbleCanvas"
                     tags={['@nivo/circle-packing', 'hierarchy', 'canvas']}
@@ -138,7 +139,7 @@ export default class BubbleCanvas extends Component {
                     onChange={this.handleSettingsUpdate}
                     groups={groupsByScope.Bubble}
                 />
-            </div>
+            </ChartPage>
         )
     }
 }

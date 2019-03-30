@@ -8,11 +8,11 @@
  */
 import './styles/index.css'
 import './polyfills'
-import React, { Component } from 'react'
+import React, { useState, useCallback } from 'react'
 import { render } from 'react-dom'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Helmet from 'react-helmet'
-import { ThemeProvider } from 'styled-components'
+import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
 import Nav from './components/nav/Nav'
 import MiniNav from './components/nav/MiniNav'
 import Home from './components/pages/Home'
@@ -22,45 +22,59 @@ import { getRoutes } from './SiteMap'
 import theme from './styles/theme'
 // import registerServiceWorker from './registerServiceWorker'
 
-class App extends Component {
-    constructor(props) {
-        super(props)
+const GlobalStyle = createGlobalStyle`
+    html,
+    body {
+        background: ${({ theme }) => theme.colors.background};
+        color: ${({ theme }) => theme.colors.text};
+    }
+`
 
-        this.handleNavToggle = this.handleNavToggle.bind(this)
-        this.handleNavClose = this.handleNavClose.bind(this)
+const Content = styled.div`
+    margin-top: var(--header-height);
+    margin-left: var(--mini-nav-width);
+    overflow-x: hidden;
 
-        this.state = { nav: false }
+    .isCapturing & {
+        background: transparent;
     }
 
-    handleNavToggle(state) {
-        this.setState({ nav: state })
+    @media only screen and (min-width: 760px) and (max-width: 1000px) {
+        & {
+            margin-left: 0;
+        }
     }
 
-    handleNavClose() {
-        this.setState({ nav: false })
+    @media only screen and (max-width: 760px) {
+        & {
+            margin-left: 0;
+        }
     }
+`
 
-    render() {
-        const { location } = this.props
-        const { nav } = this.state
+const App = ({ location }) => {
+    const [nav, setNav] = useState(false)
+    const toggleNav = useCallback(() => setNav(flag => !flag), [setNav])
+    const closeNav = useCallback(() => setNav(false), [setNav])
 
-        const rootClass =
-            location !== undefined && location.search.indexOf('capture') !== -1 ? 'isCapturing' : ''
+    const isCapturing = location !== undefined && location.search.indexOf('capture') !== -1
 
-        return (
-            <ThemeProvider theme={theme.light}>
-                <div className={rootClass}>
+    return (
+        <ThemeProvider theme={theme.light}>
+            <>
+                <GlobalStyle />
+                <div className={isCapturing ? 'isCapturing' : ''}>
                     <Helmet titleTemplate="%s | nivo" />
-                    <Header onNavToggle={this.handleNavToggle} />
+                    <Header onNavToggle={toggleNav} />
                     <MiniNav location={location} />
-                    {nav && <Nav onNavClose={this.handleNavClose} />}
-                    <div className="content">
+                    {nav && <Nav onNavClose={closeNav} />}
+                    <Content isCapturing={isCapturing}>
                         <Switch>{getRoutes()}</Switch>
-                    </div>
+                    </Content>
                 </div>
-            </ThemeProvider>
-        )
-    }
+            </>
+        </ThemeProvider>
+    )
 }
 
 render(

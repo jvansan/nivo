@@ -46,19 +46,16 @@ export default [
         key: 'width',
         scopes: ['api'],
         docScopes: '*',
-        description: (
-            <span>
-                not required if using&nbsp;
-                <code>&lt;ResponsiveBar&nbsp;/&gt;</code>.<br />
-                Also note that width exclude left/right axes, please add margin to make sure they're
-                visible.
-            </span>
-        ),
+        description: `
+            not required if using \`ResponsiveBar\`.
+            Also note that width exclude left/right axes,
+            please add margin to make sure they're visible.
+        `,
         help: 'Chart width.',
         type: '{number}',
         required: true,
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             unit: 'px',
             min: 100,
@@ -70,19 +67,16 @@ export default [
         key: 'height',
         scopes: ['api'],
         docScopes: '*',
-        description: (
-            <span>
-                not required if using&nbsp;
-                <code>&lt;ResponsiveBar&nbsp;/&gt;</code>.<br />
-                Also note that width exclude top/bottom axes, please add margin to make sure they're
-                visible.
-            </span>
-        ),
+        description: `
+            not required if using \`ResponsiveBar\`.
+            Also note that width exclude left/right axes,
+            please add margin to make sure they're visible.
+        `,
         help: 'Chart height.',
         type: '{number}',
         required: true,
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             unit: 'px',
             min: 100,
@@ -114,7 +108,7 @@ export default [
         default: 'Depends on device',
         type: `{number}`,
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             min: 1,
             max: 2,
@@ -128,7 +122,7 @@ export default [
         required: false,
         default: defaults.groupMode,
         controlType: 'radio',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             choices: [
                 { label: 'stacked', value: 'stacked' },
@@ -144,7 +138,7 @@ export default [
         required: false,
         default: defaults.layout,
         controlType: 'radio',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             choices: [
                 { label: 'horizontal', value: 'horizontal' },
@@ -161,7 +155,7 @@ export default [
         required: false,
         default: defaults.reverse,
         controlType: 'switch',
-        controlGroup: 'Base',
+        group: 'Base',
     },
     {
         key: 'minValue',
@@ -171,7 +165,7 @@ export default [
         default: defaults.minValue,
         type: '{number|string}',
         controlType: 'switchableRange',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             disabledValue: 'auto',
             defaultValue: -1000,
@@ -187,7 +181,7 @@ export default [
         default: defaults.maxValue,
         type: '{number|string}',
         controlType: 'switchableRange',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             disabledValue: 'auto',
             defaultValue: 1000,
@@ -202,7 +196,7 @@ export default [
         type: '{object}',
         required: false,
         controlType: 'margin',
-        controlGroup: 'Base',
+        group: 'Base',
     },
     {
         key: 'padding',
@@ -212,7 +206,7 @@ export default [
         required: false,
         default: defaults.padding,
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             min: 0,
             max: 0.9,
@@ -227,7 +221,7 @@ export default [
         required: false,
         default: defaults.innerPadding,
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             unit: 'px',
             min: 0,
@@ -242,7 +236,7 @@ export default [
         required: false,
         default: 'nivo',
         controlType: 'colors',
-        controlGroup: 'Style',
+        group: 'Style',
     },
     {
         key: 'colorBy',
@@ -252,7 +246,7 @@ export default [
         required: false,
         default: 'id',
         controlType: 'choices',
-        controlGroup: 'Style',
+        group: 'Style',
         controlOptions: {
             choices: [
                 {
@@ -278,7 +272,7 @@ export default [
         required: false,
         default: defaults.borderRadius,
         controlType: 'range',
-        controlGroup: 'Style',
+        group: 'Style',
         controlOptions: {
             unit: 'px',
             min: 0,
@@ -293,7 +287,7 @@ export default [
         required: false,
         default: defaults.borderWidth,
         controlType: 'lineWidth',
-        controlGroup: 'Style',
+        group: 'Style',
     },
     {
         key: 'borderColor',
@@ -309,7 +303,7 @@ export default [
         required: false,
         default: defaults.borderColor,
         controlType: 'color',
-        controlGroup: 'Style',
+        group: 'Style',
         controlOptions: {
             withCustomColor: true,
         },
@@ -323,7 +317,7 @@ export default [
         required: false,
         default: defaults.enableLabel,
         controlType: 'switch',
-        controlGroup: 'Labels',
+        group: 'Labels',
     },
     {
         key: 'label',
@@ -371,7 +365,7 @@ export default [
         required: false,
         default: defaults.labelSkipWidth,
         controlType: 'range',
-        controlGroup: 'Labels',
+        group: 'Labels',
         controlOptions: {
             unit: 'px',
             min: 0,
@@ -386,7 +380,7 @@ export default [
         required: false,
         default: defaults.labelSkipHeight,
         controlType: 'range',
-        controlGroup: 'Labels',
+        group: 'Labels',
         controlOptions: {
             unit: 'px',
             min: 0,
@@ -401,7 +395,7 @@ export default [
         required: false,
         default: defaults.labelTextColor,
         controlType: 'color',
-        controlGroup: 'Labels',
+        group: 'Labels',
         controlOptions: {
             withCustomColor: true,
         },
@@ -414,7 +408,7 @@ export default [
         required: false,
         default: defaults.enableGridX,
         controlType: 'switch',
-        controlGroup: 'Grid & Axes',
+        group: 'Grid & Axes',
     },
     {
         key: 'gridXValues',
@@ -431,7 +425,7 @@ export default [
         required: false,
         default: defaults.enableGridY,
         controlType: 'switch',
-        controlGroup: 'Grid & Axes',
+        group: 'Grid & Axes',
     },
     {
         key: 'gridYValues',
@@ -449,7 +443,7 @@ export default [
         required: false,
         default: defaults.isInteractive,
         controlType: 'switch',
-        controlGroup: 'Interactivity',
+        group: 'Interactivity',
     },
     {
         key: 'custom tooltip example',
@@ -463,7 +457,7 @@ export default [
         ),
         type: '{boolean}',
         controlType: 'switch',
-        controlGroup: 'Interactivity',
+        group: 'Interactivity',
     },
     {
         key: 'tooltip',
@@ -520,7 +514,7 @@ export default [
         scopes: ['Bar'],
         type: '{Array<object>}',
         description: `Optional chart's legends.`,
-        controlGroup: 'Legends',
+        group: 'Legends',
         controlType: 'array',
         controlOptions: {
             props: getLegendsProps(),

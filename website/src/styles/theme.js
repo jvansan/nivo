@@ -1,3 +1,11 @@
+const dimensions = {
+    headerHeight: 60,
+    contentMargin: 40,
+    contentMarginSmall: 20,
+    miniNavItemSize: 66,
+}
+dimensions.miniNavWidth = dimensions.miniNavItemSize * 2
+
 export default {
     light: {
         headerHeight: 60,
@@ -38,6 +46,7 @@ export default {
             $code-boolean-color: #257493;
             */
         },
+        dimensions,
 
         cardShadow: '0 2px 6px rgba(0, 0, 0, 0.1)',
         topCardShadow: '0 16px 30px rgba(0, 0, 0, 0.1)',
@@ -99,6 +108,7 @@ export default {
             inputBackground: '#333333',
             inputBorder: '#111111',
         },
+        dimensions,
 
         cardShadow: '0 2px 6px rgba(0, 0, 0, 0.17)',
         topCardShadow: '0 16px 30px rgba(0, 0, 0, 0.17)',

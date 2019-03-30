@@ -17,6 +17,7 @@ import generateCode from '../../../lib/generateChartCode'
 import config from '../../../config'
 import nivoTheme from '../../../nivoTheme'
 import propsMapper from './propsMapper'
+import ChartPage from '../ChartPage'
 
 const initialSettings = {
     margin: {
@@ -101,7 +102,7 @@ const Sankey = ({ data, randomizeLinkValues }) => {
     })
 
     return (
-        <div className="chart_page">
+        <ChartPage>
             <ChartHeader
                 chartClass="Sankey"
                 tags={['@nivo/sankey', 'relational', 'flow', 'svg', 'isomorphic']}
@@ -109,14 +110,18 @@ const Sankey = ({ data, randomizeLinkValues }) => {
             <div className="chart-description">
                 <p className="description">
                     Computes a sankey diagram from nodes and links, built on top of{' '}
-                    <a href="https://github.com/d3/d3-sankey" target="_blank" rel="noopener noreferrer">
+                    <a
+                        href="https://github.com/d3/d3-sankey"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
                         d3-sankey
                     </a>
                     . The responsive alternative of this component is <code>ResponsiveSankey</code>.
                 </p>
                 <p className="description">
-                    Please be careful with the data you use for this chart as it does not support cyclic
-                    dependencies.
+                    Please be careful with the data you use for this chart as it does not support
+                    cyclic dependencies.
                     <br />
                     For example, something like <code>A —> A</code> or <code>A —> B —> C —> A</code>{' '}
                     will crash.
@@ -138,8 +143,8 @@ const Sankey = ({ data, randomizeLinkValues }) => {
                     >
                         sample
                     </a>{' '}
-                    or <Link to="/sankey/api">try it using the API client</Link>. You can also see more
-                    example usages in{' '}
+                    or <Link to="/sankey/api">try it using the API client</Link>. You can also see
+                    more example usages in{' '}
                     <a
                         href={`${config.storybookUrl}?selectedKind=Sankey&selectedStory=default`}
                         target="_blank"
@@ -150,8 +155,8 @@ const Sankey = ({ data, randomizeLinkValues }) => {
                     .
                 </p>
                 <p className="description">
-                    See the <Link to="/guides/legends">dedicated guide</Link> on how to setup legends
-                    for this component.
+                    See the <Link to="/guides/legends">dedicated guide</Link> on how to setup
+                    legends for this component.
                 </p>
             </div>
             <ChartTabs chartClass="sankey" code={code} data={data} diceRoll={randomizeLinkValues}>
@@ -163,7 +168,7 @@ const Sankey = ({ data, randomizeLinkValues }) => {
                 onChange={setSettings}
                 groups={groupsByScope.Sankey}
             />
-        </div>
+        </ChartPage>
     )
 }
 

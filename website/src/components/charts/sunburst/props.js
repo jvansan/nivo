@@ -24,7 +24,7 @@ export default [
         type: '{number}',
         required: true,
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             unit: 'px',
             min: 100,
@@ -46,7 +46,7 @@ export default [
         type: '{number}',
         required: true,
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             unit: 'px',
             min: 100,
@@ -61,7 +61,7 @@ export default [
         type: '{object}',
         required: false,
         controlType: 'margin',
-        controlGroup: 'Base',
+        group: 'Base',
     },
     {
         key: 'identity',
@@ -95,7 +95,7 @@ export default [
         required: false,
         default: 'nivo',
         controlType: 'colors',
-        controlGroup: 'Base',
+        group: 'Base',
     },
     {
         key: 'colorBy',
@@ -105,7 +105,7 @@ export default [
         required: false,
         default: 'id',
         controlType: 'choices',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             choices: [
                 {
@@ -126,7 +126,7 @@ export default [
         required: false,
         default: defaults.childColor,
         controlType: 'color',
-        controlGroup: 'Base',
+        group: 'Base',
     },
     {
         key: 'borderWidth',
@@ -135,7 +135,7 @@ export default [
         required: false,
         default: defaults.borderWidth,
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             unit: 'px',
             min: 0,
@@ -150,7 +150,7 @@ export default [
     //    required: false,
     //    default: defaults.borderColor,
     //    controlType: 'text',
-    //    controlGroup: 'Base',
+    //    group: 'Base',
     //},
     {
         key: 'cornerRadius',
@@ -159,7 +159,7 @@ export default [
         required: false,
         default: defaults.cornerRadius,
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             unit: 'px',
             min: 0,
@@ -175,7 +175,7 @@ export default [
         required: false,
         default: defaults.isInteractive,
         controlType: 'switch',
-        controlGroup: 'Interactivity',
+        group: 'Interactivity',
     },
     // Animation not supported for now
     //{
@@ -185,6 +185,6 @@ export default [
     //    required: false,
     //    default: defaults.animate,
     //    controlType: 'switch',
-    //    controlGroup: 'Animation',
+    //    group: 'Animation',
     //},
 ]

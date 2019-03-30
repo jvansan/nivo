@@ -18,6 +18,7 @@ import config from '../../../config'
 import nivoTheme from '../../../nivoTheme'
 import { generateChordData } from '@nivo/generators'
 import propsMapper from './propsMapper'
+import ChartPage from '../ChartPage'
 
 const MATRIX_SIZE = 5
 
@@ -120,7 +121,7 @@ export default class Chord extends Component {
         )
 
         return (
-            <div className="chart_page">
+            <ChartPage>
                 <ChartHeader
                     chartClass="Chord"
                     tags={['@nivo/chord', 'relational', 'svg', 'isomorphic']}
@@ -143,7 +144,8 @@ export default class Chord extends Component {
                         >
                             this block
                         </a>
-                        . The responsive alternative of this component is <code>ResponsiveChord</code>.
+                        . The responsive alternative of this component is{' '}
+                        <code>ResponsiveChord</code>.
                     </p>
                     <p className="description">
                         This component is available in the{' '}
@@ -183,7 +185,7 @@ export default class Chord extends Component {
                     onChange={this.handleSettingsUpdate}
                     groups={groupsByScope.Chord}
                 />
-            </div>
+            </ChartPage>
         )
     }
 }

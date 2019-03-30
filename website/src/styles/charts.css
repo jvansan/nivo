@@ -1,72 +1,6 @@
-.chart-tabs {
-    background: var(--card-background-color);
-    margin: 0;
-}
-
-.chart-tabs--horizontal {
-    height: 360px;
-}
-
 .chart-tabs--data,
 .chart-tabs--code {
     height: auto;
-}
-
-.chart-tabs__node-count {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    display: block;
-    background-color: #fff;
-    border-top: 1px solid #eee;
-    border-right: 1px solid #eee;
-    font-size: 13px;
-    padding: 5px 11px;
-}
-
-.chart-tabs__menu {
-    height: 46px;
-    background: #f0f3f4;
-    display: flex;
-    font-size: 15px;
-    color: #aaa;
-    position: relative;
-}
-
-.chart-tabs__menu__item {
-    cursor: pointer;
-    height: 46px;
-    display: block;
-    position: relative;
-    padding-left: 46px;
-    padding-right: 14px;
-    padding-top: 11px;
-}
-
-.chart-tabs__menu__item:hover {
-    color: var(--main-text-color);
-}
-
-.chart-tabs__menu__item--current {
-    background-color: white;
-}
-
-.chart-tabs__menu__item__icon {
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: block;
-    transform: scale(0.44);
-    transform-origin: top left;
-    margin: 12px 0 0 12px;
-}
-
-.chart-tabs__content {
-    position: absolute;
-    top: 46px;
-    bottom: 0;
-    width: 100%;
-    background: #fff;
 }
 
 .chart_header {
@@ -77,10 +11,6 @@
     align-items: flex-start;
     justify-content: flex-end;
     position: relative;
-}
-
-.chart_header_wrapper {
-    margin-bottom: 0;
 }
 
 .chart_header-left {

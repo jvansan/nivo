@@ -21,14 +21,9 @@ const Row = styled.div`
     max-width: 200px;
 `
 
-const OpacityControl = ({
-    id,
-    label,
-    value,
-    onChange
-}) => {
+const OpacityControl = ({ id, label, value, onChange }) => {
     const handleChange = useCallback(
-        (event) => {
+        event => {
             onChange(Number(event.target.value))
         },
         [onChange]
@@ -40,37 +35,20 @@ const OpacityControl = ({
                 {label}
             </Label>
             <Row>
-                <svg
-                    width={size}
-                    height={size}
-                >
+                <svg width={size} height={size}>
                     <defs>
-                        <pattern id="opacityControlChecker" width={8} height={8} patternUnits="userSpaceOnUse">
-                            <rect
-                                fill="black"
-                                width={4}
-                                height={4}
-                            />
-                            <rect
-                                fill="black"
-                                x={4}
-                                y={4}
-                                width={4}
-                                height={4}
-                            />
+                        <pattern
+                            id="opacityControlChecker"
+                            width={8}
+                            height={8}
+                            patternUnits="userSpaceOnUse"
+                        >
+                            <rect fill="black" width={4} height={4} />
+                            <rect fill="black" x={4} y={4} width={4} height={4} />
                         </pattern>
                     </defs>
-                    <rect
-                        fill="url(#opacityControlChecker)"
-                        width={size}
-                        height={size}
-                    />
-                    <rect
-                        fill="#e25d47"
-                        width={size}
-                        height={size}
-                        fillOpacity={value}
-                    />
+                    <rect fill="url(#opacityControlChecker)" width={size} height={size} />
+                    <rect fill="#e25d47" width={size} height={size} fillOpacity={value} />
                 </svg>
                 <input
                     type="range"
@@ -78,12 +56,9 @@ const OpacityControl = ({
                     onChange={handleChange}
                     min={0}
                     max={1}
-                    step={.05}
+                    step={0.05}
                 />
-                <TextInput
-                    value={value}
-                    onChange={handleChange}
-                />
+                <TextInput value={value} onChange={handleChange} />
             </Row>
         </div>
     )

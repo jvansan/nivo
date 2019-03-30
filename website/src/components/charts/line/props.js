@@ -10,11 +10,7 @@ import React from 'react'
 import dedent from 'dedent-js'
 import { lineCurvePropKeys, DotsItemDefaultProps as dotDefaults } from '@nivo/core'
 import { LineDefaultProps as defaults } from '@nivo/line'
-import {
-    axesProperties,
-    motionProperties,
-    getLegendsProps,
-} from '../../../lib/componentProperties'
+import { axesProperties, motionProperties, getLegendsProps } from '../../../lib/componentProperties'
 
 const curveOptions = []
 lineCurvePropKeys.forEach((curve, i) => {
@@ -60,7 +56,7 @@ export default [
         type: '{number}',
         required: true,
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             unit: 'px',
             min: 100,
@@ -82,7 +78,7 @@ export default [
         type: '{number}',
         required: true,
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             unit: 'px',
             min: 100,
@@ -97,7 +93,7 @@ export default [
         type: '{object}',
         required: false,
         controlType: 'margin',
-        controlGroup: 'Base',
+        group: 'Base',
     },
     {
         key: 'layers',
@@ -131,7 +127,7 @@ export default [
         required: false,
         default: defaults.curve,
         controlType: 'choices',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             choices: lineCurvePropKeys.map(key => ({
                 label: key,
@@ -144,7 +140,7 @@ export default [
         scopes: '*',
         type: '{object}',
         description: `X scale configuration.`,
-        controlGroup: 'Base',
+        group: 'Base',
         controlType: 'object',
         controlOptions: {
             props: [
@@ -169,7 +165,7 @@ export default [
         scopes: '*',
         type: '{object}',
         description: `Y scale configuration.`,
-        controlGroup: 'Base',
+        group: 'Base',
         controlType: 'object',
         controlOptions: {
             props: [
@@ -231,7 +227,7 @@ export default [
         required: false,
         default: defaults.colors,
         controlType: 'colors',
-        controlGroup: 'Style',
+        group: 'Style',
     },
     {
         key: 'colorBy',
@@ -241,7 +237,7 @@ export default [
         required: false,
         default: defaults.colorBy,
         controlType: 'choices',
-        controlGroup: 'Style',
+        group: 'Style',
         controlOptions: {
             choices: [
                 {
@@ -263,7 +259,7 @@ export default [
         required: false,
         default: defaults.lineWidth,
         controlType: 'lineWidth',
-        controlGroup: 'Style',
+        group: 'Style',
     },
     {
         key: 'enableArea',
@@ -273,7 +269,7 @@ export default [
         required: false,
         default: defaults.enableArea,
         controlType: 'switch',
-        controlGroup: 'Style',
+        group: 'Style',
     },
     {
         key: 'areaBaselineValue',
@@ -288,7 +284,7 @@ export default [
         required: false,
         default: defaults.areaBaselineValue,
         controlType: 'range',
-        controlGroup: 'Style',
+        group: 'Style',
         controlOptions: {
             min: 0,
             max: 200,
@@ -303,7 +299,7 @@ export default [
         default: defaults.areaOpacity,
         type: '{number}',
         controlType: 'opacity',
-        controlGroup: 'Style',
+        group: 'Style',
     },
     {
         key: 'areaBlendMode',
@@ -325,7 +321,7 @@ export default [
         required: false,
         default: defaults.areaBlendMode,
         controlType: 'choices',
-        controlGroup: 'Style',
+        group: 'Style',
         controlOptions: {
             choices: [
                 'normal',
@@ -358,7 +354,7 @@ export default [
         required: false,
         default: defaults.enableDots,
         controlType: 'switch',
-        controlGroup: 'Dots',
+        group: 'Dots',
     },
     {
         key: 'dotSymbol',
@@ -374,7 +370,7 @@ export default [
         required: false,
         default: defaults.dotSize,
         controlType: 'range',
-        controlGroup: 'Dots',
+        group: 'Dots',
         controlOptions: {
             unit: 'px',
             min: 2,
@@ -389,7 +385,7 @@ export default [
         required: false,
         default: defaults.dotColor,
         controlType: 'color',
-        controlGroup: 'Dots',
+        group: 'Dots',
         controlOptions: {
             withCustomColor: true,
         },
@@ -401,7 +397,7 @@ export default [
         required: false,
         default: defaults.dotBorderWidth,
         controlType: 'lineWidth',
-        controlGroup: 'Dots',
+        group: 'Dots',
     },
     {
         key: 'dotBorderColor',
@@ -411,7 +407,7 @@ export default [
         required: false,
         default: defaults.dotBorderColor,
         controlType: 'color',
-        controlGroup: 'Dots',
+        group: 'Dots',
         controlOptions: {
             withCustomColor: true,
         },
@@ -424,7 +420,7 @@ export default [
         required: false,
         default: defaults.enableDotLabel,
         controlType: 'switch',
-        controlGroup: 'Dots',
+        group: 'Dots',
     },
     {
         key: 'dotLabel',
@@ -433,7 +429,7 @@ export default [
         type: '{string}',
         required: false,
         controlType: 'choices',
-        controlGroup: 'Dots',
+        group: 'Dots',
         controlOptions: {
             choices: ['y', 'x', 'serie.id', `d => \`\${d.x}: \${d.y}\``].map(choice => ({
                 label: choice,
@@ -448,7 +444,7 @@ export default [
         required: false,
         default: dotDefaults.labelYOffset,
         controlType: 'range',
-        controlGroup: 'Dots',
+        group: 'Dots',
         controlOptions: {
             unit: 'px',
             min: -24,
@@ -463,7 +459,7 @@ export default [
         required: false,
         default: defaults.enableGridX,
         controlType: 'switch',
-        controlGroup: 'Grid & Axes',
+        group: 'Grid & Axes',
     },
     {
         key: 'gridXValues',
@@ -480,7 +476,7 @@ export default [
         required: false,
         default: defaults.enableGridY,
         controlType: 'switch',
-        controlGroup: 'Grid & Axes',
+        group: 'Grid & Axes',
     },
     {
         key: 'gridYValues',
@@ -498,7 +494,7 @@ export default [
         required: false,
         default: defaults.isInteractive,
         controlType: 'switch',
-        controlGroup: 'Interactivity',
+        group: 'Interactivity',
     },
     {
         key: 'enableStackTooltip',
@@ -508,7 +504,7 @@ export default [
         required: false,
         default: defaults.enableStackTooltip,
         controlType: 'switch',
-        controlGroup: 'Interactivity',
+        group: 'Interactivity',
     },
     {
         key: 'tooltip',
@@ -523,7 +519,7 @@ export default [
         scopes: ['Line'],
         type: '{Array<object>}',
         description: `Optional chart's legends.`,
-        controlGroup: 'Legends',
+        group: 'Legends',
         controlType: 'array',
         controlOptions: {
             props: getLegendsProps(),

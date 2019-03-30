@@ -20,6 +20,7 @@ import { groupsByScope } from './ScatterPlotControls'
 import propsMapper from './propsMapper'
 import { generateLightDataSet as generateData } from './generators'
 import { scatterPlotStories } from './stories'
+import ChartPage from '../ChartPage'
 
 export default class ScatterPlot extends Component {
     state = {
@@ -163,7 +164,7 @@ export default class ScatterPlot extends Component {
         )
 
         return (
-            <div className="chart_page">
+            <ChartPage>
                 <ChartHeader
                     chartClass="ScatterPlot"
                     tags={['@nivo/scatterplot', 'svg', 'isomorphic']}
@@ -174,9 +175,9 @@ export default class ScatterPlot extends Component {
                     </p>
                     <p className="description">
                         The responsive alternative of this component is{' '}
-                        <code>ResponsiveScatterPlot</code>, it also offers another implementation, see{' '}
-                        <Link to="/scatterplot/canvas">ScatterPlotCanvas</Link>. You can also see more
-                        example usages in{' '}
+                        <code>ResponsiveScatterPlot</code>, it also offers another implementation,
+                        see <Link to="/scatterplot/canvas">ScatterPlotCanvas</Link>. You can also
+                        see more example usages in{' '}
                         <a
                             href={`${
                                 config.storybookUrl
@@ -216,7 +217,7 @@ export default class ScatterPlot extends Component {
                     groups={groupsByScope.ScatterPlot}
                 />
                 <Stories stories={scatterPlotStories} />
-            </div>
+            </ChartPage>
         )
     }
 }

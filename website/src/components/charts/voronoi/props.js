@@ -61,7 +61,7 @@ export default [
         type: '{number}',
         required: true,
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             unit: 'px',
             min: 100,
@@ -83,7 +83,7 @@ export default [
         type: '{number}',
         required: true,
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             unit: 'px',
             min: 100,
@@ -98,7 +98,7 @@ export default [
         type: '{object}',
         required: false,
         controlType: 'margin',
-        controlGroup: 'Base',
+        group: 'Base',
     },
     {
         key: 'layers',
@@ -124,7 +124,7 @@ export default [
         required: false,
         default: defaults.enableLinks,
         controlType: 'switch',
-        controlGroup: 'Links',
+        group: 'Links',
     },
     {
         key: 'linkLineWidth',
@@ -133,7 +133,7 @@ export default [
         required: false,
         default: defaults.linkLineWidth,
         controlType: 'range',
-        controlGroup: 'Links',
+        group: 'Links',
         controlOptions: {
             unit: 'px',
             min: 0,
@@ -148,7 +148,7 @@ export default [
         required: false,
         default: defaults.linkLineColor,
         controlType: 'colorPicker',
-        controlGroup: 'Links',
+        group: 'Links',
     },
 
     {
@@ -159,7 +159,7 @@ export default [
         required: false,
         default: defaults.enableCells,
         controlType: 'switch',
-        controlGroup: 'Cells',
+        group: 'Cells',
     },
     {
         key: 'cellLineWidth',
@@ -168,7 +168,7 @@ export default [
         required: false,
         default: defaults.cellLineWidth,
         controlType: 'range',
-        controlGroup: 'Cells',
+        group: 'Cells',
         controlOptions: {
             unit: 'px',
             min: 0,
@@ -183,7 +183,7 @@ export default [
         required: false,
         default: defaults.cellLineColor,
         controlType: 'colorPicker',
-        controlGroup: 'Cells',
+        group: 'Cells',
     },
     {
         key: 'enablePoints',
@@ -193,7 +193,7 @@ export default [
         required: false,
         default: defaults.enablePoints,
         controlType: 'switch',
-        controlGroup: 'Points',
+        group: 'Points',
     },
     {
         key: 'pointSize',
@@ -202,7 +202,7 @@ export default [
         required: false,
         default: defaults.siteSize,
         controlType: 'range',
-        controlGroup: 'Points',
+        group: 'Points',
         controlOptions: {
             unit: 'px',
             min: 0,
@@ -217,6 +217,6 @@ export default [
         required: false,
         default: defaults.pointColor,
         controlType: 'colorPicker',
-        controlGroup: 'Points',
+        group: 'Points',
     },
 ]

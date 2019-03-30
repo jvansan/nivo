@@ -3,21 +3,6 @@
     background: var(--mini-nav-background-color);
 }
 
-.mini-nav {
-    display: flex;
-}
-
-.content {
-    margin-top: var(--header-height);
-    margin-left: var(--mini-nav-width);
-    overflow-x: hidden;
-    background: var(--main-background-color);
-}
-
-.isCapturing .content {
-    background: transparent;
-}
-
 .page_content {
     margin: 0 50px;
     position: relative;
@@ -37,85 +22,4 @@
 
 .chart_header code {
     color: #fff;
-}
-
-.chart_page {
-    padding-left: var(--content-margin);
-    --half-content-margin: calc(var(--content-margin) / 2);
-    margin-right: calc(60% + var(--half-content-margin));
-}
-
-.chart-tabs {
-    position: fixed;
-    top: 70px;
-    right: var(--content-margin);
-    --innerWidth: calc(100% - var(--mini-nav-width) - var(--content-margin) - var(--content-margin));
-    --halfWidth: calc(var(--innerWidth) * .6);
-    --half-content-margin: calc(var(--content-margin) / 2);
-    width: calc(var(--halfWidth) - var(--half-content-margin));
-    --innerHeight: calc(100% - 70px - var(--content-margin));
-    height: calc(var(--innerHeight) * .55);
-    z-index: 10;
-    border-bottom: 1px solid #eee;
-}
-
-.chart-tabs:before {
-    content: ' ';
-    display: block;
-    position: fixed;
-    top: 70px;
-    right: var(--content-margin);
-    bottom: 40px;
-    --innerWidth: calc(100% - var(--mini-nav-width) - var(--content-margin) - var(--content-margin));
-    --halfWidth: calc(var(--innerWidth) * .6);
-    --half-content-margin: calc(var(--content-margin) / 2);
-    width: calc(var(--halfWidth) - var(--half-content-margin));
-    background: rgba(0, 0, 0, 0);
-    z-index: 0;
-    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.1);
-}
-
-.stories {
-    position: fixed;
-    bottom: var(--content-margin);
-    --innerHeight: calc(100% - 70px - var(--content-margin));
-    height: calc(var(--innerHeight) * .45);
-    background: red;
-    --innerWidth: calc(100% - var(--mini-nav-width) - var(--content-margin) * 2);
-    --halfWidth: calc(var(--innerWidth) * .6);
-    --half-content-margin: calc(var(--content-margin) / 2);
-    --fullWidth: calc(var(--halfWidth) - var(--half-content-margin));
-    --computedWidth: calc(var(--fullWidth) / 2);
-    right: calc(var(--content-margin) + var(--computedWidth));
-    width: var(--computedWidth);
-    z-index: 10;
-    overflow: hidden;
-}
-
-.ActionsLogger {
-    position: fixed;
-    bottom: var(--content-margin);
-    --innerWidth: calc(100% - var(--mini-nav-width) - var(--content-margin) * 2);
-    --halfWidth: calc(var(--innerWidth) * .6);
-    --half-content-margin: calc(var(--content-margin) / 2);
-    --fullWidth: calc(var(--halfWidth) - var(--half-content-margin));
-    --computedWidth: calc(var(--fullWidth) / 2);
-    right: var(--content-margin);
-    width: var(--computedWidth);
-    background: white;
-    border-left: 1px solid #ddd;
-    --innerHeight: calc(100% - 70px - var(--content-margin));
-    height: calc(var(--innerHeight) * .45);
-    z-index: 10;
-    overflow-x: hidden;
-    overflow-y: auto;
-    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
-    font-size: 13px;
-    line-height: 1.4em;
-    padding: 20px;
-    white-space: pre;
-}
-
-.ActionsLogger__Header {
-    background: white;
 }

@@ -46,7 +46,7 @@ export default [
         type: '{number}',
         required: true,
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             unit: 'px',
             min: 100,
@@ -68,7 +68,7 @@ export default [
         type: '{number}',
         required: true,
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             unit: 'px',
             min: 100,
@@ -84,7 +84,7 @@ export default [
         default: 'Depends on device',
         type: `{number}`,
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             min: 1,
             max: 2,
@@ -98,7 +98,7 @@ export default [
         required: false,
         default: defaults.startAngle,
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             unit: 'deg.',
             min: -180,
@@ -114,7 +114,7 @@ export default [
         required: false,
         default: defaults.endAngle,
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             unit: 'deg.',
             min: -360,
@@ -130,7 +130,7 @@ export default [
         required: false,
         default: defaults.fit,
         controlType: 'switch',
-        controlGroup: 'Base',
+        group: 'Base',
     },
     {
         key: 'innerRadius',
@@ -139,7 +139,7 @@ export default [
         required: false,
         default: defaults.innerRadius,
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             unit: '(ratio)',
             min: 0,
@@ -154,7 +154,7 @@ export default [
         required: false,
         default: defaults.padAngle,
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             unit: 'deg.',
             min: 0,
@@ -169,7 +169,7 @@ export default [
         required: false,
         default: defaults.cornerRadius,
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             unit: 'px',
             min: 0,
@@ -185,7 +185,7 @@ export default [
         required: false,
         default: defaults.sortByValue,
         controlType: 'switch',
-        controlGroup: 'Base',
+        group: 'Base',
     },
     {
         key: 'margin',
@@ -194,7 +194,7 @@ export default [
         type: '{object}',
         required: false,
         controlType: 'margin',
-        controlGroup: 'Base',
+        group: 'Base',
     },
     /*
     ————————————————————————————————————————————————————————————————————————————
@@ -210,7 +210,7 @@ export default [
         required: false,
         default: defaults.colors,
         controlType: 'colors',
-        controlGroup: 'Style',
+        group: 'Style',
     },
     {
         key: 'colorBy',
@@ -220,7 +220,7 @@ export default [
         required: false,
         default: defaults.colorBy,
         controlType: 'choices',
-        controlGroup: 'Style',
+        group: 'Style',
         controlOptions: {
             choices: [
                 {
@@ -247,7 +247,7 @@ export default [
         ),
         type: '{boolean}',
         controlType: 'switch',
-        controlGroup: 'Style',
+        group: 'Style',
     },
     {
         key: 'borderWidth',
@@ -256,7 +256,7 @@ export default [
         required: false,
         default: defaults.borderWidth,
         controlType: 'lineWidth',
-        controlGroup: 'Style',
+        group: 'Style',
     },
     {
         key: 'borderColor',
@@ -265,7 +265,7 @@ export default [
         required: false,
         default: defaults.borderColor,
         controlType: 'color',
-        controlGroup: 'Style',
+        group: 'Style',
         controlOptions: {
             withCustomColor: true,
         },
@@ -277,7 +277,7 @@ export default [
         required: false,
         default: defaults.enableRadialLabels,
         controlType: 'switch',
-        controlGroup: 'Radial labels',
+        group: 'Radial labels',
     },
     {
         key: 'radialLabel',
@@ -287,7 +287,7 @@ export default [
         required: false,
         default: 'id',
         controlType: 'choices',
-        controlGroup: 'Radial labels',
+        group: 'Radial labels',
         controlOptions: {
             choices: ['id', 'value', `d => \`\${d.id} (\${d.value})\``].map(choice => ({
                 label: choice,
@@ -302,7 +302,7 @@ export default [
         required: false,
         default: 0,
         controlType: 'range',
-        controlGroup: 'Radial labels',
+        group: 'Radial labels',
         controlOptions: {
             unit: 'deg.',
             min: 0,
@@ -317,7 +317,7 @@ export default [
         required: false,
         //default: ,
         controlType: 'range',
-        controlGroup: 'Radial labels',
+        group: 'Radial labels',
         controlOptions: {
             unit: 'px',
             min: -24,
@@ -332,7 +332,7 @@ export default [
         required: false,
         //default
         controlType: 'range',
-        controlGroup: 'Radial labels',
+        group: 'Radial labels',
         controlOptions: {
             unit: 'px',
             min: 0,
@@ -347,7 +347,7 @@ export default [
         required: false,
         //default
         controlType: 'range',
-        controlGroup: 'Radial labels',
+        group: 'Radial labels',
         controlOptions: {
             unit: 'px',
             min: 0,
@@ -362,7 +362,7 @@ export default [
         required: false,
         //default
         controlType: 'range',
-        controlGroup: 'Radial labels',
+        group: 'Radial labels',
         controlOptions: {
             unit: 'px',
             min: 0,
@@ -376,7 +376,7 @@ export default [
         type: '{number}',
         required: false,
         controlType: 'lineWidth',
-        controlGroup: 'Radial labels',
+        group: 'Radial labels',
     },
     {
         key: 'radialLabelsTextColor',
@@ -385,7 +385,7 @@ export default [
         required: false,
         default: defaults.radialLabelsTextColor,
         controlType: 'color',
-        controlGroup: 'Radial labels',
+        group: 'Radial labels',
         controlOptions: {
             withCustomColor: true,
         },
@@ -397,7 +397,7 @@ export default [
         required: false,
         default: defaults.radialLabelsLinkColor,
         controlType: 'color',
-        controlGroup: 'Radial labels',
+        group: 'Radial labels',
         controlOptions: {
             withCustomColor: true,
         },
@@ -409,7 +409,7 @@ export default [
         required: false,
         default: defaults.enableSlicesLabels,
         controlType: 'switch',
-        controlGroup: 'Slices labels',
+        group: 'Slices labels',
     },
     {
         key: 'sliceLabel',
@@ -419,7 +419,7 @@ export default [
         required: false,
         default: 'value',
         controlType: 'choices',
-        controlGroup: 'Slices labels',
+        group: 'Slices labels',
         controlOptions: {
             choices: ['id', 'value', `d => \`\${d.id} (\${d.value})\``].map(choice => ({
                 label: choice,
@@ -434,7 +434,7 @@ export default [
         required: false,
         default: 0,
         controlType: 'range',
-        controlGroup: 'Slices labels',
+        group: 'Slices labels',
         controlOptions: {
             unit: 'deg.',
             min: 0,
@@ -449,7 +449,7 @@ export default [
         required: false,
         default: 'theme',
         controlType: 'color',
-        controlGroup: 'Slices labels',
+        group: 'Slices labels',
         controlOptions: {
             withCustomColor: true,
         },
@@ -469,7 +469,7 @@ export default [
         required: false,
         default: defaults.isInteractive,
         controlType: 'switch',
-        controlGroup: 'Interactivity',
+        group: 'Interactivity',
     },
     {
         key: 'onClick',
@@ -513,7 +513,7 @@ export default [
         ),
         type: '{boolean}',
         controlType: 'switch',
-        controlGroup: 'Interactivity',
+        group: 'Interactivity',
     },
     /*
     ————————————————————————————————————————————————————————————————————————————
@@ -530,7 +530,7 @@ export default [
         required: false,
         default: defaults.animate,
         controlType: 'switch',
-        controlGroup: 'Motion',
+        group: 'Motion',
     },
     {
         key: 'motionStiffness',
@@ -539,7 +539,7 @@ export default [
         type: '{number}',
         required: false,
         controlType: 'range',
-        controlGroup: 'Motion',
+        group: 'Motion',
         controlOptions: {
             min: 0,
             max: 300,
@@ -553,7 +553,7 @@ export default [
         type: '{number}',
         required: false,
         controlType: 'range',
-        controlGroup: 'Motion',
+        group: 'Motion',
         controlOptions: {
             min: 0,
             max: 40,

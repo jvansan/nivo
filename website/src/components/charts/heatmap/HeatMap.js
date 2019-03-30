@@ -20,6 +20,7 @@ import nivoTheme from '../../../nivoTheme'
 import config from '../../../config'
 import { generateLightDataSet } from './generators'
 import propsMapper from './propsMapper'
+import ChartPage from '../ChartPage'
 
 export default class HeatMap extends Component {
     state = {
@@ -159,16 +160,17 @@ export default class HeatMap extends Component {
         )
 
         return (
-            <div className="chart_page">
+            <ChartPage>
                 <ChartHeader chartClass="HeatMap" tags={['@nivo/heatmap', 'svg', 'isomorphic']} />
                 <div className="chart-description">
                     <p className="description">
-                        An heat map matrix, you can chose between various colors scales or pass yours,
-                        you also have the ability to change the cell shape for rectangle or circle and
-                        even use a custom rendering function.
+                        An heat map matrix, you can chose between various colors scales or pass
+                        yours, you also have the ability to change the cell shape for rectangle or
+                        circle and even use a custom rendering function.
                     </p>
                     <p className="description">
-                        The responsive alternative of this component is <code>ResponsiveHeatMap</code>.
+                        The responsive alternative of this component is{' '}
+                        <code>ResponsiveHeatMap</code>.
                     </p>
                     <p className="description">
                         This component is available in the{' '}
@@ -187,10 +189,12 @@ export default class HeatMap extends Component {
                         >
                             sample
                         </a>{' '}
-                        or <Link to="/heatmap/api">try it using the API client</Link>. You can also see
-                        more example usages in{' '}
+                        or <Link to="/heatmap/api">try it using the API client</Link>. You can also
+                        see more example usages in{' '}
                         <a
-                            href={`${config.storybookUrl}?selectedKind=HeatMap&selectedStory=default`}
+                            href={`${
+                                config.storybookUrl
+                            }?selectedKind=HeatMap&selectedStory=default`}
                             target="_blank"
                             rel="noopener noreferrer"
                         >
@@ -214,7 +218,7 @@ export default class HeatMap extends Component {
                     onChange={this.handleSettingsUpdate}
                     groups={groupsByScope.HeatMap}
                 />
-            </div>
+            </ChartPage>
         )
     }
 }

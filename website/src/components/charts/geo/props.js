@@ -45,7 +45,7 @@ export default [
         default: 'Depends on device',
         type: `{number}`,
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             min: 1,
             max: 2,
@@ -58,7 +58,7 @@ export default [
         type: '{object}',
         required: false,
         controlType: 'margin',
-        controlGroup: 'Base',
+        group: 'Base',
     },
     {
         key: 'projectionType',
@@ -67,7 +67,7 @@ export default [
         required: false,
         default: GeoMapDefaultProps.projectionType,
         controlType: 'choices',
-        controlGroup: 'Projection',
+        group: 'Projection',
         controlOptions: {
             choices: [
                 { label: 'azimuthalEqualArea', value: 'azimuthalEqualArea' },
@@ -90,7 +90,7 @@ export default [
         required: false,
         default: GeoMapDefaultProps.projectionScale,
         controlType: 'range',
-        controlGroup: 'Projection',
+        group: 'Projection',
         controlOptions: {
             min: 0,
             max: 200,
@@ -104,16 +104,16 @@ export default [
         required: false,
         default: GeoMapDefaultProps.projectionTranslation,
         controlType: 'numberArray',
-        controlGroup: 'Projection',
+        group: 'Projection',
         controlOptions: {
             items: [
                 {
                     label: 'x',
                 },
                 {
-                    label: 'y'
+                    label: 'y',
                 },
-            ]
+            ],
         },
     },
     {
@@ -124,19 +124,19 @@ export default [
         required: false,
         default: GeoMapDefaultProps.projectionRotation,
         controlType: 'numberArray',
-        controlGroup: 'Projection',
+        group: 'Projection',
         controlOptions: {
             items: [
                 {
                     label: 'lambda (λ)',
                 },
                 {
-                    label: 'phi (φ)'
+                    label: 'phi (φ)',
                 },
                 {
-                    label: 'gamma (γ)'
-                }
-            ]
+                    label: 'gamma (γ)',
+                },
+            ],
         },
     },
     {
@@ -208,7 +208,7 @@ export default [
         required: false,
         default: 'nivo',
         controlType: 'quantizeColors',
-        controlGroup: 'Style',
+        group: 'Style',
     },
     {
         key: 'unknownColor',
@@ -218,7 +218,7 @@ export default [
         required: false,
         default: 'nivo',
         controlType: 'colorPicker',
-        controlGroup: 'Style',
+        group: 'Style',
     },
     {
         key: 'borderWidth',
@@ -228,7 +228,7 @@ export default [
         required: false,
         default: GeoMapDefaultProps.borderWidth,
         controlType: 'lineWidth',
-        controlGroup: 'Style',
+        group: 'Style',
         controlOptions: {
             step: 0.5,
         },
@@ -241,7 +241,7 @@ export default [
         required: false,
         default: GeoMapDefaultProps.borderColor,
         controlType: 'color',
-        controlGroup: 'Style',
+        group: 'Style',
         controlOptions: {
             withCustomColor: true,
         },
@@ -254,7 +254,7 @@ export default [
         required: false,
         default: GeoMapDefaultProps.enableGraticule,
         controlType: 'switch',
-        controlGroup: 'Graticule',
+        group: 'Graticule',
     },
     {
         key: 'graticuleLineWidth',
@@ -264,7 +264,7 @@ export default [
         required: false,
         default: GeoMapDefaultProps.graticuleLineWidth,
         controlType: 'range',
-        controlGroup: 'Graticule',
+        group: 'Graticule',
         controlOptions: {
             unit: 'px',
             min: 0,
@@ -280,7 +280,7 @@ export default [
         required: false,
         default: GeoMapDefaultProps.graticuleLineColor,
         controlType: 'colorPicker',
-        controlGroup: 'Graticule',
+        group: 'Graticule',
     },
     ...defsProperties(['GeoMap']),
     {
@@ -291,7 +291,7 @@ export default [
         required: false,
         default: GeoMapDefaultProps.isInteractive,
         controlType: 'switch',
-        controlGroup: 'Interactivity',
+        group: 'Interactivity',
     },
     {
         key: 'onClick',
@@ -312,7 +312,7 @@ export default [
         ),
         type: '{boolean}',
         controlType: 'switch',
-        controlGroup: 'Interactivity',
+        group: 'Interactivity',
     },
     {
         key: 'tooltip',
@@ -331,7 +331,7 @@ export default [
         scopes: ['Choropleth', 'ChoroplethCanvas'],
         type: '{Array<object>}',
         description: `Optional chart's legends.`,
-        controlGroup: 'Legends',
+        group: 'Legends',
         controlType: 'array',
         controlOptions: {
             props: getLegendsProps(),

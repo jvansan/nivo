@@ -20,15 +20,13 @@ class ColorPickerControl extends Component {
 
         return (
             <>
-                <Label htmlFor={id}>
-                    {label}
-                </Label>
+                <Label htmlFor={id}>{label}</Label>
                 <div>
                     <input type="color" id={id} onChange={this.handleChange} value={value} />
                     &nbsp;&nbsp;&nbsp;
                     <code className="code code-string">{value}</code>
                 </div>
-                <span/>
+                <span />
                 <div className="control-help">{help}</div>
             </>
         )

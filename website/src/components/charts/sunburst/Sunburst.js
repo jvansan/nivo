@@ -15,6 +15,7 @@ import Settings from '../../Settings'
 import { groupsByScope } from './SunburstControls'
 import nivoTheme from '../../../nivoTheme'
 import propsMapper from './propsMapper'
+import ChartPage from '../ChartPage'
 
 export default class Sunburst extends Component {
     state = {
@@ -65,7 +66,7 @@ export default class Sunburst extends Component {
         const code = generateCode('ResponsiveSunburst', mappedSettings, { pkg: '@nivo/sunburst' })
 
         return (
-            <div className="chart_page">
+            <ChartPage>
                 <ChartHeader
                     chartClass="Sunburst"
                     tags={['@nivo/sunburst', 'hierarchy', 'radial', 'svg', 'isomorphic']}
@@ -85,7 +86,7 @@ export default class Sunburst extends Component {
                     onChange={this.handleSettingsUpdate}
                     groups={groupsByScope.Sunburst}
                 />
-            </div>
+            </ChartPage>
         )
     }
 }

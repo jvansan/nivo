@@ -20,6 +20,7 @@ import { radarStories } from './stories'
 import config from '../../../config'
 import nivoTheme from '../../../nivoTheme'
 import propsMapper from './propsMapper'
+import ChartPage from '../ChartPage'
 
 export default class Radar extends Component {
     static propTypes = {
@@ -118,16 +119,16 @@ export default class Radar extends Component {
         )
 
         return (
-            <div className="chart_page">
+            <ChartPage>
                 <ChartHeader
                     chartClass="Radar"
                     tags={['@nivo/radar', 'radial', 'svg', 'isomorphic']}
                 />
                 <div className="chart-description">
                     <p>
-                        Generates a radar chart from an array of data. Note that margin object does not
-                        take grid labels into account, so you should adjust it to leave enough room for
-                        it.
+                        Generates a radar chart from an array of data. Note that margin object does
+                        not take grid labels into account, so you should adjust it to leave enough
+                        room for it.
                     </p>
                     <p className="description">
                         The responsive alternative of this component is&nbsp;
@@ -172,8 +173,8 @@ export default class Radar extends Component {
                     onChange={this.handleSettingsUpdate}
                     groups={groupsByScope.Radar}
                 />
-                <Stories stories={radarStories} />
-            </div>
+                <Stories isFullWidth={true} stories={radarStories} />
+            </ChartPage>
         )
     }
 }

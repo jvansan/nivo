@@ -31,10 +31,8 @@ export default class SwitchControl extends Component {
                     />
                     <label htmlFor={id} />
                 </span>
-                {/*
-                <span/>
+                <span />
                 <div className="control-help">{help}</div>
-                */}
             </div>
         )
     }

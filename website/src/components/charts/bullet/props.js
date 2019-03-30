@@ -52,7 +52,7 @@ export default [
         type: '{number}',
         required: true,
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             unit: 'px',
             min: 100,
@@ -73,7 +73,7 @@ export default [
         type: '{number}',
         required: true,
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             unit: 'px',
             min: 100,
@@ -89,7 +89,7 @@ export default [
         required: false,
         default: defaults.layout,
         controlType: 'radio',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             choices: [
                 { label: 'horizontal', value: 'horizontal' },
@@ -106,7 +106,7 @@ export default [
         required: false,
         default: defaults.reverse,
         controlType: 'switch',
-        controlGroup: 'Base',
+        group: 'Base',
     },
     {
         key: 'margin',
@@ -115,7 +115,7 @@ export default [
         type: '{object}',
         required: false,
         controlType: 'margin',
-        controlGroup: 'Base',
+        group: 'Base',
     },
     {
         key: 'spacing',
@@ -125,7 +125,7 @@ export default [
         required: false,
         default: defaults.spacing,
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             unit: 'px',
             min: 0,
@@ -140,7 +140,7 @@ export default [
         required: false,
         default: defaults.measureSize,
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             min: 0,
             max: 1,
@@ -155,7 +155,7 @@ export default [
         required: false,
         default: defaults.markerSize,
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             min: 0,
             max: 2,
@@ -182,7 +182,7 @@ export default [
         required: false,
         default: defaults.rangeColors,
         controlType: 'colors',
-        controlGroup: 'Style',
+        group: 'Style',
         controlOptions: {
             includeSequential: true,
         },
@@ -207,7 +207,7 @@ export default [
         required: false,
         default: defaults.measureColors,
         controlType: 'colors',
-        controlGroup: 'Style',
+        group: 'Style',
         controlOptions: {
             includeSequential: true,
         },
@@ -232,7 +232,7 @@ export default [
         required: false,
         default: defaults.markerColors,
         controlType: 'colors',
-        controlGroup: 'Style',
+        group: 'Style',
         controlOptions: {
             includeSequential: true,
         },
@@ -245,7 +245,7 @@ export default [
         required: false,
         default: defaults.axisPosition,
         controlType: 'radio',
-        controlGroup: 'Axes',
+        group: 'Axes',
         controlOptions: {
             choices: [{ label: 'before', value: 'before' }, { label: 'after', value: 'after' }],
         },
@@ -258,7 +258,7 @@ export default [
         required: false,
         default: defaults.titlePosition,
         controlType: 'radio',
-        controlGroup: 'Title',
+        group: 'Title',
         controlOptions: {
             choices: [{ label: 'before', value: 'before' }, { label: 'after', value: 'after' }],
         },
@@ -271,7 +271,7 @@ export default [
         required: false,
         default: defaults.titleAlign,
         controlType: 'choices',
-        controlGroup: 'Title',
+        group: 'Title',
         controlOptions: {
             choices: [
                 { label: 'start', value: 'start' },
@@ -288,7 +288,7 @@ export default [
         required: false,
         default: defaults.titleOffset,
         controlType: 'range',
-        controlGroup: 'Title',
+        group: 'Title',
         controlOptions: {
             min: -100,
             max: 100,
@@ -303,7 +303,7 @@ export default [
         required: false,
         default: defaults.titleOffset,
         controlType: 'range',
-        controlGroup: 'Title',
+        group: 'Title',
         controlOptions: {
             min: -100,
             max: 100,
@@ -318,7 +318,7 @@ export default [
         required: false,
         default: defaults.titleRotation,
         controlType: 'range',
-        controlGroup: 'Title',
+        group: 'Title',
         controlOptions: {
             min: -360,
             max: 360,

@@ -17,6 +17,7 @@ import generateCode from '../../../lib/generateChartCode'
 import nivoTheme from '../../../nivoTheme'
 import config from '../../../config'
 import propsMapper from './propsMapper'
+import ChartPage from '../ChartPage'
 
 const generateData = () => [
     {
@@ -172,14 +173,15 @@ export default class WaffleCanvas extends Component {
         )
 
         return (
-            <div className="chart_page">
+            <ChartPage>
                 <ChartHeader chartClass="WaffleCanvas" tags={['@nivo/waffle', 'canvas']} />
                 <div className="chart-description">
                     <p className="description">
-                        A variation around the <Link to="/waffle">Waffle</Link> component. Well suited
-                        for large data sets as it does not impact DOM tree depth and does not involve
-                        React diffing stuff for children (not that useful when using canvas), however
-                        you'll lose the isomorphic ability and transitions (for now).
+                        A variation around the <Link to="/waffle">Waffle</Link> component. Well
+                        suited for large data sets as it does not impact DOM tree depth and does not
+                        involve React diffing stuff for children (not that useful when using
+                        canvas), however you'll lose the isomorphic ability and transitions (for
+                        now).
                     </p>
                     <p className="description">
                         You can also see more example usages in{' '}
@@ -196,8 +198,9 @@ export default class WaffleCanvas extends Component {
                     </p>
                     <p className="description">
                         The responsive alternative of this component is{' '}
-                        <code>ResponsiveWaffleCanvas</code>, it also offers other implementations, see{' '}
-                        <Link to="/waffle">Waffle</Link> and <Link to="/waffle/html">WaffleHtml</Link>.
+                        <code>ResponsiveWaffleCanvas</code>, it also offers other implementations,
+                        see <Link to="/waffle">Waffle</Link> and{' '}
+                        <Link to="/waffle/html">WaffleHtml</Link>.
                     </p>
                 </div>
                 <ChartTabs
@@ -219,7 +222,7 @@ export default class WaffleCanvas extends Component {
                     onChange={this.handleSettingsUpdate}
                     groups={groupsByScope.WaffleCanvas}
                 />
-            </div>
+            </ChartPage>
         )
     }
 }

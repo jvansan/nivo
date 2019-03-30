@@ -74,7 +74,7 @@ export default class QuantizeColorsControl extends Component {
                     value={value}
                     clearable={false}
                 />
-                <span/>
+                <span />
                 {help && <div className="control-help">{help}</div>}
             </>
         )

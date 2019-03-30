@@ -53,10 +53,8 @@ export default class RadioControl extends Component {
                         </label>
                     ))}
                 </div>
-                {/*
-                <span/>
+                <span />
                 <div className="control-help">{help}</div>
-                */}
             </div>
         )
     }

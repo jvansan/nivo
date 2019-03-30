@@ -75,7 +75,7 @@ export default [
         default: defaults.maxValue,
         type: '{number|string}',
         controlType: 'switchableRange',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             disabledValue: 'auto',
             defaultValue: 200,
@@ -97,7 +97,7 @@ export default [
         type: '{number}',
         required: true,
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             unit: 'px',
             min: 100,
@@ -119,7 +119,7 @@ export default [
         type: '{number}',
         required: true,
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             unit: 'px',
             min: 100,
@@ -142,7 +142,7 @@ export default [
         required: false,
         default: defaults.curve,
         controlType: 'choices',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             choices: closedCurvePropKeys.map(key => ({
                 label: key,
@@ -157,7 +157,7 @@ export default [
         required: false,
         default: 'nivo',
         controlType: 'colors',
-        controlGroup: 'Base',
+        group: 'Base',
     },
     {
         key: 'colorBy',
@@ -176,7 +176,7 @@ export default [
         required: false,
         default: 'key',
         controlType: 'choices',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             choices: [
                 {
@@ -193,7 +193,7 @@ export default [
         type: '{object}',
         required: false,
         controlType: 'margin',
-        controlGroup: 'Base',
+        group: 'Base',
     },
     {
         key: 'fillOpacity',
@@ -202,7 +202,7 @@ export default [
         required: false,
         default: defaults.borderWidth,
         controlType: 'opacity',
-        controlGroup: 'Base',
+        group: 'Base',
     },
     {
         key: 'borderWidth',
@@ -211,7 +211,7 @@ export default [
         required: false,
         default: defaults.borderWidth,
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             unit: 'px',
             min: 0,
@@ -226,7 +226,7 @@ export default [
         required: false,
         default: defaults.borderColor,
         controlType: 'color',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             withCustomColor: true,
         },
@@ -238,7 +238,7 @@ export default [
         required: false,
         default: defaults.gridLevels,
         controlType: 'range',
-        controlGroup: 'Grid',
+        group: 'Grid',
         controlOptions: {
             min: 1,
             max: 12,
@@ -252,7 +252,7 @@ export default [
         required: false,
         default: defaults.gridShape,
         controlType: 'choices',
-        controlGroup: 'Grid',
+        group: 'Grid',
         controlOptions: {
             choices: [
                 { label: 'circular', value: 'circular' },
@@ -287,7 +287,7 @@ export default [
         required: false,
         default: defaults.gridLabelOffset,
         controlType: 'range',
-        controlGroup: 'Grid',
+        group: 'Grid',
         controlOptions: {
             unit: 'px',
             min: 0,
@@ -302,7 +302,7 @@ export default [
         required: false,
         default: defaults.enableDots,
         controlType: 'switch',
-        controlGroup: 'Dots',
+        group: 'Dots',
     },
     {
         key: 'dotSymbol',
@@ -318,7 +318,7 @@ export default [
         required: false,
         default: dotsDefaults.size,
         controlType: 'range',
-        controlGroup: 'Dots',
+        group: 'Dots',
         controlOptions: {
             unit: 'px',
             min: 2,
@@ -333,7 +333,7 @@ export default [
         required: false,
         default: dotsDefaults.color,
         controlType: 'color',
-        controlGroup: 'Dots',
+        group: 'Dots',
         controlOptions: {
             withCustomColor: true,
         },
@@ -345,7 +345,7 @@ export default [
         required: false,
         default: dotsDefaults.borderWidth,
         controlType: 'range',
-        controlGroup: 'Dots',
+        group: 'Dots',
         controlOptions: {
             unit: 'px',
             min: 0,
@@ -360,7 +360,7 @@ export default [
         required: false,
         default: dotsDefaults.borderColor,
         controlType: 'color',
-        controlGroup: 'Dots',
+        group: 'Dots',
         controlOptions: {
             withCustomColor: true,
         },
@@ -373,7 +373,7 @@ export default [
         required: false,
         default: dotsDefaults.enableLabel,
         controlType: 'switch',
-        controlGroup: 'Dots',
+        group: 'Dots',
     },
     {
         key: 'dotLabel',
@@ -383,7 +383,7 @@ export default [
         required: false,
         default: dotsDefaults.label,
         controlType: 'choices',
-        controlGroup: 'Dots',
+        group: 'Dots',
         controlOptions: {
             choices: [
                 'value',
@@ -404,7 +404,7 @@ export default [
         required: false,
         default: dotDefaults.labelYOffset,
         controlType: 'range',
-        controlGroup: 'Dots',
+        group: 'Dots',
         controlOptions: {
             unit: 'px',
             min: -24,
@@ -419,7 +419,7 @@ export default [
         required: false,
         default: defaults.isInteractive,
         controlType: 'switch',
-        controlGroup: 'Interactivity',
+        group: 'Interactivity',
     },
     ...motionProperties(['Radar'], defaults),
 ]

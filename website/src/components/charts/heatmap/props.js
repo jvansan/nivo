@@ -10,10 +10,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import dedent from 'dedent-js'
 import { HeatMapDefaultProps as defaults } from '@nivo/heatmap'
-import {
-    axesProperties,
-    motionProperties,
-} from '../../../lib/componentProperties'
+import { axesProperties, motionProperties } from '../../../lib/componentProperties'
 
 export default [
     {
@@ -59,7 +56,7 @@ export default [
         type: '{number}',
         required: true,
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             unit: 'px',
             min: 100,
@@ -81,7 +78,7 @@ export default [
         type: '{number}',
         required: true,
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             unit: 'px',
             min: 100,
@@ -97,7 +94,7 @@ export default [
         default: 'Depends on device',
         type: `{number}`,
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             min: 1,
             max: 2,
@@ -111,7 +108,7 @@ export default [
         default: defaults.minValue,
         type: `{number|'auto'}`,
         controlType: 'switchableRange',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             disabledValue: 'auto',
             defaultValue: 0,
@@ -127,7 +124,7 @@ export default [
         default: defaults.maxValue,
         type: `{number|'auto'}`,
         controlType: 'switchableRange',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             disabledValue: 'auto',
             defaultValue: 100,
@@ -143,7 +140,7 @@ export default [
         default: defaults.forceSquare,
         type: '{boolean}',
         controlType: 'switch',
-        controlGroup: 'Base',
+        group: 'Base',
     },
     {
         key: 'margin',
@@ -152,7 +149,7 @@ export default [
         type: '{object}',
         required: false,
         controlType: 'margin',
-        controlGroup: 'Base',
+        group: 'Base',
     },
     {
         key: 'sizeVariation',
@@ -162,7 +159,7 @@ export default [
         default: defaults.sizeVariation,
         type: '{number}',
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             min: 0,
             max: 1,
@@ -177,7 +174,7 @@ export default [
         default: defaults.padding,
         type: '{number}',
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             min: 0,
             max: 36,
@@ -219,7 +216,7 @@ export default [
         required: false,
         default: defaults.cellShape,
         controlType: 'choices',
-        controlGroup: 'Style',
+        group: 'Style',
         controlOptions: {
             choices: ['rect', 'circle', 'Custom(props) => (…)'].map(key => ({
                 label: key,
@@ -235,7 +232,7 @@ export default [
         required: false,
         default: 'nivo',
         controlType: 'quantizeColors',
-        controlGroup: 'Style',
+        group: 'Style',
     },
     {
         key: 'cellOpacity',
@@ -245,7 +242,7 @@ export default [
         default: defaults.cellOpacity,
         type: '{number}',
         controlType: 'opacity',
-        controlGroup: 'Style',
+        group: 'Style',
     },
     {
         key: 'cellBorderWidth',
@@ -255,7 +252,7 @@ export default [
         default: defaults.cellBorderWidth,
         type: '{number}',
         controlType: 'lineWidth',
-        controlGroup: 'Style',
+        group: 'Style',
     },
     {
         key: 'cellBorderColor',
@@ -271,7 +268,7 @@ export default [
         required: false,
         default: defaults.cellBorderColor,
         controlType: 'color',
-        controlGroup: 'Style',
+        group: 'Style',
         controlOptions: {
             withCustomColor: true,
         },
@@ -289,7 +286,7 @@ export default [
         required: false,
         default: defaults.enableLabels,
         controlType: 'switch',
-        controlGroup: 'Labels',
+        group: 'Labels',
     },
     {
         key: 'labelTextColor',
@@ -305,7 +302,7 @@ export default [
         required: false,
         default: defaults.labelTextColor,
         controlType: 'color',
-        controlGroup: 'Labels',
+        group: 'Labels',
         controlOptions: {
             withCustomColor: true,
         },
@@ -318,7 +315,7 @@ export default [
         required: false,
         default: defaults.enableGridX,
         controlType: 'switch',
-        controlGroup: 'Grid & Axes',
+        group: 'Grid & Axes',
     },
     {
         key: 'enableGridY',
@@ -328,7 +325,7 @@ export default [
         required: false,
         default: defaults.enableGridY,
         controlType: 'switch',
-        controlGroup: 'Grid & Axes',
+        group: 'Grid & Axes',
     },
     ...axesProperties,
     /*——————————————————————————————————————————————————————————————————————————
@@ -344,7 +341,7 @@ export default [
         required: false,
         default: defaults.isInteractive,
         controlType: 'switch',
-        controlGroup: 'Interactivity',
+        group: 'Interactivity',
     },
     {
         key: 'onClick',
@@ -391,7 +388,7 @@ export default [
         default: defaults.hoverTarget,
         type: '{number}',
         controlType: 'choices',
-        controlGroup: 'Interactivity',
+        group: 'Interactivity',
         controlOptions: {
             choices: ['cell', 'row', 'column', 'rowColumn'].map(key => ({
                 label: key,
@@ -407,7 +404,7 @@ export default [
         default: defaults.cellHoverOpacity,
         type: '{number}',
         controlType: 'opacity',
-        controlGroup: 'Interactivity',
+        group: 'Interactivity',
     },
     {
         key: 'cellHoverOthersOpacity',
@@ -417,7 +414,7 @@ export default [
         default: defaults.cellHoverOthersOpacity,
         type: '{number}',
         controlType: 'opacity',
-        controlGroup: 'Interactivity',
+        group: 'Interactivity',
     },
     ...motionProperties(['HeatMap'], defaults),
 ]

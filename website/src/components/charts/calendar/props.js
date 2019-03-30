@@ -59,7 +59,7 @@ export default [
         type: '{number}',
         required: true,
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             unit: 'px',
             min: 100,
@@ -81,7 +81,7 @@ export default [
         type: '{number}',
         required: true,
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             unit: 'px',
             min: 100,
@@ -104,7 +104,7 @@ export default [
         required: false,
         default: defaults.direction,
         controlType: 'radio',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             choices: [
                 { label: 'horizontal', value: 'horizontal' },
@@ -119,7 +119,7 @@ export default [
         type: '{object}',
         required: false,
         controlType: 'margin',
-        controlGroup: 'Base',
+        group: 'Base',
     },
     {
         key: 'align',
@@ -128,7 +128,7 @@ export default [
         required: false,
         default: defaults.align,
         controlType: 'boxAnchor',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             choices: boxAlignments.map(align => ({
                 label: align,
@@ -149,7 +149,7 @@ export default [
         default: defaults.minValue,
         type: `{number|'auto'}`,
         controlType: 'switchableRange',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             disabledValue: 'auto',
             defaultValue: 0,
@@ -170,7 +170,7 @@ export default [
         default: defaults.maxValue,
         type: `{number|'auto'}`,
         controlType: 'switchableRange',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             disabledValue: 'auto',
             defaultValue: 100,
@@ -200,7 +200,7 @@ export default [
         required: false,
         default: defaults.emptyColor,
         controlType: 'colorPicker',
-        controlGroup: 'Base',
+        group: 'Base',
     },
     {
         key: 'pixelRatio',
@@ -210,7 +210,7 @@ export default [
         default: 'Depends on device',
         type: `{number}`,
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             min: 1,
             max: 2,
@@ -224,7 +224,7 @@ export default [
         required: false,
         default: defaults.yearSpacing,
         controlType: 'range',
-        controlGroup: 'Years',
+        group: 'Years',
         controlOptions: {
             unit: 'px',
             min: 0,
@@ -245,7 +245,7 @@ export default [
         required: false,
         default: defaults.yearLegendPosition,
         controlType: 'radio',
-        controlGroup: 'Years',
+        group: 'Years',
         controlOptions: {
             choices: [{ label: 'before', value: 'before' }, { label: 'after', value: 'after' }],
         },
@@ -257,7 +257,7 @@ export default [
         required: false,
         default: defaults.yearLegendOffset,
         controlType: 'range',
-        controlGroup: 'Years',
+        group: 'Years',
         controlOptions: {
             unit: 'px',
             min: 0,
@@ -273,7 +273,7 @@ export default [
         required: false,
         default: defaults.monthBorderWidth,
         controlType: 'lineWidth',
-        controlGroup: 'Months',
+        group: 'Months',
     },
     {
         key: 'monthBorderColor',
@@ -283,7 +283,7 @@ export default [
         required: false,
         default: defaults.monthBorderColor,
         controlType: 'colorPicker',
-        controlGroup: 'Months',
+        group: 'Months',
     },
     {
         key: 'monthLegend',
@@ -298,7 +298,7 @@ export default [
         required: false,
         default: defaults.monthLegendPosition,
         controlType: 'radio',
-        controlGroup: 'Months',
+        group: 'Months',
         controlOptions: {
             choices: [{ label: 'before', value: 'before' }, { label: 'after', value: 'after' }],
         },
@@ -310,7 +310,7 @@ export default [
         required: false,
         default: defaults.monthLegendOffset,
         controlType: 'range',
-        controlGroup: 'Months',
+        group: 'Months',
         controlOptions: {
             unit: 'px',
             min: 0,
@@ -325,7 +325,7 @@ export default [
         required: false,
         default: defaults.daySpacing,
         controlType: 'range',
-        controlGroup: 'Days',
+        group: 'Days',
         controlOptions: {
             unit: 'px',
             min: 0,
@@ -339,7 +339,7 @@ export default [
         required: false,
         default: defaults.dayBorderWidth,
         controlType: 'lineWidth',
-        controlGroup: 'Days',
+        group: 'Days',
     },
     {
         key: 'dayBorderColor',
@@ -348,7 +348,7 @@ export default [
         required: false,
         default: defaults.dayBorderColor,
         controlType: 'colorPicker',
-        controlGroup: 'Days',
+        group: 'Days',
     },
     {
         key: 'isInteractive',
@@ -358,7 +358,7 @@ export default [
         required: false,
         default: defaults.isInteractive,
         controlType: 'switch',
-        controlGroup: 'Interactivity',
+        group: 'Interactivity',
     },
     {
         key: 'onClick',
@@ -379,7 +379,7 @@ export default [
         ),
         type: '{boolean}',
         controlType: 'switch',
-        controlGroup: 'Interactivity',
+        group: 'Interactivity',
     },
     {
         key: 'tooltip',

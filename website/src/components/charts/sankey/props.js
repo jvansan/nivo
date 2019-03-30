@@ -60,7 +60,7 @@ export default [
         type: '{number}',
         required: true,
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             unit: 'px',
             min: 100,
@@ -82,7 +82,7 @@ export default [
         type: '{number}',
         required: true,
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             unit: 'px',
             min: 100,
@@ -98,7 +98,7 @@ export default [
         required: false,
         default: defaults.layout,
         controlType: 'radio',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             choices: [
                 { label: 'horizontal', value: 'horizontal' },
@@ -128,7 +128,7 @@ export default [
         required: false,
         default: defaults.align,
         controlType: 'choices',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             choices: sankeyAlignmentPropKeys.map(key => ({
                 label: key,
@@ -178,7 +178,7 @@ export default [
         required: false,
         default: defaults.sort,
         controlType: 'choices',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             choices: ['auto', 'input', 'ascending', 'descending'].map(key => ({
                 label: key,
@@ -194,7 +194,7 @@ export default [
         required: false,
         default: 'nivo',
         controlType: 'colors',
-        controlGroup: 'Base',
+        group: 'Base',
     },
     {
         key: 'margin',
@@ -203,7 +203,7 @@ export default [
         type: '{object}',
         required: false,
         controlType: 'margin',
-        controlGroup: 'Base',
+        group: 'Base',
     },
     {
         key: 'nodeThickness',
@@ -213,7 +213,7 @@ export default [
         default: defaults.nodeThickness,
         type: '{number}',
         controlType: 'range',
-        controlGroup: 'Nodes',
+        group: 'Nodes',
         controlOptions: {
             unit: 'px',
             min: 2,
@@ -228,7 +228,7 @@ export default [
         default: defaults.nodeOpacity,
         type: '{number}',
         controlType: 'opacity',
-        controlGroup: 'Nodes',
+        group: 'Nodes',
     },
     {
         key: 'nodeHoverOpacity',
@@ -238,7 +238,7 @@ export default [
         default: defaults.nodeHoverOpacity,
         type: '{number}',
         controlType: 'opacity',
-        controlGroup: 'Nodes',
+        group: 'Nodes',
     },
     {
         key: 'nodeSpacing',
@@ -248,7 +248,7 @@ export default [
         default: defaults.nodeSpacing,
         type: '{number}',
         controlType: 'range',
-        controlGroup: 'Nodes',
+        group: 'Nodes',
         controlOptions: {
             unit: 'px',
             min: 0,
@@ -263,7 +263,7 @@ export default [
         default: defaults.nodePaddingX,
         type: '{number}',
         controlType: 'range',
-        controlGroup: 'Nodes',
+        group: 'Nodes',
         controlOptions: {
             unit: 'px',
             min: 0,
@@ -278,7 +278,7 @@ export default [
         default: defaults.nodeBorderWidth,
         type: '{number}',
         controlType: 'range',
-        controlGroup: 'Nodes',
+        group: 'Nodes',
         controlOptions: {
             unit: 'px',
             min: 0,
@@ -299,7 +299,7 @@ export default [
         required: false,
         default: defaults.nodeBorderColor,
         controlType: 'color',
-        controlGroup: 'Nodes',
+        group: 'Nodes',
         controlOptions: {
             withCustomColor: true,
         },
@@ -312,7 +312,7 @@ export default [
         default: defaults.linkOpacity,
         type: '{number}',
         controlType: 'opacity',
-        controlGroup: 'Links',
+        group: 'Links',
     },
     {
         key: 'linkHoverOpacity',
@@ -322,7 +322,7 @@ export default [
         default: defaults.linkHoverOpacity,
         type: '{number}',
         controlType: 'opacity',
-        controlGroup: 'Links',
+        group: 'Links',
     },
     {
         key: 'linkContract',
@@ -332,7 +332,7 @@ export default [
         default: defaults.linkContract,
         type: '{number}',
         controlType: 'range',
-        controlGroup: 'Links',
+        group: 'Links',
         controlOptions: {
             unit: 'px',
             min: 0,
@@ -359,7 +359,7 @@ export default [
         required: false,
         default: defaults.linkBlendMode,
         controlType: 'choices',
-        controlGroup: 'Links',
+        group: 'Links',
         controlOptions: {
             choices: [
                 'normal',
@@ -392,7 +392,7 @@ export default [
         required: false,
         default: defaults.enableLinkGradient,
         controlType: 'switch',
-        controlGroup: 'Links',
+        group: 'Links',
     },
     {
         key: 'enableLabels',
@@ -402,7 +402,7 @@ export default [
         required: false,
         default: defaults.enableLabels,
         controlType: 'switch',
-        controlGroup: 'Labels',
+        group: 'Labels',
     },
     {
         key: 'labelPosition',
@@ -412,7 +412,7 @@ export default [
         required: false,
         default: defaults.labelPosition,
         controlType: 'radio',
-        controlGroup: 'Labels',
+        group: 'Labels',
         controlOptions: {
             choices: ['inside', 'outside'].map(key => ({
                 label: key,
@@ -428,7 +428,7 @@ export default [
         default: defaults.labelPadding,
         type: '{number}',
         controlType: 'range',
-        controlGroup: 'Labels',
+        group: 'Labels',
         controlOptions: {
             unit: 'px',
             min: 0,
@@ -449,7 +449,7 @@ export default [
         required: false,
         default: defaults.labelTextColor,
         controlType: 'color',
-        controlGroup: 'Labels',
+        group: 'Labels',
         controlOptions: {
             withCustomColor: true,
         },
@@ -462,7 +462,7 @@ export default [
         required: false,
         default: defaults.labelOrientation,
         controlType: 'radio',
-        controlGroup: 'Labels',
+        group: 'Labels',
         controlOptions: {
             choices: ['horizontal', 'vertical'].map(key => ({
                 label: key,
@@ -478,7 +478,7 @@ export default [
         required: false,
         default: defaults.isInteractive,
         controlType: 'switch',
-        controlGroup: 'Interactivity',
+        group: 'Interactivity',
     },
     ...motionProperties(['Sankey'], defaults),
 ]

@@ -11,16 +11,17 @@ import { patternDotsDef, patternLinesDef } from '@nivo/core'
 import { ResponsiveBar, BarDefaultProps } from '@nivo/bar'
 import ChartHeader from '../../ChartHeader'
 import ChartTabs from '../../ChartTabs'
-import ComponentDescription from '../../ComponentDescription'
 import generateCode from '../../../lib/generateChartCode'
 import Stories from '../../Stories'
 import Settings from '../../Settings'
+import ComponentDescription from '../../ComponentDescription'
 import ActionsLogger, { useActionsLogger } from '../../ActionsLogger'
 import { groupsByScope } from './BarControls'
 import { barStories } from './stories'
 import nivoTheme from '../../../nivoTheme'
 import { generateLightDataSet as generateData } from './generators'
 import propsMapper from './propsMapper'
+import ChartPage from '../ChartPage'
 
 const Tooltip = () => {
     /* return custom tooltip */
@@ -63,10 +64,7 @@ const initialSettings = {
             spacing: 10,
         }),
     ],
-    fill: [
-        { match: { id: 'fries' }, id: 'dots' },
-        { match: { id: 'sandwich' }, id: 'lines' },
-    ],
+    fill: [{ match: { id: 'fries' }, id: 'dots' }, { match: { id: 'sandwich' }, id: 'lines' }],
     borderRadius: 0,
     borderWidth: 0,
     borderColor: {
@@ -172,15 +170,15 @@ The responsive alternative of this component is \`ResponsiveBar\`.
 
 This component is available in the [nivo-api](https://github.com/plouc/nivo-api),
 see [sample](https://nivo-api.herokuapp.com/samples/bar.svg)
-or <Link to="/bar/api">try it using the API client</Link>.
+or [try it using the API client](self:/bar/api).
 
-See the <Link to="/guides/legends">dedicated guide</Link> on how to setup
+See the [dedicated guide](self:/guides/legends) on how to setup
 legends for this component.
-However it requires an extra property for each legend configuration you pass to{' '}
-<code>legends</code> property: <code>dataFrom</code>, it defines how to compute
-legend's data and accept <code>indexes</code> or <code>keys</code>.<br />
-<code>indexes</code> is suitable for simple bar chart with a single data serie
-while <code>keys</code> may be used if you have several ones (groups).
+However it requires an extra property for each legend configuration you pass to
+\`legends\` property: \`dataFrom\`, it defines how to compute
+legend's data and accept \`indexes\` or \`keys\`.
+\`indexes\` is suitable for simple bar chart with a single data serie
+while \`keys\` may be used if you have several ones (groups).
 `
 
 const Bar = () => {
@@ -189,11 +187,11 @@ const Bar = () => {
     const diceRoll = useCallback(() => setData(generateData()), [setData])
     const [actions, logAction] = useActionsLogger()
     const onClick = useCallback(
-        (node) => {
+        node => {
             logAction({
                 type: 'click',
                 label: `[bar] ${node.id} - ${node.indexValue}: ${node.value}`,
-                data: node
+                data: node,
             })
         },
         [logAction]
@@ -212,10 +210,10 @@ const Bar = () => {
     )
 
     return (
-        <div className="chart_page">
+        <ChartPage>
             <ChartHeader chartClass="Bar" tags={['@nivo/bar', 'svg', 'isomorphic']} />
             <ComponentDescription description={description} />
-            <ChartTabs chartClass="bar" code={code} data={data} diceRoll={diceRoll}>
+            <ChartTabs chartClass="bar" code={code} data={data.data} diceRoll={diceRoll}>
                 <ResponsiveBar
                     data={data.data}
                     keys={data.keys}
@@ -223,9 +221,7 @@ const Bar = () => {
                     onClick={onClick}
                 />
             </ChartTabs>
-            <ActionsLogger
-                actions={actions}
-            />
+            <ActionsLogger actions={actions} />
             <Settings
                 component="Bar"
                 settings={settings}
@@ -233,7 +229,7 @@ const Bar = () => {
                 groups={groupsByScope.Bar}
             />
             <Stories stories={barStories} />
-        </div>
+        </ChartPage>
     )
 }
 

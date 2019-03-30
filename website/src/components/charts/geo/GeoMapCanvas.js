@@ -16,6 +16,7 @@ import Settings from '../../Settings'
 import { groupsByScope } from './GeoControls'
 import nivoTheme from '../../../nivoTheme'
 import countries from './world_countries'
+import ChartPage from '../ChartPage'
 // import propsMapper from './propsMapper'
 
 const initialSettings = {
@@ -74,13 +75,13 @@ const GeoMapCanvas = () => {
     )
 
     return (
-        <div className="chart_page">
+        <ChartPage>
             <ChartHeader chartClass="GeoMapCanvas" tags={['@nivo/geo', 'map', 'canvas']} />
             <div className="chart-description">
                 <p className="description">
-                    A canvas implementation of the <Link to="/geomap">GeoMap</Link> component, should be
-                    used used when you have complex geometries as it offers better performance than its
-                    SVG counterpart.
+                    A canvas implementation of the <Link to="/geomap">GeoMap</Link> component,
+                    should be used used when you have complex geometries as it offers better
+                    performance than its SVG counterpart.
                 </p>
                 <p className="description">
                     The responsive alternative of this component is <code>ResponsiveGeoMap</code>.
@@ -99,7 +100,7 @@ const GeoMapCanvas = () => {
                 onChange={setSettings}
                 groups={groupsByScope.GeoMapCanvas}
             />
-        </div>
+        </ChartPage>
     )
 }
 

@@ -22,6 +22,7 @@ import { groupsByScope } from './ParallelCoordinatesControls'
 import generateCode from '../../../lib/generateChartCode'
 import propsMapper from './propsMapper'
 import variables from './variables'
+import ChartPage from '../ChartPage'
 
 export default class ParallelCoordinates extends Component {
     state = {
@@ -83,15 +84,15 @@ export default class ParallelCoordinates extends Component {
         })
 
         return (
-            <div className="chart_page">
+            <ChartPage>
                 <ChartHeader
                     chartClass="ParallelCoordinates"
                     tags={['@nivo/parallel-coordinates', 'svg', 'isomorphic']}
                 />
                 <div className="chart-description">
                     <p className="description">
-                        Parallel coordinates chart, supports continuous numerical variables and discrete
-                        values.
+                        Parallel coordinates chart, supports continuous numerical variables and
+                        discrete values.
                     </p>
                     <p className="description">
                         The responsive alternative of this component is{' '}
@@ -101,8 +102,8 @@ export default class ParallelCoordinates extends Component {
                     </p>
                     <p className="description">
                         The <code>@nivo/parallel-coordinates</code> package also exposes a{' '}
-                        <code>ParallelCoordinatesLayout</code> component which can be used to build your
-                        very own chart. You can see how it's used to build the{' '}
+                        <code>ParallelCoordinatesLayout</code> component which can be used to build
+                        your very own chart. You can see how it's used to build the{' '}
                         <code>ParallelCoordinates</code> component{' '}
                         <a
                             href="https://github.com/plouc/nivo/blob/master/packages/parallel-coordinates/src/ParallelCoordinates.js"
@@ -128,7 +129,7 @@ export default class ParallelCoordinates extends Component {
                     onChange={this.handleSettingsUpdate}
                     groups={groupsByScope.ParallelCoordinates}
                 />
-            </div>
+            </ChartPage>
         )
     }
 }

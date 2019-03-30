@@ -17,6 +17,7 @@ import generateCode from '../../../lib/generateChartCode'
 import config from '../../../config'
 import nivoTheme from '../../../nivoTheme'
 import propsMapper from './propsMapper'
+import ChartPage from '../ChartPage'
 
 const generateData = () => [
     {
@@ -157,13 +158,13 @@ export default class Waffle extends Component {
         )
 
         return (
-            <div className="chart_page">
+            <ChartPage>
                 <ChartHeader chartClass="Waffle" tags={['@nivo/waffle', 'svg', 'isomorphic']} />
                 <div className="chart-description">
                     <p className="description">
-                        A waffle component. You can fully customize it using <code>cellComponent</code>{' '}
-                        property to define your own cell component, if you wish to do so you should have
-                        a look at{' '}
+                        A waffle component. You can fully customize it using{' '}
+                        <code>cellComponent</code> property to define your own cell component, if
+                        you wish to do so you should have a look at{' '}
                         <a
                             href="https://github.com/plouc/nivo/blob/master/packages/nivo-waffle/src/WaffleCell.js"
                             target="_blank"
@@ -176,7 +177,9 @@ export default class Waffle extends Component {
                     <p className="description">
                         You can also see more example usages in{' '}
                         <a
-                            href={`${config.storybookUrl}?selectedKind=Waffle&selectedStory=default`}
+                            href={`${
+                                config.storybookUrl
+                            }?selectedKind=Waffle&selectedStory=default`}
                             target="_blank"
                             rel="noopener noreferrer"
                         >
@@ -185,8 +188,8 @@ export default class Waffle extends Component {
                         .
                     </p>
                     <p className="description">
-                        The responsive alternative of this component is <code>ResponsiveWaffle</code>,
-                        it also offers other implementations, see{' '}
+                        The responsive alternative of this component is{' '}
+                        <code>ResponsiveWaffle</code>, it also offers other implementations, see{' '}
                         <Link to="/waffle/html">WaffleHtml</Link> and{' '}
                         <Link to="/waffle/canvas">WaffleCanvas</Link>.
                     </p>
@@ -210,7 +213,7 @@ export default class Waffle extends Component {
                     onChange={this.handleSettingsUpdate}
                     groups={groupsByScope.Waffle}
                 />
-            </div>
+            </ChartPage>
         )
     }
 }

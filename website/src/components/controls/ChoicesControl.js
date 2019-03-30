@@ -23,18 +23,10 @@ export default class ChoicesControl extends Component {
 
         return (
             <div className="chart-controls_item">
-                <Label htmlFor={id}>
-                    {label}
-                </Label>
+                <Label htmlFor={id}>{label}</Label>
                 <Select options={choices} value={value} clearable={false} onChange={onChange} />
-                {/*
-                <Select
-                    id={id}
-                    name={id}
-                    {...omit(config, ['name', 'help', 'type', 'choices'])}
-                />
-                */}
-                {/*<div className="control-help">{config.help}</div>*/}
+                <span />
+                <div className="control-help">{help}</div>
             </div>
         )
     }

@@ -18,6 +18,7 @@ import { groupsByScope } from './PieControls'
 import nivoTheme from '../../../nivoTheme'
 import config from '../../../config'
 import propsMapper from './propsMapper'
+import ChartPage from '../ChartPage'
 
 const DATASET_SIZE = 5
 const generateData = () =>
@@ -134,15 +135,15 @@ export default class Pie extends Component {
         })
 
         return (
-            <div className="chart_page">
+            <ChartPage>
                 <ChartHeader chartClass="Pie" tags={['@nivo/pie', 'radial', 'svg', 'isomorphic']} />
                 <div className="chart-description">
                     <p>
-                        Generates a pie chart from an array of data, each datum must have an id and a
-                        value property.
+                        Generates a pie chart from an array of data, each datum must have an id and
+                        a value property.
                         <br />
-                        Note that margin object does not take radial labels into account,&nbsp; so you
-                        should adjust it to leave enough room for it.
+                        Note that margin object does not take radial labels into account,&nbsp; so
+                        you should adjust it to leave enough room for it.
                     </p>
                     <p className="description">
                         The responsive alternative of this component is&nbsp;
@@ -165,8 +166,8 @@ export default class Pie extends Component {
                         >
                             sample
                         </a>{' '}
-                        or <Link to="/pie/api">try it using the API client</Link>. You can also see more
-                        example usages in{' '}
+                        or <Link to="/pie/api">try it using the API client</Link>. You can also see
+                        more example usages in{' '}
                         <a
                             href={`${config.storybookUrl}?selectedKind=Pie&selectedStory=default`}
                             target="_blank"
@@ -190,7 +191,7 @@ export default class Pie extends Component {
                     onChange={this.handleSettingsUpdate}
                     groups={groupsByScope.Pie}
                 />
-            </div>
+            </ChartPage>
         )
     }
 }

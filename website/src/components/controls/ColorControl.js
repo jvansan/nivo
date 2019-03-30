@@ -92,7 +92,11 @@ class ColorControl extends Component {
                     {type === 'custom' && (
                         <div>
                             <div className="control-help">Color</div>
-                            <input type="color" onChange={this.handleCustomColorChange} value={color} />
+                            <input
+                                type="color"
+                                onChange={this.handleCustomColorChange}
+                                value={color}
+                            />
                         </div>
                     )}
                     {hasGammaModifier(type) && (
@@ -110,9 +114,8 @@ class ColorControl extends Component {
                         </div>
                     )}
                 </div>
-                {/*
+                <span />
                 <div className="control-help">{help}</div>
-                */}
             </div>
         )
     }

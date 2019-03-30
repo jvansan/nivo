@@ -16,6 +16,7 @@ import { groupsByScope } from './CalendarControls'
 import { ResponsiveCalendar, CalendarDefaultProps } from '@nivo/calendar'
 import nivoTheme from '../../../nivoTheme'
 import propsMapper from './propsMapper'
+import ChartPage from '../ChartPage'
 
 const Tooltip = data => {
     /* return custom tooltip */
@@ -99,7 +100,7 @@ const Calendar = ({ data }) => {
     )
 
     return (
-        <div className="chart_page">
+        <ChartPage>
             <ChartHeader chartClass="Calendar" tags={['@nivo/calendar', 'svg', 'isomorphic']} />
             <div className="chart-description">
                 <p className="description">
@@ -114,13 +115,13 @@ const Calendar = ({ data }) => {
                     .
                 </p>
                 <p className="description">
-                    The responsive alternative of this component is <code>ResponsiveCalendar</code>, it
-                    also offers a canvas implementations, see{' '}
+                    The responsive alternative of this component is <code>ResponsiveCalendar</code>,
+                    it also offers a canvas implementations, see{' '}
                     <Link to="/calendar/canvas">CalendarCanvas</Link>.
                 </p>
                 <p className="description">
-                    See the <Link to="/guides/legends">dedicated guide</Link> on how to setup legends
-                    for this component.
+                    See the <Link to="/guides/legends">dedicated guide</Link> on how to setup
+                    legends for this component.
                 </p>
             </div>
             <ChartTabs chartClass="calendar" code={code} data={data}>
@@ -138,7 +139,7 @@ const Calendar = ({ data }) => {
                 onChange={setSettings}
                 groups={groupsByScope.Calendar}
             />
-        </div>
+        </ChartPage>
     )
 }
 

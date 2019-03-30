@@ -71,7 +71,7 @@ export default [
         type: '{number}',
         required: true,
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             unit: 'px',
             min: 100,
@@ -95,7 +95,7 @@ export default [
         type: '{number}',
         required: true,
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             unit: 'px',
             min: 100,
@@ -111,7 +111,7 @@ export default [
         default: 'Depends on device',
         type: `{number}`,
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             min: 1,
             max: 2,
@@ -124,7 +124,7 @@ export default [
         type: '{object}',
         required: false,
         controlType: 'margin',
-        controlGroup: 'Base',
+        group: 'Base',
     },
     {
         key: 'padAngle',
@@ -134,7 +134,7 @@ export default [
         default: defaults.padAngle,
         type: '{number}',
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             min: 0,
             max: 1,
@@ -149,7 +149,7 @@ export default [
         default: defaults.innerRadiusRatio,
         type: '{number}',
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             min: 0,
             max: 1,
@@ -164,7 +164,7 @@ export default [
         default: defaults.innerRadiusOffset,
         type: '{number}',
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             min: 0,
             max: 1,
@@ -184,7 +184,7 @@ export default [
         required: false,
         default: defaults.colors,
         controlType: 'colors',
-        controlGroup: 'Style',
+        group: 'Style',
     },
     {
         key: 'arcOpacity',
@@ -194,7 +194,7 @@ export default [
         default: defaults.arcOpacity,
         type: '{number}',
         controlType: 'opacity',
-        controlGroup: 'Style',
+        group: 'Style',
     },
     {
         key: 'arcBorderWidth',
@@ -204,7 +204,7 @@ export default [
         default: defaults.arcBorderWidth,
         type: '{number}',
         controlType: 'lineWidth',
-        controlGroup: 'Style',
+        group: 'Style',
     },
     {
         key: 'arcBorderColor',
@@ -214,7 +214,7 @@ export default [
         default: defaults.arcBorderColor,
         type: '{string|Function}',
         controlType: 'color',
-        controlGroup: 'Style',
+        group: 'Style',
         controlOptions: {
             withCustomColor: true,
         },
@@ -227,7 +227,7 @@ export default [
         default: defaults.ribbonOpacity,
         type: '{number}',
         controlType: 'opacity',
-        controlGroup: 'Style',
+        group: 'Style',
     },
     {
         key: 'ribbonBorderWidth',
@@ -237,7 +237,7 @@ export default [
         default: defaults.ribbonBorderWidth,
         type: '{number}',
         controlType: 'lineWidth',
-        controlGroup: 'Style',
+        group: 'Style',
     },
     {
         key: 'ribbonBorderColor',
@@ -247,7 +247,7 @@ export default [
         default: defaults.ribbonBorderColor,
         type: '{string|Function}',
         controlType: 'color',
-        controlGroup: 'Style',
+        group: 'Style',
         controlOptions: {
             withCustomColor: true,
         },
@@ -265,7 +265,7 @@ export default [
         required: false,
         default: defaults.enableLabel,
         controlType: 'switch',
-        controlGroup: 'Labels',
+        group: 'Labels',
     },
     {
         key: 'label',
@@ -275,7 +275,7 @@ export default [
         required: false,
         default: defaults.label,
         controlType: 'choices',
-        controlGroup: 'Labels',
+        group: 'Labels',
         controlOptions: {
             choices: ['id', 'value', `d => \`\${d.id} [\${d.value}]\``].map(choice => ({
                 label: choice,
@@ -291,7 +291,7 @@ export default [
         default: defaults.labelOffset,
         type: '{number}',
         controlType: 'range',
-        controlGroup: 'Labels',
+        group: 'Labels',
         controlOptions: {
             unit: 'px',
             min: -80,
@@ -306,7 +306,7 @@ export default [
         default: defaults.labelRotation,
         type: '{number}',
         controlType: 'range',
-        controlGroup: 'Labels',
+        group: 'Labels',
         controlOptions: {
             unit: 'deg',
             min: -180,
@@ -328,7 +328,7 @@ export default [
         required: false,
         default: defaults.labelTextColor,
         controlType: 'color',
-        controlGroup: 'Labels',
+        group: 'Labels',
         controlOptions: {
             withCustomColor: true,
         },
@@ -346,7 +346,7 @@ export default [
         required: false,
         default: defaults.isInteractive,
         controlType: 'switch',
-        controlGroup: 'Interactivity',
+        group: 'Interactivity',
     },
     {
         key: 'arcHoverOpacity',
@@ -356,7 +356,7 @@ export default [
         default: defaults.arcHoverOpacity,
         type: '{number}',
         controlType: 'opacity',
-        controlGroup: 'Interactivity',
+        group: 'Interactivity',
     },
     {
         key: 'arcHoverOthersOpacity',
@@ -366,7 +366,7 @@ export default [
         default: defaults.arcHoverOthersOpacity,
         type: '{number}',
         controlType: 'opacity',
-        controlGroup: 'Interactivity',
+        group: 'Interactivity',
     },
     {
         key: 'ribbonHoverOpacity',
@@ -376,7 +376,7 @@ export default [
         default: defaults.ribbonHoverOpacity,
         type: '{number}',
         controlType: 'opacity',
-        controlGroup: 'Interactivity',
+        group: 'Interactivity',
     },
     {
         key: 'ribbonHoverOthersOpacity',
@@ -386,7 +386,7 @@ export default [
         default: defaults.ribbonHoverOthersOpacity,
         type: '{number}',
         controlType: 'opacity',
-        controlGroup: 'Interactivity',
+        group: 'Interactivity',
     },
     ...motionProperties(['Chord'], defaults),
 ]

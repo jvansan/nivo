@@ -67,7 +67,7 @@ export default class Settings extends Component {
                             <ControlsGroup
                                 component={component}
                                 name={group.name}
-                                controls={group.controls}
+                                controls={group.properties}
                                 settings={settings}
                                 onChange={onChange}
                             />

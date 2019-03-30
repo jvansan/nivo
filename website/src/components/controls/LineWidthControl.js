@@ -21,14 +21,9 @@ const Row = styled.div`
     max-width: 240px;
 `
 
-const LineWidthControl = ({
-    id,
-    label,
-    value,
-    onChange
-}) => {
+const LineWidthControl = ({ id, label, value, onChange }) => {
     const handleChange = useCallback(
-        (event) => {
+        event => {
             onChange(Number(event.target.value))
         },
         [onChange]
@@ -40,22 +35,9 @@ const LineWidthControl = ({
                 {label}
             </Label>
             <Row>
-                <TextInput
-                    value={value}
-                    onChange={handleChange}
-                    unit="px"
-                />
-                <input
-                    type="range"
-                    value={value}
-                    onChange={handleChange}
-                    min={0}
-                    max={20}
-                />
-                <svg
-                    width={size}
-                    height={size}
-                >
+                <TextInput value={value} onChange={handleChange} unit="px" />
+                <input type="range" value={value} onChange={handleChange} min={0} max={20} />
+                <svg width={size} height={size}>
                     <line
                         x1={size / 2}
                         y1={0}
@@ -67,9 +49,9 @@ const LineWidthControl = ({
                     />
                     <line
                         x1={size / 2}
-                        y1={size * .2}
+                        y1={size * 0.2}
                         x2={size / 2}
-                        y2={size * .8}
+                        y2={size * 0.8}
                         stroke="#000000"
                         strokeWidth={value}
                         fill="none"

@@ -18,6 +18,7 @@ import { groupsByScope } from './GeoControls'
 import countries from './world_countries'
 import { generateChoroplethData } from './generators'
 import propsMapper from './propsMapper'
+import ChartPage from '../ChartPage'
 
 const Tooltip = data => {
     /* return custom tooltip */
@@ -104,16 +105,17 @@ const ChoroplethCanvas = () => {
     )
 
     return (
-        <div className="chart_page">
+        <ChartPage>
             <ChartHeader chartClass="ChoroplethCanvas" tags={['@nivo/geo', 'map', 'canvas']} />
             <div className="chart-description">
                 <p className="description">
-                    A canvas implementation of the <Link to="/choropleth">Choropleth</Link> component,
-                    should be used used when you have complex geometries as it offers better performance
-                    than its SVG counterpart.
+                    A canvas implementation of the <Link to="/choropleth">Choropleth</Link>{' '}
+                    component, should be used used when you have complex geometries as it offers
+                    better performance than its SVG counterpart.
                 </p>
                 <p className="description">
-                    The responsive alternative of this component is <code>ResponsiveChoropleth</code>.
+                    The responsive alternative of this component is{' '}
+                    <code>ResponsiveChoropleth</code>.
                 </p>
             </div>
             <ChartTabs chartClass="choropleth" code={code} data={data} diceRoll={diceRoll}>
@@ -130,7 +132,7 @@ const ChoroplethCanvas = () => {
                 onChange={setSettings}
                 groups={groupsByScope.ChoroplethCanvas}
             />
-        </div>
+        </ChartPage>
     )
 }
 

@@ -18,6 +18,7 @@ import nivoTheme from '../../../nivoTheme'
 import { generateLightDataSet } from './generators'
 import defaultProps from './defaultProps'
 import propsMapper from './propsMapper'
+import ChartPage from '../ChartPage'
 
 export default class Stream extends Component {
     state = {
@@ -76,7 +77,7 @@ export default class Stream extends Component {
         )
 
         return (
-            <div className="chart_page">
+            <ChartPage>
                 <ChartHeader
                     chartClass="Stream"
                     tags={['@nivo/stream', 'stacked', 'svg', 'isomorphic']}
@@ -84,7 +85,8 @@ export default class Stream extends Component {
                 <div className="chart-description">
                     <p className="description">Stream chart.</p>
                     <p className="description">
-                        The responsive alternative of this component is <code>ResponsiveStream</code>.
+                        The responsive alternative of this component is{' '}
+                        <code>ResponsiveStream</code>.
                     </p>
                     <p className="description">
                         See the <Link to="/guides/legends">dedicated guide</Link> on how to setup
@@ -105,7 +107,7 @@ export default class Stream extends Component {
                     onChange={this.handleSettingsUpdate}
                     groups={groupsByScope.Stream}
                 />
-            </div>
+            </ChartPage>
         )
     }
 }

@@ -18,6 +18,7 @@ import generateCode from '../../../lib/generateChartCode'
 import nivoTheme from '../../../nivoTheme'
 import { generateHeavyDataSet } from './generators'
 import propsMapper from './propsMapper'
+import ChartPage from '../ChartPage'
 
 export default class HeatMap extends Component {
     state = {
@@ -163,7 +164,7 @@ export default class HeatMap extends Component {
         )
 
         return (
-            <div className="chart_page">
+            <ChartPage>
                 <ChartHeader chartClass="HeatMapCanvas" tags={['@nivo/heatmap', 'canvas']} />
                 {description}
                 <ChartTabs
@@ -187,7 +188,7 @@ export default class HeatMap extends Component {
                     onChange={this.handleSettingsUpdate}
                     groups={groupsByScope.HeatMapCanvas}
                 />
-            </div>
+            </ChartPage>
         )
     }
 }

@@ -22,6 +22,7 @@ import { groupsByScope } from './ParallelCoordinatesControls'
 import generateCode from '../../../lib/generateChartCode'
 import propsMapper from './propsMapper'
 import variables from './variables'
+import ChartPage from '../ChartPage'
 
 const lineCount = 320
 
@@ -83,7 +84,7 @@ export default class ParallelCoordinatesCanvas extends Component {
         })
 
         return (
-            <div className="chart_page">
+            <ChartPage>
                 <ChartHeader
                     chartClass="ParallelCoordinatesCanvas"
                     tags={['@nivo/parallel-coordinates', 'canvas']}
@@ -93,8 +94,8 @@ export default class ParallelCoordinatesCanvas extends Component {
                         A variation around the{' '}
                         <Link to="/parallel-coordinates">ParallelCoordinates</Link> component. Well
                         suited for large data sets as it does not impact DOM tree depth and does not
-                        involve React diffing stuff for children (not that useful when using canvas),
-                        however you'll lose the isomorphic ability and transitions.
+                        involve React diffing stuff for children (not that useful when using
+                        canvas), however you'll lose the isomorphic ability and transitions.
                     </p>
                     <p className="description">
                         The responsive alternative of this component is{' '}
@@ -117,7 +118,7 @@ export default class ParallelCoordinatesCanvas extends Component {
                     onChange={this.handleSettingsUpdate}
                     groups={groupsByScope.ParallelCoordinatesCanvas}
                 />
-            </div>
+            </ChartPage>
         )
     }
 }

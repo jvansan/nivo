@@ -7,10 +7,7 @@
  * file that was distributed with this source code.
  */
 import React from 'react'
-import {
-    motionProperties,
-    defsProperties,
-} from '../../../lib/componentProperties'
+import { motionProperties, defsProperties } from '../../../lib/componentProperties'
 import { TreeMapDefaultProps } from '@nivo/treemap'
 
 const defaults = TreeMapDefaultProps
@@ -73,7 +70,7 @@ export default [
         default: 'Depends on device',
         type: `{number}`,
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             min: 1,
             max: 2,
@@ -102,7 +99,7 @@ export default [
         default: 'squarify',
         help: 'Strategy used to compute nodes.',
         controlType: 'choices',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             choices: [
                 { label: 'binary', value: 'binary' },
@@ -125,7 +122,7 @@ export default [
         required: false,
         default: defaults.leavesOnly,
         controlType: 'switch',
-        controlGroup: 'Base',
+        group: 'Base',
     },
     {
         key: 'innerPadding',
@@ -135,7 +132,7 @@ export default [
         required: false,
         default: defaults.innerPadding,
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             unit: 'px',
             min: 0,
@@ -150,7 +147,7 @@ export default [
         required: false,
         default: defaults.outerPadding,
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             unit: 'px',
             min: 0,
@@ -164,7 +161,7 @@ export default [
         type: '{object}',
         required: false,
         controlType: 'margin',
-        controlGroup: 'Base',
+        group: 'Base',
     },
     /*—————————————————————————————————————————————————————————————————————————————
 
@@ -179,7 +176,7 @@ export default [
         required: false,
         default: 'nivo',
         controlType: 'colors',
-        controlGroup: 'Style',
+        group: 'Style',
     },
     {
         key: 'colorBy',
@@ -190,7 +187,7 @@ export default [
         required: false,
         default: 'depth',
         controlType: 'choices',
-        controlGroup: 'Style',
+        group: 'Style',
         controlOptions: {
             choices: [
                 {
@@ -216,7 +213,7 @@ export default [
         required: false,
         default: defaults.borderWidth,
         controlType: 'range',
-        controlGroup: 'Style',
+        group: 'Style',
         controlOptions: {
             unit: 'px',
             min: 0,
@@ -231,7 +228,7 @@ export default [
         required: false,
         default: defaults.borderColor,
         controlType: 'color',
-        controlGroup: 'Style',
+        group: 'Style',
         controlOptions: {
             withCustomColor: true,
         },
@@ -245,7 +242,7 @@ export default [
         required: false,
         default: true,
         controlType: 'switch',
-        controlGroup: 'Labels',
+        group: 'Labels',
     },
     {
         key: 'label',
@@ -256,7 +253,7 @@ export default [
         required: false,
         // default
         controlType: 'choices',
-        controlGroup: 'Labels',
+        group: 'Labels',
         controlOptions: {
             choices: ['loc', 'name', `d => \`\${d.name} (\${d.loc})\``].map(prop => ({
                 label: prop,
@@ -273,7 +270,7 @@ export default [
         required: false,
         //default
         controlType: 'range',
-        controlGroup: 'Labels',
+        group: 'Labels',
         controlOptions: {
             unit: 'px',
             min: 0,
@@ -288,7 +285,7 @@ export default [
         required: false,
         // default
         controlType: 'switch',
-        controlGroup: 'Labels',
+        group: 'Labels',
     },
     {
         key: 'labelTextColor',
@@ -297,7 +294,7 @@ export default [
         type: '{string|Function}',
         required: false,
         controlType: 'color',
-        controlGroup: 'Labels',
+        group: 'Labels',
         controlOptions: {
             withCustomColor: true,
         },
@@ -310,7 +307,7 @@ export default [
         required: false,
         default: defaults.isInteractive,
         controlType: 'switch',
-        controlGroup: 'Interactivity',
+        group: 'Interactivity',
     },
     {
         key: 'onClick',

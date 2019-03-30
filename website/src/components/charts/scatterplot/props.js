@@ -8,10 +8,7 @@
  */
 import React from 'react'
 import { ScatterPlotDefaultProps as defaults } from '@nivo/scatterplot'
-import {
-    axesProperties,
-    motionProperties,
-} from '../../../lib/componentProperties'
+import { axesProperties, motionProperties } from '../../../lib/componentProperties'
 import dedent from 'dedent-js'
 
 export default [
@@ -44,7 +41,7 @@ export default [
         scopes: '*',
         type: '{object}',
         description: `X scale configuration.`,
-        controlGroup: 'Base',
+        group: 'Base',
         controlType: 'object',
         controlOptions: {
             props: [
@@ -95,7 +92,7 @@ export default [
         scopes: '*',
         type: '{object}',
         description: `Y scale configuration.`,
-        controlGroup: 'Base',
+        group: 'Base',
         controlType: 'object',
         controlOptions: {
             props: [
@@ -158,7 +155,7 @@ export default [
         type: '{number}',
         required: true,
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             unit: 'px',
             min: 100,
@@ -183,7 +180,7 @@ export default [
         type: '{number}',
         required: true,
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             unit: 'px',
             min: 100,
@@ -215,7 +212,7 @@ export default [
         default: 'Depends on device',
         type: `{number}`,
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             min: 1,
             max: 2,
@@ -228,7 +225,7 @@ export default [
         type: '{object}',
         required: false,
         controlType: 'margin',
-        controlGroup: 'Base',
+        group: 'Base',
     },
     {
         key: 'colors',
@@ -238,7 +235,7 @@ export default [
         required: false,
         default: 'nivo',
         controlType: 'colors',
-        controlGroup: 'Style',
+        group: 'Style',
     },
     {
         key: 'colorBy',
@@ -248,7 +245,7 @@ export default [
         required: false,
         default: defaults.colorBy,
         controlType: 'choices',
-        controlGroup: 'Style',
+        group: 'Style',
         controlOptions: {
             choices: [
                 {
@@ -270,7 +267,7 @@ export default [
         default: defaults.symbolSize,
         type: `{number}`,
         controlType: 'range',
-        controlGroup: 'Symbols',
+        group: 'Symbols',
         controlOptions: {
             min: 2,
             max: 24,
@@ -284,7 +281,7 @@ export default [
         required: false,
         default: defaults.enableGridX,
         controlType: 'switch',
-        controlGroup: 'Grid & Axes',
+        group: 'Grid & Axes',
     },
     {
         key: 'enableGridY',
@@ -294,7 +291,7 @@ export default [
         required: false,
         default: defaults.enableGridY,
         controlType: 'switch',
-        controlGroup: 'Grid & Axes',
+        group: 'Grid & Axes',
     },
     ...axesProperties,
     {
@@ -305,7 +302,7 @@ export default [
         required: false,
         default: defaults.isInteractive,
         controlType: 'switch',
-        controlGroup: 'Interactivity',
+        group: 'Interactivity',
     },
     {
         key: 'useMesh',
@@ -315,7 +312,7 @@ export default [
         required: false,
         default: defaults.useMesh,
         controlType: 'switch',
-        controlGroup: 'Interactivity',
+        group: 'Interactivity',
     },
     {
         key: 'debugMesh',
@@ -325,7 +322,7 @@ export default [
         required: false,
         default: defaults.debugMesh,
         controlType: 'switch',
-        controlGroup: 'Interactivity',
+        group: 'Interactivity',
     },
     {
         key: 'tooltip',
@@ -362,7 +359,7 @@ export default [
         ),
         type: '{boolean}',
         controlType: 'switch',
-        controlGroup: 'Interactivity',
+        group: 'Interactivity',
     },
     {
         key: 'onMouseEnter',

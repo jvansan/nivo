@@ -287,31 +287,31 @@
     grid-row-gap: 9px;
     align-items: center;
     justify-items: center;
-  }
-  
-  .MarginControl_Box {
+}
+
+.MarginControl_Box {
     display: block;
     width: 60px;
     height: 28px;
     border: 1px solid red;
-  }
-  
-  .MarginControl_Box._top {
+}
+
+.MarginControl_Box._top {
     border-top: 3px solid black;
-  }
-  
-  .MarginControl_Box._right {
+}
+
+.MarginControl_Box._right {
     border-right: 3px solid black;
-  }
-  
-  .MarginControl_Box._bottom {
+}
+
+.MarginControl_Box._bottom {
     border-bottom: 3px solid black;
-  }
-  
-  .MarginControl_Box._left {
+}
+
+.MarginControl_Box._left {
     border-left: 3px solid black;
-  }
-  
-  .MarginControl input[type=text] {
+}
+
+.MarginControl input[type='text'] {
     width: 60px;
-  }
+}

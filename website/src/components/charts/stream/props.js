@@ -10,11 +10,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { areaCurvePropKeys, stackOrderPropKeys, stackOffsetPropKeys } from '@nivo/core'
 import { StreamDefaultProps as defaults } from '@nivo/stream'
-import {
-    axesProperties,
-    motionProperties,
-    defsProperties,
-} from '../../../lib/componentProperties'
+import { axesProperties, motionProperties, defsProperties } from '../../../lib/componentProperties'
 
 const curveOptions = []
 areaCurvePropKeys.forEach((curve, i) => {
@@ -39,7 +35,7 @@ export default [
         type: '{number}',
         required: true,
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             unit: 'px',
             min: 100,
@@ -61,7 +57,7 @@ export default [
         type: '{number}',
         required: true,
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             unit: 'px',
             min: 100,
@@ -76,7 +72,7 @@ export default [
         type: '{string}',
         required: false,
         controlType: 'choices',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             choices: stackOffsetPropKeys.map(key => ({
                 label: key,
@@ -91,7 +87,7 @@ export default [
         type: '{string}',
         required: false,
         controlType: 'choices',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             choices: stackOrderPropKeys.map(key => ({
                 label: key,
@@ -114,7 +110,7 @@ export default [
         required: false,
         default: defaults.curve,
         controlType: 'choices',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             choices: areaCurvePropKeys.map(key => ({
                 label: key,
@@ -129,7 +125,7 @@ export default [
         type: '{object}',
         required: false,
         controlType: 'margin',
-        controlGroup: 'Base',
+        group: 'Base',
     },
     {
         key: 'colors',
@@ -139,7 +135,7 @@ export default [
         required: false,
         default: defaults.colors,
         controlType: 'colors',
-        controlGroup: 'Style',
+        group: 'Style',
     },
     {
         key: 'fillOpacity',
@@ -148,7 +144,7 @@ export default [
         required: false,
         default: defaults.fillOpacity,
         controlType: 'opacity',
-        controlGroup: 'Style',
+        group: 'Style',
     },
     {
         key: 'borderWidth',
@@ -158,7 +154,7 @@ export default [
         required: false,
         default: defaults.borderWidth,
         controlType: 'range',
-        controlGroup: 'Style',
+        group: 'Style',
         controlOptions: {
             unit: 'px',
             min: 0,
@@ -179,7 +175,7 @@ export default [
         required: false,
         default: defaults.borderColor,
         controlType: 'color',
-        controlGroup: 'Style',
+        group: 'Style',
         controlOptions: {
             withCustomColor: true,
         },
@@ -193,7 +189,7 @@ export default [
         required: false,
         default: defaults.enableGridX,
         controlType: 'switch',
-        controlGroup: 'Grid & Axes',
+        group: 'Grid & Axes',
     },
     {
         key: 'enableGridY',
@@ -203,7 +199,7 @@ export default [
         required: false,
         default: defaults.enableGridY,
         controlType: 'switch',
-        controlGroup: 'Grid & Axes',
+        group: 'Grid & Axes',
     },
     ...axesProperties,
     {
@@ -214,7 +210,7 @@ export default [
         required: false,
         default: defaults.enableDots,
         controlType: 'switch',
-        controlGroup: 'Dots',
+        group: 'Dots',
     },
     {
         key: 'renderDot',
@@ -232,7 +228,7 @@ export default [
         required: false,
         default: defaults.dotSize,
         controlType: 'range',
-        controlGroup: 'Dots',
+        group: 'Dots',
         controlOptions: {
             unit: 'px',
             min: 2,
@@ -246,7 +242,7 @@ export default [
         required: false,
         default: defaults.dotColor,
         controlType: 'color',
-        controlGroup: 'Dots',
+        group: 'Dots',
         controlOptions: {
             withCustomColor: true,
         },
@@ -259,7 +255,7 @@ export default [
         required: false,
         default: defaults.dotBorderWidth,
         controlType: 'range',
-        controlGroup: 'Dots',
+        group: 'Dots',
         controlOptions: {
             unit: 'px',
             min: 0,
@@ -274,7 +270,7 @@ export default [
         required: false,
         default: defaults.dotBorderColor,
         controlType: 'color',
-        controlGroup: 'Dots',
+        group: 'Dots',
         controlOptions: {
             withCustomColor: true,
         },
@@ -287,7 +283,7 @@ export default [
         required: false,
         default: defaults.isInteractive,
         controlType: 'switch',
-        controlGroup: 'Interactivity',
+        group: 'Interactivity',
     },
     {
         key: 'enableStackTooltip',
@@ -297,7 +293,7 @@ export default [
         required: false,
         default: defaults.enableStackTooltip,
         controlType: 'switch',
-        controlGroup: 'Interactivity',
+        group: 'Interactivity',
     },
     ...motionProperties(['Stream'], defaults),
 ]

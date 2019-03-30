@@ -9,10 +9,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { BubbleDefaultProps as defaults } from '@nivo/circle-packing'
-import {
-    motionProperties,
-    defsProperties,
-} from '../../../lib/componentProperties'
+import { motionProperties, defsProperties } from '../../../lib/componentProperties'
 
 export default [
     {
@@ -61,7 +58,7 @@ export default [
         type: '{number}',
         required: true,
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             unit: 'px',
             min: 100,
@@ -82,7 +79,7 @@ export default [
         type: '{number}',
         required: true,
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             unit: 'px',
             min: 100,
@@ -98,7 +95,7 @@ export default [
         default: 'Depends on device',
         type: `{number}`,
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             min: 1,
             max: 2,
@@ -112,7 +109,7 @@ export default [
         required: false,
         default: defaults.leavesOnly,
         controlType: 'switch',
-        controlGroup: 'Base',
+        group: 'Base',
     },
     {
         key: 'margin',
@@ -121,7 +118,7 @@ export default [
         type: '{object}',
         required: false,
         controlType: 'margin',
-        controlGroup: 'Base',
+        group: 'Base',
     },
     {
         key: 'padding',
@@ -146,7 +143,7 @@ export default [
         required: false,
         default: defaults.padding,
         controlType: 'range',
-        controlGroup: 'Base',
+        group: 'Base',
         controlOptions: {
             unit: 'px',
             min: 0,
@@ -172,7 +169,7 @@ export default [
         required: false,
         default: 'nivo',
         controlType: 'colors',
-        controlGroup: 'Style',
+        group: 'Style',
     },
     {
         key: 'colorBy',
@@ -183,7 +180,7 @@ export default [
         required: false,
         default: 'depth',
         controlType: 'choices',
-        controlGroup: 'Style',
+        group: 'Style',
         controlOptions: {
             choices: [
                 {
@@ -209,7 +206,7 @@ export default [
         required: false,
         default: defaults.borderWidth,
         controlType: 'lineWidth',
-        controlGroup: 'Style',
+        group: 'Style',
     },
     {
         key: 'borderColor',
@@ -225,7 +222,7 @@ export default [
         required: false,
         default: defaults.borderColor,
         controlType: 'color',
-        controlGroup: 'Style',
+        group: 'Style',
         controlOptions: {
             withCustomColor: true,
         },
@@ -239,7 +236,7 @@ export default [
         required: false,
         default: defaults.enableLabel,
         controlType: 'switch',
-        controlGroup: 'Labels',
+        group: 'Labels',
     },
     {
         key: 'label',
@@ -250,7 +247,7 @@ export default [
         required: false,
         default: defaults.label,
         controlType: 'choices',
-        controlGroup: 'Labels',
+        group: 'Labels',
         controlOptions: {
             choices: ['id', 'value', `d => \`\${d.id}: \${d.value}\``].map(choice => ({
                 label: choice,
@@ -289,7 +286,7 @@ export default [
         required: false,
         default: defaults.labelTextColor,
         controlType: 'color',
-        controlGroup: 'Labels',
+        group: 'Labels',
         controlOptions: {
             withCustomColor: true,
         },
@@ -302,7 +299,7 @@ export default [
         required: false,
         default: defaults.labelSkipRadius,
         controlType: 'range',
-        controlGroup: 'Labels',
+        group: 'Labels',
         controlOptions: {
             unit: 'px',
             min: 0,
@@ -317,7 +314,7 @@ export default [
         required: false,
         default: defaults.isInteractive,
         controlType: 'switch',
-        controlGroup: 'Interactivity',
+        group: 'Interactivity',
     },
     {
         key: 'isZoomable',
@@ -327,7 +324,7 @@ export default [
         required: false,
         default: defaults.isZoomable,
         controlType: 'switch',
-        controlGroup: 'Interactivity',
+        group: 'Interactivity',
     },
     {
         key: 'onClick',

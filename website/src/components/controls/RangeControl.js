@@ -55,6 +55,8 @@ export default class RangeControl extends Component {
                         {...pick(this.props, ['min', 'max', 'step'])}
                     />
                 </Row>
+                <span />
+                <div className="control-help">{help}</div>
             </div>
         )
     }

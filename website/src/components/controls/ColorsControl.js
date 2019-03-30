@@ -91,7 +91,7 @@ export default class ColorsControl extends PureComponent {
                     value={value}
                     clearable={false}
                 />
-                <span/>
+                <span />
                 <div className="control-help">{help}</div>
             </div>
         )

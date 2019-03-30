@@ -6,9 +6,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import className from 'classnames'
+import React from 'react'
 import Label from './Label'
 
 const boxWidth = 80
@@ -31,16 +29,16 @@ const anchors = [
     ['left', 0, boxHeight / 2],
 ]
 
-const BoxAnchorControl = ({
-    label,
-    value,
-    onChange,
-}) => {
+const BoxAnchorControl = ({ label, value, onChange }) => {
     return (
         <div className="chart-controls_item">
             <Label>{label}</Label>
             <div>
-                <svg width={boxWidth + boxPadding * 2} height={boxHeight + boxPadding * 2} style={{ background: 'white' }}>
+                <svg
+                    width={boxWidth + boxPadding * 2}
+                    height={boxHeight + boxPadding * 2}
+                    style={{ background: 'white' }}
+                >
                     <g transform={`translate(${boxPadding},${boxPadding})`}>
                         <rect
                             fill="none"
@@ -53,7 +51,10 @@ const BoxAnchorControl = ({
                             const isSelected = value === anchor[0]
 
                             return (
-                                <g key={anchor[0]} transform={`translate(${anchor[1]},${anchor[2]})`}>
+                                <g
+                                    key={anchor[0]}
+                                    transform={`translate(${anchor[1]},${anchor[2]})`}
+                                >
                                     <circle
                                         fill={isSelected ? pointSelectedColor : pointColor}
                                         r={pointRadius}
@@ -71,7 +72,7 @@ const BoxAnchorControl = ({
                                         fillOpacity={0}
                                         r={outlineRadius}
                                         style={{
-                                            cursor: 'pointer'
+                                            cursor: 'pointer',
                                         }}
                                         onClick={() => {
                                             onChange(anchor[0])

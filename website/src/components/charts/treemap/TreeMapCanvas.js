@@ -18,6 +18,7 @@ import { groupsByScope } from './TreeMapControls'
 import nivoTheme from '../../../nivoTheme'
 import propsMapper from './propsMapper'
 import { generateHeavyDataSet as generateData } from './generators'
+import ChartPage from '../ChartPage'
 
 export default class TreeMapCanvas extends Component {
     state = {
@@ -84,22 +85,22 @@ export default class TreeMapCanvas extends Component {
         })
 
         return (
-            <div className="chart_page">
+            <ChartPage>
                 <ChartHeader
                     chartClass="TreeMapCanvas"
                     tags={['@nivo/treemap', 'hierarchy', 'canvas']}
                 />
                 <div className="chart-description">
                     <p className="description">
-                        A variation around the <Link to="/treemap">TreeMap</Link> component. Well suited
-                        for large data sets as it does not impact DOM tree depth and does not involve
-                        React diffing stuff (not that useful when using canvas), however you'll lose the
-                        isomorphic ability and transitions (for now).
+                        A variation around the <Link to="/treemap">TreeMap</Link> component. Well
+                        suited for large data sets as it does not impact DOM tree depth and does not
+                        involve React diffing stuff (not that useful when using canvas), however
+                        you'll lose the isomorphic ability and transitions (for now).
                     </p>
                     <p className="description">
                         The responsive alternative of this component is{' '}
-                        <code>ResponsiveTreeMapCanvas</code>, it also offers other implementations, see{' '}
-                        <Link to="/treemap">TreeMap</Link> and{' '}
+                        <code>ResponsiveTreeMapCanvas</code>, it also offers other implementations,
+                        see <Link to="/treemap">TreeMap</Link> and{' '}
                         <Link to="/treemap/html">TreeMapHtml</Link>.
                     </p>
                     <p className="description">
@@ -142,7 +143,7 @@ export default class TreeMapCanvas extends Component {
                     onChange={this.handleSettingsUpdate}
                     groups={groupsByScope.TreeMapCanvas}
                 />
-            </div>
+            </ChartPage>
         )
     }
 }

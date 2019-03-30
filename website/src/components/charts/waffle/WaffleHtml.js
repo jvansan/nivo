@@ -17,6 +17,7 @@ import generateCode from '../../../lib/generateChartCode'
 import config from '../../../config'
 import nivoTheme from '../../../nivoTheme'
 import propsMapper from './propsMapper'
+import ChartPage from '../ChartPage'
 
 const generateData = () => [
     {
@@ -126,19 +127,20 @@ export default class WaffleHtml extends Component {
         )
 
         return (
-            <div className="chart_page">
+            <ChartPage>
                 <ChartHeader
                     chartClass="WaffleHtml"
                     tags={['@nivo/waffle', 'html', 'isomorphic']}
                 />
                 <div className="chart-description">
                     <p className="description">
-                        A variation around the <Link to="/waffle">Waffle</Link> component, using HTML
-                        elements.
+                        A variation around the <Link to="/waffle">Waffle</Link> component, using
+                        HTML elements.
                     </p>
                     <p className="description">
-                        You can fully customize it using <code>cellComponent</code> property to define
-                        your own cell component, if you wish to do so you should have a look at{' '}
+                        You can fully customize it using <code>cellComponent</code> property to
+                        define your own cell component, if you wish to do so you should have a look
+                        at{' '}
                         <a
                             href="https://github.com/plouc/nivo/blob/master/packages/nivo-waffle/src/WaffleCellHtml.js"
                             target="_blank"
@@ -187,7 +189,7 @@ export default class WaffleHtml extends Component {
                     onChange={this.handleSettingsUpdate}
                     groups={groupsByScope.WaffleHtml}
                 />
-            </div>
+            </ChartPage>
         )
     }
 }
