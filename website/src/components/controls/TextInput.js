@@ -22,8 +22,15 @@ const InputElement = styled.input`
     }
 `
 
-export default class TextInput extends Component {
-    render() {
-        return <InputElement type="text" {...this.props} />
-    }
+const TextInput = props => {
+    const hasUnit = !!props.unit
+
+    return (
+        <div>
+            <InputElement type="text" {...props} />
+            {hasUnit && <span>{props.unit}</span>}
+        </div>
+    )
 }
+
+export default TextInput

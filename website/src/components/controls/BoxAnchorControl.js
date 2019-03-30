@@ -7,6 +7,7 @@
  * file that was distributed with this source code.
  */
 import React from 'react'
+import Control from './Control'
 import Label from './Label'
 
 const boxWidth = 80
@@ -31,7 +32,7 @@ const anchors = [
 
 const BoxAnchorControl = ({ label, value, onChange }) => {
     return (
-        <div className="chart-controls_item">
+        <Control>
             <Label>{label}</Label>
             <div>
                 <svg
@@ -84,7 +85,7 @@ const BoxAnchorControl = ({ label, value, onChange }) => {
                     </g>
                 </svg>
             </div>
-        </div>
+        </Control>
     )
 }
 

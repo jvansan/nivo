@@ -9,6 +9,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import Control from './Control'
 import Label from './Label'
 // import TextInput from './TextInput'
 
@@ -20,14 +21,14 @@ const Items = styled.div`
 
 const NumberArrayControl = ({ label: globalLabel, items }) => {
     return (
-        <div className="chart-controls_item">
-            <Label className="control_label">{globalLabel}</Label>
+        <Control>
+            <Label>{globalLabel}</Label>
             <Items>
                 {items.map(({ label }, i) => {
                     return <div key={i}>{label}</div>
                 })}
             </Items>
-        </div>
+        </Control>
     )
 }
 

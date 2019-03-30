@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import pick from 'lodash/pick'
+import Control from './Control'
 import Label from './Label'
 import TextInput from './TextInput'
 
@@ -39,10 +40,8 @@ export default class RangeControl extends Component {
         // /*unit && <span className="unit">{unit}</span>*/
 
         return (
-            <div className="chart-controls_item">
-                <Label className="control_label" htmlFor={id}>
-                    {label}
-                </Label>
+            <Control>
+                <Label htmlFor={id}>{label}</Label>
                 <Row>
                     <div className="RangeControl_Input">
                         <TextInput id={id} value={value} onChange={this.handleChange} />
@@ -57,7 +56,7 @@ export default class RangeControl extends Component {
                 </Row>
                 <span />
                 <div className="control-help">{help}</div>
-            </div>
+            </Control>
         )
     }
 }

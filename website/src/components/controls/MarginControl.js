@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import Control from './Control'
 import TextInput from './TextInput'
 import Label from './Label'
 
@@ -42,7 +43,7 @@ export default class MarginControl extends Component {
         const { side } = this.state
 
         return (
-            <div className="chart-controls_item">
+            <Control>
                 <Label>{label}</Label>
                 <div className="MarginControl">
                     <span />
@@ -75,7 +76,7 @@ export default class MarginControl extends Component {
                     />
                     <span />
                 </div>
-            </div>
+            </Control>
         )
     }
 }

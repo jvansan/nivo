@@ -9,6 +9,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
+import Control from './Control'
+import Label from './Label'
+import TextInput from './TextInput'
 
 export default class TextControl extends Component {
     static propTypes = {
@@ -28,11 +31,9 @@ export default class TextControl extends Component {
         const { id, label, value, onChange, help, disabled } = this.props
 
         return (
-            <div className="chart-controls_item">
-                <label className="control_label" htmlFor={id}>
-                    {label}
-                </label>
-                <input
+            <Control>
+                <Label htmlFor={id}>{label}</Label>
+                <TextInput
                     id={id}
                     type="text"
                     className={classNames('control-text', {
@@ -42,8 +43,9 @@ export default class TextControl extends Component {
                     onChange={onChange}
                     disabled={disabled === true}
                 />
+                <span />
                 <div className="control-help">{help}</div>
-            </div>
+            </Control>
         )
     }
 }

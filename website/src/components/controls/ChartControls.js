@@ -17,9 +17,9 @@ import pick from 'lodash/pick'
 import omit from 'lodash/omit'
 import ArrayControl from './ArrayControl'
 import ObjectControl from './ObjectControl'
-import SliderControl from './SliderControl'
+import RangeControl from './RangeControl'
 import SwitchControl from './SwitchControl'
-import SwitchableSliderControl from './SwitchableSliderControl'
+import SwitchableRangeControl from './SwitchableRangeControl'
 import ColorsControl from './ColorsControl'
 import QuantizeColorsControl from './QuantizeColorsControl'
 import ColorControl from './ColorControl'
@@ -160,7 +160,7 @@ export default class ChartControls extends Component {
 
             case 'range':
                 return (
-                    <SliderControl
+                    <RangeControl
                         {...pick(config, ['min', 'max', 'unit', 'step', 'help'])}
                         key={config.name}
                         id={id}
@@ -184,7 +184,7 @@ export default class ChartControls extends Component {
 
             case 'switchableRange':
                 return (
-                    <SwitchableSliderControl
+                    <SwitchableRangeControl
                         {...pick(config, [
                             'min',
                             'max',

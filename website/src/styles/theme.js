@@ -15,7 +15,8 @@ export default {
             text: '#000000',
             textLight: '#666666',
 
-            border: '#e3e3e3',
+            border: '#dddddd',
+            borderLight: '#eeeeee',
 
             accent: '#e25d47',
             accentLight: '#f88d81',
@@ -26,30 +27,11 @@ export default {
 
             inputBackground: '#f7fafb',
             inputBorder: '#cccccc',
-
-            /*
-            $main-background-color: #f7fafb;
-
-            $mini-nav-background-color: #fff;
-            $header-background-color: $accent-color;
-            $sidebar-background-color: #e1ebff;
-            $title-text-color: $accent-color;
-            $button-background-color: $accent-color;
-            $table-odd-background-color: #f5f5f5;
-            $chart-meta-color: #889eae;
-            $links-color: #e25d47;
-
-            $code-background-color: #fff;
-            $code-text-color: #222;
-            $code-number-color: #eb8404;
-            $code-string-color: #199384;
-            $code-boolean-color: #257493;
-            */
         },
         dimensions,
 
         cardShadow: '0 2px 6px rgba(0, 0, 0, 0.1)',
-        topCardShadow: '0 16px 30px rgba(0, 0, 0, 0.1)',
+        topCardShadow: '0 16px 30px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.06)',
 
         nivo: {
             axis: {
@@ -96,7 +78,8 @@ export default {
             text: '#eee',
             textLight: '#aaaaaa',
 
-            border: '#141414',
+            border: '#111111',
+            borderLight: '#1a1a1a',
 
             accent: '#e25d47',
             accentLight: '#f88d81',
@@ -110,8 +93,8 @@ export default {
         },
         dimensions,
 
-        cardShadow: '0 2px 6px rgba(0, 0, 0, 0.17)',
-        topCardShadow: '0 16px 30px rgba(0, 0, 0, 0.17)',
+        cardShadow: '0 2px 6px rgba(0, 0, 0, 0.3)',
+        topCardShadow: '0 16px 30px rgba(0, 0, 0, 0.3)',
 
         nivo: {
             background: '#222',

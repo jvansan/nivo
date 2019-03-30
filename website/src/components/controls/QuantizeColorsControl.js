@@ -11,6 +11,8 @@ import PropTypes from 'prop-types'
 import { quantizeColorScales } from '@nivo/core'
 import Select from 'react-select'
 import ColorsControlItem from './ColorsControlItem'
+import Control from './Control'
+import Label from './Label'
 
 const options = Object.keys(quantizeColorScales).map(id => ({
     id,
@@ -57,11 +59,11 @@ export default class QuantizeColorsControl extends Component {
         const { help, value } = this.props
 
         return (
-            <>
-                <label className="control_label">
+            <Control>
+                <Label>
                     colors:&nbsp;
                     <code className="code code-string">'{value}'</code>
-                </label>
+                </Label>
                 <Select
                     options={options.map(({ id, colors }) => ({
                         label: id,
@@ -76,7 +78,7 @@ export default class QuantizeColorsControl extends Component {
                 />
                 <span />
                 {help && <div className="control-help">{help}</div>}
-            </>
+            </Control>
         )
     }
 }

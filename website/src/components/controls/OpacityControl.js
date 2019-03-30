@@ -8,6 +8,7 @@
  */
 import React, { useCallback } from 'react'
 import styled from 'styled-components'
+import Control from './Control'
 import Label from './Label'
 import TextInput from './TextInput'
 
@@ -30,10 +31,8 @@ const OpacityControl = ({ id, label, value, onChange }) => {
     )
 
     return (
-        <div className="chart-controls_item">
-            <Label className="control_label" htmlFor={id}>
-                {label}
-            </Label>
+        <Control>
+            <Label htmlFor={id}>{label}</Label>
             <Row>
                 <svg width={size} height={size}>
                     <defs>
@@ -60,7 +59,7 @@ const OpacityControl = ({ id, label, value, onChange }) => {
                 />
                 <TextInput value={value} onChange={handleChange} />
             </Row>
-        </div>
+        </Control>
     )
 }
 

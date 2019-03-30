@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import pick from 'lodash/pick'
+import Control from './Control'
 import Label from './Label'
 
 export default class SwitchableRangeControl extends Component {
@@ -51,7 +52,7 @@ export default class SwitchableRangeControl extends Component {
         const { isSliderEnabled, sliderValue } = this.state
 
         return (
-            <div className="chart-controls_item">
+            <Control>
                 <Label>{label}</Label>
                 <div>
                     <div className="SwitchableRangeControl">
@@ -99,7 +100,7 @@ export default class SwitchableRangeControl extends Component {
                 </div>
                 <span />
                 <div className="control-help">{help}</div>
-            </div>
+            </Control>
         )
     }
 }

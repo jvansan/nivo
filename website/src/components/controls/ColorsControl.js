@@ -12,6 +12,7 @@ import PropTypes from 'prop-types'
 import { colorSchemeIds, colorSchemes, colorInterpolatorIds, colorInterpolators } from '@nivo/core'
 import Select from 'react-select'
 import ColorsControlItem from './ColorsControlItem'
+import Control from './Control'
 import Label from './Label'
 
 const colors = colorSchemeIds.map(id => ({
@@ -73,7 +74,7 @@ export default class ColorsControl extends PureComponent {
         }
 
         return (
-            <div className="chart-controls_item">
+            <Control>
                 <Label>
                     {label}
                     :&nbsp;
@@ -93,7 +94,7 @@ export default class ColorsControl extends PureComponent {
                 />
                 <span />
                 <div className="control-help">{help}</div>
-            </div>
+            </Control>
         )
     }
 }

@@ -295,13 +295,11 @@ export default class ControlsGroup extends Component {
 
             case 'quantizeColors':
                 return (
-                    <div className="chart-controls_item" key={config.name}>
-                        <QuantizeColorsControl
-                            value={get(settings, config.name)}
-                            onChange={this.handleDirectUpdate(config.name)}
-                            help={config.help}
-                        />
-                    </div>
+                    <QuantizeColorsControl
+                        value={get(settings, config.name)}
+                        onChange={this.handleDirectUpdate(config.name)}
+                        help={config.help}
+                    />
                 )
 
             case 'color':
@@ -322,14 +320,12 @@ export default class ControlsGroup extends Component {
 
             case 'colorPicker':
                 return (
-                    <div className="chart-controls_item" key={config.name}>
-                        <ColorPickerControl
-                            label={config.name}
-                            help={config.help}
-                            onChange={this.handleDirectUpdate(config.name)}
-                            value={get(settings, config.name)}
-                        />
-                    </div>
+                    <ColorPickerControl
+                        label={config.name}
+                        help={config.help}
+                        onChange={this.handleDirectUpdate(config.name)}
+                        value={get(settings, config.name)}
+                    />
                 )
 
             default:

@@ -6,6 +6,7 @@ const LabelElement = styled.label`
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    align-self: center;
     text-align: right;
     margin: 0;
     color: ${({ theme }) => theme.colors.text};

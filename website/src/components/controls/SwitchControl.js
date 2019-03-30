@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import Control from './Control'
 import Label from './Label'
 
 export default class SwitchControl extends Component {
@@ -19,7 +20,7 @@ export default class SwitchControl extends Component {
         const { id, label, value, onChange, help } = this.props
 
         return (
-            <div className="chart-controls_item">
+            <Control>
                 <Label htmlFor={id}>{label}</Label>
                 <span className="control-switch">
                     <input
@@ -33,7 +34,7 @@ export default class SwitchControl extends Component {
                 </span>
                 <span />
                 <div className="control-help">{help}</div>
-            </div>
+            </Control>
         )
     }
 }

@@ -8,8 +8,32 @@
  */
 import React, { PureComponent, Fragment } from 'react'
 import PropTypes from 'prop-types'
-import classNames from 'classnames'
+import styled from 'styled-components'
 import ChartControls from './ChartControls'
+
+const Header = styled.div`
+    grid-column: span 3;
+    padding: 9px 20px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--accent-color);
+    user-select: none;
+    opacity: ${({ isOpened }) => (isOpened ? 1 : 0.7)};
+    border-bottom: 1px solid ${({ theme }) => theme.colors.borderLight};
+
+    &:hover {
+        color: var(--accent-color-darker);
+    }
+
+    &:last-child {
+        border-bottom-width: 0;
+    }
+`
 
 export default class ObjectControl extends PureComponent {
     static propTypes = {
@@ -40,17 +64,12 @@ export default class ObjectControl extends PureComponent {
 
         return (
             <Fragment>
-                <div
-                    className={classNames('object-control_header', {
-                        '_is-opened': isOpened,
-                    })}
-                    onClick={this.handleToggle}
-                >
+                <Header isOpened={isOpened} onClick={this.handleToggle}>
                     <div>
                         {label}
                         <div className="control-help">{help}</div>
                     </div>
-                </div>
+                </Header>
                 {isOpened && (
                     <ChartControls
                         name={label}

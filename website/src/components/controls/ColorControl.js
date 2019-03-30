@@ -10,6 +10,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Select from 'react-select'
 import { mapInheritedColor } from '../../lib/settings'
+import Control from './Control'
 import Label from './Label'
 
 const hasGammaModifier = type => ['inherit:darker', 'inherit:brighter'].includes(type)
@@ -73,7 +74,7 @@ class ColorControl extends Component {
         if (withCustomColor) options.unshift({ value: 'custom', label: 'custom' })
 
         return (
-            <div className="chart-controls_item">
+            <Control>
                 <Label>
                     {label}:{' '}
                     <code className="code code-string">
@@ -116,7 +117,7 @@ class ColorControl extends Component {
                 </div>
                 <span />
                 <div className="control-help">{help}</div>
-            </div>
+            </Control>
         )
     }
 }

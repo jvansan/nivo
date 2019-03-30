@@ -8,6 +8,7 @@
  */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import Control from './Control'
 import Label from './Label'
 
 class ColorPickerControl extends Component {
@@ -19,7 +20,7 @@ class ColorPickerControl extends Component {
         const { id, value, label, help } = this.props
 
         return (
-            <>
+            <Control>
                 <Label htmlFor={id}>{label}</Label>
                 <div>
                     <input type="color" id={id} onChange={this.handleChange} value={value} />
@@ -28,7 +29,7 @@ class ColorPickerControl extends Component {
                 </div>
                 <span />
                 <div className="control-help">{help}</div>
-            </>
+            </Control>
         )
     }
 }

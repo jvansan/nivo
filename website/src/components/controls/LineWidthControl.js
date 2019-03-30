@@ -8,6 +8,7 @@
  */
 import React, { useCallback } from 'react'
 import styled from 'styled-components'
+import Control from './Control'
 import Label from './Label'
 import TextInput from './TextInput'
 
@@ -30,10 +31,8 @@ const LineWidthControl = ({ id, label, value, onChange }) => {
     )
 
     return (
-        <div className="chart-controls_item">
-            <Label className="control_label" htmlFor={id}>
-                {label}
-            </Label>
+        <Control>
+            <Label htmlFor={id}>{label}</Label>
             <Row>
                 <TextInput value={value} onChange={handleChange} unit="px" />
                 <input type="range" value={value} onChange={handleChange} min={0} max={20} />
@@ -58,7 +57,7 @@ const LineWidthControl = ({ id, label, value, onChange }) => {
                     />
                 </svg>
             </Row>
-        </div>
+        </Control>
     )
 }
 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import Control from './Control'
 import Select from './Select'
 import Label from './Label'
 
@@ -22,12 +23,12 @@ export default class ChoicesControl extends Component {
         const value = choices.find(({ value: v }) => v === _value)
 
         return (
-            <div className="chart-controls_item">
+            <Control>
                 <Label htmlFor={id}>{label}</Label>
                 <Select options={choices} value={value} clearable={false} onChange={onChange} />
                 <span />
                 <div className="control-help">{help}</div>
-            </div>
+            </Control>
         )
     }
 }

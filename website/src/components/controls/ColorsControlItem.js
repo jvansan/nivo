@@ -9,6 +9,7 @@
 
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import Label from './Label'
 
 class ColorsControlItem extends Component {
     render() {
@@ -16,7 +17,7 @@ class ColorsControlItem extends Component {
 
         return (
             <>
-                <span className="colors_item_label">{id}</span>
+                <Label>{id}</Label>
                 <div className="colors_item_colors">
                     {colors.map(color => (
                         <span
