@@ -17,7 +17,7 @@ import Settings from '../../Settings'
 import { groupsByScope } from './GeoControls'
 import countries from './world_countries'
 import ChartPage from '../ChartPage'
-// import propsMapper from './propsMapper'
+import propsMapper from './propsMapper'
 
 const initialSettings = {
     margin: {
@@ -34,7 +34,10 @@ const initialSettings = {
 
     fillColor: '#eeeeee',
     borderWidth: 0.5,
-    borderColor: '#333333',
+    borderColor: {
+        type: 'custom',
+        color: '#333333',
+    },
 
     enableGraticule: true,
     graticuleLineWidth: 0.5,
@@ -58,13 +61,13 @@ const GeoMap = () => {
         )
     })
 
-    // const mappedSettings = propsMapper(settings)
+    const mappedSettings = propsMapper(settings)
 
     const code = generateCode(
         'ResponsiveGeoMap',
         {
             features: [],
-            ...settings,
+            ...mappedSettings,
         },
         {
             pkg: '@nivo/geo',
@@ -100,7 +103,11 @@ const GeoMap = () => {
                 </p>
             </div>
             <ChartTabs chartClass="geomap" code={code}>
-                <ResponsiveGeoMap features={countries.features} onClick={onClick} {...settings} />
+                <ResponsiveGeoMap
+                    features={countries.features}
+                    onClick={onClick}
+                    {...mappedSettings}
+                />
             </ChartTabs>
             <Settings
                 component="GeoMap"

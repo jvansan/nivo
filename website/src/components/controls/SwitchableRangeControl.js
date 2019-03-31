@@ -12,7 +12,7 @@ export default class SwitchableRangeControl extends Component {
         disabledValue: PropTypes.any.isRequired,
         unit: PropTypes.string,
         onChange: PropTypes.func.isRequired,
-        help: PropTypes.string.isRequired,
+        help: PropTypes.node.isRequired,
         defaultValue: PropTypes.number.isRequired,
         min: PropTypes.number.isRequired,
         max: PropTypes.number.isRequired,

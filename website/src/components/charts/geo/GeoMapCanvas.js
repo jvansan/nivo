@@ -17,7 +17,7 @@ import { groupsByScope } from './GeoControls'
 import nivoTheme from '../../../nivoTheme'
 import countries from './world_countries'
 import ChartPage from '../ChartPage'
-// import propsMapper from './propsMapper'
+import propsMapper from './propsMapper'
 
 const initialSettings = {
     pixelRatio: window && window.devicePixelRatio ? window.devicePixelRatio : 1,
@@ -36,7 +36,10 @@ const initialSettings = {
 
     fillColor: '#eeeeee',
     borderWidth: 0.5,
-    borderColor: '#333333',
+    borderColor: {
+        type: 'custom',
+        color: '#333333',
+    },
 
     enableGraticule: true,
     graticuleLineWidth: 0.5,
@@ -60,13 +63,13 @@ const GeoMapCanvas = () => {
         )
     })
 
-    // const mappedSettings = propsMapper(settings)
+    const mappedSettings = propsMapper(settings)
 
     const code = generateCode(
         'ResponsiveGeoMapCanvas',
         {
             features: [],
-            ...settings,
+            ...mappedSettings,
         },
         {
             pkg: '@nivo/geo',
@@ -91,7 +94,7 @@ const GeoMapCanvas = () => {
                 <ResponsiveGeoMapCanvas
                     features={countries.features}
                     onClick={onClick}
-                    {...settings}
+                    {...mappedSettings}
                 />
             </ChartTabs>
             <Settings

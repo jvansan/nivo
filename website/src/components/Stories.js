@@ -24,7 +24,7 @@ const Wrapper = styled.div`
     bottom: ${({ theme }) => theme.dimensions.contentMargin}px;
     --innerHeight: calc(100% - 70px - ${({ theme }) => theme.dimensions.contentMargin}px);
     height: calc(var(--innerHeight) * 0.45);
-    background: red;
+    background: ${({ theme }) => theme.colors.cardAltBackground};
     ${({ isFullWidth, theme }) => {
         if (isFullWidth) {
             return `
@@ -92,21 +92,38 @@ const Wrapper = styled.div`
     }
 `
 
+const StoriesItem = styled.a`
+    color: inherit;
+    padding: 9px 24px;
+    border-top: 1px solid ${({ theme }) => theme.colors.borderLight};
+    font-size: 14px;
+    line-height: 1.6em;
+    cursor: pointer;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 500;
+
+    &:hover {
+        background: ${({ theme }) => theme.colors.cardAltBackground};
+    }
+`
+
 const Stories = ({ isFullWidth = false, stories }) => {
     return (
         <Wrapper isFullWidth={isFullWidth}>
             <CollapsibleCard title="Recipes" expandedByDefault={true}>
                 {stories.map((story, i) => (
-                    <a
+                    <StoriesItem
                         key={i}
-                        className="stories__item"
                         href={buildStoryLink(story.link)}
                         target="_blank"
                         rel="noopener noreferrer"
                     >
                         {story.label}
                         <VisitIcon size={20} color="#bbb" />
-                    </a>
+                    </StoriesItem>
                 ))}
             </CollapsibleCard>
         </Wrapper>

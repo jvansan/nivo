@@ -13,6 +13,7 @@ import nivoTheme from '../../../nivoTheme'
 import generateCode from '../../../lib/generateChartCode'
 import ChartHeader from '../../ChartHeader'
 import ChartTabs from '../../ChartTabs'
+import ActionsLogger, { useActionsLogger } from '../../ActionsLogger'
 import Settings from '../../Settings'
 import { groupsByScope } from './GeoControls'
 import countries from './world_countries'
@@ -49,7 +50,10 @@ const initialSettings = {
     graticuleLineColor: '#dddddd',
 
     borderWidth: 0.5,
-    borderColor: '#152538',
+    borderColor: {
+        type: 'custom',
+        color: '#152538',
+    },
 
     isInteractive: true,
     'custom tooltip example': false,
@@ -86,27 +90,29 @@ const initialSettings = {
 
     theme: {
         ...nivoTheme,
-        background: '#ffffff',
-        legends: {
-            text: {
-                fontSize: 11,
-                fontWeight: 600,
-            },
-        },
     },
 }
 
 const Choropleth = () => {
     const [settings, setSettings] = useState(initialSettings)
     const [data, setData] = useState(generateChoroplethData())
+    const [actions, logAction] = useActionsLogger()
+    const onClick = useCallback(
+        feature => {
+            logAction({
+                type: 'click',
+                label: `${feature.label}: ${feature.formattedValue} (${feature.id})`,
+                data: {
+                    label: feature.label,
+                    value: feature.value,
+                    formattedValue: feature.formattedValue,
+                    data: feature.data,
+                },
+            })
+        },
+        [logAction]
+    )
     const diceRoll = useCallback(() => setData(generateChoroplethData()), [setData])
-    const onClick = useCallback((feature, event) => {
-        alert(
-            `${feature.properties.name} (${feature.id})\nclicked at x: ${event.clientX}, y: ${
-                event.clientY
-            }`
-        )
-    })
 
     const mappedSettings = propsMapper(settings)
 
@@ -166,6 +172,7 @@ const Choropleth = () => {
                     {...mappedSettings}
                 />
             </ChartTabs>
+            <ActionsLogger actions={actions} />
             <Settings
                 component="Choropleth"
                 settings={settings}

@@ -1,6 +1,6 @@
 const dimensions = {
     headerHeight: 60,
-    contentMargin: 40,
+    contentMargin: 30,
     contentMarginSmall: 20,
     miniNavItemSize: 66,
 }
@@ -8,7 +8,6 @@ dimensions.miniNavWidth = dimensions.miniNavItemSize * 2
 
 export default {
     light: {
-        headerHeight: 60,
         colors: {
             background: '#f7fafb',
 
@@ -71,7 +70,6 @@ export default {
         },
     },
     dark: {
-        headerHeight: 60,
         colors: {
             background: '#2e2e2e',
 

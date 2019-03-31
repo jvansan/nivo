@@ -1,40 +1,37 @@
-import React, { Component } from 'react'
+import React, { memo, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import Control from './Control'
 import Label from './Label'
 
-export default class SwitchControl extends Component {
-    static propTypes = {
-        id: PropTypes.string.isRequired,
-        label: PropTypes.string.isRequired,
-        value: PropTypes.bool.isRequired,
-        onChange: PropTypes.func.isRequired,
-        help: PropTypes.node.isRequired,
-    }
+const SwitchControl = memo(({ id, label, value, onChange, help }) => {
+    const handleChange = useCallback(event => onChange(event.target.checked), [onChange])
 
-    shouldComponentUpdate(nextProps) {
-        return nextProps.value !== this.props.value
-    }
+    return (
+        <Control>
+            <Label htmlFor={id}>{label}</Label>
+            <span className="control-switch">
+                <input
+                    className="cmn-toggle"
+                    id={id}
+                    type="checkbox"
+                    checked={value}
+                    onChange={handleChange}
+                />
+                <label htmlFor={id} />
+            </span>
+            <span />
+            <div className="control-help">{help}</div>
+        </Control>
+    )
+})
 
-    render() {
-        const { id, label, value, onChange, help } = this.props
-
-        return (
-            <Control>
-                <Label htmlFor={id}>{label}</Label>
-                <span className="control-switch">
-                    <input
-                        className="cmn-toggle"
-                        id={id}
-                        type="checkbox"
-                        checked={value}
-                        onChange={onChange}
-                    />
-                    <label htmlFor={id} />
-                </span>
-                <span />
-                <div className="control-help">{help}</div>
-            </Control>
-        )
-    }
+SwitchControl.displayName = 'SwitchControl'
+SwitchControl.propTypes = {
+    id: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
+    value: PropTypes.bool.isRequired,
+    onChange: PropTypes.func.isRequired,
+    help: PropTypes.node.isRequired,
 }
+
+export default SwitchControl

@@ -18,9 +18,12 @@ const Wrapper = styled.div`
     color: ${({ theme }) => theme.colors.text};
     box-shadow: ${({ theme }) => theme.cardShadow};
     margin-bottom: ${({ isExpanded }) => (isExpanded ? '30px' : 0)};
+
+    svg {
+        font-size: 26px;
+    }
 `
 
-// .card__header
 const Header = styled.div`
     height: 52px;
     width: 100%;
@@ -33,26 +36,10 @@ const Header = styled.div`
     align-items: center;
 `
 
-// .card__header h3
 const Title = styled.h3`
     margin: 0;
     color: ${({ theme }) => theme.colors.text};
 `
-
-/*
-.card._is-expanded .card_toggle {
-    transform: rotate(90deg);
-}
-
-.card__header svg {
-    font-size: 26px;
-    color: #bbb;
-}
-
-.card__header:hover svg {
-    color: #777;
-}
-*/
 
 export default class CollapsibleCard extends Component {
     static propTypes = {
@@ -82,7 +69,7 @@ export default class CollapsibleCard extends Component {
 
         return (
             <Wrapper isExpanded={expanded}>
-                <Header className="card__header no-select" onClick={this.handleToggleClick}>
+                <Header className="no-select" onClick={this.handleToggleClick}>
                     <Title>{title}</Title>
                     {expanded ? <UpIcon /> : <DownIcon />}
                 </Header>

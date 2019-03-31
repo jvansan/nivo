@@ -6,7 +6,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-import React, { Component, Fragment } from 'react'
+import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import get from 'lodash/get'
 import set from 'lodash/set'
@@ -39,303 +39,278 @@ export const shouldRenderControl = (config, context) => {
     return config.when(context)
 }
 
-export default class ControlsGroup extends Component {
-    static propTypes = {
-        component: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired,
-        controls: PropTypes.array.isRequired,
-        settings: PropTypes.object.isRequired,
-        onChange: PropTypes.func.isRequired,
-        isNested: PropTypes.bool.isRequired,
+/*
+handleArrayUpdate = key => value => {
+    const { onChange, settings } = this.props
+    onChange(set({ ...settings }, key, value))
+}
+*/
+
+const renderControl = (groupName, config, settings, onChange) => {
+    if (!shouldRenderControl(config, settings)) {
+        return null
     }
 
-    static defaultProps = {
-        isNested: false,
-    }
+    const id = `${snakeCase(groupName)}-${config.name}`
+    const value = get(settings, config.name)
+    const handleChange = onChange(config.name)
 
-    handleArrayUpdate = key => value => {
-        const { onChange, settings } = this.props
-        onChange(set({ ...settings }, key, value))
-    }
+    switch (config.type) {
+        case 'array':
+            return (
+                <ArrayControl
+                    id={id}
+                    value={value}
+                    label={config.name}
+                    help={config.help}
+                    //onChange={this.handleArrayUpdate(config.name)}
+                    onChange={handleChange}
+                    props={getPropertiesGroupControls(config.props)}
+                    shouldCreate={config.shouldCreate}
+                    addLabel={config.addLabel}
+                    shouldRemove={config.shouldRemove}
+                    defaults={config.defaults}
+                    getItemTitle={config.getItemTitle}
+                />
+            )
 
-    handleSwitchUpdate = key => e => {
-        const { onChange, settings } = this.props
-        onChange(merge({}, settings, set({}, key, e.target.checked)))
-    }
+        case 'object':
+            return (
+                <ObjectControl
+                    id={id}
+                    value={value}
+                    label={config.name}
+                    help={config.help}
+                    onChange={handleChange}
+                    //onChange={this.handleArrayUpdate(config.name)}
+                    props={getPropertiesGroupControls(config.props)}
+                    defaults={config.defaults}
+                />
+            )
 
-    handleTextUpdate = key => e => {
-        const { onChange, settings } = this.props
-        onChange(merge({}, settings, set({}, key, e.target.value)))
-    }
+        case 'choices':
+            return (
+                <ChoicesControl
+                    id={id}
+                    value={value}
+                    label={config.name}
+                    help={config.help}
+                    choices={config.choices}
+                    onChange={handleChange}
+                />
+            )
 
-    handleRadioUpdate = key => e => {
-        const { onChange, settings } = this.props
-        onChange(merge({}, settings, set({}, key, e.target.value)))
-    }
+        case 'radio':
+            return (
+                <RadioControl
+                    id={id}
+                    value={value}
+                    label={config.name}
+                    choices={config.choices}
+                    onChange={handleChange}
+                    help={config.help}
+                />
+            )
 
-    handleDirectUpdate = key => value => {
-        const { onChange, settings } = this.props
+        case 'range':
+            return (
+                <RangeControl
+                    id={id}
+                    value={value}
+                    {...pick(config, ['min', 'max', 'unit', 'step', 'help'])}
+                    label={config.name}
+                    onChange={handleChange}
+                />
+            )
+
+        case 'switch':
+            return (
+                <SwitchControl
+                    id={id}
+                    value={value}
+                    label={config.name}
+                    onChange={handleChange}
+                    help={config.help}
+                />
+            )
+
+        case 'switchableRange':
+            return (
+                <SwitchableRangeControl
+                    id={id}
+                    value={value}
+                    {...pick(config, [
+                        'min',
+                        'max',
+                        'defaultValue',
+                        'disabledValue',
+                        'unit',
+                        'step',
+                        'help',
+                    ])}
+                    label={config.name}
+                    onChange={handleChange}
+                />
+            )
+
+        case 'text':
+            return (
+                <TextControl
+                    id={id}
+                    value={value}
+                    label={config.name}
+                    onChange={handleChange}
+                    help={config.help}
+                    disabled={config.disabled}
+                />
+            )
+
+        case 'colors':
+            return (
+                <ColorsControl
+                    id={id}
+                    value={value}
+                    label={config.name}
+                    includeSequential={!!config.includeSequential}
+                    onChange={handleChange}
+                    help={config.help}
+                />
+            )
+
+        case 'boxAnchor':
+            return (
+                <BoxAnchorControl
+                    id={id}
+                    value={value}
+                    label={config.name}
+                    onChange={handleChange}
+                    help={config.help}
+                />
+            )
+
+        case 'margin':
+            return (
+                <MarginControl
+                    id={id}
+                    value={value}
+                    help={config.help}
+                    label={config.name}
+                    onChange={handleChange}
+                />
+            )
+
+        case 'opacity':
+            return (
+                <OpacityControl
+                    id={id}
+                    value={value}
+                    help={config.help}
+                    label={config.name}
+                    onChange={handleChange}
+                />
+            )
+
+        case 'lineWidth':
+            return (
+                <LineWidthControl
+                    id={id}
+                    value={value}
+                    help={config.help}
+                    label={config.name}
+                    onChange={handleChange}
+                />
+            )
+
+        case 'numberArray':
+            return (
+                <NumberArrayControl
+                    id={id}
+                    value={value}
+                    help={config.help}
+                    label={config.name}
+                    onChange={handleChange}
+                    items={config.items}
+                />
+            )
+
+        /*
+        case 'axis':
+            return (
+                <AxisControl
+                    id={config.name}
+                    label={config.name}
+                    help={config.help}
+                    value={get(settings, config.name)}
+                    onChange={this.handleArrayUpdate(config.name)}
+                />
+            )
+        */
+
+        case 'quantizeColors':
+            return (
+                <QuantizeColorsControl
+                    id={id}
+                    value={value}
+                    onChange={handleChange}
+                    help={config.help}
+                />
+            )
+
+        case 'color':
+            return (
+                <ColorControl
+                    id={id}
+                    value={value}
+                    label={config.name}
+                    onChange={handleChange}
+                    {...pick(config, [
+                        'withTheme',
+                        'withCustomColor',
+                        'defaultCustomColor',
+                        'help',
+                    ])}
+                />
+            )
+
+        case 'colorPicker':
+            return (
+                <ColorPickerControl
+                    id={id}
+                    value={value}
+                    label={config.name}
+                    help={config.help}
+                    onChange={handleChange}
+                />
+            )
+
+        default:
+            return null
+    }
+}
+
+const ControlsGroup = ({ name, controls, settings, onChange }) => {
+    const setValue = key => value => {
         onChange(merge({}, settings, set({}, key, value)))
     }
 
-    handleSelectUpdate = key => value => {
-        const { onChange, settings } = this.props
-        onChange(merge({}, settings, set({}, key, value.value)))
-    }
-
-    renderControl(groupName, config) {
-        const { settings } = this.props
-
-        const id = `${snakeCase(groupName)}-${config.name}`
-
-        if (!shouldRenderControl(config, settings)) {
-            return null
-        }
-
-        switch (config.type) {
-            case 'array':
+    return (
+        <Fragment>
+            {controls.map(control => {
                 return (
-                    <ArrayControl
-                        key={config.name}
-                        label={config.name}
-                        help={config.help}
-                        onChange={this.handleArrayUpdate(config.name)}
-                        value={get(settings, config.name)}
-                        props={getPropertiesGroupControls(config.props)}
-                        shouldCreate={config.shouldCreate}
-                        addLabel={config.addLabel}
-                        shouldRemove={config.shouldRemove}
-                        defaults={config.defaults}
-                        getItemTitle={config.getItemTitle}
-                    />
+                    <Fragment key={control.name}>
+                        {renderControl(name, control, settings, setValue)}
+                    </Fragment>
                 )
-
-            case 'object':
-                return (
-                    <ObjectControl
-                        key={config.name}
-                        label={config.name}
-                        help={config.help}
-                        onChange={this.handleArrayUpdate(config.name)}
-                        value={get(settings, config.name)}
-                        props={getPropertiesGroupControls(config.props)}
-                        defaults={config.defaults}
-                    />
-                )
-
-            case 'choices':
-                return (
-                    <ChoicesControl
-                        key={config.name}
-                        id={config.name}
-                        label={config.name}
-                        help={config.help}
-                        choices={config.choices}
-                        value={get(settings, config.name)}
-                        onChange={this.handleSelectUpdate(config.name)}
-                    />
-                )
-
-            case 'radio':
-                return (
-                    <RadioControl
-                        key={config.name}
-                        id={id}
-                        label={config.name}
-                        choices={config.choices}
-                        value={get(settings, config.name)}
-                        onChange={this.handleRadioUpdate(config.name)}
-                        help={config.help}
-                    />
-                )
-
-            case 'range':
-                return (
-                    <RangeControl
-                        {...pick(config, ['min', 'max', 'unit', 'step', 'help'])}
-                        key={config.name}
-                        id={id}
-                        label={config.name}
-                        value={get(settings, config.name)}
-                        onChange={this.handleDirectUpdate(config.name)}
-                    />
-                )
-
-            case 'switch':
-                return (
-                    <SwitchControl
-                        key={config.name}
-                        id={id}
-                        label={config.name}
-                        value={get(settings, config.name)}
-                        onChange={this.handleSwitchUpdate(config.name)}
-                        help={config.help}
-                    />
-                )
-
-            case 'switchableRange':
-                return (
-                    <SwitchableRangeControl
-                        {...pick(config, [
-                            'min',
-                            'max',
-                            'defaultValue',
-                            'disabledValue',
-                            'unit',
-                            'step',
-                            'help',
-                        ])}
-                        key={config.name}
-                        id={id}
-                        label={config.name}
-                        value={get(settings, config.name)}
-                        onChange={this.handleDirectUpdate(config.name)}
-                    />
-                )
-
-            case 'text':
-                return (
-                    <TextControl
-                        key={config.name}
-                        id={id}
-                        label={config.name}
-                        value={get(settings, config.name)}
-                        onChange={this.handleTextUpdate(config.name)}
-                        help={config.help}
-                        disabled={config.disabled}
-                    />
-                )
-
-            case 'colors':
-                return (
-                    <ColorsControl
-                        key={config.name}
-                        label={config.name}
-                        value={get(settings, config.name)}
-                        includeSequential={!!config.includeSequential}
-                        onChange={this.handleDirectUpdate(config.name)}
-                        help={config.help}
-                    />
-                )
-
-            case 'boxAnchor':
-                return (
-                    <BoxAnchorControl
-                        key={config.name}
-                        label={config.name}
-                        value={get(settings, config.name)}
-                        includeSequential={!!config.includeSequential}
-                        onChange={this.handleDirectUpdate(config.name)}
-                        help={config.help}
-                    />
-                )
-
-            case 'margin':
-                return (
-                    <MarginControl
-                        key={config.name}
-                        id={config.name}
-                        help={config.help}
-                        label={config.name}
-                        value={get(settings, config.name)}
-                        onChange={this.handleDirectUpdate(config.name)}
-                    />
-                )
-
-            case 'opacity':
-                return (
-                    <OpacityControl
-                        key={config.name}
-                        id={config.name}
-                        help={config.help}
-                        label={config.name}
-                        value={get(settings, config.name)}
-                        onChange={this.handleDirectUpdate(config.name)}
-                    />
-                )
-
-            case 'lineWidth':
-                return (
-                    <LineWidthControl
-                        key={config.name}
-                        id={config.name}
-                        help={config.help}
-                        label={config.name}
-                        value={get(settings, config.name)}
-                        onChange={this.handleDirectUpdate(config.name)}
-                    />
-                )
-
-            case 'numberArray':
-                return (
-                    <NumberArrayControl
-                        key={config.name}
-                        id={config.name}
-                        help={config.help}
-                        label={config.name}
-                        value={get(settings, config.name)}
-                        onChange={this.handleDirectUpdate(config.name)}
-                        items={config.items}
-                    />
-                )
-
-            /*
-            case 'axis':
-                return (
-                    <AxisControl
-                        key={config.name}
-                        id={config.name}
-                        label={config.name}
-                        help={config.help}
-                        value={get(settings, config.name)}
-                        onChange={this.handleArrayUpdate(config.name)}
-                    />
-                )
-            */
-
-            case 'quantizeColors':
-                return (
-                    <QuantizeColorsControl
-                        value={get(settings, config.name)}
-                        onChange={this.handleDirectUpdate(config.name)}
-                        help={config.help}
-                    />
-                )
-
-            case 'color':
-                return (
-                    <ColorControl
-                        key={config.name}
-                        label={config.name}
-                        value={get(settings, config.name)}
-                        onChange={this.handleDirectUpdate(config.name)}
-                        {...pick(config, [
-                            'withTheme',
-                            'withCustomColor',
-                            'defaultCustomColor',
-                            'help',
-                        ])}
-                    />
-                )
-
-            case 'colorPicker':
-                return (
-                    <ColorPickerControl
-                        label={config.name}
-                        help={config.help}
-                        onChange={this.handleDirectUpdate(config.name)}
-                        value={get(settings, config.name)}
-                    />
-                )
-
-            default:
-                return null
-        }
-    }
-
-    render() {
-        const { name, controls } = this.props
-
-        return <Fragment>{controls.map(control => this.renderControl(name, control))}</Fragment>
-    }
+            })}
+        </Fragment>
+    )
 }
+
+ControlsGroup.propTypes = {
+    name: PropTypes.string.isRequired,
+    controls: PropTypes.array.isRequired,
+    settings: PropTypes.object.isRequired,
+    onChange: PropTypes.func.isRequired,
+}
+
+export default ControlsGroup

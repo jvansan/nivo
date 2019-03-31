@@ -8,7 +8,7 @@
  */
 import React from 'react'
 import styled from 'styled-components'
-import { settingsMapper } from '../../../lib/settings'
+import { settingsMapper, mapInheritedColor } from '../../../lib/settings'
 
 const TooltipWrapper = styled.div`
     display: grid;
@@ -39,7 +39,7 @@ const CustomTooltip = node => {
 
 export default settingsMapper(
     {
-        // borderColor: mapInheritedColor,
+        borderColor: mapInheritedColor,
         theme: (value, values) => {
             if (!values['custom tooltip example']) return value
 

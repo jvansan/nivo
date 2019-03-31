@@ -10,6 +10,7 @@ import React, { useState, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import ChartHeader from '../../ChartHeader'
 import ChartTabs from '../../ChartTabs'
+import ActionsLogger, { useActionsLogger } from '../../ActionsLogger'
 import generateCode from '../../../lib/generateChartCode'
 import Settings from '../../Settings'
 import { groupsByScope } from './CalendarControls'
@@ -86,9 +87,17 @@ const initialSettings = {
 
 const CalendarCanvas = ({ data }) => {
     const [settings, setSettings] = useState(initialSettings)
-    const onDayClick = useCallback((day, event) => {
-        alert(`${day.day}: ${day.value}\nclicked at x: ${event.clientX}, y: ${event.clientY}`)
-    })
+    const [actions, logAction] = useActionsLogger()
+    const onDayClick = useCallback(
+        day => {
+            logAction({
+                type: 'click',
+                label: `[day] ${day.day}: ${day.value}`,
+                data: day,
+            })
+        },
+        [logAction]
+    )
 
     const mappedSettings = propsMapper(settings)
 
@@ -104,24 +113,20 @@ const CalendarCanvas = ({ data }) => {
         }
     )
 
-    const description = (
-        <div className="chart-description">
-            <p className="description">
-                A variation around the <Link to="/calendar">Calendar</Link> component. Well suited
-                for large data sets as it does not impact DOM tree depth, however you'll lose the
-                isomorphic rendering ability.
-            </p>
-            <p className="description">
-                The responsive alternative of this component is{' '}
-                <code>ResponsiveCalendarCanvas</code>.
-            </p>
-        </div>
-    )
-
     return (
         <ChartPage>
             <ChartHeader chartClass="CalendarCanvas" tags={['@nivo/calendar', 'canvas']} />
-            {description}
+            <div className="chart-description">
+                <p className="description">
+                    A variation around the <Link to="/calendar">Calendar</Link> component. Well
+                    suited for large data sets as it does not impact DOM tree depth, however you'll
+                    lose the isomorphic rendering ability.
+                </p>
+                <p className="description">
+                    The responsive alternative of this component is{' '}
+                    <code>ResponsiveCalendarCanvas</code>.
+                </p>
+            </div>
             <ChartTabs chartClass="calendar" code={code} data={data}>
                 <ResponsiveCalendarCanvas
                     from={settings.from}
@@ -131,6 +136,7 @@ const CalendarCanvas = ({ data }) => {
                     {...mappedSettings}
                 />
             </ChartTabs>
+            <ActionsLogger actions={actions} />
             <Settings
                 component="CalendarCanvas"
                 settings={settings}

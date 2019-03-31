@@ -210,14 +210,8 @@ export default [
         type: '{number}',
         required: false,
         default: defaults.borderWidth,
-        controlType: 'range',
+        controlType: 'lineWidth',
         group: 'Base',
-        controlOptions: {
-            unit: 'px',
-            min: 0,
-            max: 12,
-            step: 1,
-        },
     },
     {
         key: 'borderColor',

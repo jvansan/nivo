@@ -17,8 +17,8 @@ import logoImg from '../assets/icons/nivo-logo.png'
 
 const Logo = styled(Link)`
     cursor: pointer;
-    width: var(--mini-nav-item-size);
-    height: var(--mini-nav-item-size);
+    width: ${({ theme }) => theme.dimensions.miniNavItemSize}px;
+    height: ${({ theme }) => theme.dimensions.headerHeight}px;
     display: block;
     background-color: ${({ theme }) => theme.colors.cardBackground};
     background-image: url(${logoImg});

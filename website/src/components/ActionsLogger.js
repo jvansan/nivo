@@ -8,6 +8,7 @@
  */
 import React, { useState, useCallback } from 'react'
 import styled from 'styled-components'
+import PointerIcon from 'react-icons/lib/fa/hand-pointer-o'
 
 export const useActionsLogger = () => {
     const [actions, setActions] = useState([])
@@ -42,12 +43,11 @@ const Wrapper = styled.div`
     z-index: 10;
     overflow-x: hidden;
     overflow-y: auto;
-    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
-    font-size: 13px;
-    line-height: 1.4em;
-    padding: 20px;
-    white-space: pre;
-    background: green;
+    //font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+    //font-size: 13px;
+    //line-height: 1.4em;
+    //padding: 20px;
+    //white-space: pre;
 
     @media only screen and (min-width: 760px) and (max-width: 1000px) {
         & {
@@ -79,22 +79,58 @@ const Wrapper = styled.div`
     }
 `
 
-const Header = styled.div`
-    background: white;
+const EmptyContainer = styled.div`
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    opacity: 0.4;
+    padding: 20px;
 `
+
+const EmptyMessage = styled.div`
+    text-align: center;
+    margin-top: 16px;
+`
+
+const EmptyIcon = styled(PointerIcon)``
+
+const ActionContainer = styled.div`
+    font-size: 13px;
+`
+
+const ActionHeader = styled.div`
+    padding: 7px 12px;
+    background: ${({ theme }) => theme.colors.cardBackground};
+    border-bottom: 1px solid ${({ theme }) => theme.colors.borderLight};
+`
+
+const Action = ({ action }) => {
+    const [isOpen, setIsOpen] = useState(false)
+
+    return (
+        <ActionContainer>
+            <ActionHeader>
+                {action.type}: {action.label}
+            </ActionHeader>
+            {isOpen && <pre>{JSON.stringify(action.data, null, '  ')}</pre>}
+        </ActionContainer>
+    )
+}
 
 const ActionsLogger = ({ actions }) => {
     return (
         <Wrapper>
+            {actions.length === 0 && (
+                <EmptyContainer>
+                    <EmptyIcon size={32} />
+                    <EmptyMessage>Start interacting with the chart to log actions</EmptyMessage>
+                </EmptyContainer>
+            )}
             {actions.map((action, i) => {
-                return (
-                    <div key={`${i}.${action.type}.${action.label}`}>
-                        <Header>
-                            {action.type}: {action.label}
-                        </Header>
-                        <pre>{JSON.stringify(action.data, null, '  ')}</pre>
-                    </div>
-                )
+                return <Action key={`${i}.${action.type}.${action.label}`} action={action} />
             })}
         </Wrapper>
     )
