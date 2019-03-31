@@ -60,7 +60,7 @@ const App = ({ location }) => {
     const isCapturing = location !== undefined && location.search.indexOf('capture') !== -1
 
     return (
-        <ThemeProvider theme={theme.light}>
+        <ThemeProvider theme={theme.dark}>
             <>
                 <GlobalStyle />
                 <div className={isCapturing ? 'isCapturing' : ''}>

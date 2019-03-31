@@ -132,14 +132,8 @@ export default [
         type: '{number}',
         required: false,
         default: defaults.linkLineWidth,
-        controlType: 'range',
+        controlType: 'lineWidth',
         group: 'Links',
-        controlOptions: {
-            unit: 'px',
-            min: 0,
-            max: 12,
-            step: 1,
-        },
     },
     {
         key: 'linkLineColor',
@@ -167,14 +161,8 @@ export default [
         type: '{number}',
         required: false,
         default: defaults.cellLineWidth,
-        controlType: 'range',
+        controlType: 'lineWidth',
         group: 'Cells',
-        controlOptions: {
-            unit: 'px',
-            min: 0,
-            max: 12,
-            step: 1,
-        },
     },
     {
         key: 'cellLineColor',
