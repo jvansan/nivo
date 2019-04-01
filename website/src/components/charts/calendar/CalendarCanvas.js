@@ -7,10 +7,10 @@
  * file that was distributed with this source code.
  */
 import React, { useState, useCallback } from 'react'
-import { Link } from 'react-router-dom'
 import ChartHeader from '../../ChartHeader'
 import ChartTabs from '../../ChartTabs'
 import ActionsLogger, { useActionsLogger } from '../../ActionsLogger'
+import ComponentDescription from '../../ComponentDescription'
 import generateCode from '../../../lib/generateChartCode'
 import Settings from '../../Settings'
 import { groupsByScope } from './CalendarControls'
@@ -85,6 +85,14 @@ const initialSettings = {
     },
 }
 
+const description = `
+A variation around the [Calendar](self:/calendar) component.
+Well suited for large data sets as it does not impact DOM tree depth,
+however you'll lose the isomorphic rendering ability.
+
+The responsive alternative of this component is \`ResponsiveCalendarCanvas\`,
+`
+
 const CalendarCanvas = ({ data }) => {
     const [settings, setSettings] = useState(initialSettings)
     const [actions, logAction] = useActionsLogger()
@@ -116,17 +124,7 @@ const CalendarCanvas = ({ data }) => {
     return (
         <ChartPage>
             <ChartHeader chartClass="CalendarCanvas" tags={['@nivo/calendar', 'canvas']} />
-            <div className="chart-description">
-                <p className="description">
-                    A variation around the <Link to="/calendar">Calendar</Link> component. Well
-                    suited for large data sets as it does not impact DOM tree depth, however you'll
-                    lose the isomorphic rendering ability.
-                </p>
-                <p className="description">
-                    The responsive alternative of this component is{' '}
-                    <code>ResponsiveCalendarCanvas</code>.
-                </p>
-            </div>
+            <ComponentDescription description={description} />
             <ChartTabs chartClass="calendar" code={code} data={data}>
                 <ResponsiveCalendarCanvas
                     from={settings.from}

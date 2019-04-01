@@ -164,12 +164,12 @@ below the x axis (or y axis if using horizontal layout).
 
 The bar item component can be customized to render any valid SVG element, it
 will receive current bar style, data and event handlers,
-the storybook offers an [example](storybook:bar/custom-bar-item).
+the storybook offers an [example](storybook:bar--custom-bar-item).
 
 The responsive alternative of this component is \`ResponsiveBar\`.
 
-This component is available in the [nivo-api](https://github.com/plouc/nivo-api),
-see [sample](https://nivo-api.herokuapp.com/samples/bar.svg)
+This component is available in the \`@nivo/api\`,
+see [sample](api:/samples/bar.svg)
 or [try it using the API client](self:/bar/api).
 
 See the [dedicated guide](self:/guides/legends) on how to setup

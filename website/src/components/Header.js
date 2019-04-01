@@ -1,6 +1,3 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
 /*
  * This file is part of the nivo project.
  *
@@ -9,39 +6,82 @@ import { Link } from 'react-router-dom'
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import GitHubIcon from 'react-icons/lib/fa/github'
 import TwitterIcon from 'react-icons/lib/fa/twitter'
 import { miscItems } from '../SiteMap'
 import logoImg from '../assets/icons/nivo-logo.png'
 
+const Container = styled.header`
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: var(--header-background-color);
+    background-image: linear-gradient(-90deg, #dc5a32, #c44a67);
+    height: ${({ theme }) => theme.dimensions.headerHeight}px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    z-index: 10;
+`
+
 const Logo = styled(Link)`
     cursor: pointer;
-    width: ${({ theme }) => theme.dimensions.miniNavItemSize}px;
+    width: ${({ theme }) => theme.dimensions.miniNavWidth}px;
     height: ${({ theme }) => theme.dimensions.headerHeight}px;
     display: block;
     background-color: ${({ theme }) => theme.colors.cardBackground};
     background-image: url(${logoImg});
-    background-size: 66%;
+    background-size: 34%;
     background-position: center center;
     background-repeat: no-repeat;
+
+    @media only screen and (min-width: 760px) and (max-width: 1000px) {
+        & {
+            display: none;
+        }
+    }
+
+    @media only screen and (max-width: 760px) {
+        & {
+            display: none;
+        }
+    }
+`
+
+const HeaderNav = styled.nav`
+    position: absolute;
+    top: 0;
+    right: 50px;
+    height: var(--header-height);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    @media only screen and (min-width: 760px) and (max-width: 1000px) {
+        & {
+            right: ${({ theme }) => theme.dimensions.contentMarginSmall}px;
+        }
+    }
+
+    @media only screen and (max-width: 760px) {
+        & {
+            display: none;
+        }
+    }
 `
 
 export default class Header extends Component {
-    static propTypes = {
-        onNavToggle: PropTypes.func.isRequired,
-    }
-
     render() {
-        const { onNavToggle } = this.props
-
         return (
-            <header>
+            <Container>
                 <Logo to="/">
                     <span className="sprite-icons-nivo-logo" />
                 </Logo>
-                <span className="nav_toggle" onClick={onNavToggle} />
-                <nav className="HeaderNav">
+                <HeaderNav>
                     {miscItems.map(item => {
                         if (item.children && item.children.length > 0) {
                             return (
@@ -98,8 +138,8 @@ export default class Header extends Component {
                     >
                         <TwitterIcon />
                     </a>
-                </nav>
-            </header>
+                </HeaderNav>
+            </Container>
         )
     }
 }

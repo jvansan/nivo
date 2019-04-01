@@ -89,6 +89,7 @@ const Wrapper = styled.div`
             box-shadow: ${({ theme }) => theme.cardShadow};
             border-left-width: 0;
             margin-bottom: ${({ theme }) => theme.dimensions.contentMarginSmall}px;
+            z-index: 0;
         }
     }
 `

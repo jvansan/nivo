@@ -83,12 +83,11 @@ It also offers various implementations, see
 [BubbleHtml](self:/bubble/html) and
 [BubbleCanvas](self:/bubble/canvas).
 
-This component is available in the
-[nivo-api](https://github.com/plouc/nivo-api),
+This component is available in the \`@nivo/api\`,
 see [sample](api:/samples/bubble.svg)
 or [try it using the API client](self:/bubble/api).
 You can also see more example usages in
-[the storybook](storybook:?selectedKind=Bubble&selectedStory=default).
+[the storybook](storybook:bubble--default).
 `
 
 const Bubble = () => {

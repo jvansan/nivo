@@ -14,6 +14,7 @@ import nivoTheme from '../../../nivoTheme'
 import ChartHeader from '../../ChartHeader'
 import ChartTabs from '../../ChartTabs'
 import ActionsLogger, { useActionsLogger } from '../../ActionsLogger'
+import ComponentDescription from '../../ComponentDescription'
 import Settings from '../../Settings'
 import { groupsByScope } from './BulletControls'
 import Stories from '../../Stories'
@@ -55,6 +56,15 @@ const initialSettings = {
     motionDamping: 12,
     theme: nivoTheme,
 }
+
+const description = `
+Bullet chart supporting multiple ranges/measures/markers.
+
+You can fully customize this chart using custom components via
+\`rangeComponent\`, \`measureComponent\` and \`markerComponent\` properties.
+
+The responsive alternative of this component is \`ResponsiveBullet\`.
+`
 
 const Bullet = () => {
     const [settings, setSettings] = useState(initialSettings)
@@ -100,20 +110,7 @@ const Bullet = () => {
     return (
         <ChartPage>
             <ChartHeader chartClass="Bullet" tags={['@nivo/bullet', 'svg', 'isomorphic']} />
-            <div className="chart-description">
-                <p className="description">
-                    Bullet chart supporting multiple ranges/measures/markers.
-                    {/*Many properties can be overridden for a specific item using <code>overrides</code> property.*/}
-                </p>
-                <p className="description">
-                    You can fully customize this chart using custom components via{' '}
-                    <code>rangeComponent</code>, <code>measureComponent</code> and{' '}
-                    <code>markerComponent</code> properties.
-                </p>
-                <p className="description">
-                    The responsive alternative of this component is <code>ResponsiveBullet</code>.
-                </p>
-            </div>
+            <ComponentDescription description={description} />
             <ChartTabs chartClass="bullet" code={code} data={data} diceRoll={diceRoll}>
                 <ResponsiveBullet
                     data={data}

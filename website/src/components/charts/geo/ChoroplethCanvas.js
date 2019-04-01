@@ -7,12 +7,12 @@
  * file that was distributed with this source code.
  */
 import React, { useState, useCallback } from 'react'
-import { Link } from 'react-router-dom'
 import { ResponsiveChoroplethCanvas, ChoroplethCanvasDefaultProps } from '@nivo/geo'
 import nivoTheme from '../../../nivoTheme'
 import generateCode from '../../../lib/generateChartCode'
 import ChartHeader from '../../ChartHeader'
 import ChartTabs from '../../ChartTabs'
+import ComponentDescription from '../../ComponentDescription'
 import ActionsLogger, { useActionsLogger } from '../../ActionsLogger'
 import Settings from '../../Settings'
 import { groupsByScope } from './GeoControls'
@@ -79,6 +79,15 @@ const initialSettings = {
     },
 }
 
+const description = `
+A canvas implementation of the [Choropleth](self:/choropleth)
+component, should be used used when you have complex geometries
+as it offers better performance than its SVG counterpart.
+
+The responsive alternative of this component is
+\`ResponsiveChoropleth\`.
+`
+
 const ChoroplethCanvas = () => {
     const [settings, setSettings] = useState(initialSettings)
     const [data, setData] = useState(generateChoroplethData())
@@ -118,17 +127,7 @@ const ChoroplethCanvas = () => {
     return (
         <ChartPage>
             <ChartHeader chartClass="ChoroplethCanvas" tags={['@nivo/geo', 'map', 'canvas']} />
-            <div className="chart-description">
-                <p className="description">
-                    A canvas implementation of the <Link to="/choropleth">Choropleth</Link>{' '}
-                    component, should be used used when you have complex geometries as it offers
-                    better performance than its SVG counterpart.
-                </p>
-                <p className="description">
-                    The responsive alternative of this component is{' '}
-                    <code>ResponsiveChoropleth</code>.
-                </p>
-            </div>
+            <ComponentDescription description={description} />
             <ChartTabs chartClass="choropleth" code={code} data={data} diceRoll={diceRoll}>
                 <ResponsiveChoroplethCanvas
                     features={countries.features}

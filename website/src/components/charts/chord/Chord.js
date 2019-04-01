@@ -7,20 +7,33 @@
  * file that was distributed with this source code.
  */
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import { ResponsiveChord } from '@nivo/chord'
 import ChartHeader from '../../ChartHeader'
 import ChartTabs from '../../ChartTabs'
 import Settings from '../../Settings'
 import { groupsByScope } from './ChordControls'
 import generateCode from '../../../lib/generateChartCode'
-import config from '../../../config'
+import ComponentDescription from '../../ComponentDescription'
 import nivoTheme from '../../../nivoTheme'
 import { generateChordData } from '@nivo/generators'
 import propsMapper from './propsMapper'
 import ChartPage from '../ChartPage'
 
 const MATRIX_SIZE = 5
+
+const description = `
+Chord diagram, uses [d3-chord](https://github.com/d3/d3-chord),
+see [this demo](https://observablehq.com/@d3/chord-diagram).
+
+The responsive alternative of this component is \`ResponsiveChord\`.
+
+This component is available in the \`@nivo/api\`,
+see [sample](api:/samples/chord) or
+[try it using the API client](self:/chord/api).
+
+See the [dedicated guide](self:/guides/legends) on how to setup
+legends for this component.
+`
 
 export default class Chord extends Component {
     state = {
@@ -126,51 +139,7 @@ export default class Chord extends Component {
                     chartClass="Chord"
                     tags={['@nivo/chord', 'relational', 'svg', 'isomorphic']}
                 />
-                <div className="chart-description">
-                    <p className="description">
-                        Chord diagram, uses{' '}
-                        <a
-                            href="https://github.com/d3/d3-chord"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            d3-chord
-                        </a>
-                        , see{' '}
-                        <a
-                            href="http://bl.ocks.org/mbostock/4062006"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            this block
-                        </a>
-                        . The responsive alternative of this component is{' '}
-                        <code>ResponsiveChord</code>.
-                    </p>
-                    <p className="description">
-                        This component is available in the{' '}
-                        <a
-                            href="https://github.com/plouc/nivo-api"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            nivo-api
-                        </a>
-                        , see{' '}
-                        <a
-                            href={`${config.nivoApiUrl}/samples/chord`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            sample
-                        </a>{' '}
-                        or <Link to="/chord/api">try it using the API client</Link>.
-                    </p>
-                    <p className="description">
-                        See the <Link to="/guides/legends">dedicated guide</Link> on how to setup
-                        legends for this component.
-                    </p>
-                </div>
+                <ComponentDescription description={description} />
                 <ChartTabs chartClass="chord" code={code} data={matrix} diceRoll={this.diceRoll}>
                     <ResponsiveChord
                         matrix={matrix}

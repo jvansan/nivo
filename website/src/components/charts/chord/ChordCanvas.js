@@ -7,12 +7,12 @@
  * file that was distributed with this source code.
  */
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import { ResponsiveChordCanvas } from '@nivo/chord'
 import ChartHeader from '../../ChartHeader'
 import ChartTabs from '../../ChartTabs'
 import Settings from '../../Settings'
 import { groupsByScope } from './ChordControls'
+import ComponentDescription from '../../ComponentDescription'
 import generateCode from '../../../lib/generateChartCode'
 import nivoTheme from '../../../nivoTheme'
 import { generateChordData } from '@nivo/generators'
@@ -20,6 +20,15 @@ import propsMapper from './propsMapper'
 import ChartPage from '../ChartPage'
 
 const MATRIX_SIZE = 38
+
+const description = `
+A variation around the [Chord](self:/chord) component. Well suited
+for large data sets as it does not impact DOM tree depth, however
+you'll lose the isomorphic ability and transitions (for now).
+
+The responsive alternative of this component is
+\`ResponsiveChordCanvas\`.
+`
 
 export default class ChordCanvas extends Component {
     state = {
@@ -38,7 +47,6 @@ export default class ChordCanvas extends Component {
             innerRadiusRatio: 0.86,
             innerRadiusOffset: 0,
 
-            // arcs
             arcOpacity: 1,
             arcBorderWidth: 1,
             arcBorderColor: {
@@ -46,7 +54,6 @@ export default class ChordCanvas extends Component {
                 gamma: 0.4,
             },
 
-            // ribbons
             ribbonOpacity: 0.5,
             ribbonBorderWidth: 1,
             ribbonBorderColor: {
@@ -54,7 +61,6 @@ export default class ChordCanvas extends Component {
                 gamma: 0.4,
             },
 
-            // labels
             enableLabel: true,
             label: 'id',
             labelOffset: 9,
@@ -66,14 +72,12 @@ export default class ChordCanvas extends Component {
 
             colors: 'paired',
 
-            // interactivity
             isInteractive: true,
             arcHoverOpacity: 1,
             arcHoverOthersOpacity: 0.4,
             ribbonHoverOpacity: 0.75,
             ribbonHoverOthersOpacity: 0,
 
-            // motion
             animate: true,
             motionStiffness: 90,
             motionDamping: 7,
@@ -108,18 +112,7 @@ export default class ChordCanvas extends Component {
                     chartClass="ChordCanvas"
                     tags={['@nivo/chord', 'relational', 'canvas']}
                 />
-                <div className="chart-description">
-                    <p className="description">
-                        A variation around the <Link to="/chord">Chord</Link> component. Well suited
-                        for large data sets as it does not impact DOM tree depth and does not
-                        involve React diffing stuff (not that useful when using canvas), however
-                        you'll lose the isomorphic ability and transitions (for now).
-                    </p>
-                    <p className="description">
-                        The responsive alternative of this component is{' '}
-                        <code>ResponsiveChordCanvas</code>.
-                    </p>
-                </div>
+                <ComponentDescription description={description} />
                 <ChartTabs
                     chartClass="chord"
                     code={code}

@@ -8,17 +8,31 @@
  */
 import React, { Component } from 'react'
 import cloneDeep from 'lodash/cloneDeep'
-import { Link } from 'react-router-dom'
 import { ResponsiveBubbleHtml, BubbleHtmlDefaultProps } from '@nivo/circle-packing'
 import ChartHeader from '../../ChartHeader'
 import ChartTabs from '../../ChartTabs'
 import generateCode from '../../../lib/generateChartCode'
 import Settings from '../../Settings'
 import { groupsByScope } from './BubbleControls'
-import config from '../../../config'
+import ComponentDescription from '../../ComponentDescription'
 import nivoTheme from '../../../nivoTheme'
 import propsMapper from './propsMapper'
 import ChartPage from '../ChartPage'
+
+const description = `
+Bubble chart using circle packing with zooming ability.
+You can fully customize it using \`nodeComponent\` property
+to define your own node component, if you wish to do so you should
+have a look at [the native HTML node component](https://github.com/plouc/nivo/blob/master/src/components/charts/bubble/BubbleHtmlNode.js)
+for available properties.
+
+The responsive alternative of this component is \`ResponsiveBubbleHtml\`.
+It also offers various implementations,
+see [Bubble](self:/bubble) and [BubbleCanvas](self:/bubble/canvas).
+
+You can also see more example usages in
+[the storybook](storybook:bubblehtml--default).
+`
 
 export default class BubbleHtml extends Component {
     state = {
@@ -85,57 +99,7 @@ export default class BubbleHtml extends Component {
                     chartClass="BubbleHtml"
                     tags={['@nivo/circle-packing', 'hierarchy', 'html', 'isomorphic']}
                 />
-                <div className="chart-description">
-                    <p className="description">
-                        Bubble chart using circle packing with zooming ability. You can fully
-                        customize it using <code>nodeComponent</code> property to define your own
-                        node component, if you wish to do so you should have a look at{' '}
-                        <a
-                            href="https://github.com/plouc/nivo/blob/master/src/components/charts/bubble/BubbleHtmlNode.js"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            native HTML node component
-                        </a>{' '}
-                        for available properties.
-                    </p>
-                    <p className="description">
-                        The responsive alternative of this component is{' '}
-                        <code>ResponsiveBubbleHtml</code>. It also offers various implementations,
-                        see <Link to="/bubble">Bubble</Link> and{' '}
-                        <Link to="/bubble/canvas">BubbleCanvas</Link>.
-                    </p>
-                    <p className="description">
-                        This component is available in the{' '}
-                        <a
-                            href="https://github.com/plouc/nivo-api"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            nivo-api
-                        </a>
-                        , see{' '}
-                        <a
-                            href={`${config.nivoApiUrl}/samples/bubble.svg`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            sample
-                        </a>{' '}
-                        or <Link to="/bubble/api">try it using the API client</Link>. You can also
-                        see more example usages in{' '}
-                        <a
-                            href={`${
-                                config.storybookUrl
-                            }?selectedKind=Bubble&selectedStory=default`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            the storybook
-                        </a>
-                        .
-                    </p>
-                </div>
+                <ComponentDescription description={description} />
                 <ChartTabs chartClass="circle-packing" code={code} data={root} diceRoll={diceRoll}>
                     <ResponsiveBubbleHtml
                         root={cloneDeep(root)}

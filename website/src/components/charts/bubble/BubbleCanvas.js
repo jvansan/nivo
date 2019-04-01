@@ -10,11 +10,11 @@ import React, { Component } from 'react'
 import cloneDeep from 'lodash/cloneDeep'
 import range from 'lodash/range'
 import random from 'lodash/random'
-import { Link } from 'react-router-dom'
 import { ResponsiveBubbleCanvas, BubbleCanvasDefaultProps } from '@nivo/circle-packing'
 import ChartHeader from '../../ChartHeader'
 import ChartTabs from '../../ChartTabs'
 import generateCode from '../../../lib/generateChartCode'
+import ComponentDescription from '../../ComponentDescription'
 import Settings from '../../Settings'
 import { groupsByScope } from './BubbleControls'
 import nivoTheme from '../../../nivoTheme'
@@ -28,6 +28,16 @@ const generateData = () =>
         id: `node.${i}`,
         value: random(10, 100000),
     }))
+
+const description = `
+A variation around the [Bubble](self:/bubble) component. Well suited
+for large data sets as it does not impact DOM tree depth, however
+you'll lose the isomorphic ability and transitions (for now).
+
+The responsive alternative of this component is \`ResponsiveBubbleCanvas\`.
+It also offers various implementations, see
+[Bubble](self:/bubble) and [BubbleHtml](self:bubble/html).
+`
 
 export default class BubbleCanvas extends Component {
     state = {
@@ -97,29 +107,13 @@ export default class BubbleCanvas extends Component {
             defaults: BubbleCanvasDefaultProps,
         })
 
-        const description = (
-            <div className="chart-description">
-                <p className="description">
-                    A variation around the <Link to="/bubble">Bubble</Link> component. Well suited
-                    for large data sets as it does not impact DOM tree depth and does not involve
-                    React diffing stuff for children (not that useful when using canvas), however
-                    you'll lose the isomorphic ability and transitions (for now).
-                </p>
-                <p className="description">
-                    The responsive alternative of this component is{' '}
-                    <code>ResponsiveBubbleCanvas</code>. It also offers various implementations, see{' '}
-                    <Link to="/bubble">Bubble</Link> and <Link to="/bubble/html">BubbleHtml</Link>.
-                </p>
-            </div>
-        )
-
         return (
             <ChartPage>
                 <ChartHeader
                     chartClass="BubbleCanvas"
                     tags={['@nivo/circle-packing', 'hierarchy', 'canvas']}
                 />
-                {description}
+                <ComponentDescription description={description} />
                 <ChartTabs
                     chartClass="circle-packing"
                     code={code}

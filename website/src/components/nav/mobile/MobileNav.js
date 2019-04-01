@@ -6,85 +6,120 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-import React, { Component } from 'react'
+import React, { useState, useCallback } from 'react'
+import styled from 'styled-components'
 import ComponentsIcon from 'react-icons/lib/md/widgets'
 import GuidesIcon from 'react-icons/lib/md/book'
-import GitHubIcon from 'react-icons/lib/fa/github'
 import ExtrasIcon from 'react-icons/lib/md/more-vert'
 import MobileNavComponents from './MobileNavComponents'
 import MobileNavGuides from './MobileNavGuides'
 import MobileNavExtras from './MobileNavExtras'
 
-export default class MobileNav extends Component {
-    state = {
-        currentTab: 'components',
-    }
+const Tabs = styled.div`
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 64px;
+    width: 100%;
+    background: #e25d47;
+    color: white;
+    z-index: 3001;
+    display: none;
 
-    setCurrentTab = tab => {
-        if (this.state.currentTab === tab) {
-            this.setState({ currentTab: null })
-        } else {
-            this.setState({ currentTab: tab })
+    @media only screen and (max-width: 760px) {
+        & {
+            display: flex;
         }
     }
+`
 
-    close = () => {
-        this.setState({ currentTab: null })
-    }
+const TabsItem = styled.div`
+    height: 64px;
+    width: 33.3%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+`
 
-    render() {
-        const { currentTab } = this.state
+const TabsItemIcon = styled.span`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    background: transparent;
+    color: white;
+    position: relative;
+    font-size: 28px;
+    line-height: 1em;
+`
 
-        return (
-            <div className="mobile-nav">
-                <div className="mobile-tabs__menu">
-                    <div
-                        className="mobile-tabs__menu__item"
-                        onClick={() => this.setCurrentTab('components')}
-                    >
-                        <span className="mobile-tabs__menu__item__icon">
-                            <ComponentsIcon />
-                        </span>
-                        <span className="mobile-tabs__menu__item__label">components</span>
-                    </div>
-                    <div
-                        className="mobile-tabs__menu__item"
-                        onClick={() => this.setCurrentTab('guides')}
-                    >
-                        <span className="mobile-tabs__menu__item__icon">
-                            <GuidesIcon />
-                        </span>
-                        <span className="mobile-tabs__menu__item__label">Guides</span>
-                    </div>
-                    <a
-                        className="mobile-tabs__menu__item"
-                        href="https://github.com/plouc/nivo"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        <span className="mobile-tabs__menu__item__icon">
-                            <GitHubIcon />
-                        </span>
-                        <span className="mobile-tabs__menu__item__label">GitHub</span>
-                    </a>
-                    <div
-                        className="mobile-tabs__menu__item"
-                        onClick={() => this.setCurrentTab('extras')}
-                    >
-                        <span className="mobile-tabs__menu__item__icon">
-                            <ExtrasIcon />
-                        </span>
-                        <span className="mobile-tabs__menu__item__label">Extras</span>
-                    </div>
-                </div>
-                {currentTab !== null && (
-                    <div className="mobile-nav__content">
-                        {currentTab === 'components' && <MobileNavComponents close={this.close} />}
-                        {currentTab === 'guides' && <MobileNavGuides close={this.close} />}
-                        {currentTab === 'extras' && <MobileNavExtras close={this.close} />}
-                    </div>
-                )}
-            </div>
-        )
-    }
+const TabsItemLabel = styled.span`
+    white-space: pre;
+    font-size: 12px;
+    display: block;
+    line-height: 1em;
+    margin-top: 7px;
+`
+
+const Container = styled.div`
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 64px;
+    left: 0;
+    z-index: 3000;
+    background-color: #fff;
+    overflow-x: hidden;
+    overflow-y: auto;
+`
+
+const MobileNav = () => {
+    const [currentTab, setCurrentTab] = useState(null)
+    const setTab = useCallback(
+        tab => {
+            setCurrentTab(current => {
+                if (current === tab) setCurrentTab(null)
+                else setCurrentTab(tab)
+            })
+        },
+        [setCurrentTab]
+    )
+    const close = useCallback(() => setCurrentTab(null), [setCurrentTab])
+
+    return (
+        <>
+            <Tabs>
+                <TabsItem onClick={() => setTab('components')}>
+                    <TabsItemIcon>
+                        <ComponentsIcon />
+                    </TabsItemIcon>
+                    <TabsItemLabel>components</TabsItemLabel>
+                </TabsItem>
+                <TabsItem onClick={() => setTab('guides')}>
+                    <TabsItemIcon>
+                        <GuidesIcon />
+                    </TabsItemIcon>
+                    <TabsItemLabel>Guides</TabsItemLabel>
+                </TabsItem>
+                <TabsItem onClick={() => setTab('extras')}>
+                    <TabsItemIcon>
+                        <ExtrasIcon />
+                    </TabsItemIcon>
+                    <TabsItemLabel>Other</TabsItemLabel>
+                </TabsItem>
+            </Tabs>
+            {currentTab !== null && (
+                <Container>
+                    {/*currentTab === 'components' && <MobileNavComponents close={this.close} />*/}
+                    {currentTab === 'guides' && <MobileNavGuides close={close} />}
+                    {currentTab === 'extras' && <MobileNavExtras close={close} />}
+                </Container>
+            )}
+        </>
+    )
 }
+
+export default MobileNav

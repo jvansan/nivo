@@ -20,7 +20,7 @@ export default class MobileNavExtras extends Component {
     render() {
         return (
             <div>
-                <div className="mobile-nav__title">Extras</div>
+                <div className="mobile-nav__title">Other</div>
                 {extras.map(extra => {
                     return <div key={extra.className}>{extra.label}</div>
                 })}

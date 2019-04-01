@@ -7,11 +7,11 @@
  * file that was distributed with this source code.
  */
 import React, { useState, useCallback } from 'react'
-import { Link } from 'react-router-dom'
 import ChartHeader from '../../ChartHeader'
 import ChartTabs from '../../ChartTabs'
 import ActionsLogger, { useActionsLogger } from '../../ActionsLogger'
 import generateCode from '../../../lib/generateChartCode'
+import ComponentDescription from '../../ComponentDescription'
 import Settings from '../../Settings'
 import { groupsByScope } from './CalendarControls'
 import { ResponsiveCalendar, CalendarDefaultProps } from '@nivo/calendar'
@@ -39,12 +39,6 @@ const initialSettings = {
         bottom: 40,
         left: 40,
     },
-    // margin: {
-    //     top: 100,
-    //     right: 30,
-    //     bottom: 60,
-    //     left: 30,
-    // },
     direction: 'horizontal',
 
     yearSpacing: 40,
@@ -80,6 +74,18 @@ const initialSettings = {
     theme: nivoTheme,
 }
 
+const description = `
+This component is heavily inspired by
+[this demo](https://observablehq.com/@d3/calendar-view).
+
+The responsive alternative of this component is \`ResponsiveCalendar\`,
+it also offers a canvas implementations, see
+[CalendarCanvas](self:/calendar/canvas).
+
+See the [dedicated guide](self:/guides/legends) on how to setup
+legends for this component.
+`
+
 const Calendar = ({ data }) => {
     const [settings, setSettings] = useState(initialSettings)
     const [actions, logAction] = useActionsLogger()
@@ -111,28 +117,7 @@ const Calendar = ({ data }) => {
     return (
         <ChartPage>
             <ChartHeader chartClass="Calendar" tags={['@nivo/calendar', 'svg', 'isomorphic']} />
-            <div className="chart-description">
-                <p className="description">
-                    This component is heavily inspired by{' '}
-                    <a
-                        href="https://observablehq.com/@d3/calendar-view"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        this demo
-                    </a>
-                    .
-                </p>
-                <p className="description">
-                    The responsive alternative of this component is <code>ResponsiveCalendar</code>,
-                    it also offers a canvas implementations, see{' '}
-                    <Link to="/calendar/canvas">CalendarCanvas</Link>.
-                </p>
-                <p className="description">
-                    See the <Link to="/guides/legends">dedicated guide</Link> on how to setup
-                    legends for this component.
-                </p>
-            </div>
+            <ComponentDescription description={description} />
             <ChartTabs chartClass="calendar" code={code} data={data}>
                 <ResponsiveCalendar
                     from={settings.from}
