@@ -9,20 +9,35 @@
 import styled from 'styled-components'
 
 const ChartPage = styled.div`
-    padding-left: ${({ theme }) => theme.dimensions.contentMargin}px;
-    margin-right: calc(60% + ${({ theme }) => theme.dimensions.contentMargin / 2}px);
+    margin-right: 60%;
+
+    &:after {
+        content: ' ';
+        position: fixed;
+        top: ${({ theme }) => theme.dimensions.headerHeight}px;
+        box-shadow: ${({ theme }) => theme.cardShadow};
+        right: 0;
+        bottom: 0;
+        --innerWidth: calc(100% - ${({ theme }) => theme.dimensions.miniNavWidth}px);
+        width: calc(var(--innerWidth) * 0.6);
+        background: rgba(0, 0, 0, 0);
+    }
 
     @media only screen and (min-width: 760px) and (max-width: 1000px) {
         & {
-            padding-left: ${({ theme }) => theme.dimensions.contentMarginSmall}px;
-            margin-right: calc(60% + ${({ theme }) => theme.dimensions.contentMarginSmall / 2}px);
+            margin-right: 60%;
+            &:after {
+                width: 60%;
+            }
         }
     }
 
     @media only screen and (max-width: 760px) {
         & {
-            padding: 0;
-            margin: 0 ${({ theme }) => theme.dimensions.contentMarginSmall}px;
+            margin: 0;
+            &:after {
+                display: none;
+            }
         }
     }
 `

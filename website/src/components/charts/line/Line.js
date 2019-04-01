@@ -8,20 +8,37 @@
  */
 import React, { Component } from 'react'
 import omit from 'lodash/omit'
-import { Link } from 'react-router-dom'
 import { ResponsiveLine, LineDefaultProps } from '@nivo/line'
 import ChartHeader from '../../ChartHeader'
 import ChartTabs from '../../ChartTabs'
 import generateCode from '../../../lib/generateChartCode'
+import ComponentDescription from '../../ComponentDescription'
 import Stories from '../../Stories'
 import { lineStories } from './stories'
 import Settings from '../../Settings'
 import { groupsByScope } from './LineControls'
-import config from '../../../config'
 import nivoTheme from '../../../nivoTheme'
 import defaultProps from './defaultProps'
 import propsMapper from './propsMapper'
 import ChartPage from '../ChartPage'
+
+const description = `
+Line chart with stacking ability.
+
+Given an array of data series having an id and a nested array of points
+(with x, y properties), it will compute the line for each data serie.
+All datum having null x or y will be treated as holes, thus portions
+of the corresponding line will be skipped.
+
+The responsive alternative of this component is \`ResponsiveLine\`.
+
+This component is available in the \`@nivo/api\`, see
+[sample](api:/samples/line.svg) or
+[try it using the API client](self:/line/api).
+
+See the [dedicated guide](self:/guides/legends) on how to setup
+legends for this component.
+`
 
 export default class Line extends Component {
     state = {
@@ -77,41 +94,7 @@ export default class Line extends Component {
         return (
             <ChartPage>
                 <ChartHeader chartClass="Line" tags={['@nivo/line', 'svg', 'isomorphic']} />
-                <div className="chart-description">
-                    <p className="description">Line chart with stacking ability.</p>
-                    <p>
-                        Given an array of data series having an id and a nested array of points
-                        (with x, y properties), it will compute the line for each data serie. All
-                        datum having null x or y will be treated as holes, thus portions of the
-                        corresponding line will be skipped.
-                    </p>
-                    <p className="description">
-                        The responsive alternative of this component is <code>ResponsiveLine</code>.
-                    </p>
-                    <p className="description">
-                        This component is available in the{' '}
-                        <a
-                            href="https://github.com/plouc/nivo-api"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            nivo-api
-                        </a>
-                        , see{' '}
-                        <a
-                            href={`${config.nivoApiUrl}/samples/line.svg`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            sample
-                        </a>{' '}
-                        or <Link to="/line/api">try it using the API client</Link>.
-                    </p>
-                    <p className="description">
-                        See the <Link to="/guides/legends">dedicated guide</Link> on how to setup
-                        legends for this component.
-                    </p>
-                </div>
+                <ComponentDescription description={description} />
                 <ChartTabs chartClass="line" code={code} data={data} diceRoll={diceRoll}>
                     <ResponsiveLine data={data} {...mappedSettings} theme={nivoTheme} />
                 </ChartTabs>

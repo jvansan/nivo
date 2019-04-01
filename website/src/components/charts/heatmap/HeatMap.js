@@ -7,18 +7,17 @@
  * file that was distributed with this source code.
  */
 import React, { useState, useCallback } from 'react'
-import { Link } from 'react-router-dom'
 import { ResponsiveHeatMap, HeatMapDefaultProps } from '@nivo/heatmap'
 import { patternLinesDef } from '@nivo/core'
 import isFunction from 'lodash/isFunction'
 import ChartHeader from '../../ChartHeader'
 import ChartTabs from '../../ChartTabs'
+import ComponentDescription from '../../ComponentDescription'
 import ActionsLogger, { useActionsLogger } from '../../ActionsLogger'
 import Settings from '../../Settings'
 import { groupsByScope } from './HeatMapControls'
 import generateCode from '../../../lib/generateChartCode'
 import nivoTheme from '../../../nivoTheme'
-import config from '../../../config'
 import { generateLightDataSet } from './generators'
 import propsMapper from './propsMapper'
 import ChartPage from '../ChartPage'
@@ -118,6 +117,20 @@ const initialSettings = {
     cellHoverOthersOpacity: 0.25,
 }
 
+const description = `
+An heat map matrix, you can chose between various colors scales
+or pass yours, you also have the ability to change the cell shape
+for rectangle or circle and even use a custom rendering function.
+
+The responsive alternative of this component is \`ResponsiveHeatMap\`.
+
+This component is available in the \`@nivo/api\`, see
+[sample](api:/samples/heatmap.svg) or
+[try it using the API client](self:/heatmap/api).
+You can also see more example usages in
+[the storybook](storybook:heatmap--default).
+`
+
 const HeatMap = () => {
     const [settings, setSettings] = useState(initialSettings)
     const [data, setData] = useState(generateLightDataSet())
@@ -151,44 +164,7 @@ const HeatMap = () => {
     return (
         <ChartPage>
             <ChartHeader chartClass="HeatMap" tags={['@nivo/heatmap', 'svg', 'isomorphic']} />
-            <div className="chart-description">
-                <p className="description">
-                    An heat map matrix, you can chose between various colors scales or pass yours,
-                    you also have the ability to change the cell shape for rectangle or circle and
-                    even use a custom rendering function.
-                </p>
-                <p className="description">
-                    The responsive alternative of this component is <code>ResponsiveHeatMap</code>.
-                </p>
-                <p className="description">
-                    This component is available in the{' '}
-                    <a
-                        href="https://github.com/plouc/nivo-api"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        nivo-api
-                    </a>
-                    , see{' '}
-                    <a
-                        href={`${config.nivoApiUrl}/samples/heatmap.svg`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        sample
-                    </a>{' '}
-                    or <Link to="/heatmap/api">try it using the API client</Link>. You can also see
-                    more example usages in{' '}
-                    <a
-                        href={`${config.storybookUrl}?selectedKind=HeatMap&selectedStory=default`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        the storybook
-                    </a>
-                    .
-                </p>
-            </div>
+            <ComponentDescription description={description} />
             <ChartTabs chartClass="heatmap" code={code} data={data.data} diceRoll={diceRoll}>
                 <ResponsiveHeatMap
                     data={data.data}

@@ -28,28 +28,24 @@ export const useActionsLogger = () => {
 
 const Wrapper = styled.div`
     position: fixed;
-    right: ${({ theme }) => theme.dimensions.contentMargin}px;
-    bottom: ${({ theme }) => theme.dimensions.contentMargin}px;
-    --innerWidth: calc(
-        100% -
-            ${({ theme }) => theme.dimensions.contentMargin * 2 + theme.dimensions.miniNavWidth}px
-    );
-    --halfWidth: calc(var(--innerWidth) * 0.6);
-    --fullWidth: calc(var(--halfWidth) - ${({ theme }) => theme.dimensions.contentMargin / 2}px);
+    right: 0;
+    bottom: 0;
+    --innerWidth: calc(100% - ${({ theme }) => theme.dimensions.miniNavWidth}px);
+    --partialWidth: calc(var(--innerWidth) * 0.6);
     ${({ isFullWidth, theme }) => {
         if (isFullWidth) {
             return `
-                width: var(--fullWidth);
+                width: var(--partialWidth);
             `
         }
 
         return `
-            width: calc(var(--fullWidth) / 2);
             border-left: 1px solid ${theme.colors.border};
+            width: calc(var(--partialWidth) / 2);
         `
     }}
     background: ${({ theme }) => theme.colors.cardAltBackground};
-    --innerHeight: calc(100% - ${({ theme }) => 70 + theme.dimensions.contentMargin}px);
+    --innerHeight: calc(100% - ${({ theme }) => theme.dimensions.headerHeight}px);
     height: calc(var(--innerHeight) * 0.45);
     z-index: 10;
     overflow-x: hidden;
@@ -57,24 +53,19 @@ const Wrapper = styled.div`
 
     @media only screen and (min-width: 760px) and (max-width: 1000px) {
         & {
-            right: ${({ theme }) => theme.dimensions.contentMarginSmall}px;
-            bottom: ${({ theme }) => theme.dimensions.contentMarginSmall}px;
-            --innerHeight: calc(
-                100% - ${({ theme }) => 70 + theme.dimensions.contentMarginSmall}px
-            );
+            right: 0;
+            bottom: 0;
+            --innerHeight: calc(100% - ${({ theme }) => theme.dimensions.headerHeight}px);
             height: calc(var(--innerHeight) * 0.45);
-
-            --innerWidth: calc(100% - ${({ theme }) => theme.dimensions.contentMarginSmall * 2}px);
-            --halfWidth: calc(var(--innerWidth) * 0.6);
-            --fullWidth: calc(
-                var(--halfWidth) - ${({ theme }) => theme.dimensions.contentMarginSmall / 2}px
-            );
-            ${({ isFullWidth }) => {
+            ${({ isFullWidth, theme }) => {
                 if (isFullWidth) {
-                    return `width: var(--fullWidth);`
+                    return `width: 60%;`
                 }
 
-                return `width: calc(var(--fullWidth) / 2);`
+                return `
+                    border-left: 1px solid ${theme.colors.border};
+                    width: calc(60% * 0.5);
+                `
             }}
         }
     }
@@ -86,9 +77,7 @@ const Wrapper = styled.div`
             bottom: auto;
             width: auto;
             height: auto;
-            box-shadow: ${({ theme }) => theme.cardShadow};
             border-left-width: 0;
-            margin-bottom: ${({ theme }) => theme.dimensions.contentMarginSmall}px;
             z-index: 0;
         }
     }

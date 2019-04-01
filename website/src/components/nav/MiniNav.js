@@ -17,10 +17,11 @@ const miniNavItems = getSectionItems('Components').map((item, i) => {
 
 const Wrapper = styled.aside`
     position: fixed;
-    top: ${({ theme }) => theme.dimensions.headerHeight}px;
+    top: 0;
+    box-shadow: ${({ theme }) => theme.cardShadow};
     bottom: 0;
     left: 0;
-    width: ${({ theme }) => theme.dimensions.miniNavWidth}px;
+    width: ${({ theme }) => theme.dimensions.miniNavWidth + 1}px;
     z-index: 30;
     background: ${({ theme }) => theme.colors.cardBackground};
 

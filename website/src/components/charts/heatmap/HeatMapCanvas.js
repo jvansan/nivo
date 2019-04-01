@@ -7,11 +7,11 @@
  * file that was distributed with this source code.
  */
 import React, { useState, useCallback } from 'react'
-import { Link } from 'react-router-dom'
 import { ResponsiveHeatMapCanvas } from '@nivo/heatmap'
 import isFunction from 'lodash/isFunction'
 import ChartHeader from '../../ChartHeader'
 import ChartTabs from '../../ChartTabs'
+import ComponentDescription from '../../ComponentDescription'
 import ActionsLogger, { useActionsLogger } from '../../ActionsLogger'
 import Settings from '../../Settings'
 import { groupsByScope } from './HeatMapControls'
@@ -107,6 +107,15 @@ const initialSettings = {
     cellHoverOthersOpacity: 0.5,
 }
 
+const description = `
+A variation around the [HeatMap](self:/heatmap) component.
+Well suited for large data sets as it does not impact DOM tree depth,
+however you'll lose the isomorphic ability and transitions.
+
+The responsive alternative of this component is
+\`ResponsiveHeatMapCanvas\`.
+`
+
 const HeatMapCanvas = () => {
     const [settings, setSettings] = useState(initialSettings)
     const [data, setData] = useState(generateHeavyDataSet())
@@ -140,18 +149,7 @@ const HeatMapCanvas = () => {
     return (
         <ChartPage>
             <ChartHeader chartClass="HeatMapCanvas" tags={['@nivo/heatmap', 'canvas']} />
-            <div className="chart-description">
-                <p className="description">
-                    A variation around the <Link to="/heatmap">HeatMap</Link> component. Well suited
-                    for large data sets as it does not impact DOM tree depth and does not involve
-                    React diffing stuff (not that useful when using canvas), however you'll lose the
-                    isomorphic ability and transitions (for now).
-                </p>
-                <p className="description">
-                    The responsive alternative of this component is{' '}
-                    <code>ResponsiveHeatMapCanvas</code>.
-                </p>
-            </div>
+            <ComponentDescription description={description} />
             <ChartTabs
                 chartClass="heatmap"
                 code={code}

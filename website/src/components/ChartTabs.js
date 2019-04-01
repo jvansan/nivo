@@ -14,66 +14,25 @@ const tabs = ['chart', 'code', 'data']
 
 const Wrapper = styled.div`
     position: fixed;
-    top: 70px;
-    right: ${({ theme }) => theme.dimensions.contentMargin}px;
-    --innerWidth: calc(
-        100% -
-            ${({ theme }) => theme.dimensions.contentMargin * 2 + theme.dimensions.miniNavWidth}px
-    );
-    --halfWidth: calc(var(--innerWidth) * 0.6);
-    width: calc(var(--halfWidth) - ${({ theme }) => theme.dimensions.contentMargin / 2}px);
-    --innerHeight: calc(100% - ${({ theme }) => theme.dimensions.contentMargin + 70}px);
+    top: ${({ theme }) => theme.dimensions.headerHeight}px;
+    right: 0;
+    width: 60%;
+    --innerWidth: calc(100% - ${({ theme }) => theme.dimensions.miniNavWidth}px);
+    width: calc(var(--innerWidth) * 0.6);
+    --innerHeight: calc(100% - ${({ theme }) => theme.dimensions.headerHeight}px);
     height: calc(var(--innerHeight) * 0.55);
     z-index: 10;
     overflow: hidden;
-
     background: ${({ theme }) => theme.colors.cardBackground};
     border-bottom: 1px solid ${({ theme }) => theme.colors.border};
 
-    &:before {
-        content: ' ';
-        display: block;
-        position: fixed;
-        top: 70px;
-        right: ${({ theme }) => theme.dimensions.contentMargin}px;
-        bottom: ${({ theme }) => theme.dimensions.contentMargin}px;
-        --innerWidth: calc(
-            100% -
-                ${({ theme }) =>
-                    theme.dimensions.miniNavWidth + theme.dimensions.contentMargin * 2}px
-        );
-        --halfWidth: calc(var(--innerWidth) * 0.6);
-        width: calc(var(--halfWidth) - ${({ theme }) => theme.dimensions.contentMargin / 2}px);
-        background: rgba(0, 0, 0, 0);
-        z-index: 0;
-        box-shadow: ${({ theme }) => theme.topCardShadow};
-    }
-
     @media only screen and (min-width: 760px) and (max-width: 1000px) {
         & {
-            right: ${({ theme }) => theme.dimensions.contentMarginSmall}px;
-            --innerWidth: calc(100% - ${({ theme }) => theme.dimensions.contentMarginSmall * 2}px);
-            --halfWidth: calc(var(--innerWidth) * 0.6);
-            width: calc(
-                var(--halfWidth) - ${({ theme }) => theme.dimensions.contentMarginSmall / 2}px
-            );
-            --innerHeight: calc(
-                100% - ${({ theme }) => theme.dimensions.contentMarginSmall + 70}px
-            );
+            top: ${({ theme }) => theme.dimensions.headerHeight}px;
+            right: 0;
+            width: 60%;
+            --innerHeight: calc(100% - ${({ theme }) => theme.dimensions.headerHeight}px);
             height: calc(var(--innerHeight) * 0.55);
-        }
-        &:before {
-            right: ${({ theme }) => theme.dimensions.contentMarginSmall}px;
-            bottom: ${({ theme }) => theme.dimensions.contentMarginSmall}px;
-            right: ${({ theme }) => theme.dimensions.contentMarginSmall}px;
-            --innerWidth: calc(100% - ${({ theme }) => theme.dimensions.contentMarginSmall * 2}px);
-            --halfWidth: calc(var(--innerWidth) * 0.6);
-            width: calc(
-                var(--halfWidth) - ${({ theme }) => theme.dimensions.contentMarginSmall / 2}px
-            );
-            background: rgba(0, 0, 0, 0);
-            z-index: 0;
-            box-shadow: ${({ theme }) => theme.topCardShadow};
         }
     }
 
@@ -85,10 +44,7 @@ const Wrapper = styled.div`
             width: auto;
             height: 460px;
             z-index: 0;
-            box-shadow: ${({ theme }) => theme.topCardShadow};
-        }
-        &:before {
-            display: none;
+            border-top: 1px solid ${({ theme }) => theme.colors.border};
         }
     }
 `

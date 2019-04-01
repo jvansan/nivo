@@ -91,7 +91,7 @@ export default {
         },
         dimensions,
 
-        cardShadow: '0 2px 6px rgba(0, 0, 0, 0.3)',
+        cardShadow: '0 2px 6px rgba(0, 0, 0, 0.35)',
         topCardShadow: '0 16px 30px rgba(0, 0, 0, 0.3)',
 
         nivo: {

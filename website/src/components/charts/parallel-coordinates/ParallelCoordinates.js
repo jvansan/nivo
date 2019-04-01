@@ -7,7 +7,6 @@
  * file that was distributed with this source code.
  */
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import merge from 'lodash/merge'
 import {
     ResponsiveParallelCoordinates,
@@ -18,11 +17,28 @@ import nivoTheme from '../../../nivoTheme'
 import ChartHeader from '../../ChartHeader'
 import ChartTabs from '../../ChartTabs'
 import Settings from '../../Settings'
+import ComponentDescription from '../../ComponentDescription'
 import { groupsByScope } from './ParallelCoordinatesControls'
 import generateCode from '../../../lib/generateChartCode'
 import propsMapper from './propsMapper'
 import variables from './variables'
 import ChartPage from '../ChartPage'
+
+const description = `
+Parallel coordinates chart, supports continuous numerical
+variables and discrete values.
+
+The responsive alternative of this component is
+\`ResponsiveParallelCoordinates\`, it also offers another
+implementation, see
+[ParallelCoordinatesCanvas](self:/parallel-coordinates/canvas).
+
+The \`@nivo/parallel-coordinates\` package also exposes a
+\`ParallelCoordinatesLayout\` component which can be used to build
+your very own chart. You can see how it's used to build the
+\`ParallelCoordinates\` component
+[here](https://github.com/plouc/nivo/blob/master/packages/parallel-coordinates/src/ParallelCoordinates.js).
+`
 
 export default class ParallelCoordinates extends Component {
     state = {
@@ -89,32 +105,7 @@ export default class ParallelCoordinates extends Component {
                     chartClass="ParallelCoordinates"
                     tags={['@nivo/parallel-coordinates', 'svg', 'isomorphic']}
                 />
-                <div className="chart-description">
-                    <p className="description">
-                        Parallel coordinates chart, supports continuous numerical variables and
-                        discrete values.
-                    </p>
-                    <p className="description">
-                        The responsive alternative of this component is{' '}
-                        <code>ResponsiveParallelCoordinates</code>, it also offers another
-                        implementation, see{' '}
-                        <Link to="/parallel-coordinates/canvas">ParallelCoordinatesCanvas</Link>.
-                    </p>
-                    <p className="description">
-                        The <code>@nivo/parallel-coordinates</code> package also exposes a{' '}
-                        <code>ParallelCoordinatesLayout</code> component which can be used to build
-                        your very own chart. You can see how it's used to build the{' '}
-                        <code>ParallelCoordinates</code> component{' '}
-                        <a
-                            href="https://github.com/plouc/nivo/blob/master/packages/parallel-coordinates/src/ParallelCoordinates.js"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            here
-                        </a>
-                        .
-                    </p>
-                </div>
+                <ComponentDescription description={description} />
                 <ChartTabs
                     chartClass="parallel-coordinates"
                     code={code}

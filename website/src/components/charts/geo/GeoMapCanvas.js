@@ -7,10 +7,10 @@
  * file that was distributed with this source code.
  */
 import React, { useState, useCallback } from 'react'
-import { Link } from 'react-router-dom'
 import { ResponsiveGeoMapCanvas, GeoMapCanvasDefaultProps } from '@nivo/geo'
 import ChartHeader from '../../ChartHeader'
 import ChartTabs from '../../ChartTabs'
+import ComponentDescription from '../../ComponentDescription'
 import generateCode from '../../../lib/generateChartCode'
 import Settings from '../../Settings'
 import { groupsByScope } from './GeoControls'
@@ -53,6 +53,14 @@ const initialSettings = {
     },
 }
 
+const description = `
+A canvas implementation of the [GeoMap](self:/geomap) component,
+should be used used when you have complex geometries as it offers better
+performance than its SVG counterpart.
+
+The responsive alternative of this component is \`ResponsiveGeoMap\`.
+`
+
 const GeoMapCanvas = () => {
     const [settings, setSettings] = useState(initialSettings)
     const onClick = useCallback((feature, event) => {
@@ -80,16 +88,7 @@ const GeoMapCanvas = () => {
     return (
         <ChartPage>
             <ChartHeader chartClass="GeoMapCanvas" tags={['@nivo/geo', 'map', 'canvas']} />
-            <div className="chart-description">
-                <p className="description">
-                    A canvas implementation of the <Link to="/geomap">GeoMap</Link> component,
-                    should be used used when you have complex geometries as it offers better
-                    performance than its SVG counterpart.
-                </p>
-                <p className="description">
-                    The responsive alternative of this component is <code>ResponsiveGeoMap</code>.
-                </p>
-            </div>
+            <ComponentDescription description={description} />
             <ChartTabs chartClass="geomap" code={code}>
                 <ResponsiveGeoMapCanvas
                     features={countries.features}

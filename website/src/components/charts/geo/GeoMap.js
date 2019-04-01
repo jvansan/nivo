@@ -7,12 +7,12 @@
  * file that was distributed with this source code.
  */
 import React, { useState, useCallback } from 'react'
-import { Link } from 'react-router-dom'
 import { ResponsiveGeoMap, GeoMapDefaultProps } from '@nivo/geo'
 import nivoTheme from '../../../nivoTheme'
 import generateCode from '../../../lib/generateChartCode'
 import ChartHeader from '../../ChartHeader'
 import ChartTabs from '../../ChartTabs'
+import ComponentDescription from '../../ComponentDescription'
 import Settings from '../../Settings'
 import { groupsByScope } from './GeoControls'
 import countries from './world_countries'
@@ -51,6 +51,22 @@ const initialSettings = {
     },
 }
 
+const description = `
+This component can be used to draw maps, it takes an array of
+features which determine the geometries to render on the map.
+It can be used to build more complex maps such as
+the [Choropleth](self:/choropleth).
+
+Using this component requires some knowledge about the \`d3-geo\`
+library, projections, geoJSON… please have a look at the
+[official d3 documentation](https://github.com/d3/d3-geo)
+for further information.
+
+The responsive alternative of this component is \`ResponsiveGeoMap\`,
+it also offers a canvas implementations, see
+[GeoMapCanvas](self:/geomap/canvas).
+`
+
 const GeoMap = () => {
     const [settings, setSettings] = useState(initialSettings)
     const onClick = useCallback((feature, event) => {
@@ -78,30 +94,7 @@ const GeoMap = () => {
     return (
         <ChartPage>
             <ChartHeader chartClass="GeoMap" tags={['@nivo/geo', 'map', 'svg', 'isomorphic']} />
-            <div className="chart-description">
-                <p className="description">
-                    This component can be used to draw maps, it takes an array of features which
-                    determine the geometries to render on the map. It can be used to build more
-                    complex maps such as the <Link to="/choropleth">Choropleth</Link>.
-                </p>
-                <p className="description">
-                    Using this component requires some knowledge about the <code>d3-geo</code>{' '}
-                    library, projections, geoJSON… please have a look at the{' '}
-                    <a
-                        href="https://github.com/d3/d3-geo"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        official d3 documentation
-                    </a>{' '}
-                    for further information.
-                </p>
-                <p className="description">
-                    The responsive alternative of this component is <code>ResponsiveGeoMap</code>,
-                    it also offers a canvas implementations, see{' '}
-                    <Link to="/geomap/canvas">GeoMapCanvas</Link>.
-                </p>
-            </div>
+            <ComponentDescription description={description} />
             <ChartTabs chartClass="geomap" code={code}>
                 <ResponsiveGeoMap
                     features={countries.features}

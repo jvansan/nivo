@@ -20,59 +20,46 @@ const buildStoryLink = ({ kind, story }) =>
 
 const Wrapper = styled.div`
     position: fixed;
-    bottom: ${({ theme }) => theme.dimensions.contentMargin}px;
-    --innerHeight: calc(100% - 70px - ${({ theme }) => theme.dimensions.contentMargin}px);
+    bottom: 0;
+    --innerHeight: calc(100% - ${({ theme }) => theme.dimensions.headerHeight}px);
     height: calc(var(--innerHeight) * 0.45);
     background: ${({ theme }) => theme.colors.cardAltBackground};
     ${({ isFullWidth, theme }) => {
         if (isFullWidth) {
             return `
-                --innerWidth: calc(100% - ${theme.dimensions.miniNavWidth +
-                    theme.dimensions.contentMargin * 2}px);
-                --halfWidth: calc(var(--innerWidth) * 0.6);    
-                width: calc(var(--halfWidth) - ${theme.dimensions.contentMargin / 2}px);
-                right: ${theme.dimensions.contentMargin}px;
+                --innerWidth: calc(100% - ${theme.dimensions.miniNavWidth}px);
+                width: calc(var(--innerWidth) * 0.6);
+                right: 0;
             `
         }
 
         return `
-            --innerWidth: calc(100% - ${theme.dimensions.miniNavWidth +
-                theme.dimensions.contentMargin * 2}px);
-            --halfWidth: calc(var(--innerWidth) * 0.6);    
-            --fullWidth: calc(var(--halfWidth) - ${theme.dimensions.contentMargin / 2}px);
-            --computedWidth: calc(var(--fullWidth) / 2);
-            right: calc(${theme.dimensions.contentMargin}px + var(--computedWidth));
-            width: var(--computedWidth);    
+            --innerWidth: calc(100% - ${theme.dimensions.miniNavWidth}px);
+            --partialWidth: calc(var(--innerWidth) * 0.6);
+            width: calc(var(--partialWidth) / 2);
+            right: calc(var(--partialWidth) / 2);
         `
     }}
     z-index: 10;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
 
     @media only screen and (min-width: 760px) and (max-width: 1000px) {
         & {
-            --innerHeight: calc(
-                100% - ${({ theme }) => 70 + theme.dimensions.contentMarginSmall}px
-            );
+            --innerHeight: calc(100% - ${({ theme }) => theme.dimensions.headerHeight}px);
             height: calc(var(--innerHeight) * 0.45);
-            bottom: ${({ theme }) => theme.dimensions.contentMarginSmall}px;
-            ${({ isFullWidth, theme }) => {
+            left: 40%;
+            bottom: 0;
+            ${({ isFullWidth }) => {
                 if (isFullWidth) {
                     return `
-                        right: ${theme.dimensions.contentMarginSmall}px;
-                        --innerWidth: calc(100% - ${theme.dimensions.contentMarginSmall * 2}px);
-                        --halfWidth: calc(var(--innerWidth) * 0.6);
-                        width: calc(var(--halfWidth) - ${theme.dimensions.contentMarginSmall /
-                            2}px);
+                        width: calc(100% * 0.6);
                     `
                 }
 
                 return `
-                    --innerWidth: calc(100% - ${theme.dimensions.contentMarginSmall * 2}px);
-                    --halfWidth: calc(var(--innerWidth) * 0.6);
-                    --fullWidth: calc(var(--halfWidth) - ${theme.dimensions.contentMarginSmall /
-                        2}px);
-                    --computedWidth: calc(var(--fullWidth) / 2);
-                    right: calc(${theme.dimensions.contentMarginSmall}px + var(--computedWidth));
+                    --halfWidth: calc(100% * 0.6);
+                    --computedWidth: calc(var(--halfWidth) / 2);
                     width: var(--computedWidth);
                 `
             }}
@@ -86,8 +73,8 @@ const Wrapper = styled.div`
             right: auto;
             width: auto;
             height: auto;
-            box-shadow: ${({ theme }) => theme.cardShadow};
-            margin-bottom: ${({ theme }) => theme.dimensions.contentMarginSmall}px;
+            border-left: none;
+            border-top: 1px solid ${({ theme }) => theme.colors.border};
         }
     }
 `
