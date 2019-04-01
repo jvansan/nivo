@@ -20,6 +20,18 @@ const Container = styled.div`
     &:last-child {
         border-bottom-width: 0;
     }
+
+    @media only screen and (min-width: 760px) and (max-width: 1000px) {
+        & {
+            padding: 9px 10px;
+        }
+    }
+
+    @media only screen and (max-width: 760px) {
+        & {
+            padding: 9px 10px;
+        }
+    }
 `
 
 const Control = ({ children }) => {

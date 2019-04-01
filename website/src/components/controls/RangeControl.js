@@ -9,7 +9,7 @@ import TextInput from './TextInput'
 const Row = styled.div`
     display: grid;
     grid-template-columns: 60px auto;
-    grid-column-gap: 12px;
+    grid-column-gap: 9px;
     max-width: 240px;
 `
 
@@ -37,16 +37,17 @@ export default class RangeControl extends Component {
     render() {
         const { id, label, value, unit, help } = this.props
 
-        // /*unit && <span className="unit">{unit}</span>*/
-
         return (
             <Control>
                 <Label htmlFor={id}>{label}</Label>
                 <Row>
-                    <div className="RangeControl_Input">
-                        <TextInput id={id} value={value} onChange={this.handleChange} />
-                        {unit && <span className="RangeControl_Unit">{unit}</span>}
-                    </div>
+                    <TextInput
+                        id={id}
+                        value={value}
+                        unit={unit}
+                        isNumber={true}
+                        onChange={this.handleChange}
+                    />
                     <input
                         type="range"
                         value={value}

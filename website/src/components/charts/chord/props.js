@@ -159,7 +159,7 @@ export default [
     {
         key: 'innerRadiusOffset',
         scopes: '*',
-        description: 'Inner radius offset.',
+        description: 'Inner radius offset (minus innerRadiusRatio).',
         required: false,
         default: defaults.innerRadiusOffset,
         type: '{number}',
@@ -286,7 +286,7 @@ export default [
     {
         key: 'labelOffset',
         scopes: '*',
-        description: 'Label offset from arc (px).',
+        description: 'Label offset from arc.',
         required: false,
         default: defaults.labelOffset,
         type: '{number}',
@@ -301,14 +301,13 @@ export default [
     {
         key: 'labelRotation',
         scopes: '*',
-        description: 'Label rotation (deg).',
+        description: 'Label rotation.',
         required: false,
         default: defaults.labelRotation,
         type: '{number}',
-        controlType: 'range',
+        controlType: 'angle',
         group: 'Labels',
         controlOptions: {
-            unit: 'deg',
             min: -180,
             max: 180,
             step: 5,

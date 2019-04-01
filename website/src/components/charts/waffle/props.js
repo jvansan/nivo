@@ -104,7 +104,7 @@ export default [
         key: 'padding',
         scopes: '*',
         type: 'number',
-        description: 'Padding between each cell (px).',
+        description: 'Padding between each cell.',
         required: true,
         controlType: 'range',
         group: 'Base',
@@ -238,13 +238,8 @@ export default [
         type: '{number}',
         required: false,
         default: defaults.borderWidth,
-        controlType: 'range',
+        controlType: 'lineWidth',
         group: 'Style',
-        controlOptions: {
-            unit: 'px',
-            min: 0,
-            max: 10,
-        },
     },
     {
         key: 'borderColor',

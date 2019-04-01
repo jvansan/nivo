@@ -49,6 +49,7 @@ export default class MarginControl extends Component {
                     <span />
                     <TextInput
                         value={value.top}
+                        unit="px"
                         onChange={this.handleChange('top')}
                         onFocus={this.handleFocus('top')}
                         onBlur={this.handleBlur}
@@ -56,6 +57,7 @@ export default class MarginControl extends Component {
                     <span />
                     <TextInput
                         value={value.left}
+                        unit="px"
                         onChange={this.handleChange('left')}
                         onFocus={this.handleFocus('left')}
                         onBlur={this.handleBlur}
@@ -63,6 +65,7 @@ export default class MarginControl extends Component {
                     <span className={`MarginControl_Box${side !== null ? ` _${side}` : ''}`} />
                     <TextInput
                         value={value.right}
+                        unit="px"
                         onChange={this.handleChange('right')}
                         onFocus={this.handleFocus('right')}
                         onBlur={this.handleBlur}
@@ -70,6 +73,7 @@ export default class MarginControl extends Component {
                     <span />
                     <TextInput
                         value={value.bottom}
+                        unit="px"
                         onChange={this.handleChange('bottom')}
                         onFocus={this.handleFocus('bottom')}
                         onBlur={this.handleBlur}

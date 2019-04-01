@@ -208,7 +208,7 @@ export default [
     {
         key: 'nodeThickness',
         scopes: ['Sankey'],
-        description: 'Node thickness (px).',
+        description: 'Node thickness.',
         required: false,
         default: defaults.nodeThickness,
         type: '{number}',
@@ -243,7 +243,7 @@ export default [
     {
         key: 'nodeSpacing',
         scopes: ['Sankey'],
-        description: 'Spacing between nodes at an identical level (px).',
+        description: 'Spacing between nodes at an identical level.',
         required: false,
         default: defaults.nodeSpacing,
         type: '{number}',
@@ -258,7 +258,7 @@ export default [
     {
         key: 'nodeInnerPadding',
         scopes: ['Sankey'],
-        description: 'Node inner padding, distance from link, substracted from nodeThickness (px).',
+        description: 'Node inner padding, distance from link, substracted from nodeThickness.',
         required: false,
         default: defaults.nodePaddingX,
         type: '{number}',
@@ -273,17 +273,12 @@ export default [
     {
         key: 'nodeBorderWidth',
         scopes: '*',
-        description: 'Node border width (px).',
+        description: 'Node border width.',
         required: false,
         default: defaults.nodeBorderWidth,
         type: '{number}',
-        controlType: 'range',
+        controlType: 'lineWidth',
         group: 'Nodes',
-        controlOptions: {
-            unit: 'px',
-            min: 0,
-            max: 10,
-        },
     },
     {
         key: 'nodeBorderColor',
@@ -327,7 +322,7 @@ export default [
     {
         key: 'linkContract',
         scopes: '*',
-        description: 'Contract link width (px).',
+        description: 'Contract link width.',
         required: false,
         default: defaults.linkContract,
         type: '{number}',
@@ -423,7 +418,7 @@ export default [
     {
         key: 'labelPadding',
         scopes: '*',
-        description: 'Label padding from node (px).',
+        description: 'Label padding from node.',
         required: false,
         default: defaults.labelPadding,
         type: '{number}',

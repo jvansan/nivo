@@ -172,7 +172,7 @@ const Choropleth = () => {
                     {...mappedSettings}
                 />
             </ChartTabs>
-            <ActionsLogger actions={actions} />
+            <ActionsLogger actions={actions} isFullWidth={true} />
             <Settings
                 component="Choropleth"
                 settings={settings}

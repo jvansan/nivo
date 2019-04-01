@@ -161,7 +161,7 @@ const BarCanvas = () => {
                     onClick={onClick}
                 />
             </ChartTabs>
-            <ActionsLogger actions={actions} />
+            <ActionsLogger actions={actions} isFullWidth={true} />
             <Settings
                 component="BarCanvas"
                 settings={settings}

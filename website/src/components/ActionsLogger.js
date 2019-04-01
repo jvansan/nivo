@@ -7,8 +7,10 @@
  * file that was distributed with this source code.
  */
 import React, { useState, useCallback } from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import PointerIcon from 'react-icons/lib/fa/hand-pointer-o'
+import ActionsLoggerLog from './ActionsLoggerLog'
 
 export const useActionsLogger = () => {
     const [actions, setActions] = useState([])
@@ -34,36 +36,46 @@ const Wrapper = styled.div`
     );
     --halfWidth: calc(var(--innerWidth) * 0.6);
     --fullWidth: calc(var(--halfWidth) - ${({ theme }) => theme.dimensions.contentMargin / 2}px);
-    --computedWidth: calc(var(--fullWidth) / 2);
-    width: var(--computedWidth);
+    ${({ isFullWidth, theme }) => {
+        if (isFullWidth) {
+            return `
+                width: var(--fullWidth);
+            `
+        }
+
+        return `
+            width: calc(var(--fullWidth) / 2);
+            border-left: 1px solid ${theme.colors.border};
+        `
+    }}
     background: ${({ theme }) => theme.colors.cardAltBackground};
-    border-left: 1px solid ${({ theme }) => theme.colors.border};
     --innerHeight: calc(100% - ${({ theme }) => 70 + theme.dimensions.contentMargin}px);
     height: calc(var(--innerHeight) * 0.45);
     z-index: 10;
     overflow-x: hidden;
     overflow-y: auto;
-    //font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
-    //font-size: 13px;
-    //line-height: 1.4em;
-    //padding: 20px;
-    //white-space: pre;
 
     @media only screen and (min-width: 760px) and (max-width: 1000px) {
         & {
             right: ${({ theme }) => theme.dimensions.contentMarginSmall}px;
             bottom: ${({ theme }) => theme.dimensions.contentMarginSmall}px;
+            --innerHeight: calc(
+                100% - ${({ theme }) => 70 + theme.dimensions.contentMarginSmall}px
+            );
+            height: calc(var(--innerHeight) * 0.45);
+
             --innerWidth: calc(100% - ${({ theme }) => theme.dimensions.contentMarginSmall * 2}px);
             --halfWidth: calc(var(--innerWidth) * 0.6);
             --fullWidth: calc(
                 var(--halfWidth) - ${({ theme }) => theme.dimensions.contentMarginSmall / 2}px
             );
-            --computedWidth: calc(var(--fullWidth) / 2);
-            width: var(--computedWidth);
-            --innerHeight: calc(
-                100% - ${({ theme }) => 70 + theme.dimensions.contentMarginSmall}px
-            );
-            height: calc(var(--innerHeight) * 0.45);
+            ${({ isFullWidth }) => {
+                if (isFullWidth) {
+                    return `width: var(--fullWidth);`
+                }
+
+                return `width: calc(var(--fullWidth) / 2);`
+            }}
         }
     }
 
@@ -73,10 +85,23 @@ const Wrapper = styled.div`
             right: auto;
             bottom: auto;
             width: auto;
-            height: 320px;
+            height: auto;
             box-shadow: ${({ theme }) => theme.cardShadow};
+            border-left-width: 0;
+            margin-bottom: ${({ theme }) => theme.dimensions.contentMarginSmall}px;
         }
     }
+`
+
+const Header = styled.div`
+    top: 0;
+    left: 0;
+    padding: 7px 12px;
+    background: ${({ theme }) => theme.colors.cardBackground};
+    border-bottom: 1px solid ${({ theme }) => theme.colors.border};
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 600;
 `
 
 const EmptyContainer = styled.div`
@@ -97,32 +122,10 @@ const EmptyMessage = styled.div`
 
 const EmptyIcon = styled(PointerIcon)``
 
-const ActionContainer = styled.div`
-    font-size: 13px;
-`
-
-const ActionHeader = styled.div`
-    padding: 7px 12px;
-    background: ${({ theme }) => theme.colors.cardBackground};
-    border-bottom: 1px solid ${({ theme }) => theme.colors.borderLight};
-`
-
-const Action = ({ action }) => {
-    const [isOpen, setIsOpen] = useState(false)
-
+const ActionsLogger = ({ actions, isFullWidth }) => {
     return (
-        <ActionContainer>
-            <ActionHeader>
-                {action.type}: {action.label}
-            </ActionHeader>
-            {isOpen && <pre>{JSON.stringify(action.data, null, '  ')}</pre>}
-        </ActionContainer>
-    )
-}
-
-const ActionsLogger = ({ actions }) => {
-    return (
-        <Wrapper>
+        <Wrapper isFullWidth={isFullWidth}>
+            <Header>Actions Logs</Header>
             {actions.length === 0 && (
                 <EmptyContainer>
                     <EmptyIcon size={32} />
@@ -130,10 +133,16 @@ const ActionsLogger = ({ actions }) => {
                 </EmptyContainer>
             )}
             {actions.map((action, i) => {
-                return <Action key={`${i}.${action.type}.${action.label}`} action={action} />
+                return (
+                    <ActionsLoggerLog key={`${i}.${action.type}.${action.label}`} action={action} />
+                )
             })}
         </Wrapper>
     )
+}
+
+ActionsLogger.propTypes = {
+    isFullWidth: PropTypes.bool,
 }
 
 export default ActionsLogger

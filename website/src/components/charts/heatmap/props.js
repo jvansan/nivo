@@ -169,7 +169,7 @@ export default [
     {
         key: 'padding',
         scopes: '*',
-        description: 'Padding (px).',
+        description: 'Padding.',
         required: false,
         default: defaults.padding,
         type: '{number}',
@@ -247,7 +247,7 @@ export default [
     {
         key: 'cellBorderWidth',
         scopes: '*',
-        description: 'Cell border width (px).',
+        description: 'Cell border width.',
         required: false,
         default: defaults.cellBorderWidth,
         type: '{number}',

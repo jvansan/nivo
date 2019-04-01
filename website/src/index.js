@@ -12,23 +12,16 @@ import React, { useState, useCallback } from 'react'
 import { render } from 'react-dom'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Helmet from 'react-helmet'
-import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
+import styled, { ThemeProvider } from 'styled-components'
 import Nav from './components/nav/Nav'
 import MiniNav from './components/nav/MiniNav'
 import Home from './components/pages/Home'
 import Header from './components/Header'
 import ScrollToTop from './components/ScrollToTop'
 import { getRoutes } from './SiteMap'
-import theme from './styles/theme'
+import GlobalStyle from './theming/GlobalStyle'
+import theme from './theming/theme'
 // import registerServiceWorker from './registerServiceWorker'
-
-const GlobalStyle = createGlobalStyle`
-    html,
-    body {
-        background: ${({ theme }) => theme.colors.background};
-        color: ${({ theme }) => theme.colors.text};
-    }
-`
 
 const Content = styled.div`
     margin-top: var(--header-height);
@@ -60,7 +53,7 @@ const App = ({ location }) => {
     const isCapturing = location !== undefined && location.search.indexOf('capture') !== -1
 
     return (
-        <ThemeProvider theme={theme.dark}>
+        <ThemeProvider theme={theme.light}>
             <>
                 <GlobalStyle />
                 <div className={isCapturing ? 'isCapturing' : ''}>

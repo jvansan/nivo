@@ -16,10 +16,21 @@ const size = 24
 
 const Row = styled.div`
     display: grid;
-    grid-template-columns: 60px auto ${size}px;
-    grid-column-gap: 12px;
+    grid-template-columns: 60px ${size}px auto;
+    grid-column-gap: 9px;
     align-items: center;
     max-width: 240px;
+`
+
+const Line = styled.line`
+    stroke: ${({ theme }) => theme.colors.border};
+    strokewidth: 1px;
+    fill: none;
+`
+
+const Marker = styled.line`
+    stroke: ${({ theme }) => theme.colors.accent};
+    fill: none;
 `
 
 const LineWidthControl = ({ id, label, value, onChange }) => {
@@ -34,28 +45,18 @@ const LineWidthControl = ({ id, label, value, onChange }) => {
         <Control>
             <Label htmlFor={id}>{label}</Label>
             <Row>
-                <TextInput value={value} onChange={handleChange} unit="px" />
-                <input type="range" value={value} onChange={handleChange} min={0} max={20} />
+                <TextInput value={value} onChange={handleChange} unit="px" isNumber={true} />
                 <svg width={size} height={size}>
-                    <line
-                        x1={size / 2}
-                        y1={0}
-                        x2={size / 2}
-                        y2={size}
-                        stroke="#999999"
-                        strokeWidth={1}
-                        fill="none"
-                    />
-                    <line
-                        x1={size / 2}
-                        y1={size * 0.2}
-                        x2={size / 2}
-                        y2={size * 0.8}
-                        stroke="#000000"
+                    <Line y1={size / 2} x2={size} y2={size / 2} />
+                    <Marker
+                        x1={size * 0.2}
+                        y1={size / 2}
+                        x2={size * 0.8}
+                        y2={size / 2}
                         strokeWidth={value}
-                        fill="none"
                     />
                 </svg>
+                <input type="range" value={value} onChange={handleChange} min={0} max={20} />
             </Row>
         </Control>
     )

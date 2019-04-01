@@ -120,7 +120,7 @@ export default [
     {
         key: 'spacing',
         scopes: '*',
-        description: 'define spacing between items (px).',
+        description: 'define spacing between items.',
         type: '{number}',
         required: false,
         default: defaults.spacing,
@@ -283,7 +283,7 @@ export default [
     {
         key: 'titleOffsetX',
         scopes: '*',
-        description: 'title x offset (px) from bullet edge.',
+        description: 'title x offset from bullet edge.',
         type: '{number}',
         required: false,
         default: defaults.titleOffset,
@@ -298,7 +298,7 @@ export default [
     {
         key: 'titleOffsetY',
         scopes: '*',
-        description: 'title y offset (px) from bullet edge.',
+        description: 'title y offset from bullet edge.',
         type: '{number}',
         required: false,
         default: defaults.titleOffset,
@@ -313,17 +313,17 @@ export default [
     {
         key: 'titleRotation',
         scopes: '*',
-        description: 'title rotation (deg.).',
+        description: 'title rotation.',
         type: '{number}',
         required: false,
         default: defaults.titleRotation,
-        controlType: 'range',
+        controlType: 'angle',
         group: 'Title',
         controlOptions: {
+            start: 90,
             min: -360,
             max: 360,
             step: 5,
-            unit: '°',
         },
     },
     {

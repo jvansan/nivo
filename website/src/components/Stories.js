@@ -12,7 +12,6 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import VisitIcon from 'react-icons/lib/md/keyboard-arrow-right'
 import config from '../config'
-import CollapsibleCard from './CollapsibleCard'
 
 const buildStoryLink = ({ kind, story }) =>
     `${config.storybookUrl}?path=/story/${encodeURIComponent(
@@ -88,14 +87,27 @@ const Wrapper = styled.div`
             width: auto;
             height: auto;
             box-shadow: ${({ theme }) => theme.cardShadow};
+            margin-bottom: ${({ theme }) => theme.dimensions.contentMarginSmall}px;
         }
     }
+`
+
+const Header = styled.div`
+    top: 0;
+    left: 0;
+    padding: 7px 12px;
+    background: ${({ theme }) => theme.colors.cardBackground};
+    border-bottom: 1px solid ${({ theme }) => theme.colors.border};
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 600;
 `
 
 const StoriesItem = styled.a`
     color: inherit;
     padding: 9px 24px;
-    border-top: 1px solid ${({ theme }) => theme.colors.borderLight};
+    background: ${({ theme }) => theme.colors.cardBackground};
+    border-bottom: 1px solid ${({ theme }) => theme.colors.borderLight};
     font-size: 14px;
     line-height: 1.6em;
     cursor: pointer;
@@ -113,19 +125,18 @@ const StoriesItem = styled.a`
 const Stories = ({ isFullWidth = false, stories }) => {
     return (
         <Wrapper isFullWidth={isFullWidth}>
-            <CollapsibleCard title="Recipes" expandedByDefault={true}>
-                {stories.map((story, i) => (
-                    <StoriesItem
-                        key={i}
-                        href={buildStoryLink(story.link)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        {story.label}
-                        <VisitIcon size={20} color="#bbb" />
-                    </StoriesItem>
-                ))}
-            </CollapsibleCard>
+            <Header>Recipes</Header>
+            {stories.map((story, i) => (
+                <StoriesItem
+                    key={i}
+                    href={buildStoryLink(story.link)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    {story.label}
+                    <VisitIcon size={20} color="#bbb" />
+                </StoriesItem>
+            ))}
         </Wrapper>
     )
 }

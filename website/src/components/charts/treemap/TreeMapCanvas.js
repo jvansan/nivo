@@ -133,7 +133,7 @@ const TreeMapCanvas = () => {
                     onClick={onClick}
                 />
             </ChartTabs>
-            <ActionsLogger actions={actions} />
+            <ActionsLogger actions={actions} isFullWidth={true} />
             <Settings
                 component="TreeMapCanvas"
                 settings={settings}

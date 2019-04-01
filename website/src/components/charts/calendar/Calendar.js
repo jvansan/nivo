@@ -142,7 +142,7 @@ const Calendar = ({ data }) => {
                     {...mappedSettings}
                 />
             </ChartTabs>
-            <ActionsLogger actions={actions} />
+            <ActionsLogger actions={actions} isFullWidth={true} />
             <Settings
                 component="Calendar"
                 settings={settings}

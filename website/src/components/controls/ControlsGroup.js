@@ -32,6 +32,7 @@ import MarginControl from './MarginControl'
 import OpacityControl from './OpacityControl'
 import LineWidthControl from './LineWidthControl'
 import NumberArrayControl from './NumberArrayControl'
+import AngleControl from './AngleControl'
 // import AxisControl from './AxisControl'
 
 export const shouldRenderControl = (config, context) => {
@@ -277,6 +278,20 @@ const renderControl = (groupName, config, settings, onChange) => {
                 <ColorPickerControl
                     id={id}
                     value={value}
+                    label={config.name}
+                    help={config.help}
+                    onChange={handleChange}
+                />
+            )
+
+        case 'angle':
+            return (
+                <AngleControl
+                    id={id}
+                    value={value}
+                    start={config.start}
+                    min={config.min}
+                    max={config.max}
                     label={config.name}
                     help={config.help}
                     onChange={handleChange}

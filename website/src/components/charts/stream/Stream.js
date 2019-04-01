@@ -32,7 +32,7 @@ export default class Stream extends Component {
                     translateX: 100,
                     itemWidth: 80,
                     itemHeight: 20,
-                    itemTextColor: '#999',
+                    itemTextColor: '#999999',
                     symbolSize: 12,
                     symbolShape: 'circle',
                     onClick: d => {
@@ -42,7 +42,7 @@ export default class Stream extends Component {
                         {
                             on: 'hover',
                             style: {
-                                itemTextColor: '#000',
+                                itemTextColor: '#000000',
                             },
                         },
                     ],

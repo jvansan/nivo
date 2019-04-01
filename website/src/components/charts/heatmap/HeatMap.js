@@ -198,7 +198,7 @@ const HeatMap = () => {
                     theme={nivoTheme}
                 />
             </ChartTabs>
-            <ActionsLogger actions={actions} />
+            <ActionsLogger actions={actions} isFullWidth={true} />
             <Settings
                 component="HeatMap"
                 settings={settings}

@@ -30,7 +30,7 @@ export default {
         dimensions,
 
         cardShadow: '0 2px 6px rgba(0, 0, 0, 0.1)',
-        topCardShadow: '0 16px 30px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.06)',
+        topCardShadow: '0 16px 30px rgba(0, 0, 0, 0.06), 0 0 2px rgba(0, 0, 0, 0.06)',
 
         nivo: {
             axis: {

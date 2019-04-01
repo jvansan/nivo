@@ -216,7 +216,7 @@ export default [
     {
         key: 'innerPadding',
         scopes: '*',
-        description: 'Padding between grouped/stacked bars (px).',
+        description: 'Padding between grouped/stacked bars.',
         type: '{number}',
         required: false,
         default: defaults.innerPadding,
@@ -267,7 +267,7 @@ export default [
     {
         key: 'borderRadius',
         scopes: ['Bar', 'api'],
-        description: 'Rectangle border radius (px).',
+        description: 'Rectangle border radius.',
         type: '{number}',
         required: false,
         default: defaults.borderRadius,
@@ -360,7 +360,7 @@ export default [
     {
         key: 'labelSkipWidth',
         scopes: '*',
-        description: 'Skip label if bar width is lower than provided value, ignored if 0 (px).',
+        description: 'Skip label if bar width is lower than provided value, ignored if 0.',
         type: '{number}',
         required: false,
         default: defaults.labelSkipWidth,
@@ -375,7 +375,7 @@ export default [
     {
         key: 'labelSkipHeight',
         scopes: '*',
-        description: 'Skip label if bar height is lower than provided value, ignored if 0 (px).',
+        description: 'Skip label if bar height is lower than provided value, ignored if 0.',
         type: '{number}',
         required: false,
         default: defaults.labelSkipHeight,

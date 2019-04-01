@@ -7,6 +7,7 @@
  * file that was distributed with this source code.
  */
 import React, { useCallback } from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Control from './Control'
 import Label from './Label'
@@ -16,13 +17,13 @@ const size = 24
 
 const Row = styled.div`
     display: grid;
-    grid-template-columns: ${size}px auto 60px;
-    grid-column-gap: 12px;
+    grid-template-columns: 60px ${size}px auto;
+    grid-column-gap: 9px;
     align-items: center;
     max-width: 200px;
 `
 
-const OpacityControl = ({ id, label, value, onChange }) => {
+const OpacityControl = ({ id, label, value, onChange, help }) => {
     const handleChange = useCallback(
         event => {
             onChange(Number(event.target.value))
@@ -34,6 +35,7 @@ const OpacityControl = ({ id, label, value, onChange }) => {
         <Control>
             <Label htmlFor={id}>{label}</Label>
             <Row>
+                <TextInput value={value} onChange={handleChange} isNumber={true} />
                 <svg width={size} height={size}>
                     <defs>
                         <pattern
@@ -57,10 +59,15 @@ const OpacityControl = ({ id, label, value, onChange }) => {
                     max={1}
                     step={0.05}
                 />
-                <TextInput value={value} onChange={handleChange} />
             </Row>
+            <span />
+            <div className="control-help">{help}</div>
         </Control>
     )
+}
+
+OpacityControl.propTypes = {
+    help: PropTypes.node.isRequired,
 }
 
 export default OpacityControl

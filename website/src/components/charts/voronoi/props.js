@@ -128,7 +128,7 @@ export default [
     },
     {
         key: 'linkLineWidth',
-        description: 'Links line width (px).',
+        description: 'Links line width.',
         type: '{number}',
         required: false,
         default: defaults.linkLineWidth,
@@ -157,7 +157,7 @@ export default [
     },
     {
         key: 'cellLineWidth',
-        description: 'Border width for cells (px).',
+        description: 'Border width for cells.',
         type: '{number}',
         required: false,
         default: defaults.cellLineWidth,
@@ -185,7 +185,7 @@ export default [
     },
     {
         key: 'pointSize',
-        description: 'Size of points (px).',
+        description: 'Size of points.',
         type: '{number}',
         required: false,
         default: defaults.siteSize,

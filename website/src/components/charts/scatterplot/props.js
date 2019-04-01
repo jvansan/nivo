@@ -262,13 +262,14 @@ export default [
     {
         key: 'symbolSize',
         scopes: '*',
-        description: `Symbol size (px).`,
+        description: `Symbol size.`,
         required: false,
         default: defaults.symbolSize,
         type: `{number}`,
         controlType: 'range',
         group: 'Symbols',
         controlOptions: {
+            unit: 'px',
             min: 2,
             max: 24,
         },

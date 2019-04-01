@@ -64,7 +64,7 @@ export default {
     borderWidth: 0,
     borderColor: {
         type: 'custom',
-        color: '#000',
+        color: '#000000',
     },
 
     defs: [

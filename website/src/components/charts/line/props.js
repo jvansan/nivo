@@ -52,7 +52,7 @@ export default [
                 <code>&lt;ResponsiveLine&nbsp;/&gt;</code>.
             </span>
         ),
-        help: 'Chart width (px).',
+        help: 'Chart width.',
         type: '{number}',
         required: true,
         controlType: 'range',
@@ -74,7 +74,7 @@ export default [
                 <code>&lt;ResponsiveLine&nbsp;/&gt;</code>.
             </span>
         ),
-        help: 'Chart height (px).',
+        help: 'Chart height.',
         type: '{number}',
         required: true,
         controlType: 'range',
@@ -254,7 +254,7 @@ export default [
     {
         key: 'lineWidth',
         scopes: '*',
-        description: 'Line width (px).',
+        description: 'Line width.',
         type: '{number}',
         required: false,
         default: defaults.lineWidth,
@@ -365,7 +365,7 @@ export default [
     },
     {
         key: 'dotSize',
-        description: 'Size of the dots (px).',
+        description: 'Size of the dots.',
         type: '{number}',
         required: false,
         default: defaults.dotSize,
@@ -392,7 +392,7 @@ export default [
     },
     {
         key: 'dotBorderWidth',
-        description: 'Width of the dots border (px).',
+        description: 'Width of the dots border.',
         type: '{number}',
         required: false,
         default: defaults.dotBorderWidth,
@@ -439,7 +439,7 @@ export default [
     },
     {
         key: 'dotLabelYOffset',
-        description: 'Label Y offset from dot shape (px).',
+        description: 'Label Y offset from dot shape.',
         type: '{number}',
         required: false,
         default: dotDefaults.labelYOffset,

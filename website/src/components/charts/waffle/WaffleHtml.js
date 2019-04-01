@@ -163,7 +163,7 @@ const WaffleHtml = () => {
             >
                 <ResponsiveWaffleHtml data={data} {...mappedSettings} onClick={onClick} />
             </ChartTabs>
-            <ActionsLogger actions={actions} />
+            <ActionsLogger actions={actions} isFullWidth={true} />
             <Settings
                 component="WaffleHtml"
                 settings={settings}

@@ -275,7 +275,7 @@ export default [
     {
         key: 'strokeWidth',
         scopes: '*',
-        description: 'Lines stroke width (px).',
+        description: 'Lines stroke width.',
         type: '{number}',
         required: false,
         default: defaults.strokeWidth,

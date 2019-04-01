@@ -130,18 +130,12 @@ export default [
     },
     {
         key: 'borderWidth',
-        description: 'Node border width (px).',
+        description: 'Node border width.',
         type: '{number}',
         required: false,
         default: defaults.borderWidth,
-        controlType: 'range',
+        controlType: 'lineWidth',
         group: 'Base',
-        controlOptions: {
-            unit: 'px',
-            min: 0,
-            max: 12,
-            step: 1,
-        },
     },
     //{
     //    key: 'borderColor',
@@ -154,7 +148,7 @@ export default [
     //},
     {
         key: 'cornerRadius',
-        description: 'Round node shape (px).',
+        description: 'Round node shape.',
         type: '{number}',
         required: false,
         default: defaults.cornerRadius,

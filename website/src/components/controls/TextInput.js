@@ -1,17 +1,37 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-const InputElement = styled.input`
+const Container = styled.div`
+    position: relative;
     height: 28px;
     width: 100%;
+`
+
+const Unit = styled.span`
+    position: absolute;
+    top: 1px;
+    right: 1px;
     font-size: 12px;
-    height: 28px;
+    height: 26px;
+    display: flex;
+    align-items: center;
     padding: 0 7px;
+    color: ${({ theme }) => theme.colors.textLight};
+`
+
+const InputElement = styled.input`
+    height: 100%;
+    width: 100%;
+    font-size: 12px;
+    padding: 0 7px;
+    padding-right: ${({ hasUnit }) => (hasUnit ? 26 : 7)}px;
     border-radius: 1px;
     background: ${({ theme }) => theme.colors.inputBackground};
     border: 1px solid ${({ theme }) => theme.colors.inputBorder};
     cursor: pointer;
-    color: ${({ theme }) => theme.colors.textLight};
+    color: inherit;
+    text-align: ${({ isNumber }) => (isNumber ? 'right' : 'left')};
 
     &:focus {
         outline: 0;
@@ -22,15 +42,20 @@ const InputElement = styled.input`
     }
 `
 
-const TextInput = props => {
-    const hasUnit = !!props.unit
+const TextInput = ({ unit, isNumber = false, ...props }) => {
+    const hasUnit = !!unit
 
     return (
-        <div>
-            <InputElement type="text" {...props} />
-            {hasUnit && <span>{props.unit}</span>}
-        </div>
+        <Container>
+            <InputElement type="text" hasUnit={hasUnit} isNumber={isNumber} {...props} />
+            {hasUnit && <Unit>{unit}</Unit>}
+        </Container>
     )
+}
+
+TextInput.propTypes = {
+    isNumber: PropTypes.bool,
+    unit: PropTypes.oneOf(['px', '°']),
 }
 
 export default TextInput

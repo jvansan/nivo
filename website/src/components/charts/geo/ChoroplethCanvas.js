@@ -137,7 +137,7 @@ const ChoroplethCanvas = () => {
                     {...mappedSettings}
                 />
             </ChartTabs>
-            <ActionsLogger actions={actions} />
+            <ActionsLogger actions={actions} isFullWidth={true} />
             <Settings
                 component="ChoroplethCanvas"
                 settings={settings}

@@ -136,7 +136,7 @@ const CalendarCanvas = ({ data }) => {
                     {...mappedSettings}
                 />
             </ChartTabs>
-            <ActionsLogger actions={actions} />
+            <ActionsLogger actions={actions} isFullWidth={true} />
             <Settings
                 component="CalendarCanvas"
                 settings={settings}

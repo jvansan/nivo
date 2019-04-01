@@ -31,7 +31,7 @@ export default [
                 <code>&lt;ResponsiveStream&nbsp;/&gt;</code>.
             </span>
         ),
-        help: 'Chart width (px).',
+        help: 'Chart width.',
         type: '{number}',
         required: true,
         controlType: 'range',
@@ -53,7 +53,7 @@ export default [
                 <code>&lt;ResponsiveStream&nbsp;/&gt;</code>.
             </span>
         ),
-        help: 'Chart height (px).',
+        help: 'Chart height.',
         type: '{number}',
         required: true,
         controlType: 'range',
@@ -153,13 +153,8 @@ export default [
         type: '{number}',
         required: false,
         default: defaults.borderWidth,
-        controlType: 'range',
+        controlType: 'lineWidth',
         group: 'Style',
-        controlOptions: {
-            unit: 'px',
-            min: 0,
-            max: 10,
-        },
     },
     {
         key: 'borderColor',
@@ -221,9 +216,9 @@ export default [
     },
     {
         key: 'dotSize',
-        help: 'Size of the dots (px)',
+        help: 'Size of the dots',
         description:
-            'Size of the dots (px), it also accepts a function which can be used to make it vary according to the associated datum.',
+            'Size of the dots, it also accepts a function which can be used to make it vary according to the associated datum.',
         type: '{number|Function}',
         required: false,
         default: defaults.dotSize,
@@ -250,17 +245,12 @@ export default [
     {
         key: 'dotBorderWidth',
         description:
-            'Width of the dots border (px), it also accepts a function which can be used to make it vary according to the associated datum.',
+            'Width of the dots border, it also accepts a function which can be used to make it vary according to the associated datum.',
         type: '{number|Function}',
         required: false,
         default: defaults.dotBorderWidth,
-        controlType: 'range',
+        controlType: 'lineWidth',
         group: 'Dots',
-        controlOptions: {
-            unit: 'px',
-            min: 0,
-            max: 10,
-        },
     },
     {
         key: 'dotBorderColor',

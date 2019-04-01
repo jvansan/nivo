@@ -93,14 +93,14 @@ export default [
     {
         key: 'startAngle',
         scopes: ['Pie', 'PieCanvas'],
-        description: 'Start angle (deg.) useful to make gauges for example.',
+        description: 'Start angle, useful to make gauges for example.',
         type: '{number}',
         required: false,
         default: defaults.startAngle,
-        controlType: 'range',
+        controlType: 'angle',
         group: 'Base',
         controlOptions: {
-            unit: 'deg.',
+            unit: '°',
             min: -180,
             max: 360,
             step: 5,
@@ -109,14 +109,14 @@ export default [
     {
         key: 'endAngle',
         scopes: ['Pie', 'PieCanvas'],
-        description: 'End angle (deg.) useful to make gauges for example.',
+        description: 'End angle, useful to make gauges for example.',
         type: '{number}',
         required: false,
         default: defaults.endAngle,
-        controlType: 'range',
+        controlType: 'angle',
         group: 'Base',
         controlOptions: {
-            unit: 'deg.',
+            unit: '°',
             min: -360,
             max: 360,
             step: 5,
@@ -141,7 +141,6 @@ export default [
         controlType: 'range',
         group: 'Base',
         controlOptions: {
-            unit: '(ratio)',
             min: 0,
             max: 0.95,
             step: 0.05,
@@ -149,14 +148,14 @@ export default [
     },
     {
         key: 'padAngle',
-        description: 'Padding (deg.) between each pie slice.',
+        description: 'Padding between each pie slice.',
         type: '{number}',
         required: false,
         default: defaults.padAngle,
         controlType: 'range',
         group: 'Base',
         controlOptions: {
-            unit: 'deg.',
+            unit: '°',
             min: 0,
             max: 45,
             step: 1,
@@ -304,7 +303,7 @@ export default [
         controlType: 'range',
         group: 'Radial labels',
         controlOptions: {
-            unit: 'deg.',
+            unit: '°',
             min: 0,
             max: 45,
             step: 1,
@@ -436,7 +435,7 @@ export default [
         controlType: 'range',
         group: 'Slices labels',
         controlOptions: {
-            unit: 'deg.',
+            unit: '°',
             min: 0,
             max: 45,
             step: 1,

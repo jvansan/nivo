@@ -201,7 +201,7 @@ const WaffleCanvas = () => {
             >
                 <ResponsiveWaffleCanvas data={data} {...mappedSettings} onClick={onClick} />
             </ChartTabs>
-            <ActionsLogger actions={actions} />
+            <ActionsLogger actions={actions} isFullWidth={true} />
             <Settings
                 component="WaffleCanvas"
                 settings={settings}

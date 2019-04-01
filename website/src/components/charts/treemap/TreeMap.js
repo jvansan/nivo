@@ -154,7 +154,7 @@ const TreeMap = () => {
                     onClick={onClick}
                 />
             </ChartTabs>
-            <ActionsLogger actions={actions} />
+            <ActionsLogger actions={actions} isFullWidth={true} />
             <Settings
                 component="TreeMap"
                 settings={settings}

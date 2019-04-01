@@ -121,7 +121,7 @@ export default class Line extends Component {
                     onChange={this.handleSettingsUpdate}
                     groups={groupsByScope.Line}
                 />
-                <Stories stories={lineStories} />
+                <Stories stories={lineStories} isFullWidth={true} />
             </ChartPage>
         )
     }

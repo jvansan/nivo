@@ -93,7 +93,7 @@ export default [
         group: 'Projection',
         controlOptions: {
             min: 0,
-            max: 200,
+            max: 400,
         },
     },
     {
@@ -106,12 +106,19 @@ export default [
         controlType: 'numberArray',
         group: 'Projection',
         controlOptions: {
+            unit: 'px',
             items: [
                 {
                     label: 'x',
+                    min: -1,
+                    max: 1,
+                    step: 0.05,
                 },
                 {
                     label: 'y',
+                    min: -1,
+                    max: 1,
+                    step: 0.05,
                 },
             ],
         },
@@ -129,12 +136,18 @@ export default [
             items: [
                 {
                     label: 'lambda (λ)',
+                    min: -360,
+                    max: 360,
                 },
                 {
                     label: 'phi (φ)',
+                    min: -360,
+                    max: 360,
                 },
                 {
                     label: 'gamma (γ)',
+                    min: -360,
+                    max: 360,
                 },
             ],
         },
@@ -263,12 +276,9 @@ export default [
         type: '{number}',
         required: false,
         default: GeoMapDefaultProps.graticuleLineWidth,
-        controlType: 'range',
+        controlType: 'lineWidth',
         group: 'Graticule',
         controlOptions: {
-            unit: 'px',
-            min: 0,
-            max: 10,
             step: 0.5,
         },
     },

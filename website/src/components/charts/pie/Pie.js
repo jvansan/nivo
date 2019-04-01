@@ -178,7 +178,7 @@ const Pie = () => {
             <ChartTabs chartClass="pie" code={code} data={data} diceRoll={diceRoll}>
                 <ResponsivePie data={data} {...mappedSettings} onClick={onClick} />
             </ChartTabs>
-            <ActionsLogger actions={actions} />
+            <ActionsLogger actions={actions} isFullWidth={true} />
             <Settings
                 component="Pie"
                 settings={settings}
