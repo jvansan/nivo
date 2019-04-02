@@ -8,9 +8,14 @@
  */
 import React, { memo } from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import { Link } from 'gatsby'
 import ReactMarkdown from 'react-markdown'
-import config from '../config'
+// import config from '../config'
+
+const config = {
+    storybookUrl: 'crap',
+    nivoApiUrl: 'crap',
+}
 
 const linkRenderer = ({ href, children, ...rest }) => {
     if (href.indexOf('self:') === 0) {

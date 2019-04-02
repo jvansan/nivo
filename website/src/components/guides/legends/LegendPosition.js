@@ -1,3 +1,11 @@
+/*
+ * This file is part of the nivo project.
+ *
+ * (c) 2016 Raphaël Benitte
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 import React from 'react'
 import omit from 'lodash/omit'
 import {
@@ -12,7 +20,7 @@ import {
     ANCHOR_LEFT,
     ANCHOR_CENTER,
 } from '@nivo/legends'
-import theme from '../../../nivoTheme'
+//import theme from '../../../nivoTheme'
 
 const anchors = [
     ANCHOR_TOP_LEFT,
@@ -102,7 +110,7 @@ export default () => (
                             { id: 'b', label: '...', color: '#dc5a32' },
                             { id: 'c', label: '...', color: '#dc5a32' },
                         ]}
-                        theme={theme}
+                        theme={{}}
                     />
                 ))}
             </g>
@@ -151,7 +159,7 @@ export default () => (
                                 color: 'rgb(232, 193, 160)',
                             },
                         ]}
-                        theme={theme}
+                        theme={{}}
                     />
                 ))}
                 {translateExamples.map((example, i) => (
@@ -176,7 +184,7 @@ export default () => (
                                 color: '#dc5a32',
                             },
                         ]}
-                        theme={theme}
+                        theme={{}}
                     />
                 ))}
             </g>

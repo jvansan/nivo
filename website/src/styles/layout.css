@@ -10,11 +10,3 @@
     background-repeat: no-repeat;
     background-position: top left;
 }
-
-.chart_header {
-    height: 130px;
-}
-
-.chart_header code {
-    color: #fff;
-}

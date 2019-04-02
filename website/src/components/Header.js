@@ -7,12 +7,11 @@
  * file that was distributed with this source code.
  */
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import { Link } from 'gatsby'
 import GitHubIcon from 'react-icons/lib/fa/github'
 import TwitterIcon from 'react-icons/lib/fa/twitter'
-import { miscItems } from '../SiteMap'
-import logoImg from '../assets/icons/nivo-logo.png'
+import nav from '../data/nav.yml'
 
 const Container = styled.header`
     position: fixed;
@@ -25,31 +24,7 @@ const Container = styled.header`
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    z-index: 10;
-`
-
-const Logo = styled(Link)`
-    cursor: pointer;
-    width: ${({ theme }) => theme.dimensions.miniNavWidth}px;
-    height: ${({ theme }) => theme.dimensions.headerHeight}px;
-    display: block;
-    background-color: ${({ theme }) => theme.colors.cardBackground};
-    background-image: url(${logoImg});
-    background-size: 34%;
-    background-position: center center;
-    background-repeat: no-repeat;
-
-    @media only screen and (min-width: 760px) and (max-width: 1000px) {
-        & {
-            display: none;
-        }
-    }
-
-    @media only screen and (max-width: 760px) {
-        & {
-            display: none;
-        }
-    }
+    z-index: 11;
 `
 
 const HeaderNav = styled.nav`
@@ -78,42 +53,32 @@ export default class Header extends Component {
     render() {
         return (
             <Container>
-                <Logo to="/">
-                    <span className="sprite-icons-nivo-logo" />
-                </Logo>
                 <HeaderNav>
-                    {miscItems.map(item => {
-                        if (item.children && item.children.length > 0) {
-                            return (
-                                <span className="HeaderNav__Item" key={item.className}>
-                                    {item.label}
-                                    <span className="HeaderNav__Item__Sub">
-                                        {item.children.map(child => (
-                                            <Link
-                                                className="HeaderNav__Item__Sub__Item"
-                                                key={child.className}
-                                                to={child.path}
-                                            >
-                                                {child.label}
-                                            </Link>
-                                        ))}
-                                    </span>
-                                </span>
-                            )
-                        }
-
-                        return (
-                            <Link
-                                className={`HeaderNav__Item HeaderNav__Item--${item.className}`}
-                                key={item.className}
-                                to={item.path}
-                            >
-                                {item.label}
-                            </Link>
-                        )
-                    })}
+                    <Link className="HeaderNav__Item" to="/about">
+                        About
+                    </Link>
+                    <Link className="HeaderNav__Item" to="/components">
+                        Components
+                    </Link>
+                    <span className="HeaderNav__Item">
+                        Guides
+                        <span className="HeaderNav__Item__Sub">
+                            {nav.guides.map(guide => (
+                                <Link
+                                    key={guide.path}
+                                    className="HeaderNav__Item__Sub__Item"
+                                    to={guide.path}
+                                >
+                                    {guide.label}
+                                </Link>
+                            ))}
+                        </span>
+                    </span>
+                    <Link className="HeaderNav__Item" to="/faq">
+                        FAQ
+                    </Link>
                     <a
-                        className="HeaderNav__Item HeaderNav__Item--storybook"
+                        className="HeaderNav__Item"
                         href="https://nivo.rocks/storybook/"
                         target="_blank"
                         rel="noopener noreferrer"

@@ -7,13 +7,11 @@
  * file that was distributed with this source code.
  */
 import React, { Component } from 'react'
+import { Link } from 'gatsby'
 import styled from 'styled-components'
 import MiniNavLink from './MiniNavLink'
-import { getSectionItems } from '../../SiteMap'
-
-const miniNavItems = getSectionItems('Components').map((item, i) => {
-    return { ...item, index: i }
-})
+import logoImg from '../../assets/icons/nivo-logo.png'
+import nav from '../../data/nav.yml'
 
 const Wrapper = styled.aside`
     position: fixed;
@@ -21,7 +19,7 @@ const Wrapper = styled.aside`
     box-shadow: ${({ theme }) => theme.cardShadow};
     bottom: 0;
     left: 0;
-    width: ${({ theme }) => theme.dimensions.miniNavWidth + 1}px;
+    width: ${({ theme }) => theme.dimensions.miniNavWidth}px;
     z-index: 30;
     background: ${({ theme }) => theme.colors.cardBackground};
 
@@ -39,20 +37,38 @@ const Wrapper = styled.aside`
 `
 
 const Container = styled.div`
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    justify-content: flex-start;
+    position: fixed;
+    top: ${({ theme }) => theme.dimensions.headerHeight}px;
+    bottom: 0;
+    left: 0;
+    width: ${({ theme }) => theme.dimensions.miniNavWidth}px;
+    padding-bottom: 20px;
+    overflow-x: hidden;
+    overflow-y: auto;
+`
+
+const Logo = styled(Link)`
+    cursor: pointer;
+    width: ${({ theme }) => theme.dimensions.miniNavWidth}px;
+    height: ${({ theme }) => theme.dimensions.headerHeight}px;
+    display: block;
+    background-color: ${({ theme }) => theme.colors.cardBackground};
+    background-image: url(${logoImg});
+    background-size: 52%;
+    background-position: center center;
+    background-repeat: no-repeat;
 `
 
 class MiniNav extends Component {
     render() {
         return (
             <Wrapper>
+                <Logo to="/">
+                    <span className="sprite-icons-nivo-logo" />
+                </Logo>
                 <Container>
-                    {miniNavItems.map(item => {
-                        return <MiniNavLink key={item.path} style={{}} {...item} />
+                    {nav.components.map(item => {
+                        return <MiniNavLink key={item.path} {...item} />
                     })}
                 </Container>
             </Wrapper>

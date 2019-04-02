@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  */
 import React, { useState, useCallback } from 'react'
-import { Link, Route } from 'react-router-dom'
+import { Link } from 'gatsby'
 import styled from 'styled-components'
 
 const Label = styled.span`
@@ -33,12 +33,14 @@ const Label = styled.span`
     transform: translate3d(20px, 0, 0);
     opacity: 0;
     transition: opacity 200ms, transform 200ms;
+    display: none;
 `
 
 const Item = styled(Link)`
+    display: block;
     cursor: pointer;
-    width: var(--mini-nav-item-size);
-    height: var(--mini-nav-item-size);
+    width: ${({ theme }) => theme.dimensions.miniNavWidth}px;
+    height: ${({ theme }) => theme.dimensions.miniNavItemSize}px;
     position: relative;
     text-decoration: none;
 
@@ -46,13 +48,14 @@ const Item = styled(Link)`
         content: '';
         position: absolute;
         display: block;
-        width: var(--mini-nav-item-size);
-        height: var(--mini-nav-item-size);
+        width: ${({ theme }) => theme.dimensions.miniNavItemSize}px;
+        height: ${({ theme }) => theme.dimensions.miniNavItemSize}px;
         border-radius: 100%;
         background: ${({ theme }) => theme.colors.background};
         opacity: 0;
         top: 0;
-        left: 0;
+        left: ${({ theme }) =>
+            (theme.dimensions.miniNavWidth - theme.dimensions.miniNavItemSize) / 2}px;
         transform: scale(0.6);
         transition: opacity 200ms, transform 400ms;
         z-index: 1;
@@ -60,7 +63,7 @@ const Item = styled(Link)`
 
     &:hover:before {
         opacity: 1;
-        transform: scale(0.88);
+        transform: scale(0.96);
     }
 
     &:hover ${Label} {
@@ -83,29 +86,12 @@ const Icon = styled.span`
     pointer-events: none;
 `
 
-const MiniNavLink = ({ path, className, label, style }) => {
-    const [isHover, setIsHover] = useState(false)
-    const onMouseEnter = useCallback(() => setIsHover(true), [setIsHover])
-    const onMouseLeave = useCallback(() => setIsHover(false), [setIsHover])
-
+const MiniNavLink = ({ path, icon, label }) => {
     return (
-        <Route
-            path={path}
-            exact={false}
-            children={({ match }) => (
-                <Item
-                    to={path}
-                    style={style}
-                    onMouseEnter={onMouseEnter}
-                    onMouseLeave={onMouseLeave}
-                >
-                    <Icon
-                        className={`sprite-icons-${className}-${match || isHover ? 'red' : 'grey'}`}
-                    />
-                    <Label>{label}</Label>
-                </Item>
-            )}
-        />
+        <Item to={path}>
+            <Icon className={`sprite-icons-${icon}-red`} />
+            <Label>{label}</Label>
+        </Item>
     )
 }
 

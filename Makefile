@@ -50,9 +50,8 @@ init: ##@0 global cleanup/install/bootstrap
 	@$(MAKE) clean-all
 	@yarn install
 	@$(MAKE) bootstrap
-	@$(MAKE) packages-build
-	@$(MAKE) website-install
-	@$(MAKE) examples-install
+	#@$(MAKE) packages-build
+	#@$(MAKE) examples-install
 
 fmt: ##@0 global format code using prettier (js, css, md)
 	@./node_modules/.bin/prettier --color --write \
@@ -201,10 +200,6 @@ package-dev-%: ##@1 packages setup package for development, link to website, run
 # WEBSITE
 #
 ########################################################################################################################
-
-website-install: ##@2 website install website dependencies
-	@echo "${YELLOW}Installing website dependencies${RESET}"
-	@cd website && yarn install
 
 website-deps-up: ##@2 website interactive upgrade of website's dependencies
 	@yarn upgrade-interactive --latest

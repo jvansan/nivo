@@ -1,3 +1,11 @@
+/*
+ * This file is part of the nivo project.
+ *
+ * (c) 2016 Raphaël Benitte
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 import React from 'react'
 import {
     LegendSvgItem,
@@ -6,7 +14,7 @@ import {
     DIRECTION_TOP_TO_BOTTOM,
     DIRECTION_BOTTOM_TO_TOP,
 } from '@nivo/legends'
-import theme from '../../../nivoTheme'
+//import theme from '../../../nivoTheme'
 
 const itemDirections = [
     DIRECTION_LEFT_TO_RIGHT,
@@ -24,7 +32,7 @@ const itemsProps = {
         id: 'demo',
         color: '#dc5a32',
     },
-    theme,
+    theme: {},
 }
 
 export default () => (

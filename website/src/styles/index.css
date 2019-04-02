@@ -11,13 +11,11 @@
 @import 'table.css';
 @import 'header.css';
 @import 'home.css';
-@import 'charts.css';
 @import 'controls.css';
 @import 'components/components-filters.css';
 @import 'components/components-grid.css';
 @import 'components/components-search.css';
 @import 'components/component-properties.css';
-@import 'color-picker.css';
 @import 'api-client.css';
 @import 'components.css';
 @import 'mobile-nav.css';
@@ -79,7 +77,6 @@ code,
 .unit,
 pre,
 .json-data_json textarea,
-.api-client_data,
 svg text,
 .component-properties__item__header,
 .component-properties__item__meta {
@@ -176,4 +173,9 @@ svg text,
     background: white;
     margin-bottom: 40px;
     padding: 20px;
+}
+
+.chart-tabs--data,
+.chart-tabs--code {
+    height: auto;
 }

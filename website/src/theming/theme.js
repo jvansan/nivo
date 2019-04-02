@@ -1,10 +1,18 @@
+/*
+ * This file is part of the nivo project.
+ *
+ * (c) 2016-present Raphaël Benitte
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 const dimensions = {
     headerHeight: 60,
     contentMargin: 30,
     contentMarginSmall: 20,
-    miniNavItemSize: 66,
+    miniNavWidth: 80,
+    miniNavItemSize: 56,
 }
-dimensions.miniNavWidth = dimensions.miniNavItemSize * 2
 
 export default {
     light: {

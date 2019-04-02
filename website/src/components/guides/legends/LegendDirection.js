@@ -1,13 +1,21 @@
+/*
+ * This file is part of the nivo project.
+ *
+ * (c) 2016 Raphaël Benitte
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 import React from 'react'
 import { BoxLegendSvg } from '@nivo/legends'
-import theme from '../../../nivoTheme'
+// import theme from '../../../nivoTheme'
 
 const legendProps = {
     containerWidth: 800,
     containerHeight: 90,
     itemWidth: 70,
     itemHeight: 24,
-    theme,
+    theme: {},
 }
 
 export default () => (

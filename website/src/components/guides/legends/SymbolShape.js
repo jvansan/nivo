@@ -1,7 +1,15 @@
+/*
+ * This file is part of the nivo project.
+ *
+ * (c) 2016 Raphaël Benitte
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 import React from 'react'
 import dedent from 'dedent-js'
 import { LegendSvgItem, DIRECTION_LEFT_TO_RIGHT } from '@nivo/legends'
-import theme from '../../../nivoTheme'
+//import theme from '../../../nivoTheme'
 
 const shapes = ['square', 'circle', 'triangle', 'diamond']
 
@@ -48,7 +56,7 @@ export default () => (
                             }}
                             direction={DIRECTION_LEFT_TO_RIGHT}
                             symbolShape={shape}
-                            theme={theme}
+                            theme={{}}
                         />
                     </svg>
                 </div>

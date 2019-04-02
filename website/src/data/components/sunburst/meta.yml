@@ -1,0 +1,12 @@
+Sunburst:
+  package: '@nivo/sunburst'
+  tags:
+    - '@nivo/sunburst'
+    - hierarchy
+    - radial
+    - svg
+    - isomorphic
+  stories: []
+  description: |
+    The responsive alternative of this component is
+    `ResponsiveSunburst`.
