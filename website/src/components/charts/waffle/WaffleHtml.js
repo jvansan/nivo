@@ -7,15 +7,14 @@
  * file that was distributed with this source code.
  */
 import React, { useState, useCallback } from 'react'
-import { Link } from 'react-router-dom'
 import { ResponsiveWaffleHtml, WaffleDefaultProps } from '@nivo/waffle'
 import ChartHeader from '../../ChartHeader'
 import ChartTabs from '../../ChartTabs'
 import ActionsLogger, { useActionsLogger } from '../../ActionsLogger'
 import Settings from '../../Settings'
+import ComponentDescription from '../../ComponentDescription'
 import { groupsByScope } from './WaffleControls'
 import generateCode from '../../../lib/generateChartCode'
-import config from '../../../config'
 import nivoTheme from '../../../nivoTheme'
 import propsMapper from './propsMapper'
 import ChartPage from '../ChartPage'
@@ -77,6 +76,24 @@ const initialSettings = {
     tooltip: null,
 }
 
+const description = `
+A variation around the [Waffle](self:/waffle) component,
+using HTML elements.
+
+You can fully customize it using \`cellComponent\` property to define
+your own cell component, if you wish to do so you should have a look at
+[native HTML component](href="https://github.com/plouc/nivo/blob/master/packages/nivo-waffle/src/WaffleCellHtml.js)
+for available properties.
+
+You can also see more example usages in
+[the storybook](storybook:wafflehtml--default).
+
+The responsive alternative of this component is
+\`ResponsiveWaffleHtml\`, it also offers other implementations,
+see [Waffle](self:/waffle) and
+[WaffleCanvas](self:/waffle/canvas).
+`
+
 const WaffleHtml = () => {
     const [settings, setSettings] = useState(initialSettings)
     const [data, setData] = useState(generateData())
@@ -117,43 +134,7 @@ const WaffleHtml = () => {
     return (
         <ChartPage>
             <ChartHeader chartClass="WaffleHtml" tags={['@nivo/waffle', 'html', 'isomorphic']} />
-            <div className="chart-description">
-                <p className="description">
-                    A variation around the <Link to="/waffle">Waffle</Link> component, using HTML
-                    elements.
-                </p>
-                <p className="description">
-                    You can fully customize it using <code>cellComponent</code> property to define
-                    your own cell component, if you wish to do so you should have a look at{' '}
-                    <a
-                        href="https://github.com/plouc/nivo/blob/master/packages/nivo-waffle/src/WaffleCellHtml.js"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        native HTML component
-                    </a>{' '}
-                    for available properties.
-                </p>
-                <p className="description">
-                    You can also see more example usages in{' '}
-                    <a
-                        href={`${
-                            config.storybookUrl
-                        }?selectedKind=WaffleHtml&selectedStory=default`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        the storybook
-                    </a>
-                    .
-                </p>
-                <p className="description">
-                    The responsive alternative of this component is{' '}
-                    <code>ResponsiveWaffleHtml</code>, it also offers other implementations, see{' '}
-                    <Link to="/waffle">Waffle</Link> and{' '}
-                    <Link to="/waffle/canvas">WaffleCanvas</Link>.
-                </p>
-            </div>
+            <ComponentDescription description={description} />
             <ChartTabs
                 chartClass="waffle"
                 code={code}

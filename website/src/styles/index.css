@@ -86,11 +86,6 @@ svg text,
     font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
 }
 
-code,
-.code {
-    color: var(--code-text-color);
-}
-
 .description code,
 .guide__description code,
 .component-properties__item__body code {

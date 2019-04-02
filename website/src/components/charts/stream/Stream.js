@@ -7,18 +7,28 @@
  * file that was distributed with this source code.
  */
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import { ResponsiveStream, StreamDefaultProps } from '@nivo/stream'
 import ChartHeader from '../../ChartHeader'
 import ChartTabs from '../../ChartTabs'
 import generateCode from '../../../lib/generateChartCode'
 import Settings from '../../Settings'
+import ComponentDescription from '../../ComponentDescription'
 import { groupsByScope } from './StreamControls'
 import nivoTheme from '../../../nivoTheme'
 import { generateLightDataSet } from './generators'
 import defaultProps from './defaultProps'
 import propsMapper from './propsMapper'
 import ChartPage from '../ChartPage'
+
+const description = `
+Stream chart.
+
+The responsive alternative of this component is
+\`ResponsiveStream\`.
+
+See the [dedicated guide](self:/guides/legends) on
+how to setup legends for this component.
+`
 
 export default class Stream extends Component {
     state = {
@@ -82,17 +92,7 @@ export default class Stream extends Component {
                     chartClass="Stream"
                     tags={['@nivo/stream', 'stacked', 'svg', 'isomorphic']}
                 />
-                <div className="chart-description">
-                    <p className="description">Stream chart.</p>
-                    <p className="description">
-                        The responsive alternative of this component is{' '}
-                        <code>ResponsiveStream</code>.
-                    </p>
-                    <p className="description">
-                        See the <Link to="/guides/legends">dedicated guide</Link> on how to setup
-                        legends for this component.
-                    </p>
-                </div>
+                <ComponentDescription description={description} />
                 <ChartTabs chartClass="stream" code={code} data={data} diceRoll={this.diceRoll}>
                     <ResponsiveStream
                         data={data}

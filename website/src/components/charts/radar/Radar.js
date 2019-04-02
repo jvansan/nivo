@@ -8,7 +8,6 @@
  */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
 import { ResponsiveRadar } from '@nivo/radar'
 import ChartHeader from '../../ChartHeader'
 import ChartTabs from '../../ChartTabs'
@@ -16,11 +15,27 @@ import Settings from '../../Settings'
 import { groupsByScope } from './RadarControls'
 import generateCode from '../../../lib/generateChartCode'
 import Stories from '../../Stories'
+import ComponentDescription from '../../ComponentDescription'
 import { radarStories } from './stories'
-import config from '../../../config'
 import nivoTheme from '../../../nivoTheme'
 import propsMapper from './propsMapper'
 import ChartPage from '../ChartPage'
+
+const description = `
+Generates a radar chart from an array of data.
+Note that margin object does not take grid labels into account,
+so you should adjust it to leave enough room for it.
+
+The responsive alternative of this component is
+\`ResponsiveRadar\`.
+
+This component is available in the \`@nivo/api\`, see
+[sample](api:/samples/radar.svg) or
+[try it using the API client](self:/radar/api).
+
+See the [dedicated guide](self:/guides/legends) on how to setup
+legends for this component.
+`
 
 export default class Radar extends Component {
     static propTypes = {
@@ -124,40 +139,7 @@ export default class Radar extends Component {
                     chartClass="Radar"
                     tags={['@nivo/radar', 'radial', 'svg', 'isomorphic']}
                 />
-                <div className="chart-description">
-                    <p>
-                        Generates a radar chart from an array of data. Note that margin object does
-                        not take grid labels into account, so you should adjust it to leave enough
-                        room for it.
-                    </p>
-                    <p className="description">
-                        The responsive alternative of this component is&nbsp;
-                        <code>ResponsiveRadar</code>.
-                    </p>
-                    <p className="description">
-                        This component is available in the{' '}
-                        <a
-                            href="https://github.com/plouc/nivo-api"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            nivo-api
-                        </a>
-                        , see{' '}
-                        <a
-                            href={`${config.nivoApiUrl}/samples/radar.svg`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            sample
-                        </a>{' '}
-                        or <Link to="/radar/api">try it using the API client</Link>.
-                    </p>
-                    <p className="description">
-                        See the <Link to="/guides/legends">dedicated guide</Link> on how to setup
-                        legends for this component.
-                    </p>
-                </div>
+                <ComponentDescription description={description} />
                 <ChartTabs chartClass="radar" code={code} data={data} diceRoll={diceRoll}>
                     <ResponsiveRadar
                         data={data}

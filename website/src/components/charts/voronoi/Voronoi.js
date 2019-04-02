@@ -12,6 +12,7 @@ import { ResponsiveVoronoi, VoronoiDefaultProps } from '@nivo/voronoi'
 import ChartHeader from '../../ChartHeader'
 import ChartTabs from '../../ChartTabs'
 import Settings from '../../Settings'
+import ComponentDescription from '../../ComponentDescription'
 import { groupsByScope } from './VoronoiControls'
 import generateCode from '../../../lib/generateChartCode'
 import ChartPage from '../ChartPage'
@@ -21,6 +22,13 @@ const yDomain = [0, 100]
 
 const generateData = () =>
     range(100).map(id => ({ id, x: Math.random() * xDomain[1], y: Math.random() * yDomain[1] }))
+
+const description = `
+Delaunay/Voronoi Tessellation, uses
+[d3-delaunay](https://github.com/d3/d3-delaunay).
+The responsive alternative of this component is
+\`ResponsiveVoronoi\`.
+`
 
 export default class Voronoi extends Component {
     constructor(props) {
@@ -79,20 +87,7 @@ export default class Voronoi extends Component {
         return (
             <ChartPage>
                 <ChartHeader chartClass="Voronoi" tags={['@nivo/voronoi', 'svg', 'experimental']} />
-                <div className="chart-description">
-                    <p className="description">
-                        Delaunay/Voronoi Tessellation, uses{' '}
-                        <a
-                            href="https://github.com/d3/d3-delaunay"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            d3-delaunay
-                        </a>
-                        . The responsive alternative of this component is{' '}
-                        <code>ResponsiveVoronoi</code>.
-                    </p>
-                </div>
+                <ComponentDescription description={description} />
                 <ChartTabs chartClass="voronoi" code={code} data={data} diceRoll={this.diceRoll}>
                     <ResponsiveVoronoi
                         margin={{

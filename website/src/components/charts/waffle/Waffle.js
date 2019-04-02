@@ -7,7 +7,6 @@
  * file that was distributed with this source code.
  */
 import React, { useState, useCallback } from 'react'
-import { Link } from 'react-router-dom'
 import { ResponsiveWaffle, WaffleDefaultProps } from '@nivo/waffle'
 import ChartHeader from '../../ChartHeader'
 import ChartTabs from '../../ChartTabs'
@@ -15,7 +14,7 @@ import ActionsLogger, { useActionsLogger } from '../../ActionsLogger'
 import Settings from '../../Settings'
 import { groupsByScope } from './WaffleControls'
 import generateCode from '../../../lib/generateChartCode'
-import config from '../../../config'
+import ComponentDescription from '../../ComponentDescription'
 import nivoTheme from '../../../nivoTheme'
 import propsMapper from './propsMapper'
 import ChartPage from '../ChartPage'
@@ -107,6 +106,22 @@ const initialSettings = {
     theme: nivoTheme,
 }
 
+const description = `
+A waffle component. You can fully customize it using \`cellComponent\`
+property to define your own cell component, if you wish to do so
+you should have a look at
+[native SVG component](https://github.com/plouc/nivo/blob/master/packages/nivo-waffle/src/WaffleCell.js)
+for available properties.
+
+You can also see more example usages in
+[the storybook](storybook:waffle--default).
+
+The responsive alternative of this component is \`ResponsiveWaffle\`,
+it also offers other implementations, see
+[WaffleHtml](self:/waffle/html) and
+[WaffleCanvas](self:/waffle/canvas).
+`
+
 const Waffle = () => {
     const [settings, setSettings] = useState(initialSettings)
     const [data, setData] = useState(generateData())
@@ -147,38 +162,7 @@ const Waffle = () => {
     return (
         <ChartPage>
             <ChartHeader chartClass="Waffle" tags={['@nivo/waffle', 'svg', 'isomorphic']} />
-            <div className="chart-description">
-                <p className="description">
-                    A waffle component. You can fully customize it using <code>cellComponent</code>{' '}
-                    property to define your own cell component, if you wish to do so you should have
-                    a look at{' '}
-                    <a
-                        href="https://github.com/plouc/nivo/blob/master/packages/nivo-waffle/src/WaffleCell.js"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        native SVG component
-                    </a>{' '}
-                    for available properties.
-                </p>
-                <p className="description">
-                    You can also see more example usages in{' '}
-                    <a
-                        href={`${config.storybookUrl}?selectedKind=Waffle&selectedStory=default`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        the storybook
-                    </a>
-                    .
-                </p>
-                <p className="description">
-                    The responsive alternative of this component is <code>ResponsiveWaffle</code>,
-                    it also offers other implementations, see{' '}
-                    <Link to="/waffle/html">WaffleHtml</Link> and{' '}
-                    <Link to="/waffle/canvas">WaffleCanvas</Link>.
-                </p>
-            </div>
+            <ComponentDescription description={description} />
             <ChartTabs
                 chartClass="waffle"
                 code={code}

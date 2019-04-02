@@ -12,10 +12,16 @@ import ChartTabs from '../../ChartTabs'
 import { ResponsiveSunburst } from '@nivo/sunburst'
 import generateCode from '../../../lib/generateChartCode'
 import Settings from '../../Settings'
+import ComponentDescription from '../../ComponentDescription'
 import { groupsByScope } from './SunburstControls'
 import nivoTheme from '../../../nivoTheme'
 import propsMapper from './propsMapper'
 import ChartPage from '../ChartPage'
+
+const description = `
+The responsive alternative of this component is
+\`ResponsiveSunburst\`.
+`
 
 export default class Sunburst extends Component {
     state = {
@@ -32,23 +38,19 @@ export default class Sunburst extends Component {
 
             cornerRadius: 2,
 
-            // border
             borderWidth: 1,
             borderColor: 'white',
 
-            // theming
             colors: 'nivo',
             colorBy: 'id',
             childColor: {
                 type: 'inherit',
             },
 
-            // motion
             animate: true,
             motionStiffness: 90,
             motionDamping: 15,
 
-            // isInteractive
             isInteractive: true,
         },
     }
@@ -71,12 +73,7 @@ export default class Sunburst extends Component {
                     chartClass="Sunburst"
                     tags={['@nivo/sunburst', 'hierarchy', 'radial', 'svg', 'isomorphic']}
                 />
-                <div className="chart-description">
-                    <p className="description">
-                        The responsive alternative of this component is&nbsp;
-                        <code>ResponsiveSunburst</code>.
-                    </p>
-                </div>
+                <ComponentDescription description={description} />
                 <ChartTabs chartClass="sunburst" code={code} data={data} diceRoll={diceRoll}>
                     <ResponsiveSunburst data={data} {...mappedSettings} theme={nivoTheme} />
                 </ChartTabs>

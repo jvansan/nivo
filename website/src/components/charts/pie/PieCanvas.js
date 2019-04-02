@@ -7,7 +7,6 @@
  * file that was distributed with this source code.
  */
 import React, { useState, useCallback } from 'react'
-import { Link } from 'react-router-dom'
 import ChartHeader from '../../ChartHeader'
 import ChartTabs from '../../ChartTabs'
 import ActionsLogger, { useActionsLogger } from '../../ActionsLogger'
@@ -18,7 +17,6 @@ import { generateProgrammingLanguageStats } from '@nivo/generators'
 import generateCode from '../../../lib/generateChartCode'
 import ComponentDescription from '../../ComponentDescription'
 import nivoTheme from '../../../nivoTheme'
-import config from '../../../config'
 import propsMapper from './propsMapper'
 import ChartPage from '../ChartPage'
 

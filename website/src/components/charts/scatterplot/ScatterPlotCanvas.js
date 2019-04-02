@@ -7,7 +7,6 @@
  * file that was distributed with this source code.
  */
 import React, { useState, useCallback } from 'react'
-import { Link } from 'react-router-dom'
 import { ResponsiveScatterPlotCanvas, ScatterPlotDefaultProps } from '@nivo/scatterplot'
 import nivoTheme from '../../../nivoTheme'
 import ChartHeader from '../../ChartHeader'
@@ -16,6 +15,7 @@ import ActionsLogger, { useActionsLogger } from '../../ActionsLogger'
 import Stories from '../../Stories'
 import generateCode from '../../../lib/generateChartCode'
 import Settings from '../../Settings'
+import ComponentDescription from '../../ComponentDescription'
 import { groupsByScope } from './ScatterPlotControls'
 import propsMapper from './propsMapper'
 import { generateHeavyDataSet } from './generators'
@@ -115,6 +115,16 @@ const initialSettings = {
     ],
 }
 
+const description = `
+A variation around the [ScatterPlot](self:/scatterplot) component.
+Well suited for large data sets as it does not impact DOM tree depth,
+however you'll lose the isomorphic ability and transitions.
+
+The responsive alternative of this component is
+\`ResponsiveScatterPlotCanvas\`, it also offers another
+implementation, see [ScatterPlot](self:/scatterplot).
+`
+
 const ScatterPlotCanvas = () => {
     const [settings, setSettings] = useState(initialSettings)
     const [data, setData] = useState(generateHeavyDataSet())
@@ -144,19 +154,7 @@ const ScatterPlotCanvas = () => {
     return (
         <ChartPage>
             <ChartHeader chartClass="ScatterPlotCanvas" tags={['@nivo/scatterplot', 'canvas']} />
-            <div className="chart-description">
-                <p className="description">
-                    A variation around the <Link to="/scatterplot">ScatterPlot</Link> component.
-                    Well suited for large data sets as it does not impact DOM tree depth and does
-                    not involve React diffing stuff for children (not that useful when using
-                    canvas), however you'll lose the isomorphic ability and transitions.
-                </p>
-                <p className="description">
-                    The responsive alternative of this component is{' '}
-                    <code>ResponsiveScatterPlotCanvas</code>, it also offers another implementation,
-                    see <Link to="/scatterplot">ScatterPlot</Link>.
-                </p>
-            </div>
+            <ComponentDescription description={description} />
             <ChartTabs
                 chartClass="scatterplot"
                 code={code}

@@ -7,14 +7,13 @@
  * file that was distributed with this source code.
  */
 import React, { useState, useCallback } from 'react'
-import { Link } from 'react-router-dom'
 import { ResponsiveTreeMapCanvas, TreeMapCanvasDefaultProps } from '@nivo/treemap'
 import ChartHeader from '../../ChartHeader'
 import ChartTabs from '../../ChartTabs'
 import ActionsLogger, { useActionsLogger } from '../../ActionsLogger'
 import generateCode from '../../../lib/generateChartCode'
-import config from '../../../config'
 import Settings from '../../Settings'
+import ComponentDescription from '../../ComponentDescription'
 import { groupsByScope } from './TreeMapControls'
 import nivoTheme from '../../../nivoTheme'
 import propsMapper from './propsMapper'
@@ -56,6 +55,17 @@ const initialSettings = {
     isInteractive: true,
 }
 
+const description = `
+A variation around the [TreeMap](self:/treemap) component.
+Well suited for large data sets as it does not impact DOM tree depth,
+however you'll lose the isomorphic ability and transitions.
+
+The responsive alternative of this component is
+\`ResponsiveTreeMapCanvas\`, it also offers other implementations,
+see [TreeMap](self:/treemap) and
+[TreeMapHtml](self:/treemap/html).
+`
+
 const TreeMapCanvas = () => {
     const [settings, setSettings] = useState(initialSettings)
     const [data, setData] = useState(generateHeavyDataSet())
@@ -86,39 +96,7 @@ const TreeMapCanvas = () => {
                 chartClass="TreeMapCanvas"
                 tags={['@nivo/treemap', 'hierarchy', 'canvas']}
             />
-            <div className="chart-description">
-                <p className="description">
-                    A variation around the <Link to="/treemap">TreeMap</Link> component. Well suited
-                    for large data sets as it does not impact DOM tree depth and does not involve
-                    React diffing stuff (not that useful when using canvas), however you'll lose the
-                    isomorphic ability and transitions (for now).
-                </p>
-                <p className="description">
-                    The responsive alternative of this component is{' '}
-                    <code>ResponsiveTreeMapCanvas</code>, it also offers other implementations, see{' '}
-                    <Link to="/treemap">TreeMap</Link> and{' '}
-                    <Link to="/treemap/html">TreeMapHtml</Link>.
-                </p>
-                <p className="description">
-                    The <code>TreeMap</code> component is also available in the{' '}
-                    <a
-                        href="https://github.com/plouc/nivo-api"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        nivo-api
-                    </a>
-                    , see{' '}
-                    <a
-                        href={`${config.nivoApiUrl}/samples/treemap`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        sample
-                    </a>{' '}
-                    or <Link to="/treemap/api">try it using the API client</Link>.
-                </p>
-            </div>
+            <ComponentDescription description={description} />
             <ChartTabs
                 chartClass="treemap"
                 code={code}

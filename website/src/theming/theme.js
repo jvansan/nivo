@@ -14,6 +14,8 @@ export default {
             text: '#000000',
             textLight: '#666666',
 
+            codeText: '#222222',
+
             border: '#dddddd',
             borderLight: '#eeeeee',
 
@@ -73,8 +75,10 @@ export default {
         colors: {
             background: '#2e2e2e',
 
-            text: '#eee',
+            text: '#eeeeee',
             textLight: '#aaaaaa',
+
+            codeText: '#cccccc',
 
             border: '#111111',
             borderLight: '#1a1a1a',

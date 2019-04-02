@@ -7,9 +7,7 @@
  * file that was distributed with this source code.
  */
 import React, { useState, useCallback } from 'react'
-import { Link } from 'react-router-dom'
 import { ResponsiveScatterPlot, ScatterPlotDefaultProps } from '@nivo/scatterplot'
-import config from '../../../config'
 import nivoTheme from '../../../nivoTheme'
 import ChartHeader from '../../ChartHeader'
 import ChartTabs from '../../ChartTabs'
@@ -17,6 +15,7 @@ import ActionsLogger, { useActionsLogger } from '../../ActionsLogger'
 import Stories from '../../Stories'
 import generateCode from '../../../lib/generateChartCode'
 import Settings from '../../Settings'
+import ComponentDescription from '../../ComponentDescription'
 import { groupsByScope } from './ScatterPlotControls'
 import propsMapper from './propsMapper'
 import { generateLightDataSet } from './generators'
@@ -131,6 +130,22 @@ const initialSettings = {
     ],
 }
 
+const description = `
+A scatter plot chart, which can display several data series.
+
+The responsive alternative of this component is
+\`ResponsiveScatterPlot\`, it also offers another
+implementation, see [ScatterPlotCanvas](self:/scatterplot/canvas).
+You can also see more example usages in
+[the storybook](storybook:scatterplot--default).
+
+Alternatively, you can set \`useMesh\` to \`true\`
+to have finer interactions.
+
+See the [dedicated guide](self:/guides/legends) on how to setup
+legends for this component.
+`
+
 const ScatterPlot = () => {
     const [settings, setSettings] = useState(initialSettings)
     const [data, setData] = useState(generateLightDataSet())
@@ -163,35 +178,7 @@ const ScatterPlot = () => {
                 chartClass="ScatterPlot"
                 tags={['@nivo/scatterplot', 'svg', 'isomorphic']}
             />
-            <div className="chart-description">
-                <p className="description">
-                    A scatter plot chart, which can display several data series.
-                </p>
-                <p className="description">
-                    The responsive alternative of this component is{' '}
-                    <code>ResponsiveScatterPlot</code>, it also offers another implementation, see{' '}
-                    <Link to="/scatterplot/canvas">ScatterPlotCanvas</Link>. You can also see more
-                    example usages in{' '}
-                    <a
-                        href={`${
-                            config.storybookUrl
-                        }?selectedKind=ScatterPlot&selectedStory=default`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        the storybook
-                    </a>
-                    .
-                </p>
-                <p className="description">
-                    Alternatively, you can set <code>useMesh</code> to <code>true</code>
-                    to have finer interactions.
-                </p>
-                <p className="description">
-                    See the <Link to="/guides/legends">dedicated guide</Link> on how to setup
-                    legends for this component.
-                </p>
-            </div>
+            <ComponentDescription description={description} />
             <ChartTabs chartClass="scatterplot" code={code} data={data} diceRoll={diceRoll}>
                 <ResponsiveScatterPlot data={data} {...mappedSettings} onClick={onClick} />
             </ChartTabs>

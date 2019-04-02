@@ -26,6 +26,15 @@ const Description = styled.div`
             padding: 0 20px;
         }
     }
+
+    code {
+        display: inline-block;
+        background: ${({ theme }) => theme.colors.cardBackground};
+        border-radius: 2px;
+        font-size: 0.9em;
+        padding: 5px 7px;
+        line-height: 1em;
+    }
 `
 
 const ComponentDescription = memo(({ description }) => {

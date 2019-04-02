@@ -7,16 +7,15 @@
  * file that was distributed with this source code.
  */
 import React, { useState, useCallback } from 'react'
-import { Link } from 'react-router-dom'
 import { ResponsiveWaffleCanvas, WaffleDefaultProps } from '@nivo/waffle'
 import ChartHeader from '../../ChartHeader'
 import ChartTabs from '../../ChartTabs'
 import ActionsLogger, { useActionsLogger } from '../../ActionsLogger'
+import ComponentDescription from '../../ComponentDescription'
 import Settings from '../../Settings'
 import { groupsByScope } from './WaffleControls'
 import generateCode from '../../../lib/generateChartCode'
 import nivoTheme from '../../../nivoTheme'
-import config from '../../../config'
 import propsMapper from './propsMapper'
 import ChartPage from '../ChartPage'
 
@@ -127,6 +126,19 @@ const initialSettings = {
     ],
 }
 
+const description = `
+A variation around the [Waffle](self:/waffle) component.
+Well suited for large data sets as it does not impact DOM tree depth,
+however you'll lose the isomorphic ability and transitions.
+
+You can also see more example usages in
+[the storybook](storybook:wafflecanvas--default).
+
+The responsive alternative of this component is
+\`ResponsiveWaffleCanvas\`, it also offers other implementations,
+see [Waffle](self:/waffle) and [WaffleHtml](self:/waffle/html).
+`
+
 const WaffleCanvas = () => {
     const [settings, setSettings] = useState(initialSettings)
     const [data, setData] = useState(generateData())
@@ -166,32 +178,7 @@ const WaffleCanvas = () => {
     return (
         <ChartPage>
             <ChartHeader chartClass="WaffleCanvas" tags={['@nivo/waffle', 'canvas']} />
-            <div className="chart-description">
-                <p className="description">
-                    A variation around the <Link to="/waffle">Waffle</Link> component. Well suited
-                    for large data sets as it does not impact DOM tree depth and does not involve
-                    React diffing stuff for children (not that useful when using canvas), however
-                    you'll lose the isomorphic ability and transitions (for now).
-                </p>
-                <p className="description">
-                    You can also see more example usages in{' '}
-                    <a
-                        href={`${
-                            config.storybookUrl
-                        }?selectedKind=WaffleCanvas&selectedStory=default`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        the storybook
-                    </a>
-                    .
-                </p>
-                <p className="description">
-                    The responsive alternative of this component is{' '}
-                    <code>ResponsiveWaffleCanvas</code>, it also offers other implementations, see{' '}
-                    <Link to="/waffle">Waffle</Link> and <Link to="/waffle/html">WaffleHtml</Link>.
-                </p>
-            </div>
+            <ComponentDescription description={description} />
             <ChartTabs
                 chartClass="waffle"
                 code={code}

@@ -33,4 +33,8 @@ export default createGlobalStyle`
     *:after {
         box-sizing: border-box;
     }
+
+    code, .code {
+        color: ${({ theme }) => theme.colors.codeText};
+    }
 `
