@@ -12,6 +12,7 @@ import styled from 'styled-components'
 import Control from './Control'
 import Label from './Label'
 import TextInput from './TextInput'
+import PropertyHelp from './PropertyHelp'
 
 const size = 24
 
@@ -23,7 +24,7 @@ const Row = styled.div`
     max-width: 200px;
 `
 
-const OpacityControl = ({ id, label, value, onChange, help }) => {
+const OpacityControl = ({ id, label, value, onChange, help, description }) => {
     const handleChange = useCallback(
         event => {
             onChange(Number(event.target.value))
@@ -60,8 +61,7 @@ const OpacityControl = ({ id, label, value, onChange, help }) => {
                     step={0.05}
                 />
             </Row>
-            <span />
-            <div className="control-help">{help}</div>
+            <PropertyHelp help={help} description={description} />
         </Control>
     )
 }

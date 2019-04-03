@@ -11,6 +11,7 @@ import styled from 'styled-components'
 import Control from './Control'
 import Label from './Label'
 import TextInput from './TextInput'
+import PropertyHelp from './PropertyHelp'
 
 const size = 24
 
@@ -33,7 +34,7 @@ const Marker = styled.line`
     fill: none;
 `
 
-const LineWidthControl = ({ id, label, value, onChange }) => {
+const LineWidthControl = ({ id, label, value, help, description, onChange }) => {
     const handleChange = useCallback(
         event => {
             onChange(Number(event.target.value))
@@ -58,6 +59,7 @@ const LineWidthControl = ({ id, label, value, onChange }) => {
                 </svg>
                 <input type="range" value={value} onChange={handleChange} min={0} max={20} />
             </Row>
+            <PropertyHelp help={help} description={description} />
         </Control>
     )
 }

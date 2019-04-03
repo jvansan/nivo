@@ -9,6 +9,7 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import Layout from '../../components/Layout'
+import PageContent from '../../components/PageContent'
 import ColorsIllustrations from '../../components/guides/colors/ColorsIllustrations'
 import ColorsRanges from '../../components/guides/colors/ColorsRanges'
 import ColorsColor from '../../components/guides/colors/ColorsColor'
@@ -16,11 +17,11 @@ import ColorsColor from '../../components/guides/colors/ColorsColor'
 const Colors = () => (
     <Layout>
         <Helmet title="Colors" />
-        <div className="page_content">
+        <PageContent>
             <div className="guide__header">
                 <h1 className="page_header">Colors</h1>
             </div>
-        </div>
+        </PageContent>
         <div className="guide__description text-content">
             <h2>The colors property</h2>
             <p>

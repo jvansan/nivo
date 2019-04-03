@@ -2,8 +2,9 @@ import React, { memo, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import Control from './Control'
 import Label from './Label'
+import PropertyHelp from './PropertyHelp'
 
-const SwitchControl = memo(({ id, label, value, onChange, help }) => {
+const SwitchControl = memo(({ id, label, value, onChange, help, description }) => {
     const handleChange = useCallback(event => onChange(event.target.checked), [onChange])
 
     return (
@@ -19,8 +20,7 @@ const SwitchControl = memo(({ id, label, value, onChange, help }) => {
                 />
                 <label htmlFor={id} />
             </span>
-            <span />
-            <div className="control-help">{help}</div>
+            <PropertyHelp help={help} description={description} />
         </Control>
     )
 })

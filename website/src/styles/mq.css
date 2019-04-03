@@ -2,10 +2,6 @@
  * Tablet
  */
 @media only screen and (min-width: 760px) and (max-width: 1000px) {
-    .page_content {
-        margin: 0 30px;
-    }
-
     .components__grid__item {
         width: 49%;
     }
@@ -23,10 +19,6 @@
  * Mobile 
  */
 @media only screen and (max-width: 760px) {
-    .page_content {
-        margin: 0 15px;
-    }
-
     .components__grid {
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
     }

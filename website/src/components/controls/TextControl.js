@@ -12,8 +12,9 @@ import classNames from 'classnames'
 import Control from './Control'
 import Label from './Label'
 import TextInput from './TextInput'
+import PropertyHelp from './PropertyHelp'
 
-const TextControl = memo(({ id, label, value, onChange, help, disabled }) => {
+const TextControl = memo(({ id, label, value, onChange, help, description, disabled }) => {
     const handleUpdate = useCallback(event => onChange(event.target.value), [onChange])
 
     return (
@@ -29,8 +30,7 @@ const TextControl = memo(({ id, label, value, onChange, help, disabled }) => {
                 onChange={handleUpdate}
                 disabled={disabled === true}
             />
-            <span />
-            <div className="control-help">{help}</div>
+            <PropertyHelp help={help} description={description} />
         </Control>
     )
 })

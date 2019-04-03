@@ -6,8 +6,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-import React from 'react'
-import dedent from 'dedent-js'
 import { VoronoiDefaultProps as defaults } from '@nivo/voronoi'
 import { getPropertiesGroupsControls } from '../../../lib/componentProperties'
 
@@ -15,27 +13,26 @@ const props = [
     {
         key: 'data',
         scopes: '*',
-        description: (
-            <div>
-                Chart data, which must conform to this structure:
-                <pre className="code code-block">
-                    {dedent`
-                            Array.<{
-                                id: {string|number},
-                                x:  {number},
-                                y:  {number}
-                            }>
-                        `}
-                </pre>
-            </div>
-        ),
+        group: 'Base',
+        help: 'Chart data.',
+        description: `
+            Chart data, which must conform to this structure:
+            \`\`\`
+            Array.<{
+                id: {string|number},
+                x:  {number},
+                y:  {number}
+            }>
+            \`\`\`
+        `,
         type: '{Object}',
         required: true,
     },
     {
         key: 'xDomain',
         scopes: '*',
-        description: 'Defines the x values domain.',
+        group: 'Base',
+        help: 'Defines the x values domain.',
         type: '{[number, number]}',
         required: false,
         default: defaults.xDomain,
@@ -43,7 +40,8 @@ const props = [
     {
         key: 'yDomain',
         scopes: '*',
-        description: 'Defines the y values domain.',
+        group: 'Base',
+        help: 'Defines the y values domain.',
         type: '{[number, number]}',
         required: false,
         default: defaults.yDomain,
@@ -52,12 +50,10 @@ const props = [
         key: 'width',
         scopes: ['api'],
         docScopes: '*',
-        description: (
-            <span>
-                not required if using&nbsp;
-                <code>&lt;ResponsiveVoronoi&nbsp;/&gt;</code>.
-            </span>
-        ),
+        description: `
+            not required if using
+            \`<ResponsiveVoronoi/>\`.
+        `,
         help: 'Chart width.',
         type: '{number}',
         required: true,
@@ -74,12 +70,10 @@ const props = [
         key: 'height',
         scopes: ['api'],
         docScopes: '*',
-        description: (
-            <span>
-                not required if using&nbsp;
-                <code>&lt;ResponsiveVoronoi&nbsp;/&gt;</code>.
-            </span>
-        ),
+        description: `
+            not required if using
+            \`<ResponsiveVoronoi/>\`.
+        `,
         help: 'Chart height.',
         type: '{number}',
         required: true,
@@ -95,7 +89,7 @@ const props = [
     {
         key: 'margin',
         scopes: '*',
-        description: 'Chart margin.',
+        help: 'Chart margin.',
         type: '{object}',
         required: false,
         controlType: 'margin',
@@ -104,23 +98,24 @@ const props = [
     {
         key: 'layers',
         scopes: ['Voronoi'],
-        description: (
-            <div>
-                Defines the order of layers, available layers are:
-                <code>links</code>, <code>cells</code>, <code>points</code>, <code>bounds</code>.
-                <br />
-                You can also use this to insert extra layers to the chart, this extra layer must be
-                a function which will receive the chart computed data and must return a valid SVG
-                element.
-            </div>
-        ),
+        group: 'Base',
+        help: 'Defines the order of layers.',
+        description: `
+            Defines the order of layers, available layers are:
+            \`links\`, \`cells\`, \`points\`, \`bounds\`.
+
+            You can also use this to insert extra layers
+            to the chart, this extra layer must be
+            a function which will receive the chart computed
+            data and must return a valid SVG element.
+        `,
         required: false,
         default: defaults.layers,
     },
     {
         key: 'enableLinks',
         scopes: '*',
-        description: 'Enable/disable links.',
+        help: 'Enable/disable links.',
         type: '{boolean}',
         required: false,
         default: defaults.enableLinks,
@@ -129,7 +124,7 @@ const props = [
     },
     {
         key: 'linkLineWidth',
-        description: 'Links line width.',
+        help: 'Links line width.',
         type: '{number}',
         required: false,
         default: defaults.linkLineWidth,
@@ -138,7 +133,7 @@ const props = [
     },
     {
         key: 'linkLineColor',
-        description: 'Links color.',
+        help: 'Links color.',
         type: '{string}',
         required: false,
         default: defaults.linkLineColor,
@@ -149,7 +144,7 @@ const props = [
     {
         key: 'enableCells',
         scopes: '*',
-        description: 'Enable/disable cells.',
+        help: 'Enable/disable cells.',
         type: '{boolean}',
         required: false,
         default: defaults.enableCells,
@@ -158,7 +153,7 @@ const props = [
     },
     {
         key: 'cellLineWidth',
-        description: 'Border width for cells.',
+        help: 'Border width for cells.',
         type: '{number}',
         required: false,
         default: defaults.cellLineWidth,
@@ -167,7 +162,7 @@ const props = [
     },
     {
         key: 'cellLineColor',
-        description: 'Border color for cells.',
+        help: 'Border color for cells.',
         type: '{string}',
         required: false,
         default: defaults.cellLineColor,
@@ -177,7 +172,7 @@ const props = [
     {
         key: 'enablePoints',
         scopes: '*',
-        description: 'Enable/disable points.',
+        help: 'Enable/disable points.',
         type: '{boolean}',
         required: false,
         default: defaults.enablePoints,
@@ -186,7 +181,7 @@ const props = [
     },
     {
         key: 'pointSize',
-        description: 'Size of points.',
+        help: 'Size of points.',
         type: '{number}',
         required: false,
         default: defaults.siteSize,
@@ -201,7 +196,7 @@ const props = [
     },
     {
         key: 'pointColor',
-        description: 'Points color.',
+        help: 'Points color.',
         type: '{string}',
         required: false,
         default: defaults.pointColor,

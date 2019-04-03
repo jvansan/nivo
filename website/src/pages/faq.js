@@ -10,10 +10,11 @@ import React from 'react'
 import { Link } from 'gatsby'
 import Helmet from 'react-helmet'
 import Layout from '../components/Layout'
+import PageContent from '../components/PageContent'
 
 const Faq = () => (
     <Layout>
-        <div className="page_content">
+        <PageContent>
             <Helmet title="Frequently Asked Questions" />
             <div className="guide__header">
                 <h1 className="page_header">Frequently Asked Questions and Answers</h1>
@@ -47,7 +48,7 @@ const Faq = () => (
                     won't be able to render.
                 </p>
             </div>
-        </div>
+        </PageContent>
     </Layout>
 )
 

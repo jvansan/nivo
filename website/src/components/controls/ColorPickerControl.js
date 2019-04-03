@@ -10,6 +10,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Control from './Control'
 import Label from './Label'
+import PropertyHelp from './PropertyHelp'
 
 class ColorPickerControl extends Component {
     handleChange = e => {
@@ -17,7 +18,7 @@ class ColorPickerControl extends Component {
     }
 
     render() {
-        const { id, value, label, help } = this.props
+        const { id, value, label, help, description } = this.props
 
         return (
             <Control>
@@ -27,8 +28,7 @@ class ColorPickerControl extends Component {
                     &nbsp;&nbsp;&nbsp;
                     <code className="code code-string">{value}</code>
                 </div>
-                <span />
-                <div className="control-help">{help}</div>
+                <PropertyHelp help={help} description={description} />
             </Control>
         )
     }

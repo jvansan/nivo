@@ -3,7 +3,6 @@
 
 @import 'icons.css';
 @import 'buttons.css';
-@import 'layout.css';
 @import 'grid.css';
 @import 'nav.css';
 @import 'card.css';
@@ -23,48 +22,6 @@
 @import 'guides.css';
 @import 'tabs.css';
 @import 'mq.css';
-
-a {
-    color: var(--links-color);
-    text-decoration: underline;
-}
-a code {
-    color: var(--links-color);
-}
-
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-weight: 600;
-}
-
-h3 {
-    font-size: 16px;
-}
-
-h1 {
-    font-size: 32px;
-    margin: 0 0 20px 0;
-    padding: 0;
-    font-weight: 300;
-}
-
-h2,
-h3,
-h4,
-h5,
-h6 {
-    color: var(--title-text-color);
-}
-
-p {
-    margin: 15px 0;
-}
-p:first-child {
-    margin-top: 0;
-}
 
 .unit {
     display: inline-block;

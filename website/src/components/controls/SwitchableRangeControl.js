@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import pick from 'lodash/pick'
 import Control from './Control'
 import Label from './Label'
+import PropertyHelp from './PropertyHelp'
 
 export default class SwitchableRangeControl extends Component {
     static propTypes = {
@@ -48,7 +49,7 @@ export default class SwitchableRangeControl extends Component {
     }
 
     render() {
-        const { id, disabledValue, label, value, unit, help } = this.props
+        const { id, disabledValue, label, value, unit, help, description } = this.props
         const { isSliderEnabled, sliderValue } = this.state
 
         return (
@@ -98,8 +99,7 @@ export default class SwitchableRangeControl extends Component {
                         />
                     )}
                 </div>
-                <span />
-                <div className="control-help">{help}</div>
+                <PropertyHelp help={help} description={description} />
             </Control>
         )
     }

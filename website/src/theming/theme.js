@@ -23,6 +23,8 @@ export default {
             textLight: '#666666',
 
             codeText: '#222222',
+            titleText: '#e25d47',
+            link: '#e25d47',
 
             border: '#dddddd',
             borderLight: '#eeeeee',
@@ -87,6 +89,8 @@ export default {
             textLight: '#aaaaaa',
 
             codeText: '#cccccc',
+            titleText: 'e25d47',
+            link: '#e25d47',
 
             border: '#111111',
             borderLight: '#1a1a1a',

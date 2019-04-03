@@ -10,6 +10,7 @@ import React, { Component } from 'react'
 import Helmet from 'react-helmet'
 import { Link } from 'gatsby'
 import Layout from '../../components/Layout'
+import PageContent from '../../components/PageContent'
 import AxesPosition from '../../components/guides/axes/AxesPosition'
 import AxesTicks from '../../components/guides/axes/AxesTicks'
 import AxesLegend from '../../components/guides/axes/AxesLegend'
@@ -19,11 +20,11 @@ export default class Axes extends Component {
         return (
             <Layout>
                 <Helmet title="Axes" />
-                <div className="page_content">
+                <PageContent>
                     <div className="guide__header">
                         <h1 className="page_header">Axes</h1>
                     </div>
-                </div>
+                </PageContent>
                 <div className="guide__description text-content">
                     <h2>Using axes in nivo components</h2>
                     <p>

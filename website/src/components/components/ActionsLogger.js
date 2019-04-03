@@ -9,7 +9,7 @@
 import React, { useState, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-// import PointerIcon from 'react-icons/lib/fa/hand-pointer-o'
+import PointerIcon from 'react-icons/lib/fa/hand-pointer-o'
 import ActionsLoggerLog from './ActionsLoggerLog'
 
 export const useActionsLogger = () => {
@@ -110,7 +110,7 @@ const EmptyMessage = styled.div`
     margin-top: 16px;
 `
 
-// const EmptyIcon = styled(PointerIcon)``
+const EmptyIcon = styled(PointerIcon)``
 
 const ActionsLogger = ({ actions, isFullWidth }) => {
     return (
@@ -118,7 +118,7 @@ const ActionsLogger = ({ actions, isFullWidth }) => {
             <Header>Actions Logs</Header>
             {actions.length === 0 && (
                 <EmptyContainer>
-                    {/*<EmptyIcon size={32} />*/}
+                    <EmptyIcon size={28} />
                     <EmptyMessage>Start interacting with the chart to log actions</EmptyMessage>
                 </EmptyContainer>
             )}

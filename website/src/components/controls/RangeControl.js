@@ -5,6 +5,7 @@ import pick from 'lodash/pick'
 import Control from './Control'
 import Label from './Label'
 import TextInput from './TextInput'
+import PropertyHelp from './PropertyHelp'
 
 const Row = styled.div`
     display: grid;
@@ -35,7 +36,7 @@ export default class RangeControl extends Component {
     }
 
     render() {
-        const { id, label, value, unit, help } = this.props
+        const { id, label, value, unit, help, description } = this.props
 
         return (
             <Control>
@@ -55,8 +56,7 @@ export default class RangeControl extends Component {
                         {...pick(this.props, ['min', 'max', 'step'])}
                     />
                 </Row>
-                <span />
-                <div className="control-help">{help}</div>
+                <PropertyHelp help={help} description={description} />
             </Control>
         )
     }

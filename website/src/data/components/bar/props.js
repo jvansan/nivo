@@ -6,9 +6,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-import React from 'react'
-import { Link } from 'gatsby'
-import dedent from 'dedent-js'
 import { BarDefaultProps as defaults } from '@nivo/bar'
 import {
     axesProperties,
@@ -22,37 +19,46 @@ const props = [
     {
         key: 'data',
         scopes: '*',
-        description: 'Chart data.',
+        help: 'Chart data.',
         type: '{Array.<Object>}',
         required: true,
+        group: 'Base',
     },
     {
         key: 'indexBy',
         scopes: '*',
-        description:
-            'Key to use to index the data, this key must exist in each data item. You can also provide a function which will receive the data item and must return the desired index.',
+        help: 'Key to use to index the data.',
+        description: `
+            Key to use to index the data,
+            this key must exist in each data item.
+            
+            You can also provide a function which will
+            receive the data item and must return the desired index.
+        `,
         type: '{string|Function}',
         required: false,
         default: defaults.indexBy,
+        group: 'Base',
     },
     {
         key: 'keys',
         scopes: '*',
-        description: 'Keys to use to determine each serie.',
+        help: 'Keys to use to determine each serie.',
         type: '{Array.<string>}',
         required: false,
         default: defaults.keys,
+        group: 'Base',
     },
     {
         key: 'width',
         scopes: ['api'],
         docScopes: '*',
+        help: 'Chart width.',
         description: `
             not required if using \`ResponsiveBar\`.
             Also note that width exclude left/right axes,
             please add margin to make sure they're visible.
         `,
-        help: 'Chart width.',
         type: '{number}',
         required: true,
         controlType: 'range',
@@ -68,12 +74,12 @@ const props = [
         key: 'height',
         scopes: ['api'],
         docScopes: '*',
+        help: 'Chart height.',
         description: `
             not required if using \`ResponsiveBar\`.
             Also note that width exclude left/right axes,
             please add margin to make sure they're visible.
         `,
-        help: 'Chart height.',
         type: '{number}',
         required: true,
         controlType: 'range',
@@ -88,23 +94,24 @@ const props = [
     {
         key: 'layers',
         scopes: ['Bar'],
-        description: (
-            <div>
-                Defines the order of layers, available layers are:
-                <code>grid</code>, <code>axes</code>, <code>bars</code>, <code>markers</code>,{' '}
-                <code>legends</code>.<br />
-                You can also use this to insert extra layers to the chart, this extra layer must be
-                a function which will receive the chart computed data and must return a valid SVG
-                element.
-            </div>
-        ),
+        help: 'Defines the order of layers.',
+        description: `
+            Defines the order of layers, available layers are:
+            \`grid\`, \`axes\`, \`bars\`, \`markers\`, \`legends\`.
+
+            You can also use this to insert extra layers to the chart,
+            this extra layer must be a function which will receive
+            the chart computed data and must return a valid SVG
+            element.
+        `,
         required: false,
         default: defaults.layers,
+        group: 'Base',
     },
     {
         key: 'pixelRatio',
         scopes: ['BarCanvas'],
-        description: `Adjust pixel ratio, useful for HiDPI screens.`,
+        help: `Adjust pixel ratio, useful for HiDPI screens.`,
         required: false,
         default: 'Depends on device',
         type: `{number}`,
@@ -118,7 +125,7 @@ const props = [
     {
         key: 'groupMode',
         scopes: '*',
-        description: `How to group bars, must be one of: 'grouped', 'stacked'.`,
+        help: `How to group bars.`,
         type: '{string}',
         required: false,
         default: defaults.groupMode,
@@ -134,7 +141,7 @@ const props = [
     {
         key: 'layout',
         scopes: '*',
-        description: `How to display bars, must be one of: 'horizontal', 'vertical'.`,
+        help: `How to display bars.`,
         type: '{string}',
         required: false,
         default: defaults.layout,
@@ -150,7 +157,7 @@ const props = [
     {
         key: 'reverse',
         scopes: '*',
-        description:
+        help:
             'Reverse bars, starts on top instead of bottom for vertical layout and right instead of left for horizontal one.',
         type: '{boolean}',
         required: false,
@@ -161,7 +168,11 @@ const props = [
     {
         key: 'minValue',
         scopes: '*',
-        description: `Minimum value, if 'auto', will use min value from the provided data.`,
+        help: 'Minimum value.',
+        description: `
+            Minimum value, if 'auto',
+            will use min value from the provided data.
+        `,
         required: false,
         default: defaults.minValue,
         type: '{number|string}',
@@ -177,7 +188,11 @@ const props = [
     {
         key: 'maxValue',
         scopes: '*',
-        description: `Maximum value, if 'auto', will use max value from the provided data.`,
+        help: 'Maximum value.',
+        description: `
+            Maximum value, if 'auto',
+            will use max value from the provided data.
+        `,
         required: false,
         default: defaults.maxValue,
         type: '{number|string}',
@@ -193,7 +208,7 @@ const props = [
     {
         key: 'margin',
         scopes: '*',
-        description: 'Chart margin.',
+        help: 'Chart margin.',
         type: '{object}',
         required: false,
         controlType: 'margin',
@@ -202,7 +217,7 @@ const props = [
     {
         key: 'padding',
         scopes: '*',
-        description: 'Padding between each bar (ratio).',
+        help: 'Padding between each bar (ratio).',
         type: '{number}',
         required: false,
         default: defaults.padding,
@@ -217,7 +232,7 @@ const props = [
     {
         key: 'innerPadding',
         scopes: '*',
-        description: 'Padding between grouped/stacked bars.',
+        help: 'Padding between grouped/stacked bars.',
         type: '{number}',
         required: false,
         default: defaults.innerPadding,
@@ -232,7 +247,7 @@ const props = [
     {
         key: 'colors',
         scopes: '*',
-        description: 'Defines color range.',
+        help: 'Defines color range.',
         type: '{string|Function|Array}',
         required: false,
         default: 'nivo',
@@ -242,8 +257,12 @@ const props = [
     {
         key: 'colorBy',
         scopes: '*',
-        description:
-            'Property to use to determine node color. If a function is provided, it will receive current node data and must return a color.',
+        help: 'Property to use to determine node color.',
+        description: `
+            Property to use to determine node color.
+            If a function is provided,
+            it will receive current node data and must return a color.
+        `,
         required: false,
         default: 'id',
         controlType: 'choices',
@@ -268,7 +287,7 @@ const props = [
     {
         key: 'borderRadius',
         scopes: ['Bar', 'api'],
-        description: 'Rectangle border radius.',
+        help: 'Rectangle border radius.',
         type: '{number}',
         required: false,
         default: defaults.borderRadius,
@@ -283,7 +302,7 @@ const props = [
     {
         key: 'borderWidth',
         scopes: '*',
-        description: 'Width of circle border.',
+        help: 'Width of bar border.',
         type: '{number}',
         required: false,
         default: defaults.borderWidth,
@@ -293,13 +312,11 @@ const props = [
     {
         key: 'borderColor',
         scopes: '*',
-        description: (
-            <span>
-                how to compute border color,{' '}
-                <Link to="/guides/colors">see dedicated documentation</Link>.
-            </span>
-        ),
         help: 'Method to compute border color.',
+        description: `
+            how to compute border color,
+            [see dedicated documentation](self:/guides/colors).
+        `,
         type: '{string|Function}',
         required: false,
         default: defaults.borderColor,
@@ -313,7 +330,7 @@ const props = [
     {
         key: 'enableLabel',
         scopes: '*',
-        description: 'Enable/disable labels.',
+        help: 'Enable/disable labels.',
         type: '{boolean}',
         required: false,
         default: defaults.enableLabel,
@@ -323,19 +340,18 @@ const props = [
     {
         key: 'label',
         scopes: '*',
-        description: (
-            <div>
-                Define how bar labels are computed. By default it will use the bar's value. It
-                accepts a string which will be used to access a specific bar data property, such as{' '}
-                <code className="code-string">'value'</code> or{' '}
-                <code className="code-string">'id'</code>. You can also use a funtion if you want to
-                add more logic, this function will receive the current bar's data and must return
-                the computed label which, depending on the context, should return a string or an svg
-                element (Bar) or a string (BarCanvas). For example let's say you want to use a label
-                with both the id and the value, you can achieve this with{' '}
-                <code>{`label={d => \`\${d.id}: \${d.value}\`}`}</code>.
-            </div>
-        ),
+        help: 'Define how bar labels are computed.',
+        description: `
+            Define how bar labels are computed. By default it will use the bar's value. It
+            accepts a string which will be used to access a specific bar data property, such as{' '}
+            <code className="code-string">'value'</code> or{' '}
+            <code className="code-string">'id'</code>. You can also use a funtion if you want to
+            add more logic, this function will receive the current bar's data and must return
+            the computed label which, depending on the context, should return a string or an svg
+            element (Bar) or a string (BarCanvas). For example let's say you want to use a label
+            with both the id and the value, you can achieve this with{' '}
+            <code>{\`label={d => \`\${d.id}: \${d.value}\`}\`}</code>.
+        `,
         type: '{string|Function}',
         required: false,
         default: defaults.label,
@@ -343,25 +359,23 @@ const props = [
     {
         key: 'labelFormat',
         scopes: '*',
-        description: (
-            <span>
-                how to format label,{' '}
-                <a
-                    href="https://github.com/d3/d3-format/blob/master/README.md#format"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    see d3.format() documentation
-                </a>
-                .
-            </span>
-        ),
+        help: 'How to format labels.',
+        description: `
+            How to format labels,
+            <a
+                href="https://github.com/d3/d3-format/blob/master/README.md#format"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                see d3.format() documentation
+            </a>.
+        `,
         type: '{string|Function}',
     },
     {
         key: 'labelSkipWidth',
         scopes: '*',
-        description: 'Skip label if bar width is lower than provided value, ignored if 0.',
+        help: 'Skip label if bar width is lower than provided value, ignored if 0.',
         type: '{number}',
         required: false,
         default: defaults.labelSkipWidth,
@@ -376,7 +390,7 @@ const props = [
     {
         key: 'labelSkipHeight',
         scopes: '*',
-        description: 'Skip label if bar height is lower than provided value, ignored if 0.',
+        help: 'Skip label if bar height is lower than provided value, ignored if 0.',
         type: '{number}',
         required: false,
         default: defaults.labelSkipHeight,
@@ -391,7 +405,7 @@ const props = [
     {
         key: 'labelTextColor',
         scopes: '*',
-        description: 'Defines how to compute label text color.',
+        help: 'Defines how to compute label text color.',
         type: '{string|Function}',
         required: false,
         default: defaults.labelTextColor,
@@ -404,7 +418,7 @@ const props = [
     {
         key: 'enableGridX',
         scopes: '*',
-        description: 'Enable/disable x grid.',
+        help: 'Enable/disable x grid.',
         type: '{boolean}',
         required: false,
         default: defaults.enableGridX,
@@ -414,14 +428,14 @@ const props = [
     {
         key: 'gridXValues',
         scopes: '*',
-        description: 'Specify values to use for vertical grid lines.',
+        help: 'Specify values to use for vertical grid lines.',
         type: 'Array<{number|string}>',
         required: false,
     },
     {
         key: 'enableGridY',
         scopes: '*',
-        description: 'Enable/disable y grid.',
+        help: 'Enable/disable y grid.',
         type: '{boolean}',
         required: false,
         default: defaults.enableGridY,
@@ -431,7 +445,7 @@ const props = [
     {
         key: 'gridYValues',
         scopes: '*',
-        description: 'Specify values to use for horizontal grid lines.',
+        help: 'Specify values to use for horizontal grid lines.',
         type: 'Array<{number|string}>',
         required: false,
     },
@@ -439,7 +453,7 @@ const props = [
     {
         key: 'isInteractive',
         scopes: ['Bar', 'BarCanvas'],
-        description: 'Enable/disable interactivity.',
+        help: 'Enable/disable interactivity.',
         type: '{boolean}',
         required: false,
         default: defaults.isInteractive,
@@ -450,12 +464,11 @@ const props = [
         key: 'custom tooltip example',
         scopes: ['Bar', 'BarCanvas'],
         excludeFromDoc: true,
-        description: (
-            <span>
-                You can customize the tooltip using the <code>tooltip</code> property and{' '}
-                <code>theme.tooltip</code> object.
-            </span>
-        ),
+        help: 'Showcase custom tooltip component.',
+        description: `
+            You can customize the tooltip using the \`tooltip\`
+            property and \`theme.tooltip\` object.
+        `,
         type: '{boolean}',
         controlType: 'switch',
         group: 'Interactivity',
@@ -463,58 +476,54 @@ const props = [
     {
         key: 'tooltip',
         scopes: ['Bar', 'BarCanvas'],
+        group: 'Interactivity',
         type: '{Function}',
         required: false,
-        description: (
-            <div>
-                A function allowing complete tooltip customisation, it must return a valid HTML
-                element and will receive the following data:
-                <pre className="code code-block">
-                    {dedent`
-                        {
-                            id:         {string|number},
-                            value:      {number},
-                            index:      {number},
-                            indexValue: {string|number},
-                            color:      {string},
-                            // datum associated to the current index (raw data)
-                            data:       {object}
-                        }
-                    `}
-                </pre>
-            </div>
-        ),
+        help: 'Tooltip custom component',
+        description: `
+            A function allowing complete tooltip customisation,
+            it must return a valid HTML element and will receive
+            the following data:
+            \`\`\`
+            {
+                id:         {string|number},
+                value:      {number},
+                index:      {number},
+                indexValue: {string|number},
+                color:      {string},
+                // datum associated to the current index (raw data)
+                data:       {object}
+            }
+            \`\`\`
+        `,
     },
     {
         key: 'onClick',
         scopes: ['Bar', 'BarCanvas'],
         type: '{Function}',
         required: false,
-        description: (
-            <div>
-                onClick handler, will receive node data as first argument & event as second one. The
-                node data has the following shape:
-                <pre className="code code-block">
-                    {dedent`
-                        {
-                            id:         {string|number},
-                            value:      {number},
-                            index:      {number},
-                            indexValue: {string|number},
-                            color:      {string},
-                            // datum associated to the current index (raw data)
-                            data:       {object}
-                        }
-                    `}
-                </pre>
-            </div>
-        ),
+        help: 'onClick handler',
+        description: `
+            onClick handler, will receive node data as first argument & event as second one. The
+            node data has the following shape:
+            <pre className="code code-block">
+                {
+                    id:         {string|number},
+                    value:      {number},
+                    index:      {number},
+                    indexValue: {string|number},
+                    color:      {string},
+                    // datum associated to the current index (raw data)
+                    data:       {object}
+                }
+            </pre>
+        `,
     },
     {
         key: 'legends',
         scopes: ['Bar'],
         type: '{Array<object>}',
-        description: `Optional chart's legends.`,
+        help: `Optional chart's legends.`,
         group: 'Legends',
         controlType: 'array',
         controlOptions: {

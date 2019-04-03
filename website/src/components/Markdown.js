@@ -10,14 +10,9 @@ import React, { memo } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
 import ReactMarkdown from 'react-markdown'
-// import config from '../config'
+import config from '../data/config'
 
-const config = {
-    storybookUrl: 'crap',
-    nivoApiUrl: 'crap',
-}
-
-const linkRenderer = ({ href, children, ...rest }) => {
+const linkRenderer = ({ href, children }) => {
     if (href.indexOf('self:') === 0) {
         return <Link to={href.replace('self:', '')}>{children}</Link>
     }

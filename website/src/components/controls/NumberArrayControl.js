@@ -12,6 +12,7 @@ import styled from 'styled-components'
 import Control from './Control'
 import Label from './Label'
 import TextInput from './TextInput'
+import PropertyHelp from './PropertyHelp'
 
 const Range = styled.input`
     max-width: 160px;
@@ -24,7 +25,16 @@ const Row = styled.div`
     max-width: 240px;
 `
 
-const NumberArrayControl = ({ label: globalLabel, id, value, onChange, unit, items, help }) => {
+const NumberArrayControl = ({
+    label: globalLabel,
+    id,
+    value,
+    onChange,
+    unit,
+    items,
+    help,
+    description,
+}) => {
     const handleChange = useCallback(
         index => event => {
             const updatedArray = [...value]
@@ -75,8 +85,7 @@ const NumberArrayControl = ({ label: globalLabel, id, value, onChange, unit, ite
                     </Fragment>
                 )
             })}
-            <span />
-            <div className="control-help">{help}</div>
+            <PropertyHelp help={help} description={description} />
         </Control>
     )
 }

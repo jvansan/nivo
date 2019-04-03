@@ -14,6 +14,7 @@ import Select from 'react-select'
 import ColorsControlItem from './ColorsControlItem'
 import Control from './Control'
 import Label from './Label'
+import PropertyHelp from './PropertyHelp'
 
 const colors = colorSchemeIds.map(id => ({
     id,
@@ -66,7 +67,7 @@ export default class ColorsControl extends PureComponent {
     }
 
     render() {
-        const { label, value, includeSequential, help } = this.props
+        const { label, value, includeSequential, help, description } = this.props
 
         let options = colors
         if (includeSequential === true) {
@@ -92,8 +93,7 @@ export default class ColorsControl extends PureComponent {
                     value={value}
                     clearable={false}
                 />
-                <span />
-                <div className="control-help">{help}</div>
+                <PropertyHelp help={help} description={description} />
             </Control>
         )
     }

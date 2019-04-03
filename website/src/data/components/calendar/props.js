@@ -6,8 +6,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-import React from 'react'
-import dedent from 'dedent-js'
 import { boxAlignments } from '@nivo/core'
 import { CalendarDefaultProps as defaults } from '@nivo/calendar'
 import { getPropertiesGroupsControls } from '../../../lib/componentProperties'
@@ -16,33 +14,33 @@ const props = [
     {
         key: 'data',
         scopes: '*',
-        description: (
-            <div>
-                Chart data, which must conform to this structure:
-                <pre className="code code-block">
-                    {dedent`
-                        Array<{
-                            day:   {string} // format must be YYYY-MM-DD,
-                            value: {number}
-                        }>
-                    `}
-                </pre>
-                You can also add arbitrary data to this structure to be used in tooltips or event
-                handlers.
-            </div>
-        ),
+        group: 'Base',
+        help: 'Chart data.',
+        description: `
+            Chart data, which must conform to this structure:
+            \`\`\`
+            Array<{
+                day:   {string} // format must be YYYY-MM-DD,
+                value: {number}
+            }>
+            \`\`\`
+            You can also add arbitrary data to this structure
+            to be used in tooltips or event handlers.
+        `,
         type: '{Array<Object>}',
         required: true,
     },
     {
         key: 'from',
-        description: 'start date',
+        group: 'Base',
+        help: 'start date',
         type: '{string|Date}',
         required: true,
     },
     {
         key: 'to',
-        description: 'end date',
+        group: 'Base',
+        help: 'end date',
         type: '{string|Date}',
         required: true,
     },
@@ -50,13 +48,11 @@ const props = [
         key: 'width',
         scopes: ['api'],
         docScopes: '*',
-        description: (
-            <span>
-                not required if using responsive alternative of the component{' '}
-                <code>&lt;Responsive*/&gt;</code>.
-            </span>
-        ),
         help: 'Chart width.',
+        description: `
+            not required if using responsive alternative of
+            the component \`<Responsive*/>\`.
+        `,
         type: '{number}',
         required: true,
         controlType: 'range',
@@ -72,13 +68,11 @@ const props = [
         key: 'height',
         scopes: ['api'],
         docScopes: '*',
-        description: (
-            <span>
-                not required if using responsive alternative of the component{' '}
-                <code>&lt;Responsive*/&gt;</code>.
-            </span>
-        ),
         help: 'Chart height.',
+        description: `
+            not required if using responsive alternative of
+            the component \`<Responsive*/>\`.
+        `,
         type: '{number}',
         required: true,
         controlType: 'range',
@@ -92,14 +86,6 @@ const props = [
     },
     {
         key: 'direction',
-        description: (<code className="code-string">"horizontal"</code>,
-        (
-            <span>
-                defines calendar layout direction, must be one of{' '}
-                <code className="code-string">"horizontal"</code> or{' '}
-                <code className="code-string">"vertical"</code>
-            </span>
-        )),
         help: 'defines calendar layout direction.',
         type: '{string}',
         required: false,
@@ -116,7 +102,7 @@ const props = [
     {
         key: 'margin',
         scopes: '*',
-        description: 'Chart margin.',
+        help: 'Chart margin.',
         type: '{object}',
         required: false,
         controlType: 'margin',
@@ -124,7 +110,7 @@ const props = [
     },
     {
         key: 'align',
-        description: 'defines how calendar should be aligned inside chart container.',
+        help: 'defines how calendar should be aligned inside chart container.',
         type: '{string}',
         required: false,
         default: defaults.align,
@@ -140,12 +126,13 @@ const props = [
     {
         key: 'minValue',
         scopes: '*',
-        description: (
-            <>
-                Minimum value. If 'auto', will pick the lowest value in the provided data set.
-                Should be overriden if your data set does not contain desired lower bound value.
-            </>
-        ),
+        help: 'Minimum value.',
+        description: `
+            Minimum value. If 'auto', will pick the lowest value
+            in the provided data set.
+            Should be overriden if your data set does not contain
+            desired lower bound value.
+        `,
         required: false,
         default: defaults.minValue,
         type: `{number|'auto'}`,
@@ -161,12 +148,13 @@ const props = [
     {
         key: 'maxValue',
         scopes: '*',
-        description: (
-            <>
-                Maximum value. If 'auto', will pick the highest value in the provided data set.
-                Should be overriden if your data set does not contain desired higher bound value.
-            </>
-        ),
+        help: 'Maximum value.',
+        description: `
+            Maximum value. If 'auto', will pick the highest value
+            in the provided data set.
+            Should be overriden if your data set does not contain
+            desired higher bound value.
+        `,
         required: false,
         default: defaults.maxValue,
         type: `{number|'auto'}`,
@@ -181,22 +169,22 @@ const props = [
     },
     {
         key: 'colors',
-        description: (
-            <span>
-                An array of colors to be used in conjunction with <code>domain</code> to compute
-                days' color.
-                <br />
-                It applies to days having a value defined, otherwise, <code>emptyColor</code> will
-                be used.
-            </span>
-        ),
+        help: 'Chart colors.',
+        group: 'Base',
+        help: 'Cell colors.',
+        description: `
+            An array of colors to be used in conjunction with
+            \`domain\` to compute days' color.
+            It applies to days having a value defined, otherwise,
+            \`emptyColor\` will be used.
+        `,
         type: '{Array.<string>}',
         required: false,
         default: defaults.colors,
     },
     {
         key: 'emptyColor',
-        description: 'color to use to fill days without available value.',
+        help: 'color to use to fill days without available value.',
         type: '{string}',
         required: false,
         default: defaults.emptyColor,
@@ -206,7 +194,7 @@ const props = [
     {
         key: 'pixelRatio',
         scopes: ['CalendarCanvas'],
-        description: `Adjust pixel ratio, useful for HiDPI screens.`,
+        help: `Adjust pixel ratio, useful for HiDPI screens.`,
         required: false,
         default: 'Depends on device',
         type: `{number}`,
@@ -220,7 +208,7 @@ const props = [
     // Years
     {
         key: 'yearSpacing',
-        description: 'define spacing between each year row/column depending on the direction.',
+        help: 'define spacing between each year row/column depending on the direction.',
         type: '{number}',
         required: false,
         default: defaults.yearSpacing,
@@ -235,13 +223,13 @@ const props = [
     },
     {
         key: 'yearLegend',
-        description: `can be used to customize years label, returns 'YYYY' by default.`,
+        help: `can be used to customize years label, returns 'YYYY' by default.`,
         type: '{(year: number) => string | number}',
         required: false,
     },
     {
         key: 'yearLegendPosition',
-        description: 'defines year legends position.',
+        help: 'defines year legends position.',
         type: `{'before'|'after'}`,
         required: false,
         default: defaults.yearLegendPosition,
@@ -253,7 +241,7 @@ const props = [
     },
     {
         key: 'yearLegendOffset',
-        description: 'define offset from year edge to its label.',
+        help: 'define offset from year edge to its label.',
         type: '{number}',
         required: false,
         default: defaults.yearLegendOffset,
@@ -269,7 +257,7 @@ const props = [
     {
         key: 'monthBorderWidth',
         scopes: ['Calendar', 'api'],
-        description: 'width of month borders.',
+        help: 'width of month borders.',
         type: '{number}',
         required: false,
         default: defaults.monthBorderWidth,
@@ -279,7 +267,7 @@ const props = [
     {
         key: 'monthBorderColor',
         scopes: ['Calendar', 'api'],
-        description: 'color to use for months border.',
+        help: 'color to use for months border.',
         type: '{string}',
         required: false,
         default: defaults.monthBorderColor,
@@ -288,13 +276,13 @@ const props = [
     },
     {
         key: 'monthLegend',
-        description: `can be used to customize months label, returns abbreviated month name (english) by default. This can be used to use a different language`,
+        help: `can be used to customize months label, returns abbreviated month name (english) by default. This can be used to use a different language`,
         type: '{(year: number, month: number, date: Date) => string | number}',
         required: false,
     },
     {
         key: 'monthLegendPosition',
-        description: 'defines month legends position.',
+        help: 'defines month legends position.',
         type: `{'before'|'after'}`,
         required: false,
         default: defaults.monthLegendPosition,
@@ -306,7 +294,7 @@ const props = [
     },
     {
         key: 'monthLegendOffset',
-        description: 'define offset from month edge to its label.',
+        help: 'define offset from month edge to its label.',
         type: '{number}',
         required: false,
         default: defaults.monthLegendOffset,
@@ -321,7 +309,7 @@ const props = [
     // Days
     {
         key: 'daySpacing',
-        description: 'define spacing between each day cell.',
+        help: 'define spacing between each day cell.',
         type: '{number}',
         required: false,
         default: defaults.daySpacing,
@@ -335,7 +323,7 @@ const props = [
     },
     {
         key: 'dayBorderWidth',
-        description: 'width of days border.',
+        help: 'width of days border.',
         type: '{number}',
         required: false,
         default: defaults.dayBorderWidth,
@@ -344,7 +332,7 @@ const props = [
     },
     {
         key: 'dayBorderColor',
-        description: 'color to use for days border.',
+        help: 'color to use for days border.',
         type: '{string}',
         required: false,
         default: defaults.dayBorderColor,
@@ -354,7 +342,7 @@ const props = [
     {
         key: 'isInteractive',
         scopes: ['Calendar', 'CalendarCanvas'],
-        description: 'Enable/disable interactivity.',
+        help: 'Enable/disable interactivity.',
         type: '{boolean}',
         required: false,
         default: defaults.isInteractive,
@@ -364,7 +352,8 @@ const props = [
     {
         key: 'onClick',
         scopes: ['Calendar', 'CalendarCanvas'],
-        description: 'onClick handler, it receives clicked day data and mouse event.',
+        group: 'Interactivity',
+        help: 'onClick handler, it receives clicked day data and mouse event.',
         type: '{Function}',
         required: false,
     },
@@ -372,12 +361,12 @@ const props = [
         key: 'custom tooltip example',
         scopes: ['Calendar', 'CalendarCanvas'],
         excludeFromDoc: true,
-        description: (
-            <span>
-                You can customize the tooltip using the <code>tooltip</code> property and{' '}
-                <code>theme.tooltip</code> object.
-            </span>
-        ),
+        help: 'Showcase custom tooltip.',
+        description: `
+            You can customize the tooltip using the
+            \`tooltip\` property and
+            \`theme.tooltip\` object.
+        `,
         type: '{boolean}',
         controlType: 'switch',
         group: 'Interactivity',
@@ -385,27 +374,25 @@ const props = [
     {
         key: 'tooltip',
         scopes: ['Calendar', 'CalendarCanvas'],
+        group: 'Interactivity',
         type: '{Function}',
         required: false,
-        description: (
-            <div>
-                A function allowing complete tooltip customisation, it must return a valid HTML
-                element and will receive the following data:
-                <pre className="code code-block">
-                    {dedent`
-                        {
-                            day:   {string},
-                            date:  {Date},
-                            value: {number},
-                            color: {string},
-                            x:     {number},
-                            y:     {number},
-                            size:  {number}
-                        }
-                    `}
-                </pre>
-            </div>
-        ),
+        help: 'Custom tooltip component.',
+        description: `
+            A function allowing complete tooltip customisation, it must return a valid HTML
+            element and will receive the following data:
+            \`\`\`
+            {
+                day:   {string},
+                date:  {Date},
+                value: {number},
+                color: {string},
+                x:     {number},
+                y:     {number},
+                size:  {number}
+            }
+            \`\`\`
+        `,
     },
 ]
 

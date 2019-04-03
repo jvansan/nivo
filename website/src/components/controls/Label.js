@@ -9,6 +9,7 @@ const LabelElement = styled.label`
     align-self: center;
     text-align: right;
     margin: 0;
+    font-weight: 500;
     color: ${({ theme }) => theme.colors.text};
 `
 

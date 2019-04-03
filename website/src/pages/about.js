@@ -10,10 +10,11 @@ import React from 'react'
 import { Link } from 'gatsby'
 import Helmet from 'react-helmet'
 import Layout from '../components/Layout'
+import PageContent from '../components/PageContent'
 
 const About = () => (
     <Layout>
-        <div className="page_content">
+        <PageContent>
             <Helmet title="About" />
             <div className="guide__header">
                 <h1 className="page_header">About</h1>
@@ -74,12 +75,10 @@ const About = () => (
                     <li>
                         <Link to="/guides/gradients">Gradients</Link>
                     </li>
-                    <li>
-                        <Link to="/components?q=responsive">Responsive charts</Link>
-                    </li>
+                    <li>Responsive charts</li>
                 </ul>
             </div>
-        </div>
+        </PageContent>
     </Layout>
 )
 

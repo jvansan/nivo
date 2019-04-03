@@ -7,6 +7,7 @@
  * file that was distributed with this source code.
  */
 import React, { useState, useCallback } from 'react'
+import omit from 'lodash/omit'
 import { ResponsiveTreeMap, TreeMapDefaultProps } from '@nivo/treemap'
 import Layout from '../../components/Layout'
 import ComponentPage from '../../components/components/ComponentPage'
@@ -73,7 +74,7 @@ const TreeMap = () => {
             logAction({
                 type: 'click',
                 label: `[cell] ${node.id}: ${node.value}`,
-                data: node,
+                data: omit(node, ['parent', 'children']),
             })
         },
         [logAction]

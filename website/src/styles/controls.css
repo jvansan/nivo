@@ -144,13 +144,6 @@
     transform: translate3d(calc(var(--control-switch-width) - var(--control-switch-height)), 0, 0);
 }
 
-.control-help {
-    font-size: 12px;
-    color: #777;
-    margin: 0;
-    line-height: 16px;
-}
-
 .colors_item-current {
     display: flex;
     align-items: center;

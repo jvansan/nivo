@@ -6,9 +6,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-import React from 'react'
-import { Link } from 'gatsby'
-import dedent from 'dedent-js'
 import { ChordDefaultProps as defaults } from '@nivo/chord'
 import { motionProperties, getPropertiesGroupsControls } from '../../../lib/componentProperties'
 
@@ -16,58 +13,55 @@ const props = [
     {
         key: 'matrix',
         scopes: '*',
-        description:
-            'The matrix used to compute the chord diagram, it must be a square matrix, meaning each row length must equal the row count.',
+        group: 'Base',
+        help: 'The matrix used to compute the chord diagram.',
+        description: `
+            The matrix used to compute the chord diagram,
+            it must be a square matrix, meaning each row length
+            must equal the row count.
+        `,
         required: true,
         type: '{Array.<Array.<number>>}',
     },
     {
         key: 'keys',
         scopes: '*',
-        description: (
-            <div>
-                Keys used to identify each cell in the matrix, for example given this matrix:
-                <pre className="code code-block">
-                    {dedent`
-                        [ [123, 37,  99 ],
-                          [75,  103, 82 ],
-                          [37,  65,  109] ]
-                    `}
-                </pre>
-                and those keys:
-                <pre className="code code-block">['John', 'Jane', 'Raoul']</pre>
-                it will result in the following mapping:
-                <pre className="code code-block">
-                    {dedent`
-                        [ [null,    'John', 'Jane',  'Raoul']
-                          ['John',   123,    37,      99    ],
-                          ['Jane',   75,     103,     82    ],
-                          ['Raoul',  37,     65,      109   ] ]
-                    `}
-                </pre>
-            </div>
-        ),
+        group: 'Base',
+        help: 'Keys used to identify each cell in the matrix.',
+        description: `
+            Keys used to identify each cell in the matrix,
+            for example given this matrix:
+            \`\`\`
+            [ [123, 37,  99 ],
+              [75,  103, 82 ],
+              [37,  65,  109] ]
+            \`\`\`
+            and those keys:
+            \`\`\`
+            ['John', 'Jane', 'Raoul']
+            \`\`\`
+            it will result in the following mapping:
+            \`\`\`
+            [ [null,    'John', 'Jane',  'Raoul']
+              ['John',   123,    37,      99    ],
+              ['Jane',   75,     103,     82    ],
+              ['Raoul',  37,     65,      109   ] ]
+            \`\`\`
+        `,
         required: true,
         type: '{Array.<string>}',
     },
-    /*##################################################################################################################
-
-        Base
-
-    ##################################################################################################################*/
     {
         key: 'width',
         scopes: ['api'],
         docScopes: '*',
-        description: (
-            <span>
-                not required if using&nbsp;
-                <code>&lt;ResponsiveChord&nbsp;/&gt;</code>.<br />
-                Also note that width does not include labels, so you should add enough margin to
-                display them.
-            </span>
-        ),
         help: 'Chart width.',
+        description: `
+            not required if using
+            \`<ResponsiveChord/>\`.
+            Also note that width does not include labels,
+            so you should add enough margin to display them.
+        `,
         type: '{number}',
         required: true,
         controlType: 'range',
@@ -83,15 +77,13 @@ const props = [
         key: 'height',
         scopes: ['api'],
         docScopes: '*',
-        description: (
-            <span>
-                not required if using&nbsp;
-                <code>&lt;ResponsiveChord&nbsp;/&gt;</code>.<br />
-                Also note that height does not include labels, so you should add enough margin to
-                display them.
-            </span>
-        ),
         help: 'Chart height.',
+        description: `
+            not required if using
+            \`<ResponsiveChord/>\`.
+            Also note that width does not include labels,
+            so you should add enough margin to display them.
+        `,
         type: '{number}',
         required: true,
         controlType: 'range',
@@ -106,7 +98,7 @@ const props = [
     {
         key: 'pixelRatio',
         scopes: ['ChordCanvas'],
-        description: `Adjust pixel ratio, useful for HiDPI screens.`,
+        help: `Adjust pixel ratio, useful for HiDPI screens.`,
         required: false,
         default: 'Depends on device',
         type: `{number}`,
@@ -120,7 +112,7 @@ const props = [
     {
         key: 'margin',
         scopes: '*',
-        description: 'Chart margin.',
+        help: 'Chart margin.',
         type: '{object}',
         required: false,
         controlType: 'margin',
@@ -129,7 +121,7 @@ const props = [
     {
         key: 'padAngle',
         scopes: '*',
-        description: 'Padding angle.',
+        help: 'Padding angle.',
         required: false,
         default: defaults.padAngle,
         type: '{number}',
@@ -144,7 +136,7 @@ const props = [
     {
         key: 'innerRadiusRatio',
         scopes: '*',
-        description: 'Inner radius ratio.',
+        help: 'Inner radius ratio.',
         required: false,
         default: defaults.innerRadiusRatio,
         type: '{number}',
@@ -159,7 +151,7 @@ const props = [
     {
         key: 'innerRadiusOffset',
         scopes: '*',
-        description: 'Inner radius offset (minus innerRadiusRatio).',
+        help: 'Inner radius offset (minus innerRadiusRatio).',
         required: false,
         default: defaults.innerRadiusOffset,
         type: '{number}',
@@ -171,15 +163,10 @@ const props = [
             step: 0.01,
         },
     },
-    /*##################################################################################################################
-
-        Style
-
-    ##################################################################################################################*/
     {
         key: 'colors',
         scopes: '*',
-        description: 'Defines how to compute arc/ribbon color.',
+        help: 'Defines how to compute arc/ribbon color.',
         type: '{string|Function|Array}',
         required: false,
         default: defaults.colors,
@@ -189,7 +176,7 @@ const props = [
     {
         key: 'arcOpacity',
         scopes: '*',
-        description: 'Arcs opacity.',
+        help: 'Arcs opacity.',
         required: false,
         default: defaults.arcOpacity,
         type: '{number}',
@@ -199,7 +186,7 @@ const props = [
     {
         key: 'arcBorderWidth',
         scopes: '*',
-        description: 'Arcs border width.',
+        help: 'Arcs border width.',
         required: false,
         default: defaults.arcBorderWidth,
         type: '{number}',
@@ -209,7 +196,7 @@ const props = [
     {
         key: 'arcBorderColor',
         scopes: '*',
-        description: 'Arcs border color.',
+        help: 'Arcs border color.',
         required: false,
         default: defaults.arcBorderColor,
         type: '{string|Function}',
@@ -222,7 +209,7 @@ const props = [
     {
         key: 'ribbonOpacity',
         scopes: '*',
-        description: 'Ribbons opacity.',
+        help: 'Ribbons opacity.',
         required: false,
         default: defaults.ribbonOpacity,
         type: '{number}',
@@ -232,7 +219,7 @@ const props = [
     {
         key: 'ribbonBorderWidth',
         scopes: '*',
-        description: 'Ribbons border width.',
+        help: 'Ribbons border width.',
         required: false,
         default: defaults.ribbonBorderWidth,
         type: '{number}',
@@ -242,7 +229,7 @@ const props = [
     {
         key: 'ribbonBorderColor',
         scopes: '*',
-        description: 'Ribbons border color.',
+        help: 'Ribbons border color.',
         required: false,
         default: defaults.ribbonBorderColor,
         type: '{string|Function}',
@@ -252,15 +239,10 @@ const props = [
             withCustomColor: true,
         },
     },
-    /*##################################################################################################################
-
-        Labels
-
-    ##################################################################################################################*/
     {
         key: 'enableLabel',
         scopes: '*',
-        description: 'Enable/disable labels.',
+        help: 'Enable/disable labels.',
         type: '{boolean}',
         required: false,
         default: defaults.enableLabel,
@@ -269,7 +251,7 @@ const props = [
     },
     {
         key: 'label',
-        description:
+        help:
             'Defines how to get label text, can be a string (used to access current arc data property) or a function which will receive the actual arc data.',
         type: '{string|Function}',
         required: false,
@@ -286,7 +268,7 @@ const props = [
     {
         key: 'labelOffset',
         scopes: '*',
-        description: 'Label offset from arc.',
+        help: 'Label offset from arc.',
         required: false,
         default: defaults.labelOffset,
         type: '{number}',
@@ -301,7 +283,7 @@ const props = [
     {
         key: 'labelRotation',
         scopes: '*',
-        description: 'Label rotation.',
+        help: 'Label rotation.',
         required: false,
         default: defaults.labelRotation,
         type: '{number}',
@@ -316,12 +298,11 @@ const props = [
     {
         key: 'labelTextColor',
         scopes: '*',
-        description: (
-            <span>
-                how to compute label text color,{' '}
-                <Link to="/guides/colors">see dedicated documentation</Link>.
-            </span>
-        ),
+        help: 'Labels color.',
+        description: `
+            How to compute label text color,
+            [see dedicated documentation](self:/guides/colors).
+        `,
         help: 'Method to compute label text color.',
         type: '{string|Function}',
         required: false,
@@ -332,15 +313,10 @@ const props = [
             withCustomColor: true,
         },
     },
-    /*##################################################################################################################
-
-        Interactivity
-
-    ##################################################################################################################*/
     {
         key: 'isInteractive',
         scopes: ['Chord', 'ChordCanvas'],
-        description: 'Enable/disable interactivity.',
+        help: 'Enable/disable interactivity.',
         type: '{boolean}',
         required: false,
         default: defaults.isInteractive,
@@ -350,7 +326,7 @@ const props = [
     {
         key: 'arcHoverOpacity',
         scopes: ['Chord', 'ChordCanvas'],
-        description: 'Arc opacity when hover (0~1).',
+        help: 'Arc opacity when hover (0~1).',
         required: false,
         default: defaults.arcHoverOpacity,
         type: '{number}',
@@ -360,7 +336,7 @@ const props = [
     {
         key: 'arcHoverOthersOpacity',
         scopes: ['Chord', 'ChordCanvas'],
-        description: 'Arc opacity when not hover (0~1).',
+        help: 'Arc opacity when not hover (0~1).',
         required: false,
         default: defaults.arcHoverOthersOpacity,
         type: '{number}',
@@ -370,7 +346,7 @@ const props = [
     {
         key: 'ribbonHoverOpacity',
         scopes: ['Chord', 'ChordCanvas'],
-        description: 'Ribbon opacity when hover (0~1).',
+        help: 'Ribbon opacity when hover (0~1).',
         required: false,
         default: defaults.ribbonHoverOpacity,
         type: '{number}',
@@ -380,7 +356,7 @@ const props = [
     {
         key: 'ribbonHoverOthersOpacity',
         scopes: ['Chord', 'ChordCanvas'],
-        description: 'Ribbon opacity when not hover (0~1).',
+        help: 'Ribbon opacity when not hover (0~1).',
         required: false,
         default: defaults.ribbonHoverOthersOpacity,
         type: '{number}',

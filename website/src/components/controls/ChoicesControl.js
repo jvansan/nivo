@@ -3,20 +3,22 @@ import PropTypes from 'prop-types'
 import Control from './Control'
 import Select from './Select'
 import Label from './Label'
+import PropertyHelp from './PropertyHelp'
 
-const ChoicesControl = memo(({ id, label, value: _value, choices, onChange, help }) => {
-    const handleUpdate = useCallback(value => onChange(value.value), [onChange])
-    const value = choices.find(({ value: v }) => v === _value)
+const ChoicesControl = memo(
+    ({ id, label, value: _value, choices, onChange, help, description }) => {
+        const handleUpdate = useCallback(value => onChange(value.value), [onChange])
+        const value = choices.find(({ value: v }) => v === _value)
 
-    return (
-        <Control>
-            <Label htmlFor={id}>{label}</Label>
-            <Select options={choices} value={value} clearable={false} onChange={handleUpdate} />
-            <span />
-            <div className="control-help">{help}</div>
-        </Control>
-    )
-})
+        return (
+            <Control>
+                <Label htmlFor={id}>{label}</Label>
+                <Select options={choices} value={value} clearable={false} onChange={handleUpdate} />
+                <PropertyHelp help={help} description={description} />
+            </Control>
+        )
+    }
+)
 
 ChoicesControl.displayName = 'ChoicesControl'
 ChoicesControl.propTypes = {

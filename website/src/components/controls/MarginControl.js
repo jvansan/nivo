@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import Control from './Control'
 import TextInput from './TextInput'
 import Label from './Label'
+import PropertyHelp from './PropertyHelp'
 
 export default class MarginControl extends Component {
     static propTypes = {
@@ -39,7 +40,7 @@ export default class MarginControl extends Component {
     }
 
     render() {
-        const { label, value } = this.props
+        const { label, value, help, description } = this.props
         const { side } = this.state
 
         return (
@@ -80,6 +81,7 @@ export default class MarginControl extends Component {
                     />
                     <span />
                 </div>
+                <PropertyHelp help={help} description={description} />
             </Control>
         )
     }

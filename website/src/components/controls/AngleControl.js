@@ -12,6 +12,7 @@ import styled from 'styled-components'
 import Control from './Control'
 import Label from './Label'
 import TextInput from './TextInput'
+import PropertyHelp from './PropertyHelp'
 
 const size = 36
 const center = size / 2
@@ -35,7 +36,17 @@ const Marker = styled.circle`
     fill: ${({ theme }) => theme.colors.accent};
 `
 
-const AngleControl = ({ id, label, value, start = 0, min = 0, max = 360, onChange, help }) => {
+const AngleControl = ({
+    id,
+    label,
+    value,
+    start = 0,
+    min = 0,
+    max = 360,
+    onChange,
+    help,
+    description,
+}) => {
     const handleChange = useCallback(
         event => {
             onChange(Number(event.target.value))
@@ -60,8 +71,7 @@ const AngleControl = ({ id, label, value, start = 0, min = 0, max = 360, onChang
                 </svg>
                 <input type="range" value={value} onChange={handleChange} min={min} max={max} />
             </Row>
-            <span />
-            <div className="control-help">{help}</div>
+            <PropertyHelp help={help} description={description} />
         </Control>
     )
 }

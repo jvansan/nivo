@@ -37,4 +37,33 @@ export default createGlobalStyle`
     code, .code {
         color: ${({ theme }) => theme.colors.codeText};
     }
+
+    a {
+        color: ${({ theme }) => theme.colors.link};
+        text-decoration: underline;
+    }
+    a code {
+        color: ${({ theme }) => theme.colors.link};
+    }
+    
+    h1 {
+        font-size: 32px;
+        margin: 0 0 20px 0;
+        padding: 0;
+        font-weight: 300;
+    }
+    h2, h3, h4, h5, h6 {
+        font-weight: 600;
+        color: ${({ theme }) => theme.colors.titleText};
+    }
+    h3 {
+        font-size: 16px;
+    }
+
+    p {
+        margin: 15px 0;
+    }
+    p:first-child {
+        margin-top: 0;
+    }
 `

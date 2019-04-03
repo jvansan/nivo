@@ -10,6 +10,7 @@ import React, { Component } from 'react'
 import Helmet from 'react-helmet'
 import { Link } from 'gatsby'
 import Layout from '../../components/Layout'
+import PageContent from '../../components/PageContent'
 import GradientsIllustrations from '../../components/guides/gradients/GradientsIllustrations'
 import GradientsExample from '../../components/guides/gradients/GradientsExample'
 
@@ -18,11 +19,11 @@ export default class Gradients extends Component {
         return (
             <Layout>
                 <Helmet title="Gradients" />
-                <div className="page_content">
+                <PageContent>
                     <div className="guide__header">
                         <h1 className="page_header">Gradients</h1>
                     </div>
-                </div>
+                </PageContent>
                 <div className="guide__description text-content">
                     <p>
                         While gradients rarely add meaning to your data, it's an easy way to enhance

@@ -6,8 +6,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-import React from 'react'
-import dedent from 'dedent-js'
 import { WaffleDefaultProps } from '@nivo/waffle'
 import {
     motionProperties,
@@ -22,27 +20,27 @@ const props = [
     {
         key: 'total',
         scopes: '*',
+        group: 'Base',
         type: 'number',
+        help: 'Max value.',
         description: 'Max value, ratio will be computed against this value for each datum.',
         required: true,
     },
     {
         key: 'data',
         scopes: '*',
-        description: (
-            <div>
-                Chart data, which must conform to this structure:
-                <pre className="code code-block">
-                    {dedent`
-                        Array<{
-                            id:    {string|number},
-                            value: {number},
-                            label: {string|number},
-                        }>
-                    `}
-                </pre>
-            </div>
-        ),
+        group: 'Base',
+        help: 'Chart data.',
+        description: `
+            Chart data, which must conform to this structure:
+            \`\`\`
+            Array<{
+                id:    {string|number},
+                value: {number},
+                label: {string|number},
+            }>
+            \`\`\`
+        `,
         type: '{Array<Object>}',
         required: true,
     },
@@ -50,14 +48,15 @@ const props = [
         key: 'hiddenIds',
         scopes: '*',
         type: 'Array<{string | number}>',
-        description: (
-            <div>
-                Hide parts of the data by id, this can be used to implement toggle. Note that the
-                datum will still be visible in legends, if you want to completely remove a datum
-                from the data set, you'll have to filter the data before passing it to the
-                component.
-            </div>
-        ),
+        help: 'Hide parts of the data by id',
+        description: `
+            Hide parts of the data by id, this can be used
+            to implement toggle. Note that the datum will
+            still be visible in legends, if you want
+            to completely remove a datum from the data set,
+            you'll have to filter the data before passing
+            it to the component.
+        `,
         required: false,
         default: defaults.hiddenIds,
     },
@@ -65,7 +64,7 @@ const props = [
         key: 'rows',
         scopes: '*',
         type: 'number',
-        description: 'Number of rows.',
+        help: 'Number of rows.',
         required: true,
         controlType: 'range',
         group: 'Base',
@@ -78,7 +77,7 @@ const props = [
         key: 'columns',
         scopes: '*',
         type: 'number',
-        description: 'Number of columns.',
+        help: 'Number of columns.',
         required: true,
         controlType: 'range',
         group: 'Base',
@@ -90,7 +89,7 @@ const props = [
     {
         key: 'fillDirection',
         scopes: '*',
-        description: `How to fill the waffle, must be one of: 'top', 'right', 'bottom', 'left'.`,
+        help: `How to fill the waffle.`,
         type: '{string}',
         required: false,
         default: defaults.fillDirection,
@@ -109,7 +108,7 @@ const props = [
         key: 'padding',
         scopes: '*',
         type: 'number',
-        description: 'Padding between each cell.',
+        help: 'Padding between each cell.',
         required: true,
         controlType: 'range',
         group: 'Base',
@@ -123,12 +122,12 @@ const props = [
         key: 'width',
         scopes: ['api'],
         docScopes: '*',
-        description: (
-            <span>
-                not required if using responsive alternative of the component{' '}
-                <code>&lt;Responsive*/&gt;</code>.
-            </span>
-        ),
+        help: 'Chart width.',
+        description: `
+            not required if using responsive alternative
+            of the component
+            \`<Responsive*/>\`.
+        `,
         type: '{number}',
         required: true,
     },
@@ -136,19 +135,19 @@ const props = [
         key: 'height',
         scopes: ['api'],
         docScopes: '*',
-        description: (
-            <span>
-                not required if using responsive alternative of the component{' '}
-                <code>&lt;Responsive*/&gt;</code>.
-            </span>
-        ),
+        help: 'Chart height.',
+        description: `
+            not required if using responsive alternative
+            of the component
+            \`<Responsive*/>\`.
+        `,
         type: '{number}',
         required: true,
     },
     {
         key: 'pixelRatio',
         scopes: ['WaffleCanvas'],
-        description: `Adjust pixel ratio, useful for HiDPI screens.`,
+        help: `Adjust pixel ratio, useful for HiDPI screens.`,
         required: false,
         default: 'Depends on device',
         type: `{number}`,
@@ -162,7 +161,7 @@ const props = [
     {
         key: 'margin',
         scopes: '*',
-        description: 'Chart margin.',
+        help: 'Chart margin.',
         type: '{object}',
         required: false,
         controlType: 'margin',
@@ -171,7 +170,7 @@ const props = [
     {
         key: 'cellComponent',
         scopes: ['Waffle', 'WaffleHtml'],
-        description: 'Override default cell component.',
+        help: 'Override default cell component.',
         type: '{Function}',
         required: false,
         controlType: 'choices',
@@ -186,7 +185,7 @@ const props = [
     {
         key: 'colors',
         scopes: '*',
-        description: 'Defines how to compute node color.',
+        help: 'Defines how to compute node color.',
         type: '{string|Function|Array}',
         required: false,
         default: 'nivo',
@@ -196,7 +195,7 @@ const props = [
     {
         key: 'colorBy',
         scopes: '*',
-        description:
+        help:
             'Property to use to determine node color. If a function is provided, it will receive current node data and must return a color.',
         type: '{string|Function}',
         required: false,
@@ -219,7 +218,7 @@ const props = [
     {
         key: 'emptyColor',
         scopes: '*',
-        description: 'Defines empty cells color.',
+        help: 'Defines empty cells color.',
         type: '{string}',
         required: false,
         default: defaults.emptyColor,
@@ -229,7 +228,7 @@ const props = [
     {
         key: 'emptyOpacity',
         scopes: '*',
-        description: 'Empty cells opacity.',
+        help: 'Empty cells opacity.',
         required: false,
         default: defaults.emptyOpacity,
         type: '{number}',
@@ -239,7 +238,7 @@ const props = [
     {
         key: 'borderWidth',
         scopes: '*',
-        description: 'Control cell border width.',
+        help: 'Control cell border width.',
         type: '{number}',
         required: false,
         default: defaults.borderWidth,
@@ -249,7 +248,7 @@ const props = [
     {
         key: 'borderColor',
         scopes: '*',
-        description: 'Method to compute cell border color.',
+        help: 'Method to compute cell border color.',
         type: '{string|Function}',
         required: false,
         default: defaults.borderColor,
@@ -263,7 +262,7 @@ const props = [
     {
         key: 'isInteractive',
         scopes: ['Waffle', 'WaffleHtml', 'WaffleCanvas'],
-        description: 'Enable/disable interactivity.',
+        help: 'Enable/disable interactivity.',
         type: '{boolean}',
         required: false,
         default: defaults.isInteractive,
@@ -273,6 +272,8 @@ const props = [
     {
         key: 'onClick',
         scopes: ['Waffle', 'WaffleHtml', 'WaffleCanvas'],
+        group: 'Interactivity',
+        help: 'onClick handler.',
         description: 'onClick handler, it receives clicked node data and style plus mouse event.',
         type: '{Function}',
         required: false,
@@ -281,12 +282,12 @@ const props = [
         key: 'custom tooltip example',
         scopes: ['Waffle', 'WaffleHtml', 'WaffleCanvas'],
         excludeFromDoc: true,
-        description: (
-            <span>
-                You can customize the tooltip using the <code>tooltip</code> property and{' '}
-                <code>theme.tooltip</code> object.
-            </span>
-        ),
+        help: 'Showcase custom tooltip.',
+        description: `
+            You can customize the tooltip using
+            the \`tooltip\` property and
+            \`theme.tooltip\` object.
+        `,
         type: '{boolean}',
         controlType: 'switch',
         group: 'Interactivity',
@@ -294,36 +295,35 @@ const props = [
     {
         key: 'tooltip',
         scopes: ['Waffle', 'WaffleHtml', 'WaffleCanvas'],
+        group: 'Interactivity',
         type: '{Function}',
         required: false,
-        description: (
-            <div>
-                A function allowing complete tooltip customisation, it must return a valid HTML
-                element and will receive the following data:
-                <pre className="code code-block">
-                    {dedent`
-                        {
-                            id:         {string|number},
-                            value:      {number},
-                            label:      {string|number},
-                            color:      {string},
-                            position:   {number},
-                            row:        {number},
-                            column:     {number},
-                            groupIndex: {number},
-                            startAt:    {number},
-                            endAt:      {number},
-                        }
-                    `}
-                </pre>
-            </div>
-        ),
+        help: 'Custom tooltip component',
+        description: `
+            A function allowing complete tooltip customisation,
+            it must return a valid HTML element and will
+            receive the following data:
+            \`\`\`
+            {
+                id:         {string|number},
+                value:      {number},
+                label:      {string|number},
+                color:      {string},
+                position:   {number},
+                row:        {number},
+                column:     {number},
+                groupIndex: {number},
+                startAt:    {number},
+                endAt:      {number},
+            }
+            \`\`\`
+        `,
     },
     {
         key: 'legends',
         scopes: ['Waffle', 'WaffleCanvas'],
         type: '{Array<object>}',
-        description: `Optional chart's legends.`,
+        help: `Optional chart's legends.`,
         group: 'Legends',
         controlType: 'array',
         controlOptions: {

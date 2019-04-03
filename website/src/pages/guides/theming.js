@@ -13,6 +13,7 @@ import { defaultTheme } from '@nivo/core'
 import { ResponsiveBar } from '@nivo/bar'
 import { ResponsiveLine } from '@nivo/line'
 import Layout from '../../components/Layout'
+import PageContent from '../../components/PageContent'
 import ChartControlGroups from '../../components/controls/ChartControlGroups'
 
 const Container = styled.div`
@@ -123,7 +124,7 @@ const Theming = () => {
     return (
         <Layout>
             <Helmet title="Theming" />
-            <div className="page_content">
+            <PageContent>
                 <div className="guide__header">
                     <h1 className="page_header">Theming</h1>
                 </div>
@@ -206,7 +207,7 @@ const Theming = () => {
                         </div>
                     </Container>
                 </div>
-            </div>
+            </PageContent>
         </Layout>
     )
 }

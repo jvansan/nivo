@@ -9,6 +9,7 @@
 import React from 'react'
 import Control from './Control'
 import Label from './Label'
+import PropertyHelp from './PropertyHelp'
 
 const boxWidth = 80
 const boxHeight = 50
@@ -30,7 +31,7 @@ const anchors = [
     ['left', 0, boxHeight / 2],
 ]
 
-const BoxAnchorControl = ({ label, value, onChange }) => {
+const BoxAnchorControl = ({ label, value, onChange, help, description }) => {
     return (
         <Control>
             <Label>{label}</Label>
@@ -85,59 +86,9 @@ const BoxAnchorControl = ({ label, value, onChange }) => {
                     </g>
                 </svg>
             </div>
+            <PropertyHelp help={help} description={description} />
         </Control>
     )
 }
 
 export default BoxAnchorControl
-
-/*
-export default class RadioControl extends Component {
-    static propTypes = {
-        label: PropTypes.string.isRequired,
-        value: PropTypes.string.isRequired,
-        onChange: PropTypes.func.isRequired,
-        help: PropTypes.node.isRequired,
-        choices: PropTypes.arrayOf(
-            PropTypes.shape({
-                value: PropTypes.string.isRequired,
-                label: PropTypes.string.isRequired,
-            })
-        ).isRequired,
-    }
-
-    shouldComponentUpdate(nextProps) {
-        return nextProps.value !== this.props.value
-    }
-
-    render() {
-        const { label, value, onChange, choices, help } = this.props
-
-        return (
-            <div className="chart-controls_item">
-                <span className="control_label">{label}</span>
-                <div className="control-radio">
-                    {choices.map(choice => (
-                        <label
-                            className={className('control-radio-item', {
-                                '_is-active': value === choice.value,
-                            })}
-                            key={choice.value}
-                        >
-                            <input
-                                type="radio"
-                                value={choice.value}
-                                checked={value === choice.value}
-                                onChange={onChange}
-                            />
-                            {choice.label}
-                        </label>
-                    ))}
-                </div>
-                <span/>
-                <div className="control-help">{help}</div>
-            </div>
-        )
-    }
-}
-*/

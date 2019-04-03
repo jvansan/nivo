@@ -6,8 +6,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-import React from 'react'
-import dedent from 'dedent-js'
 import { BulletDefaultProps as defaults } from '@nivo/bullet'
 import { motionProperties, getPropertiesGroupsControls } from '../../../lib/componentProperties'
 
@@ -15,44 +13,39 @@ const props = [
     {
         key: 'data',
         scopes: '*',
-        description: (
-            <div>
-                Chart data, which must conform to this structure:
-                <pre className="code code-block">
-                    {dedent`
-                        Array<{
-                            id:        {string|number}
-                            title?:    {ReactNode}
-                            subtitle?: {ReactNode}
-                            data: Array<{
-                                ranges:   number[]
-                                measures: number[]
-                                markers?: number[]
-                            }>
-                        }>
-                    `}
-                </pre>
-                If <code>title</code> is <code>undefined</code>, <code>id</code> will be used for{' '}
-                <code>title</code>.
-            </div>
-        ),
+        group: 'Base',
+        help: 'Chart data.',
+        description: `
+            Chart data, which must conform to this structure:
+            \`\`\`
+            Array<{
+                id:        {string|number}
+                title?:    {ReactNode}
+                subtitle?: {ReactNode}
+                data: Array<{
+                    ranges:   number[]
+                    measures: number[]
+                    markers?: number[]
+                }>
+            }>
+            \`\`\`
+
+            If \`title\` is \`undefined\`, \`id\` will be used for
+            \`title\`.
+        `,
         type: '{Array.<object>}',
         required: true,
     },
     {
         key: 'width',
-        scopes: ['api'],
         docScopes: '*',
-        description: (
-            <span>
-                not required if using <code>ResponsiveBullet</code>.
-            </span>
-        ),
+        scopes: ['api'],
+        group: 'Base',
         help: 'Chart width.',
+        description: 'not required if using `ResponsiveBullet`.',
         type: '{number}',
         required: true,
         controlType: 'range',
-        group: 'Base',
         controlOptions: {
             unit: 'px',
             min: 100,
@@ -64,16 +57,12 @@ const props = [
         key: 'height',
         scopes: ['api'],
         docScopes: '*',
-        description: (
-            <span>
-                not required if using <code>ResponsiveBullet</code>.
-            </span>
-        ),
+        group: 'Base',
         help: 'Chart height.',
+        description: 'not required if using `ResponsiveBullet`.',
         type: '{number}',
         required: true,
         controlType: 'range',
-        group: 'Base',
         controlOptions: {
             unit: 'px',
             min: 100,
@@ -84,12 +73,12 @@ const props = [
     {
         key: 'layout',
         scopes: '*',
-        description: `How to display items, must be one of: 'horizontal', 'vertical'.`,
+        group: 'Base',
+        help: `How to display items.`,
         type: '{string}',
         required: false,
         default: defaults.layout,
         controlType: 'radio',
-        group: 'Base',
         controlOptions: {
             choices: [
                 { label: 'horizontal', value: 'horizontal' },
@@ -100,18 +89,22 @@ const props = [
     {
         key: 'reverse',
         scopes: '*',
-        description:
-            'Reverse chart, starts on top instead of bottom for vertical layout and right instead of left for horizontal one.',
+        group: 'Base',
+        help: 'Reverse chart.',
+        description: `
+            Reverse chart, starts on top instead of bottom
+            for vertical layout and right instead of left
+            for horizontal one.
+        `,
         type: '{boolean}',
         required: false,
         default: defaults.reverse,
         controlType: 'switch',
-        group: 'Base',
     },
     {
         key: 'margin',
         scopes: '*',
-        description: 'Chart margin.',
+        help: 'Chart margin.',
         type: '{object}',
         required: false,
         controlType: 'margin',
@@ -120,7 +113,7 @@ const props = [
     {
         key: 'spacing',
         scopes: '*',
-        description: 'define spacing between items.',
+        help: 'define spacing between items.',
         type: '{number}',
         required: false,
         default: defaults.spacing,
@@ -135,7 +128,7 @@ const props = [
     {
         key: 'measureSize',
         scopes: '*',
-        description: 'define size of measure related to item size, expressed as a ratio.',
+        help: 'define size of measure related to item size, expressed as a ratio.',
         type: '{number}',
         required: false,
         default: defaults.measureSize,
@@ -150,7 +143,7 @@ const props = [
     {
         key: 'markerSize',
         scopes: '*',
-        description: 'define size of markers related to item size, expressed as a ratio.',
+        help: 'define size of markers related to item size, expressed as a ratio.',
         type: '{number}',
         required: false,
         default: defaults.markerSize,
@@ -165,19 +158,19 @@ const props = [
     {
         key: 'rangeComponent',
         scopes: ['Bullet'],
-        description: 'Custom component for ranges.',
+        help: 'Custom component for ranges.',
         type: '{Function}',
         required: false,
     },
     {
         key: 'rangeColors',
         scopes: '*',
-        description: (
-            <div>
-                Defines colors for ranges, you can either use categorical colors:{' '}
-                <code>greens</code> or sequential form: <code>seq:green</code>.
-            </div>
-        ),
+        help: 'Ranges colors',
+        description: `
+            Defines colors for ranges,
+            you can either use categorical colors:
+            \`greens\` or sequential form: \`seq:green\`.
+        `,
         type: '{string|Function|Array}',
         required: false,
         default: defaults.rangeColors,
@@ -190,19 +183,19 @@ const props = [
     {
         key: 'measureComponent',
         scopes: ['Bullet'],
-        description: 'Custom component for measures.',
+        help: 'Custom component for measures.',
         type: '{Function}',
         required: false,
     },
     {
         key: 'measureColors',
         scopes: '*',
-        description: (
-            <div>
-                Defines colors for measures, you can either use categorical colors:{' '}
-                <code>greens</code> or sequential form: <code>seq:green</code>.
-            </div>
-        ),
+        help: 'Measures colors.',
+        description: `
+            Defines colors for measures,
+            you can either use categorical colors:
+            \`greens\` or sequential form: \`seq:green\`.
+        `,
         type: '{string|Function|Array}',
         required: false,
         default: defaults.measureColors,
@@ -215,19 +208,19 @@ const props = [
     {
         key: 'markerComponent',
         scopes: ['Bullet'],
-        description: 'Custom component for markers.',
+        help: 'Custom component for markers.',
         type: '{Function}',
         required: false,
     },
     {
         key: 'markerColors',
         scopes: '*',
-        description: (
-            <div>
-                Defines colors for markers, you can either use categorical colors:{' '}
-                <code>greens</code> or sequential form: <code>seq:green</code>.
-            </div>
-        ),
+        help: 'Markers colors.',
+        description: `
+            Defines colors for markers,
+            you can either use categorical colors:
+            \`greens\` or sequential form: \`seq:green\`.
+        `,
         type: '{string|Function|Array}',
         required: false,
         default: defaults.markerColors,
@@ -240,7 +233,7 @@ const props = [
     {
         key: 'axisPosition',
         scopes: '*',
-        description: `Where to put axis, must be one of: 'before', 'after'.`,
+        help: `Where to put axis.`,
         type: `{'before'|'after'}`,
         required: false,
         default: defaults.axisPosition,
@@ -253,7 +246,7 @@ const props = [
     {
         key: 'titlePosition',
         scopes: '*',
-        description: `Where to put title, must be one of: 'before', 'after'.`,
+        help: `Where to put title.`,
         type: `{'before'|'after'}`,
         required: false,
         default: defaults.titlePosition,
@@ -266,7 +259,7 @@ const props = [
     {
         key: 'titleAlign',
         scopes: '*',
-        description: `title alignment, must be one of: 'start', 'middle', 'end'.`,
+        help: `title alignment.`,
         type: `{'start'|'middle'|'end'}`,
         required: false,
         default: defaults.titleAlign,
@@ -283,7 +276,7 @@ const props = [
     {
         key: 'titleOffsetX',
         scopes: '*',
-        description: 'title x offset from bullet edge.',
+        help: 'title x offset from bullet edge.',
         type: '{number}',
         required: false,
         default: defaults.titleOffset,
@@ -298,7 +291,7 @@ const props = [
     {
         key: 'titleOffsetY',
         scopes: '*',
-        description: 'title y offset from bullet edge.',
+        help: 'title y offset from bullet edge.',
         type: '{number}',
         required: false,
         default: defaults.titleOffset,
@@ -313,7 +306,7 @@ const props = [
     {
         key: 'titleRotation',
         scopes: '*',
-        description: 'title rotation.',
+        help: 'title rotation.',
         type: '{number}',
         required: false,
         default: defaults.titleRotation,
@@ -330,47 +323,53 @@ const props = [
         key: 'onRangeClick',
         scopes: ['Bullet'],
         type: '{Function}',
+        group: 'Interactivity',
         required: false,
-        description: (
-            <div>
-                onClick handler for ranges, will receive range data as first argument & event as
-                second one. The data has the following shape:
-                <pre className="code code-block">
-                    {dedent`{
-                        id:    {string},
-                        v0:    {number},
-                        v1:    {number},
-                        index: {number},
-                        color: {string},
-                    }`}
-                </pre>
-                <code>v1</code> is the value of the range while <code>v0</code> is the value of
-                previous range.
-            </div>
-        ),
+        help: 'onClick handler for ranges.',
+        description: `
+            onClick handler for ranges, will receive range
+            data as first argument & event as second one.
+            
+            The data has the following shape:
+            \`\`\`
+            {
+                id:    {string},
+                v0:    {number},
+                v1:    {number},
+                index: {number},
+                color: {string},
+            }
+            \`\`\`
+            
+            \`v1\` is the value of the range while
+            \`v0\` is the value of previous range.
+        `,
     },
     {
         key: 'onMeasureClick',
         scopes: ['Bullet'],
         type: '{Function}',
+        group: 'Interactivity',
         required: false,
-        description: (
-            <div>
-                onClick handler for measures, will receive measure data as first argument & event as
-                second one. The data has the following shape:
-                <pre className="code code-block">
-                    {dedent`{
-                        id:    {string},
-                        v0:    {number},
-                        v1:    {number},
-                        index: {number},
-                        color: {string},
-                    }`}
-                </pre>
-                <code>v1</code> is the value of the measure while <code>v0</code> is the value of
-                previous measure.
-            </div>
-        ),
+        help: 'onClick handler for measures.',
+        description: `
+            onClick handler for measures, will receive measure
+            data as first argument & event as second one.
+            
+            The data has the following shape:
+            \`\`\`
+            {
+                id:    {string},
+                v0:    {number},
+                v1:    {number},
+                index: {number},
+                color: {string},
+            }
+            \`\`\`
+
+            \`v1\` is the value of the measure while
+            \`v0\` is the value of previous measure.
+        `,
     },
     ...motionProperties(['Bullet'], defaults),
 ]

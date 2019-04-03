@@ -9,6 +9,7 @@
 import React, { Component } from 'react'
 import Helmet from 'react-helmet'
 import Layout from '../../components/Layout'
+import PageContent from '../../components/PageContent'
 import LegendPosition from '../../components/guides/legends/LegendPosition'
 import LegendDirection from '../../components/guides/legends/LegendDirection'
 import LegendItemDirection from '../../components/guides/legends/LegendItemDirection'
@@ -19,11 +20,11 @@ export default class Legends extends Component {
         return (
             <Layout>
                 <Helmet title="Legends" />
-                <div className="page_content">
+                <PageContent>
                     <div className="guide__header">
                         <h1 className="page_header">Legends</h1>
                     </div>
-                </div>
+                </PageContent>
                 <div className="guide__description text-content">
                     <p>Let's see how to add legends to your charts.</p>
                     <p>

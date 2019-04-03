@@ -37,6 +37,14 @@ const Content = styled.div`
     }
 `
 
+const InnerContent = styled.div`
+    padding-top: 10px;
+    background-image: linear-gradient(-90deg, #dc5a32, #c44a67);
+    background-size: 100% 150px;
+    background-repeat: no-repeat;
+    background-position: top left;
+`
+
 const Layout = ({ children }) => (
     <ThemeProvider theme={theme.light}>
         <>
@@ -44,7 +52,7 @@ const Layout = ({ children }) => (
             <Header />
             <MiniNav />
             <Content>
-                <div className="inner-content">{children}</div>
+                <InnerContent>{children}</InnerContent>
             </Content>
         </>
     </ThemeProvider>

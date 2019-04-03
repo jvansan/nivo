@@ -6,8 +6,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-import React from 'react'
-import dedent from 'dedent-js'
 import { ScatterPlotDefaultProps as defaults } from '@nivo/scatterplot'
 import {
     axesProperties,
@@ -19,32 +17,32 @@ const props = [
     {
         key: 'data',
         scopes: '*',
-        description: (
-            <div>
-                Chart data, which must conform to this structure:
-                <pre className="code code-block">
-                    {dedent`
-                        Array<{
-                            id: {string|number}
-                            data: Array<{
-                                x: {number|string|Date}
-                                y: {number|string|Date}
-                            }>
-                        }>
-                    `}
-                </pre>
-                Please not that you should adjust <code>xScale</code> and <code>yScale</code>{' '}
-                according to <code>x</code> and <code>y</code> type, for example if you use dates,
-                you should use a <code>time</code> scale.
-            </div>
-        ),
+        group: 'Base',
+        help: 'Chart data.',
+        description: `
+            Chart data, which must conform to this structure:
+            \`\`\`
+            Array<{
+                id: {string|number}
+                data: Array<{
+                    x: {number|string|Date}
+                    y: {number|string|Date}
+                }>
+            }>
+            \`\`\`
+
+            Please not that you should adjust \`xScale\`
+            and \`yScale\` according to \`x\` and \`y\` type,
+            for example if you use dates, you should use
+            a \`time\` scale.
+        `,
         required: true,
     },
     {
         key: 'xScale',
         scopes: '*',
         type: '{object}',
-        description: `X scale configuration.`,
+        help: `X scale configuration.`,
         group: 'Base',
         controlType: 'object',
         controlOptions: {
@@ -95,7 +93,7 @@ const props = [
         key: 'yScale',
         scopes: '*',
         type: '{object}',
-        description: `Y scale configuration.`,
+        help: `Y scale configuration.`,
         group: 'Base',
         controlType: 'object',
         controlOptions: {
@@ -146,15 +144,12 @@ const props = [
         key: 'width',
         scopes: ['api'],
         docScopes: '*',
-        description: (
-            <span>
-                Not required if using&nbsp;
-                <code>Responsive*</code> component.
-                <br />
-                Also note that width exclude left/right axes, please add margin to make sure they're
-                visible.
-            </span>
-        ),
+        description: `
+            Not required if using
+            \`Responsive*\` component.
+            Also note that width exclude left/right axes,
+            please add margin to make sure they're visible.
+        `,
         help: 'Chart width.',
         type: '{number}',
         required: true,
@@ -171,15 +166,12 @@ const props = [
         key: 'height',
         scopes: ['api'],
         docScopes: '*',
-        description: (
-            <span>
-                Not required if using&nbsp;
-                <code>Responsive*</code> component.
-                <br />
-                Also note that width exclude top/bottom axes, please add margin to make sure they're
-                visible.
-            </span>
-        ),
+        description: `
+            Not required if using
+            \`Responsive*\` component.
+            Also note that width exclude top/bottom axes,
+            please add margin to make sure they're visible.
+        `,
         help: 'Chart height.',
         type: '{number}',
         required: true,
@@ -195,23 +187,24 @@ const props = [
     {
         key: 'layers',
         scopes: ['ScatterPlot'],
-        description: (
-            <div>
-                Defines the order of layers, available layers are:
-                <code>grid</code>, <code>axes</code>, <code>points</code>, <code>markers</code>,{' '}
-                <code>mesh</code>, <code>legends</code>.<br />
-                You can also use this to insert extra layers to the chart, this extra layer must be
-                a function which will receive the chart computed data and must return a valid SVG
-                element.
-            </div>
-        ),
+        group: 'Base',
+        help: 'Defines the order of layers.',
+        description: `
+            Defines the order of layers, available layers are:
+            \`grid\`, \`axes\`, \`points\`, \`markers\`,
+            \`mesh\`, \`legends\`.
+            You can also use this to insert extra layers
+            to the chart, this extra layer must be
+            a function which will receive the chart
+            computed data and must return a valid SVG element.
+        `,
         required: false,
         default: defaults.layers,
     },
     {
         key: 'pixelRatio',
         scopes: ['ScatterPlotCanvas'],
-        description: `Adjust pixel ratio, useful for HiDPI screens.`,
+        help: `Adjust pixel ratio, useful for HiDPI screens.`,
         required: false,
         default: 'Depends on device',
         type: `{number}`,
@@ -225,7 +218,7 @@ const props = [
     {
         key: 'margin',
         scopes: '*',
-        description: 'Chart margin.',
+        help: 'Chart margin.',
         type: '{object}',
         required: false,
         controlType: 'margin',
@@ -234,7 +227,7 @@ const props = [
     {
         key: 'colors',
         scopes: '*',
-        description: 'Defines color range.',
+        help: 'Defines color range.',
         type: '{string|Function|Array}',
         required: false,
         default: 'nivo',
@@ -244,8 +237,11 @@ const props = [
     {
         key: 'colorBy',
         scopes: '*',
-        description:
-            'Property to use to determine node color. If a function is provided, it will receive current node data and must return a color.',
+        help: `
+            Property to use to determine node color.
+            If a function is provided, it will receive
+            current node data and must return a color.
+        `,
         required: false,
         default: defaults.colorBy,
         controlType: 'choices',
@@ -266,7 +262,7 @@ const props = [
     {
         key: 'symbolSize',
         scopes: '*',
-        description: `Symbol size.`,
+        help: `Symbol size.`,
         required: false,
         default: defaults.symbolSize,
         type: `{number}`,
@@ -281,7 +277,7 @@ const props = [
     {
         key: 'enableGridX',
         scopes: '*',
-        description: 'Enable/disable x grid.',
+        help: 'Enable/disable x grid.',
         type: '{boolean}',
         required: false,
         default: defaults.enableGridX,
@@ -291,7 +287,7 @@ const props = [
     {
         key: 'enableGridY',
         scopes: '*',
-        description: 'Enable/disable y grid.',
+        help: 'Enable/disable y grid.',
         type: '{boolean}',
         required: false,
         default: defaults.enableGridY,
@@ -302,7 +298,7 @@ const props = [
     {
         key: 'isInteractive',
         scopes: ['ScatterPlot', 'ScatterPlotCanvas'],
-        description: 'Enable/disable interactivity.',
+        help: 'Enable/disable interactivity.',
         type: '{boolean}',
         required: false,
         default: defaults.isInteractive,
@@ -312,7 +308,7 @@ const props = [
     {
         key: 'useMesh',
         scopes: ['ScatterPlot', 'ScatterPlotCanvas'],
-        description: 'Use a mesh to detect mouse interactions.',
+        help: 'Use a mesh to detect mouse interactions.',
         type: '{boolean}',
         required: false,
         default: defaults.useMesh,
@@ -322,7 +318,7 @@ const props = [
     {
         key: 'debugMesh',
         scopes: ['ScatterPlot', 'ScatterPlotCanvas'],
-        description: 'Display mesh used to detect mouse interactions (voronoi cells).',
+        help: 'Display mesh used to detect mouse interactions (voronoi cells).',
         type: '{boolean}',
         required: false,
         default: defaults.debugMesh,
@@ -332,43 +328,45 @@ const props = [
     {
         key: 'tooltip',
         scopes: ['ScatterPlot'],
+        group: 'Interactivity',
         type: '{Function}',
         required: false,
-        description: (
-            <div>
-                A function allowing complete tooltip customisation, it must return a valid HTML
-                element and will receive the following data:
-                <pre className="code code-block">
-                    {dedent`
-                        {
-                            id:    {string|number},
-                            serie: {string|number},
-                            color: {string},
-                            x:     {number},
-                            y:     {number},
-                        }
-                    `}
-                </pre>
-            </div>
-        ),
+        help: 'Custom tooltip component',
+        description: `
+            A function allowing complete tooltip customisation,
+            it must return a valid HTML element and will
+            receive the following data:
+
+            \`\`\`
+            {
+                id:    {string|number},
+                serie: {string|number},
+                color: {string},
+                x:     {number},
+                y:     {number},
+            }
+            \`\`\`
+        `,
     },
     {
         key: 'custom tooltip example',
         scopes: ['ScatterPlot'],
+        group: 'Interactivity',
         excludeFromDoc: true,
-        description: (
-            <span>
-                You can customize the tooltip using the <code>tooltip</code> property and{' '}
-                <code>theme.tooltip</code> object.
-            </span>
-        ),
+        help: 'Showcase custom tooltip.',
+        description: `
+            You can customize the tooltip using the
+            \`tooltip\` property and
+            \`theme.tooltip\` object.
+        `,
         type: '{boolean}',
         controlType: 'switch',
-        group: 'Interactivity',
     },
     {
         key: 'onMouseEnter',
         scopes: ['ScatterPlot', 'ScatterPlotCanvas'],
+        group: 'Interactivity',
+        help: 'onMouseEnter handler.',
         description: 'onMouseEnter handler, it receives target node data and mouse event.',
         type: '{Function}',
         required: false,
@@ -376,6 +374,8 @@ const props = [
     {
         key: 'onMouseMove',
         scopes: ['ScatterPlot', 'ScatterPlotCanvas'],
+        group: 'Interactivity',
+        help: 'onMouseMove handler.',
         description: 'onMouseMove handler, it receives target node data and mouse event.',
         type: '{Function}',
         required: false,
@@ -383,6 +383,8 @@ const props = [
     {
         key: 'onMouseLeave',
         scopes: ['ScatterPlot', 'ScatterPlotCanvas'],
+        group: 'Interactivity',
+        help: 'onMouseLeave handler.',
         description: 'onMouseLeave handler, it receives target node data and mouse event.',
         type: '{Function}',
         required: false,
@@ -390,6 +392,8 @@ const props = [
     {
         key: 'onClick',
         scopes: ['ScatterPlot', 'ScatterPlotCanvas'],
+        group: 'Interactivity',
+        help: 'onClick handler.',
         description: 'onClick handler, it receives target node data and mouse event.',
         type: '{Function}',
         required: false,

@@ -16,7 +16,7 @@ import ApiTabs from './ApiTabs'
 import ApiSubmit from './ApiSubmit'
 import ApiResponse from './ApiResponse'
 import ApiPreview from './ApiPreview'
-// import config from '../../config'
+import config from '../../../data/config'
 
 const description = (component, apiPath) => `
 \`POST ${apiPath}\`

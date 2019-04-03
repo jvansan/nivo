@@ -12,6 +12,7 @@ import Select from 'react-select'
 import { mapInheritedColor } from '../../lib/settings'
 import Control from './Control'
 import Label from './Label'
+import PropertyHelp from './PropertyHelp'
 
 const hasGammaModifier = type => ['inherit:darker', 'inherit:brighter'].includes(type)
 
@@ -59,6 +60,7 @@ class ColorControl extends Component {
             value: { type, ...config },
             label,
             help,
+            description,
             withTheme,
             withCustomColor,
         } = this.props
@@ -115,8 +117,7 @@ class ColorControl extends Component {
                         </div>
                     )}
                 </div>
-                <span />
-                <div className="control-help">{help}</div>
+                <PropertyHelp help={help} description={description} />
             </Control>
         )
     }

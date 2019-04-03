@@ -11,7 +11,7 @@ import { Link } from 'gatsby'
 import styled from 'styled-components'
 import MiniNavLink from './MiniNavLink'
 import logoImg from '../../assets/icons/nivo-logo.png'
-import nav from '../../data/nav.yml'
+import * as nav from '../../data/nav'
 
 const Wrapper = styled.aside`
     position: fixed;

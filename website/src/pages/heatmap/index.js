@@ -17,7 +17,7 @@ import ComponentDescription from '../../components/components/ComponentDescripti
 import ComponentTabs from '../../components/components/ComponentTabs'
 import ActionsLogger, { useActionsLogger } from '../../components/components/ActionsLogger'
 import ComponentSettings from '../../components/components/ComponentSettings'
-// import Stories from '../../components/components/Stories'
+import Stories from '../../components/components/Stories'
 import generateCode from '../../lib/generateChartCode'
 import heatmap from '../../data/components/heatmap/meta.yml'
 import mapper from '../../data/components/heatmap/mapper'
@@ -169,13 +169,14 @@ const HeatMap = () => {
                         //theme={nivoTheme}
                     />
                 </ComponentTabs>
-                <ActionsLogger actions={actions} isFullWidth={true} />
+                <ActionsLogger actions={actions} />
                 <ComponentSettings
                     component="HeatMap"
                     settings={settings}
                     onChange={setSettings}
                     groups={groupsByScope.HeatMap}
                 />
+                <Stories stories={heatmap.HeatMap.stories} />
             </ComponentPage>
         </Layout>
     )

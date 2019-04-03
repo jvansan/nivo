@@ -6,8 +6,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-import React from 'react'
-import dedent from 'dedent-js'
 import { lineCurvePropKeys, DotsItemDefaultProps as dotDefaults } from '@nivo/core'
 import { LineDefaultProps as defaults } from '@nivo/line'
 import {
@@ -17,47 +15,35 @@ import {
     getPropertiesGroupsControls,
 } from '../../../lib/componentProperties'
 
-const curveOptions = []
-lineCurvePropKeys.forEach((curve, i) => {
-    curveOptions.push(<code key={curve}>'{curve}'</code>)
-    if (i < lineCurvePropKeys.length - 1) {
-        curveOptions.push(<span key={`${curve}.comma`}>,&nbsp;</span>)
-    }
-})
-
 const props = [
     {
         key: 'data',
         scopes: '*',
-        description: (
-            <div>
-                Chart data, which must conform to this structure:
-                <pre className="code code-block">
-                    {dedent`
-                        Array<{
-                            id: {string|number}
-                            data: Array<{
-                                x: {number|string|Date}
-                                y: {number|string|Date}
-                            }>
-                        }>
-                    `}
-                </pre>
-            </div>
-        ),
+        group: 'Base',
+        help: 'Chart data.',
+        description: `
+            Chart data, which must conform to this structure:
+            \`\`\`
+            Array<{
+                id: {string|number}
+                data: Array<{
+                    x: {number|string|Date}
+                    y: {number|string|Date}
+                }>
+            }>
+            \`\`\`
+        `,
         required: true,
     },
     {
         key: 'width',
         scopes: ['api'],
         docScopes: '*',
-        description: (
-            <span>
-                not required if using&nbsp;
-                <code>&lt;ResponsiveLine&nbsp;/&gt;</code>.
-            </span>
-        ),
         help: 'Chart width.',
+        description: `
+            not required if using
+            \`<ResponsiveLine/>\`.
+        `,
         type: '{number}',
         required: true,
         controlType: 'range',
@@ -73,13 +59,11 @@ const props = [
         key: 'height',
         scopes: ['api'],
         docScopes: '*',
-        description: (
-            <span>
-                not required if using&nbsp;
-                <code>&lt;ResponsiveLine&nbsp;/&gt;</code>.
-            </span>
-        ),
         help: 'Chart height.',
+        description: `
+            not required if using
+            \`<ResponsiveLine/>\`.
+        `,
         type: '{number}',
         required: true,
         controlType: 'range',
@@ -94,7 +78,7 @@ const props = [
     {
         key: 'margin',
         scopes: '*',
-        description: 'Chart margin.',
+        help: 'Chart margin.',
         type: '{object}',
         required: false,
         controlType: 'margin',
@@ -103,31 +87,28 @@ const props = [
     {
         key: 'layers',
         scopes: ['Line'],
-        description: (
-            <div>
-                Defines the order of layers, available layers are:
-                <code>grid</code>, <code>markers</code>, <code>axes</code>, <code>areas</code>,{' '}
-                <code>lines</code>, <code>slices</code>, <code>dots</code>, <code>legends</code>.
-                <br />
-                You can also use this to insert extra layers to the chart, this extra layer must be
-                a function which will receive the chart computed data and must return a valid SVG
-                element.
-            </div>
-        ),
+        group: 'Base',
+        help: 'Defines the order of layers.',
+        description: `
+            Defines the order of layers, available layers are:
+            \`grid\`, \`markers\`, \`axes\`, \`areas\`,
+            \`lines\`, \`slices\`, \`dots\`, \`legends\`.
+
+            You can also use this to insert extra layers
+            to the chart, this extra layer must be
+            a function which will receive the chart
+            computed data and must return a valid SVG element.
+        `,
         required: false,
         default: defaults.layers,
     },
     {
         key: 'curve',
         scopes: '*',
-        description: (
-            <span>
-                Defines the curve factory to use for the line generator.
-                <br />
-                Must be one of: {curveOptions}.
-            </span>
-        ),
         help: 'Curve interpolation.',
+        description: `
+            Defines the curve factory to use for the line generator.
+        `,
         type: '{string}',
         required: false,
         default: defaults.curve,
@@ -144,7 +125,7 @@ const props = [
         key: 'xScale',
         scopes: '*',
         type: '{object}',
-        description: `X scale configuration.`,
+        help: `X scale configuration.`,
         group: 'Base',
         controlType: 'object',
         controlOptions: {
@@ -169,7 +150,7 @@ const props = [
         key: 'yScale',
         scopes: '*',
         type: '{object}',
-        description: `Y scale configuration.`,
+        help: `Y scale configuration.`,
         group: 'Base',
         controlType: 'object',
         controlOptions: {
@@ -227,7 +208,7 @@ const props = [
     {
         key: 'colors',
         scopes: '*',
-        description: 'Defines color range.',
+        help: 'Defines color range.',
         type: '{string|Function|Array}',
         required: false,
         default: defaults.colors,
@@ -237,6 +218,7 @@ const props = [
     {
         key: 'colorBy',
         scopes: '*',
+        help: 'Node color.',
         description:
             'Property to use to determine node color. If a function is provided, it will receive current node data and must return a color.',
         required: false,
@@ -259,7 +241,7 @@ const props = [
     {
         key: 'lineWidth',
         scopes: '*',
-        description: 'Line width.',
+        help: 'Line width.',
         type: '{number}',
         required: false,
         default: defaults.lineWidth,
@@ -269,7 +251,7 @@ const props = [
     {
         key: 'enableArea',
         scopes: '*',
-        description: 'Enable/disable area below each line.',
+        help: 'Enable/disable area below each line.',
         type: '{boolean}',
         required: false,
         default: defaults.enableArea,
@@ -279,12 +261,13 @@ const props = [
     {
         key: 'areaBaselineValue',
         scopes: '*',
-        description: (
-            <div>
-                Define the value to be used for area baseline. Please note that this value isn't the
-                position of the baseline but the value used to compute it.
-            </div>
-        ),
+        help: 'Define the value to be used for area baseline.',
+        description: `
+            Define the value to be used for area baseline.
+            Please note that this value isn't the
+            position of the baseline but the value used
+            to compute it.
+        `,
         type: '{number|string|Date}',
         required: false,
         default: defaults.areaBaselineValue,
@@ -299,7 +282,7 @@ const props = [
     {
         key: 'areaOpacity',
         scopes: '*',
-        description: 'Area opacity (0~1), depends on enableArea.',
+        help: 'Area opacity (0~1), depends on enableArea.',
         required: false,
         default: defaults.areaOpacity,
         type: '{number}',
@@ -309,19 +292,12 @@ const props = [
     {
         key: 'areaBlendMode',
         scopes: '*',
-        description: (
-            <span>
-                Defines CSS <code>mix-blend-mode</code> property for areas, see{' '}
-                <a
-                    href="https://developer.mozilla.org/fr/docs/Web/CSS/mix-blend-mode"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    MDN documentation
-                </a>
-                .
-            </span>
-        ),
+        help: 'Defines CSS mix-blend-mode property.',
+        description: `
+            Defines CSS \`mix-blend-mode\` property for areas,
+            see
+            [MDN documentation](https://developer.mozilla.org/fr/docs/Web/CSS/mix-blend-mode).
+        `,
         type: '{string}',
         required: false,
         default: defaults.areaBlendMode,
@@ -354,7 +330,7 @@ const props = [
     {
         key: 'enableDots',
         scopes: '*',
-        description: 'Enable/disable dots.',
+        help: 'Enable/disable dots.',
         type: '{boolean}',
         required: false,
         default: defaults.enableDots,
@@ -363,14 +339,14 @@ const props = [
     },
     {
         key: 'dotSymbol',
-        description:
+        help:
             'Overrides default dot circle. The function will receive `size`, `color`, `borderWidth` and `borderColor` props and must return a valid SVG element.',
         type: '{Function}',
         required: false,
     },
     {
         key: 'dotSize',
-        description: 'Size of the dots.',
+        help: 'Size of the dots.',
         type: '{number}',
         required: false,
         default: defaults.dotSize,
@@ -385,7 +361,7 @@ const props = [
     {
         key: 'dotColor',
         scopes: '*',
-        description: 'Method to compute dots color.',
+        help: 'Method to compute dots color.',
         type: '{string|Function}',
         required: false,
         default: defaults.dotColor,
@@ -397,7 +373,7 @@ const props = [
     },
     {
         key: 'dotBorderWidth',
-        description: 'Width of the dots border.',
+        help: 'Width of the dots border.',
         type: '{number}',
         required: false,
         default: defaults.dotBorderWidth,
@@ -407,7 +383,7 @@ const props = [
     {
         key: 'dotBorderColor',
         scopes: '*',
-        description: 'Method to compute dots border color.',
+        help: 'Method to compute dots border color.',
         type: '{string|Function}',
         required: false,
         default: defaults.dotBorderColor,
@@ -420,7 +396,7 @@ const props = [
     {
         key: 'enableDotLabel',
         scopes: '*',
-        description: 'Enable/disable dots label.',
+        help: 'Enable/disable dots label.',
         type: '{boolean}',
         required: false,
         default: defaults.enableDotLabel,
@@ -429,7 +405,7 @@ const props = [
     },
     {
         key: 'dotLabel',
-        description:
+        help:
             'Property to use to determine dot label. If a function is provided, it will receive current value and serie and must return a label.',
         type: '{string}',
         required: false,
@@ -444,7 +420,7 @@ const props = [
     },
     {
         key: 'dotLabelYOffset',
-        description: 'Label Y offset from dot shape.',
+        help: 'Label Y offset from dot shape.',
         type: '{number}',
         required: false,
         default: dotDefaults.labelYOffset,
@@ -459,7 +435,7 @@ const props = [
     {
         key: 'enableGridX',
         scopes: '*',
-        description: 'Enable/disable x grid.',
+        help: 'Enable/disable x grid.',
         type: '{boolean}',
         required: false,
         default: defaults.enableGridX,
@@ -469,14 +445,15 @@ const props = [
     {
         key: 'gridXValues',
         scopes: '*',
-        description: 'Specify values to use for vertical grid lines.',
+        group: 'Grid & Axes',
+        help: 'Specify values to use for vertical grid lines.',
         type: 'Array<{number|string}>',
         required: false,
     },
     {
         key: 'enableGridY',
         scopes: '*',
-        description: 'Enable/disable y grid.',
+        help: 'Enable/disable y grid.',
         type: '{boolean}',
         required: false,
         default: defaults.enableGridY,
@@ -486,7 +463,8 @@ const props = [
     {
         key: 'gridYValues',
         scopes: '*',
-        description: 'Specify values to use for horizontal grid lines.',
+        group: 'Grid & Axes',
+        help: 'Specify values to use for horizontal grid lines.',
         type: 'Array<{number|string}>',
         required: false,
     },
@@ -494,7 +472,7 @@ const props = [
     {
         key: 'isInteractive',
         scopes: ['Line'],
-        description: 'Enable/disable interactivity.',
+        help: 'Enable/disable interactivity.',
         type: '{boolean}',
         required: false,
         default: defaults.isInteractive,
@@ -504,7 +482,7 @@ const props = [
     {
         key: 'enableStackTooltip',
         scopes: ['Line'],
-        description: `Enable/disable stack tooltip ('isInteractive' must also be 'true').`,
+        help: `Enable/disable stack tooltip ('isInteractive' must also be 'true').`,
         type: '{boolean}',
         required: false,
         default: defaults.enableStackTooltip,
@@ -514,7 +492,7 @@ const props = [
     {
         key: 'tooltip',
         scopes: ['Line'],
-        description: `Method to create custom tooltip`,
+        help: `Method to create custom tooltip`,
         type: '{Function}',
         required: false,
         default: defaults.tooltip,
@@ -523,7 +501,7 @@ const props = [
         key: 'legends',
         scopes: ['Line'],
         type: '{Array<object>}',
-        description: `Optional chart's legends.`,
+        help: `Optional chart's legends.`,
         group: 'Legends',
         controlType: 'array',
         controlOptions: {

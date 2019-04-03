@@ -10,12 +10,8 @@ import React from 'react'
 import snakeCase from 'lodash/kebabCase'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-//import VisitIcon from 'react-icons/lib/md/keyboard-arrow-right'
-//import config from '../config'
-
-const config = {
-    storybookUrl: 'crap',
-}
+import VisitIcon from 'react-icons/lib/md/keyboard-arrow-right'
+import config from '../../data/config'
 
 const buildStoryLink = ({ kind, story }) =>
     `${config.storybookUrl}?path=/story/${encodeURIComponent(
@@ -125,7 +121,7 @@ const Stories = ({ isFullWidth = false, stories }) => {
                     rel="noopener noreferrer"
                 >
                     {story.label}
-                    {/*<VisitIcon size={20} color="#bbb" />*/}
+                    <VisitIcon size={20} color="#bbbbbb" />
                 </StoriesItem>
             ))}
         </Wrapper>

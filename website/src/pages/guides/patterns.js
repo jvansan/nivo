@@ -10,6 +10,7 @@ import React from 'react'
 import Helmet from 'react-helmet'
 import { Link } from 'gatsby'
 import Layout from '../../components/Layout'
+import PageContent from '../../components/PageContent'
 import PatternsIllustrations from '../../components/guides/patterns/PatternsIllustrations'
 import PatternsExample from '../../components/guides/patterns/PatternsExample'
 import PatternsDots from '../../components/guides/patterns/PatternsDots'
@@ -19,11 +20,11 @@ import PatternsSquares from '../../components/guides/patterns/PatternsSquares'
 const Patterns = () => (
     <Layout>
         <Helmet title="Patterns" />
-        <div className="page_content">
+        <PageContent>
             <div className="guide__header">
                 <h1 className="page_header">Patterns</h1>
             </div>
-        </div>
+        </PageContent>
         <div className="guide__description text-content">
             <h2>Purpose</h2>
             <p>

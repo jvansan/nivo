@@ -11,8 +11,9 @@ import PropTypes from 'prop-types'
 import className from 'classnames'
 import Control from './Control'
 import Label from './Label'
+import PropertyHelp from './PropertyHelp'
 
-const RadioControl = memo(({ label, value, onChange, choices, help }) => {
+const RadioControl = memo(({ label, value, onChange, choices, help, description }) => {
     const handleUpdate = useCallback(event => onChange(event.target.value), [onChange])
 
     return (
@@ -36,8 +37,7 @@ const RadioControl = memo(({ label, value, onChange, choices, help }) => {
                     </label>
                 ))}
             </div>
-            <span />
-            <div className="control-help">{help}</div>
+            <PropertyHelp help={help} description={description} />
         </Control>
     )
 })
@@ -46,14 +46,15 @@ RadioControl.displayName = 'RadioControl'
 RadioControl.propTypes = {
     label: PropTypes.string.isRequired,
     value: PropTypes.string.isRequired,
-    onChange: PropTypes.func.isRequired,
     help: PropTypes.node.isRequired,
+    description: PropTypes.node,
     choices: PropTypes.arrayOf(
         PropTypes.shape({
             value: PropTypes.string.isRequired,
             label: PropTypes.string.isRequired,
         })
     ).isRequired,
+    onChange: PropTypes.func.isRequired,
 }
 
 export default RadioControl

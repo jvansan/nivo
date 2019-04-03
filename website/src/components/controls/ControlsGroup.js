@@ -33,6 +33,7 @@ import OpacityControl from './OpacityControl'
 import LineWidthControl from './LineWidthControl'
 import NumberArrayControl from './NumberArrayControl'
 import AngleControl from './AngleControl'
+import PropertyDocumentation from './PropertyDocumentation'
 // import AxisControl from './AxisControl'
 
 export const shouldRenderControl = (config, context) => {
@@ -47,31 +48,33 @@ handleArrayUpdate = key => value => {
 }
 */
 
-const renderControl = (groupName, config, settings, onChange) => {
-    if (!shouldRenderControl(config, settings)) {
+const renderControl = (groupName, property, settings, onChange) => {
+    if (!shouldRenderControl(property, settings)) {
         return null
     }
 
-    const id = `${snakeCase(groupName)}-${config.name}`
-    const value = get(settings, config.name)
-    const handleChange = onChange(config.name)
+    const id = `${snakeCase(groupName)}-${property.name}`
+    const value = get(settings, property.name)
+    const handleChange = onChange(property.name)
+    const options = property.controlOptions || {}
 
-    switch (config.type) {
+    switch (property.controlType) {
         case 'array':
             return (
                 <ArrayControl
                     id={id}
                     value={value}
-                    label={config.name}
-                    help={config.help}
+                    label={property.name}
+                    help={property.help}
+                    description={property.description}
+                    props={getPropertiesGroupControls(options.props)}
+                    shouldCreate={options.shouldCreate}
+                    addLabel={options.addLabel}
+                    shouldRemove={options.shouldRemove}
+                    defaults={options.defaults}
+                    getItemTitle={options.getItemTitle}
                     //onChange={this.handleArrayUpdate(config.name)}
                     onChange={handleChange}
-                    props={getPropertiesGroupControls(config.props)}
-                    shouldCreate={config.shouldCreate}
-                    addLabel={config.addLabel}
-                    shouldRemove={config.shouldRemove}
-                    defaults={config.defaults}
-                    getItemTitle={config.getItemTitle}
                 />
             )
 
@@ -80,12 +83,13 @@ const renderControl = (groupName, config, settings, onChange) => {
                 <ObjectControl
                     id={id}
                     value={value}
-                    label={config.name}
-                    help={config.help}
-                    onChange={handleChange}
+                    label={property.name}
+                    help={property.help}
+                    description={property.description}
+                    props={getPropertiesGroupControls(options.props)}
+                    defaults={options.defaults}
                     //onChange={this.handleArrayUpdate(config.name)}
-                    props={getPropertiesGroupControls(config.props)}
-                    defaults={config.defaults}
+                    onChange={handleChange}
                 />
             )
 
@@ -94,9 +98,10 @@ const renderControl = (groupName, config, settings, onChange) => {
                 <ChoicesControl
                     id={id}
                     value={value}
-                    label={config.name}
-                    help={config.help}
-                    choices={config.choices}
+                    label={property.name}
+                    help={property.help}
+                    description={property.description}
+                    choices={options.choices}
                     onChange={handleChange}
                 />
             )
@@ -106,10 +111,11 @@ const renderControl = (groupName, config, settings, onChange) => {
                 <RadioControl
                     id={id}
                     value={value}
-                    label={config.name}
-                    choices={config.choices}
+                    label={property.name}
+                    help={property.help}
+                    description={property.description}
+                    choices={options.choices}
                     onChange={handleChange}
-                    help={config.help}
                 />
             )
 
@@ -118,8 +124,10 @@ const renderControl = (groupName, config, settings, onChange) => {
                 <RangeControl
                     id={id}
                     value={value}
-                    {...pick(config, ['min', 'max', 'unit', 'step', 'help'])}
-                    label={config.name}
+                    label={property.name}
+                    help={property.help}
+                    description={property.description}
+                    {...pick(options, ['min', 'max', 'unit', 'step'])}
                     onChange={handleChange}
                 />
             )
@@ -129,9 +137,10 @@ const renderControl = (groupName, config, settings, onChange) => {
                 <SwitchControl
                     id={id}
                     value={value}
-                    label={config.name}
+                    label={property.name}
+                    help={property.help}
+                    description={property.description}
                     onChange={handleChange}
-                    help={config.help}
                 />
             )
 
@@ -140,16 +149,17 @@ const renderControl = (groupName, config, settings, onChange) => {
                 <SwitchableRangeControl
                     id={id}
                     value={value}
-                    {...pick(config, [
+                    label={property.name}
+                    help={property.help}
+                    description={property.description}
+                    {...pick(options, [
                         'min',
                         'max',
                         'defaultValue',
                         'disabledValue',
                         'unit',
                         'step',
-                        'help',
                     ])}
-                    label={config.name}
                     onChange={handleChange}
                 />
             )
@@ -159,10 +169,11 @@ const renderControl = (groupName, config, settings, onChange) => {
                 <TextControl
                     id={id}
                     value={value}
-                    label={config.name}
+                    label={property.name}
+                    help={property.help}
+                    description={property.description}
+                    disabled={options.disabled}
                     onChange={handleChange}
-                    help={config.help}
-                    disabled={config.disabled}
                 />
             )
 
@@ -171,10 +182,11 @@ const renderControl = (groupName, config, settings, onChange) => {
                 <ColorsControl
                     id={id}
                     value={value}
-                    label={config.name}
-                    includeSequential={!!config.includeSequential}
+                    label={property.name}
+                    help={property.help}
+                    description={property.description}
+                    includeSequential={!!options.includeSequential}
                     onChange={handleChange}
-                    help={config.help}
                 />
             )
 
@@ -183,9 +195,10 @@ const renderControl = (groupName, config, settings, onChange) => {
                 <BoxAnchorControl
                     id={id}
                     value={value}
-                    label={config.name}
+                    label={property.name}
+                    help={property.help}
+                    description={property.description}
                     onChange={handleChange}
-                    help={config.help}
                 />
             )
 
@@ -194,8 +207,9 @@ const renderControl = (groupName, config, settings, onChange) => {
                 <MarginControl
                     id={id}
                     value={value}
-                    help={config.help}
-                    label={config.name}
+                    label={property.name}
+                    help={property.help}
+                    description={property.description}
                     onChange={handleChange}
                 />
             )
@@ -205,8 +219,9 @@ const renderControl = (groupName, config, settings, onChange) => {
                 <OpacityControl
                     id={id}
                     value={value}
-                    help={config.help}
-                    label={config.name}
+                    label={property.name}
+                    help={property.help}
+                    description={property.description}
                     onChange={handleChange}
                 />
             )
@@ -216,8 +231,9 @@ const renderControl = (groupName, config, settings, onChange) => {
                 <LineWidthControl
                     id={id}
                     value={value}
-                    help={config.help}
-                    label={config.name}
+                    label={property.name}
+                    help={property.help}
+                    description={property.description}
                     onChange={handleChange}
                 />
             )
@@ -227,10 +243,11 @@ const renderControl = (groupName, config, settings, onChange) => {
                 <NumberArrayControl
                     id={id}
                     value={value}
-                    help={config.help}
-                    label={config.name}
+                    label={property.name}
+                    help={property.help}
+                    description={property.description}
+                    items={options.items}
                     onChange={handleChange}
-                    items={config.items}
                 />
             )
 
@@ -252,8 +269,10 @@ const renderControl = (groupName, config, settings, onChange) => {
                 <QuantizeColorsControl
                     id={id}
                     value={value}
+                    label={property.name}
+                    help={property.help}
+                    description={property.description}
                     onChange={handleChange}
-                    help={config.help}
                 />
             )
 
@@ -262,14 +281,16 @@ const renderControl = (groupName, config, settings, onChange) => {
                 <ColorControl
                     id={id}
                     value={value}
-                    label={config.name}
-                    onChange={handleChange}
-                    {...pick(config, [
+                    label={property.name}
+                    help={property.help}
+                    description={property.description}
+                    {...pick(options, [
                         'withTheme',
                         'withCustomColor',
                         'defaultCustomColor',
                         'help',
                     ])}
+                    onChange={handleChange}
                 />
             )
 
@@ -278,8 +299,9 @@ const renderControl = (groupName, config, settings, onChange) => {
                 <ColorPickerControl
                     id={id}
                     value={value}
-                    label={config.name}
-                    help={config.help}
+                    label={property.name}
+                    help={property.help}
+                    description={property.description}
                     onChange={handleChange}
                 />
             )
@@ -289,17 +311,24 @@ const renderControl = (groupName, config, settings, onChange) => {
                 <AngleControl
                     id={id}
                     value={value}
-                    start={config.start}
-                    min={config.min}
-                    max={config.max}
-                    label={config.name}
-                    help={config.help}
+                    label={property.name}
+                    help={property.help}
+                    description={property.description}
+                    start={options.start}
+                    min={options.min}
+                    max={options.max}
                     onChange={handleChange}
                 />
             )
 
         default:
-            return null
+            return (
+                <PropertyDocumentation
+                    name={property.name}
+                    help={property.help}
+                    description={property.description}
+                />
+            )
     }
 }
 

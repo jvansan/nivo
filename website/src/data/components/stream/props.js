@@ -6,8 +6,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-import React from 'react'
-import { Link } from 'gatsby'
 import { areaCurvePropKeys, stackOrderPropKeys, stackOffsetPropKeys } from '@nivo/core'
 import { StreamDefaultProps as defaults } from '@nivo/stream'
 import {
@@ -17,25 +15,15 @@ import {
     getPropertiesGroupsControls,
 } from '../../../lib/componentProperties'
 
-const curveOptions = []
-areaCurvePropKeys.forEach((curve, i) => {
-    curveOptions.push(<code key={curve}>'{curve}'</code>)
-    if (i < areaCurvePropKeys.length - 1) {
-        curveOptions.push(<span key={`${curve}.comma`}>,&nbsp;</span>)
-    }
-})
-
 const props = [
     {
         key: 'width',
         scopes: ['api'],
         docScopes: '*',
-        description: (
-            <span>
-                not required if using&nbsp;
-                <code>&lt;ResponsiveStream&nbsp;/&gt;</code>.
-            </span>
-        ),
+        description: `
+            not required if using
+            \`<ResponsiveStream/>\`.
+        `,
         help: 'Chart width.',
         type: '{number}',
         required: true,
@@ -52,12 +40,10 @@ const props = [
         key: 'height',
         scopes: ['api'],
         docScopes: '*',
-        description: (
-            <span>
-                not required if using&nbsp;
-                <code>&lt;ResponsiveStream&nbsp;/&gt;</code>.
-            </span>
-        ),
+        description: `
+            not required if using
+            \`<ResponsiveStream/>\`.
+        `,
         help: 'Chart height.',
         type: '{number}',
         required: true,
@@ -73,7 +59,7 @@ const props = [
     {
         key: 'offsetType',
         scopes: '*',
-        description: 'Offset type.',
+        help: 'Offset type.',
         type: '{string}',
         required: false,
         controlType: 'choices',
@@ -88,7 +74,7 @@ const props = [
     {
         key: 'order',
         scopes: '*',
-        description: 'Layers order.',
+        help: 'Layers order.',
         type: '{string}',
         required: false,
         controlType: 'choices',
@@ -103,13 +89,10 @@ const props = [
     {
         key: 'curve',
         scopes: '*',
-        description: (
-            <span>
-                Defines the curve factory to use for the area generator.
-                <br />
-                Must be one of: {curveOptions}.
-            </span>
-        ),
+        description: `
+            Defines the curve factory to use
+            for the area generator.
+        `,
         help: 'Curve interpolation.',
         type: '{string}',
         required: false,
@@ -126,7 +109,7 @@ const props = [
     {
         key: 'margin',
         scopes: '*',
-        description: 'Chart margin.',
+        help: 'Chart margin.',
         type: '{object}',
         required: false,
         controlType: 'margin',
@@ -135,7 +118,7 @@ const props = [
     {
         key: 'colors',
         scopes: '*',
-        description: 'Defines how to compute line color.',
+        help: 'Defines how to compute line color.',
         type: '{string|Function}',
         required: false,
         default: defaults.colors,
@@ -144,7 +127,7 @@ const props = [
     },
     {
         key: 'fillOpacity',
-        description: 'Layers fill opacity.',
+        help: 'Layers fill opacity.',
         type: '{number}',
         required: false,
         default: defaults.fillOpacity,
@@ -154,7 +137,7 @@ const props = [
     {
         key: 'borderWidth',
         scopes: ['Stream', 'api'],
-        description: 'Width of layer border.',
+        help: 'Width of layer border.',
         type: '{number}',
         required: false,
         default: defaults.borderWidth,
@@ -164,12 +147,10 @@ const props = [
     {
         key: 'borderColor',
         scopes: ['Stream', 'api'],
-        description: (
-            <span>
-                how to compute border color,{' '}
-                <Link to="/guides/colors">see dedicated documentation</Link>.
-            </span>
-        ),
+        description: `
+            How to compute border color,
+            [see dedicated documentation](self:/guides/colors).
+        `,
         help: 'Method to compute layer border color.',
         type: '{string|Function}',
         required: false,
@@ -184,7 +165,7 @@ const props = [
     {
         key: 'enableGridX',
         scopes: '*',
-        description: 'Enable/disable x grid.',
+        help: 'Enable/disable x grid.',
         type: '{boolean}',
         required: false,
         default: defaults.enableGridX,
@@ -194,7 +175,7 @@ const props = [
     {
         key: 'enableGridY',
         scopes: '*',
-        description: 'Enable/disable y grid.',
+        help: 'Enable/disable y grid.',
         type: '{boolean}',
         required: false,
         default: defaults.enableGridY,
@@ -205,7 +186,7 @@ const props = [
     {
         key: 'enableDots',
         scopes: ['Stream'],
-        description: 'Enable/disable dots.',
+        help: 'Enable/disable dots.',
         type: '{boolean}',
         required: false,
         default: defaults.enableDots,
@@ -215,7 +196,7 @@ const props = [
     {
         key: 'renderDot',
         scopes: ['Stream'],
-        description: 'Custom rendering function for dots.',
+        help: 'Custom rendering function for dots.',
         type: '{function}',
         required: false,
     },
@@ -237,7 +218,7 @@ const props = [
     },
     {
         key: 'dotColor',
-        description: 'Method to compute dots color.',
+        help: 'Method to compute dots color.',
         type: '{string|Function}',
         required: false,
         default: defaults.dotColor,
@@ -249,6 +230,7 @@ const props = [
     },
     {
         key: 'dotBorderWidth',
+        help: 'Width of the dots border.',
         description:
             'Width of the dots border, it also accepts a function which can be used to make it vary according to the associated datum.',
         type: '{number|Function}',
@@ -260,7 +242,7 @@ const props = [
     {
         key: 'dotBorderColor',
         scopes: '*',
-        description: 'Method to compute dots border color.',
+        help: 'Method to compute dots border color.',
         type: '{string|Function}',
         required: false,
         default: defaults.dotBorderColor,
@@ -273,7 +255,7 @@ const props = [
     {
         key: 'isInteractive',
         scopes: ['Stream'],
-        description: 'Enable/disable interactivity.',
+        help: 'Enable/disable interactivity.',
         type: '{boolean}',
         required: false,
         default: defaults.isInteractive,
@@ -283,7 +265,7 @@ const props = [
     {
         key: 'enableStackTooltip',
         scopes: ['Stream'],
-        description: `Enable/disable stack tooltip ('isInteractive' must also be 'true').`,
+        help: `Enable/disable stack tooltip ('isInteractive' must also be 'true').`,
         type: '{boolean}',
         required: false,
         default: defaults.enableStackTooltip,

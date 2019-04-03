@@ -6,9 +6,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-import React from 'react'
-import { Link } from 'gatsby'
-import dedent from 'dedent-js'
 import { HeatMapDefaultProps as defaults } from '@nivo/heatmap'
 import {
     axesProperties,
@@ -20,15 +17,23 @@ const props = [
     {
         key: 'data',
         scopes: '*',
-        description: 'Chart data.',
+        group: 'Base',
+        help: 'Chart data.',
         type: '{Array.<Object>}',
         required: true,
     },
     {
         key: 'indexBy',
         scopes: '*',
-        description:
-            'Key to use to index the data, this key must exist in each data item. You can also provide a function which will receive the data item and must return the desired index',
+        group: 'Base',
+        help: 'Key to use to index the data.',
+        description: `
+            Key to use to index the data,
+            this key must exist in each data item.
+            You can also provide a function which will
+            receive the data item and must return
+            the desired index
+        `,
         type: '{string|Function}',
         required: false,
         default: defaults.indexBy,
@@ -36,27 +41,21 @@ const props = [
     {
         key: 'keys',
         scopes: '*',
-        description: 'Keys to use to determine each serie.',
+        group: 'Base',
+        help: 'Keys to use to determine each serie.',
         type: '{Array.<string>}',
         required: false,
         default: defaults.keys,
     },
-    /*——————————————————————————————————————————————————————————————————————————
-
-      Base
-
-    ————————————————————————————————————————————————————————————————————————————*/
     {
         key: 'width',
         scopes: ['api'],
         docScopes: '*',
-        description: (
-            <span>
-                not required if using&nbsp;
-                <code>&lt;ResponsiveHeatMap&nbsp;/&gt;</code>.
-            </span>
-        ),
         help: 'Chart width.',
+        description: `
+            not required if using
+            \`<ResponsiveHeatMap/>\`.
+        `,
         type: '{number}',
         required: true,
         controlType: 'range',
@@ -72,13 +71,11 @@ const props = [
         key: 'height',
         scopes: ['api'],
         docScopes: '*',
-        description: (
-            <span>
-                not required if using&nbsp;
-                <code>&lt;ResponsiveHeatMap&nbsp;/&gt;</code>.
-            </span>
-        ),
         help: 'Chart height.',
+        description: `
+            not required if using
+            \`<ResponsiveHeatMap/>\`.
+        `,
         type: '{number}',
         required: true,
         controlType: 'range',
@@ -93,7 +90,7 @@ const props = [
     {
         key: 'pixelRatio',
         scopes: ['HeatMapCanvas'],
-        description: `Adjust pixel ratio, useful for HiDPI screens.`,
+        help: `Adjust pixel ratio, useful for HiDPI screens.`,
         required: false,
         default: 'Depends on device',
         type: `{number}`,
@@ -107,7 +104,14 @@ const props = [
     {
         key: 'minValue',
         scopes: '*',
-        description: `Minimum value. If 'auto', will pick the lowest value in the provided data set. Should be overriden if your data set does not contain desired lower bound value.`,
+        help: 'Minimum value.',
+        description: `
+            Minimum value.
+            If 'auto', will pick the lowest value
+            in the provided data set. Should be overriden
+            if your data set does not contain desired
+            lower bound value.
+        `,
         required: false,
         default: defaults.minValue,
         type: `{number|'auto'}`,
@@ -123,7 +127,13 @@ const props = [
     {
         key: 'maxValue',
         scopes: '*',
-        description: `Maximum value. If 'auto', will pick the highest value in the provided data set. Should be overriden if your data set does not contain desired higher bound value.`,
+        help: 'Maximum value.',
+        description: `
+            Maximum value. If 'auto', will pick the highest value
+            in the provided data set. Should be overriden
+            if your data set does not contain desired
+            higher bound value.
+        `,
         required: false,
         default: defaults.maxValue,
         type: `{number|'auto'}`,
@@ -139,7 +149,7 @@ const props = [
     {
         key: 'forceSquare',
         scopes: '*',
-        description: 'Force square cells (width = height).',
+        help: 'Force square cells (width = height).',
         required: false,
         default: defaults.forceSquare,
         type: '{boolean}',
@@ -149,7 +159,7 @@ const props = [
     {
         key: 'margin',
         scopes: '*',
-        description: 'Chart margin.',
+        help: 'Chart margin.',
         type: '{object}',
         required: false,
         controlType: 'margin',
@@ -158,6 +168,7 @@ const props = [
     {
         key: 'sizeVariation',
         scopes: '*',
+        help: 'Cell size variation.',
         description: `Size variation (0~1), if value is 0 size won't be affected. If you use for example the value 0.3, cell width/height will vary between 0.7~1 according to its corresponding value.`,
         required: false,
         default: defaults.sizeVariation,
@@ -173,7 +184,7 @@ const props = [
     {
         key: 'padding',
         scopes: '*',
-        description: 'Padding.',
+        help: 'Padding.',
         required: false,
         default: defaults.padding,
         type: '{number}',
@@ -185,37 +196,30 @@ const props = [
             unit: 'px',
         },
     },
-    /*——————————————————————————————————————————————————————————————————————————
-
-      Style
-
-    ————————————————————————————————————————————————————————————————————————————*/
     {
         key: 'cellShape',
         scopes: '*',
-        description: (
-            <div>
-                Cell shape, can be one of: 'rect', 'circle', if a function is provided, it must
-                return a valid SVG element and will receive the following props:
-                <pre className="code code-block">
-                    {dedent`
-                        {
-                            value:       {number},
-                            x:           {number},
-                            y:           {number},
-                            width:       {number},
-                            height:      {number},
-                            color:       {string},
-                            opacity:     {number},
-                            borderWidth: {number},
-                            borderColor: {string},
-                            textColor:   {string},
-                        }
-                    `}
-                </pre>
-            </div>
-        ),
-        help: `Cell shape, can be one of: 'rect', 'circle', if a function is provided, it must return a valid SVG element.`,
+        help: `Cell shape/component.`,
+        description: `
+            Cell shape, can be one of: \`'rect'\`, \`'circle'\`,
+            if a function is provided, it must return
+            a valid SVG element and will receive
+            the following props:
+            \`\`\`
+            {
+                value:       {number},
+                x:           {number},
+                y:           {number},
+                width:       {number},
+                height:      {number},
+                color:       {string},
+                opacity:     {number},
+                borderWidth: {number},
+                borderColor: {string},
+                textColor:   {string},
+            }
+            \`\`\`
+        `,
         type: '{string|Function}',
         required: false,
         default: defaults.cellShape,
@@ -231,7 +235,7 @@ const props = [
     {
         key: 'colors',
         scopes: '*',
-        description: 'Defines color range.',
+        help: 'Defines color range.',
         type: '{string|Function|Array}',
         required: false,
         default: 'nivo',
@@ -241,7 +245,7 @@ const props = [
     {
         key: 'cellOpacity',
         scopes: '*',
-        description: 'Cell opacity (0~1).',
+        help: 'Cell opacity (0~1).',
         required: false,
         default: defaults.cellOpacity,
         type: '{number}',
@@ -251,7 +255,7 @@ const props = [
     {
         key: 'cellBorderWidth',
         scopes: '*',
-        description: 'Cell border width.',
+        help: 'Cell border width.',
         required: false,
         default: defaults.cellBorderWidth,
         type: '{number}',
@@ -261,13 +265,11 @@ const props = [
     {
         key: 'cellBorderColor',
         scopes: '*',
-        description: (
-            <span>
-                how to compute cell border color,{' '}
-                <Link to="/guides/colors">see dedicated documentation</Link>.
-            </span>
-        ),
         help: 'Method to compute cell border color.',
+        description: `
+            how to compute cell border color,
+            [see dedicated documentation](self:/guides/colors).
+        `,
         type: '{string|Function}',
         required: false,
         default: defaults.cellBorderColor,
@@ -277,15 +279,10 @@ const props = [
             withCustomColor: true,
         },
     },
-    /*——————————————————————————————————————————————————————————————————————————
-
-      Labels
-
-    ————————————————————————————————————————————————————————————————————————————*/
     {
         key: 'enableLabels',
         scopes: '*',
-        description: 'Enable/disable labels.',
+        help: 'Enable/disable labels.',
         type: '{boolean}',
         required: false,
         default: defaults.enableLabels,
@@ -295,13 +292,11 @@ const props = [
     {
         key: 'labelTextColor',
         scopes: '*',
-        description: (
-            <span>
-                how to compute label text color,{' '}
-                <Link to="/guides/colors">see dedicated documentation</Link>.
-            </span>
-        ),
         help: 'Method to compute label text color.',
+        description: `
+            how to compute label text color,
+            [see dedicated documentation](self:/guides/colors).
+        `,
         type: '{string|Function}',
         required: false,
         default: defaults.labelTextColor,
@@ -314,7 +309,7 @@ const props = [
     {
         key: 'enableGridX',
         scopes: '*',
-        description: 'Enable/disable x grid.',
+        help: 'Enable/disable x grid.',
         type: '{boolean}',
         required: false,
         default: defaults.enableGridX,
@@ -324,7 +319,7 @@ const props = [
     {
         key: 'enableGridY',
         scopes: '*',
-        description: 'Enable/disable y grid.',
+        help: 'Enable/disable y grid.',
         type: '{boolean}',
         required: false,
         default: defaults.enableGridY,
@@ -332,15 +327,10 @@ const props = [
         group: 'Grid & Axes',
     },
     ...axesProperties,
-    /*——————————————————————————————————————————————————————————————————————————
-
-      Interactivity
-
-    ————————————————————————————————————————————————————————————————————————————*/
     {
         key: 'isInteractive',
         scopes: ['HeatMap', 'HeatMapCanvas'],
-        description: 'Enable/disable interactivity.',
+        help: 'Enable/disable interactivity.',
         type: '{boolean}',
         required: false,
         default: defaults.isInteractive,
@@ -350,44 +340,41 @@ const props = [
     {
         key: 'onClick',
         scopes: ['HeatMap', 'HeatMapCanvas'],
+        group: 'Interactivity',
         type: '{Function}',
         required: false,
-        description: (
-            <div>
-                onClick handler, will receive node data as first argument & event as second one. The
-                node data has the following shape:
-                <pre className="code code-block">
-                    {dedent`
-                        {
-                            key:        {string},
-                            value:      {number},
-                            x:          {number},
-                            xKey:       {string|number},
-                            y:          {number},
-                            yKey:       {string|number},
-                            width:      {number},
-                            height:     {number},
-                            opacity:    {number}
-                        }
-                    `}
-                </pre>
-            </div>
-        ),
+        help: 'onClick handler.',
+        description: `
+            onClick handler, will receive node data
+            as first argument & event as second one.
+            The node data has the following shape:
+            \`\`\`
+            {
+                key:        {string},
+                value:      {number},
+                x:          {number},
+                xKey:       {string|number},
+                y:          {number},
+                yKey:       {string|number},
+                width:      {number},
+                height:     {number},
+                opacity:    {number}
+            }
+            \`\`\`
+        `,
     },
     {
         key: 'hoverTarget',
         scopes: ['HeatMap', 'HeatMapCanvas'],
-        description: (
-            <div>
-                Defines hover behavior:
-                <br />- <strong>cell</strong>: highlight the current cell
-                <br />- <strong>row</strong>: highlight the current cell's row
-                <br />- <strong>column</strong>: highlight the current cell's column
-                <br />- <strong>rowColumn</strong>: highlight the current cell's row & column
-                <br />
-            </div>
-        ),
         help: 'Defines hover behavior.',
+        description: `
+            Defines hover behavior:
+
+            - **cell**: highlight the current cell
+            - **row**: highlight the current cell's row
+            - **column**: highlight the current cell's column
+            - **rowColumn**: highlight the current cell's row & column
+        `,
         required: false,
         default: defaults.hoverTarget,
         type: '{number}',
@@ -403,7 +390,7 @@ const props = [
     {
         key: 'cellHoverOpacity',
         scopes: ['HeatMap', 'HeatMapCanvas'],
-        description: 'Cell opacity on hover (0~1).',
+        help: 'Cell opacity on hover (0~1).',
         required: false,
         default: defaults.cellHoverOpacity,
         type: '{number}',
@@ -413,7 +400,7 @@ const props = [
     {
         key: 'cellHoverOthersOpacity',
         scopes: ['HeatMap', 'HeatMapCanvas'],
-        description: 'Cell opacity when not hovered (0~1).',
+        help: 'Cell opacity when not hovered (0~1).',
         required: false,
         default: defaults.cellHoverOthersOpacity,
         type: '{number}',

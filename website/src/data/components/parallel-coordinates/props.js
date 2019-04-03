@@ -6,24 +6,16 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-import React from 'react'
 import { lineCurvePropKeys } from '@nivo/core'
 import { commonDefaultProps as defaults } from '@nivo/parallel-coordinates'
 import { motionProperties, getPropertiesGroupsControls } from '../../../lib/componentProperties'
-
-const curveOptions = []
-lineCurvePropKeys.forEach((curve, i) => {
-    curveOptions.push(<code key={curve}>'{curve}'</code>)
-    if (i < lineCurvePropKeys.length - 1) {
-        curveOptions.push(<span key={`${curve}.comma`}>,&nbsp;</span>)
-    }
-})
 
 const props = [
     {
         key: 'data',
         scopes: '*',
-        description: 'Chart data.',
+        group: 'Base',
+        help: 'Chart data.',
         type: '{Array<{object|Array}>}',
         required: true,
     },
@@ -31,14 +23,16 @@ const props = [
         key: 'variables',
         scopes: '*',
         type: '{Array<object>}',
-        description: (
-            <div>
-                Variables configuration, define accessor (<code>key</code>) and variable type. Type
-                must be one of <code>linear</code> or <code>point</code>, <code>linear</code>{' '}
-                variables are suitable for continuous numerical data such as age or cost while{' '}
-                <code>point</code> variables are suitable for discrete values such as gender.
-            </div>
-        ),
+        help: 'Variables configuration.',
+        description: `
+            Variables configuration, define accessor (\`key\`)
+            and variable type. Type must be one of
+            \`linear\` or \`point\`, \`linear\`
+            variables are suitable for continuous numerical
+            data such as age or cost while
+            \`point\` variables are suitable for
+            discrete values such as gender.
+        `,
         group: 'Variables',
         controlType: 'array',
         controlOptions: {
@@ -107,12 +101,11 @@ const props = [
         key: 'width',
         scopes: ['api'],
         docScopes: '*',
-        description: (
-            <span>
-                not required if using <code>ResponsiveParallelCoords</code>.
-            </span>
-        ),
         help: 'Chart width.',
+        description: `
+            not required if using
+            \`ResponsiveParallelCoords\`.
+        `,
         type: '{number}',
         required: true,
         controlType: 'range',
@@ -128,12 +121,11 @@ const props = [
         key: 'height',
         scopes: ['api'],
         docScopes: '*',
-        description: (
-            <span>
-                not required if using <code>ResponsiveParallelCoords</code>.
-            </span>
-        ),
         help: 'Chart height.',
+        description: `
+            not required if using
+            \`ResponsiveParallelCoords\`.
+        `,
         type: '{number}',
         required: true,
         controlType: 'range',
@@ -148,7 +140,7 @@ const props = [
     {
         key: 'pixelRatio',
         scopes: ['ParallelCoordinatesCanvas'],
-        description: `Adjust pixel ratio, useful for HiDPI screens.`,
+        help: `Adjust pixel ratio, useful for HiDPI screens.`,
         required: false,
         default: 'Depends on device',
         type: `{number}`,
@@ -162,7 +154,7 @@ const props = [
     {
         key: 'margin',
         scopes: '*',
-        description: 'Chart margin.',
+        help: 'Chart margin.',
         type: '{object}',
         required: false,
         controlType: 'margin',
@@ -171,7 +163,7 @@ const props = [
     {
         key: 'layout',
         scopes: '*',
-        description: `Chart layout, must be one of: 'horizontal', 'vertical'.`,
+        help: `Chart layout.`,
         type: '{string}',
         required: false,
         default: defaults.layout,
@@ -187,14 +179,10 @@ const props = [
     {
         key: 'curve',
         scopes: '*',
-        description: (
-            <span>
-                Defines the curve factory to use for the line generator.
-                <br />
-                Must be one of: {curveOptions}.
-            </span>
-        ),
         help: 'Curve interpolation.',
+        description: `
+            Defines the curve factory to use for the line generator.
+        `,
         type: '{string}',
         required: false,
         default: defaults.curve,
@@ -210,7 +198,7 @@ const props = [
     {
         key: 'axesPlan',
         scopes: '*',
-        description: `Axes plan, must be one of: 'foreground', 'background'.`,
+        help: `Axes plan.`,
         type: `{'foreground'|'background'}`,
         required: false,
         default: defaults.axesPlan,
@@ -226,7 +214,7 @@ const props = [
     {
         key: 'axesTicksPosition',
         scopes: '*',
-        description: `Axes ticks position, must be one of: 'before', 'after'.`,
+        help: `Axes ticks position.`,
         type: `{'before'|'after'}`,
         required: false,
         default: defaults.axesTicksPosition,
@@ -239,7 +227,7 @@ const props = [
     {
         key: 'colors',
         scopes: '*',
-        description: 'Defines color range.',
+        help: 'Defines color range.',
         type: '{string|Function|Array}',
         required: false,
         default: defaults.colors,
@@ -249,7 +237,7 @@ const props = [
     {
         key: 'colorBy',
         scopes: '*',
-        description:
+        help:
             'Property used to determine line color. If a function is provided, it will receive current line data and must return a valid color.',
         required: false,
         default: defaults.colorBy,
@@ -275,7 +263,7 @@ const props = [
     {
         key: 'strokeWidth',
         scopes: '*',
-        description: 'Lines stroke width.',
+        help: 'Lines stroke width.',
         type: '{number}',
         required: false,
         default: defaults.strokeWidth,
@@ -285,7 +273,7 @@ const props = [
     {
         key: 'lineOpacity',
         scopes: '*',
-        description: 'Lines opacity.',
+        help: 'Lines opacity.',
         type: '{number}',
         required: false,
         default: defaults.lineOpacity,

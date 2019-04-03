@@ -11,7 +11,7 @@ import styled from 'styled-components'
 import { Link } from 'gatsby'
 import GitHubIcon from 'react-icons/lib/fa/github'
 import TwitterIcon from 'react-icons/lib/fa/twitter'
-import nav from '../data/nav.yml'
+import * as nav from '../data/nav'
 
 const Container = styled.header`
     position: fixed;

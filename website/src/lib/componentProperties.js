@@ -44,7 +44,7 @@ export const motionProperties = (scopes, defaults) => [
     {
         key: 'animate',
         scopes,
-        description: 'Enable/disable transitions.',
+        help: 'Enable/disable transitions.',
         type: '{boolean}',
         required: false,
         default: defaults.animate !== undefined ? defaults.animate : defaultAnimate,
@@ -54,7 +54,7 @@ export const motionProperties = (scopes, defaults) => [
     {
         key: 'motionStiffness',
         scopes,
-        description: 'Motion stiffness.',
+        help: 'Motion stiffness.',
         type: '{number}',
         required: false,
         default:
@@ -72,7 +72,7 @@ export const motionProperties = (scopes, defaults) => [
     {
         key: 'motionDamping',
         scopes,
-        description: 'Motion damping.',
+        help: 'Motion damping.',
         type: '{number}',
         required: false,
         default:
@@ -322,10 +322,8 @@ export const getPropertiesGroupControls = (properties, group, scope) => {
     return properties
         .filter(property => property.group === group && scopeFilter(property))
         .map(property => ({
+            ...property,
             name: property.key,
-            help: property.help || property.description,
-            type: property.controlType,
-            ...(property.controlOptions || {}),
         }))
 }
 

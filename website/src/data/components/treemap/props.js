@@ -6,7 +6,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-import React from 'react'
 import { TreeMapDefaultProps } from '@nivo/treemap'
 import {
     motionProperties,
@@ -20,14 +19,16 @@ const props = [
     {
         key: 'root',
         scopes: '*',
-        description: 'The hierarchical data object.',
+        group: 'Base',
+        help: 'The hierarchical data object.',
         type: '{Object}',
         required: true,
     },
     {
         key: 'identity',
         scope: '*',
-        description: 'The key or function to use to retrieve nodes identity.',
+        group: 'Base',
+        help: 'The key or function to use to retrieve nodes identity.',
         type: '{string|Function}',
         required: false,
         default: defaults.identity,
@@ -35,7 +36,8 @@ const props = [
     {
         key: 'value',
         scope: '*',
-        description: 'The key or function to use to retrieve nodes value.',
+        group: 'Base',
+        help: 'The key or function to use to retrieve nodes value.',
         type: '{string|Function}',
         required: false,
         default: 'value',
@@ -44,12 +46,11 @@ const props = [
         key: 'width',
         scopes: ['api'],
         docScopes: '*',
-        description: (
-            <span>
-                not required if using responsive alternative of the component{' '}
-                <code>&lt;Responsive*/&gt;</code>.
-            </span>
-        ),
+        help: 'Chart width.',
+        description: `
+            not required if using responsive alternative
+            of the component \`<Responsive*/>\`.
+        `,
         type: '{number}',
         required: true,
     },
@@ -57,19 +58,18 @@ const props = [
         key: 'height',
         scopes: ['api'],
         docScopes: '*',
-        description: (
-            <span>
-                not required if using responsive alternative of the component{' '}
-                <code>&lt;Responsive*/&gt;</code>.
-            </span>
-        ),
+        help: 'Chart height.',
+        description: `
+            not required if using responsive alternative
+            of the component \`<Responsive*/>\`.
+        `,
         type: '{number}',
         required: true,
     },
     {
         key: 'pixelRatio',
         scopes: ['TreeMapCanvas'],
-        description: `Adjust pixel ratio, useful for HiDPI screens.`,
+        help: `Adjust pixel ratio, useful for HiDPI screens.`,
         required: false,
         default: 'Depends on device',
         type: `{number}`,
@@ -83,27 +83,16 @@ const props = [
     {
         key: 'tile',
         scopes: '*',
-        description: (
-            <span>
-                valid values are: <code className="code-string">'squarify'</code>,{' '}
-                <code className="code-string">'slice'</code>,{' '}
-                <code className="code-string">'dice'</code>,{' '}
-                <code className="code-string">'slice-dice'</code>, see{' '}
-                <a
-                    href="https://github.com/mbostock/d3/wiki/Treemap-Layout#mode"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    d3 documentation
-                </a>
-            </span>
-        ),
+        group: 'Base',
+        help: 'Strategy used to compute nodes.',
+        description: `
+            Strategy used to compute nodes, see
+            [official d3 documentation](https://github.com/mbostock/d3/wiki/Treemap-Layout#mode).
+        `,
         type: '{string}',
         required: false,
         default: 'squarify',
-        help: 'Strategy used to compute nodes.',
         controlType: 'choices',
-        group: 'Base',
         controlOptions: {
             choices: [
                 { label: 'binary', value: 'binary' },
@@ -121,7 +110,7 @@ const props = [
     {
         key: 'leavesOnly',
         scopes: '*',
-        description: 'Only render leaf nodes (no parent).',
+        help: 'Only render leaf nodes (no parent).',
         type: '{boolean}',
         required: false,
         default: defaults.leavesOnly,
@@ -131,7 +120,7 @@ const props = [
     {
         key: 'innerPadding',
         scopes: '*',
-        description: 'Padding between parent and child node.',
+        help: 'Padding between parent and child node.',
         type: '{number}',
         required: false,
         default: defaults.innerPadding,
@@ -146,7 +135,7 @@ const props = [
     {
         key: 'outerPadding',
         scopes: '*',
-        description: 'Padding between parent and child node.',
+        help: 'Padding between parent and child node.',
         type: '{number}',
         required: false,
         default: defaults.outerPadding,
@@ -161,21 +150,16 @@ const props = [
     {
         key: 'margin',
         scopes: '*',
-        description: 'Chart margin.',
+        help: 'Chart margin.',
         type: '{object}',
         required: false,
         controlType: 'margin',
         group: 'Base',
     },
-    /*—————————————————————————————————————————————————————————————————————————————
-
-      Styling
-
-    —————————————————————————————————————————————————————————————————————————————*/
     {
         key: 'colors',
         scopes: '*',
-        description: 'Defines how to compute node color.',
+        help: 'Defines how to compute node color.',
         type: '{string|Function|Array}',
         required: false,
         default: 'nivo',
@@ -185,7 +169,7 @@ const props = [
     {
         key: 'colorBy',
         scopes: '*',
-        description:
+        help:
             'Property to use to determine node color. If a function is provided, it will receive current node data and must return a color.',
         type: '{string|Function}',
         required: false,
@@ -212,7 +196,7 @@ const props = [
     {
         key: 'borderWidth',
         scopes: '*',
-        description: 'Control node border width.',
+        help: 'Control node border width.',
         type: '{number}',
         required: false,
         default: defaults.borderWidth,
@@ -222,7 +206,7 @@ const props = [
     {
         key: 'borderColor',
         scopes: '*',
-        description: 'Method to compute border color.',
+        help: 'Method to compute border color.',
         type: '{string|Function}',
         required: false,
         default: defaults.borderColor,
@@ -236,7 +220,7 @@ const props = [
     {
         key: 'enableLabel',
         scopes: '*',
-        description: 'Enable/disable labels.',
+        help: 'Enable/disable labels.',
         type: '{boolean}',
         required: false,
         default: true,
@@ -246,11 +230,11 @@ const props = [
     {
         key: 'label',
         scopes: '*',
+        help: 'Label accessor.',
         description:
             'Defines how to get label text, can be a string (used to access current node data property) or a function which will receive the actual node data and must return the desired label.',
         type: '{string|Function}',
         required: false,
-        // default
         controlType: 'choices',
         group: 'Labels',
         controlOptions: {
@@ -263,11 +247,10 @@ const props = [
     {
         key: 'labelSkipSize',
         scopes: '*',
-        description:
+        help:
             'Skip label rendering if node minimal side length is lower than given value, 0 to disable.',
         type: '{number}',
         required: false,
-        //default
         controlType: 'range',
         group: 'Labels',
         controlOptions: {
@@ -279,17 +262,16 @@ const props = [
     {
         key: 'orientLabel',
         scopes: '*',
-        description: 'Orient labels according to max node width/height.',
+        help: 'Orient labels according to max node width/height.',
         type: '{boolean}',
         required: false,
-        // default
         controlType: 'switch',
         group: 'Labels',
     },
     {
         key: 'labelTextColor',
         scopes: '*',
-        description: 'Method to compute label text color.',
+        help: 'Method to compute label text color.',
         type: '{string|Function}',
         required: false,
         controlType: 'color',
@@ -301,7 +283,7 @@ const props = [
     {
         key: 'isInteractive',
         scopes: ['TreeMap', 'TreeMapHTML', 'TreeMapCanvas'],
-        description: 'Enable/disable interactivity.',
+        help: 'Enable/disable interactivity.',
         type: '{boolean}',
         required: false,
         default: defaults.isInteractive,
@@ -310,7 +292,9 @@ const props = [
     },
     {
         key: 'onClick',
+        group: 'Interactivity',
         scopes: ['TreeMap', 'TreeMapHTML', 'TreeMapCanvas'],
+        help: 'onClick handler.',
         description: 'onClick handler, it receives clicked node data and style plus mouse event.',
         type: '{Function}',
         required: false,

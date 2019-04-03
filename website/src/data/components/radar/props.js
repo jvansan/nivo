@@ -6,53 +6,50 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-import React from 'react'
-import dedent from 'dedent-js'
 import { closedCurvePropKeys, DotsItemDefaultProps as dotDefaults } from '@nivo/core'
 import { RadarDefaultProps as defaults, RadarDots } from '@nivo/radar'
 import { motionProperties, getPropertiesGroupsControls } from '../../../lib/componentProperties'
 
 const dotsDefaults = RadarDots.defaultProps
 
-const curveOptions = []
-closedCurvePropKeys.forEach((curve, i) => {
-    curveOptions.push(<code key={curve}>'{curve}'</code>)
-    if (i < closedCurvePropKeys.length - 1) {
-        curveOptions.push(<span key={`${curve}.comma`}>,&nbsp;</span>)
-    }
-})
-
 const props = [
     {
         key: 'data',
         scopes: '*',
-        description: (
-            <div>
-                Chart data. If using objects indexBy & keys should be strings, if using array they
-                should be numbers.
-                <br />
-                For example, given this config:
-                <pre className="code code-block">{dedent`
-                [
-                  { language: 'javascript', john: 12, sarah: 32, bob: 27 },
-                  { language: 'golang', john: 25, sarah: 15, bob: 3 },
-                  { language: 'python', john: 5, sarah: 22, bob: 31 },
-                  { language: 'java', john: 19, sarah: 17, bob: 9 }
-                ]
-                keys: ['john', 'sarah', 'bob']
-                indexBy: 'language'
-                `}</pre>
-                We'll have a radar chart representing programing skills for each user by language (3
-                layers and 4 dimensions).
-            </div>
-        ),
+        group: 'Base',
+        help: 'Chart data.',
+        description: `
+            Chart data. If using objects indexBy & keys
+            should be strings, if using array they
+            should be numbers.
+            
+            For example, given this config:
+            \`\`\`
+            [
+                { language: 'javascript', john: 12, sarah: 32, bob: 27 },
+                { language: 'golang', john: 25, sarah: 15, bob: 3 },
+                { language: 'python', john: 5, sarah: 22, bob: 31 },
+                { language: 'java', john: 19, sarah: 17, bob: 9 }
+            ]
+            keys: ['john', 'sarah', 'bob']
+            indexBy: 'language'
+            \`\`\`
+            We'll have a radar chart representing programing
+            skills for each user by language
+            (3 layers and 4 dimensions).
+        `,
         type: '{Array.<Object|Array>}',
         required: true,
     },
     {
         key: 'indexBy',
         scopes: '*',
-        description: 'Key to use to index the data, this key must exist in each data item.',
+        group: 'Base',
+        help: 'Key to use to index the data.',
+        description: `
+            Key to use to index the data, this key
+            must exist in each data item.
+        `,
         type: '{string|number}',
         required: false,
         default: defaults.indexBy,
@@ -60,8 +57,12 @@ const props = [
     {
         key: 'keys',
         scopes: '*',
-        description:
-            'Keys to use to determine each serie. Those keys should exist in each data item.',
+        group: 'Base',
+        help: 'Keys to use to determine each serie.',
+        description: `
+            Keys to use to determine each serie.
+            Those keys should exist in each data item.
+        `,
         type: '{Array.<string|number>}',
         required: false,
         default: defaults.keys,
@@ -69,7 +70,12 @@ const props = [
     {
         key: 'maxValue',
         scopes: '*',
-        description: `Maximum value, if 'auto', will use max value from the provided data.`,
+        help: 'Maximum value.',
+        description: `
+            Maximum value, if 'auto',
+            will use max value from
+            the provided data.
+        `,
         required: false,
         default: defaults.maxValue,
         type: '{number|string}',
@@ -86,13 +92,11 @@ const props = [
         key: 'width',
         scopes: ['api'],
         docScopes: '*',
-        description: (
-            <span>
-                not required if using&nbsp;
-                <code>&lt;ResponsiveRadar&nbsp;/&gt;</code>.
-            </span>
-        ),
         help: 'Chart width.',
+        description: `
+            not required if using
+            \`<ResponsiveRadar/>\`.
+        `,
         type: '{number}',
         required: true,
         controlType: 'range',
@@ -108,13 +112,11 @@ const props = [
         key: 'height',
         scopes: ['api'],
         docScopes: '*',
-        description: (
-            <span>
-                not required if using&nbsp;
-                <code>&lt;ResponsiveRadar&nbsp;/&gt;</code>.
-            </span>
-        ),
         help: 'Chart height.',
+        description: `
+        not required if using
+        \`<ResponsiveRadar/>\`.
+        `,
         type: '{number}',
         required: true,
         controlType: 'range',
@@ -129,14 +131,11 @@ const props = [
     {
         key: 'curve',
         scopes: '*',
-        description: (
-            <span>
-                Defines the curve factory to use for the line generator.
-                <br />
-                Must be one of: {curveOptions}.
-            </span>
-        ),
         help: 'Curve interpolation.',
+        description: `
+            Defines the curve factory to use
+            for the line generator.
+        `,
         type: '{string}',
         required: false,
         default: defaults.curve,
@@ -151,7 +150,7 @@ const props = [
     },
     {
         key: 'colors',
-        description: 'Defines how to compute slice color.',
+        help: 'Defines how to compute slice color.',
         type: '{string|Function|Array}',
         required: false,
         default: 'nivo',
@@ -160,17 +159,16 @@ const props = [
     },
     {
         key: 'colorBy',
-        description: (
-            <span>
-                Property to use to determine node color.
-                <br />
-                If a function is provided, it will receive current node data and must return a
-                color.
-                <br />
-                By default it will use the key of each serie and pick a color from colors according
-                to this key.
-            </span>
-        ),
+        help: 'Node color.',
+        description: `
+            Property to use to determine node color.
+            If a function is provided, it will receive
+            current node data and must return a color.
+            
+            By default it will use the key of each serie
+            and pick a color from colors according
+            to this key.
+        `,
         type: '{string|Function}',
         required: false,
         default: 'key',
@@ -188,7 +186,7 @@ const props = [
     {
         key: 'margin',
         scopes: '*',
-        description: 'Chart margin.',
+        help: 'Chart margin.',
         type: '{object}',
         required: false,
         controlType: 'margin',
@@ -196,7 +194,7 @@ const props = [
     },
     {
         key: 'fillOpacity',
-        description: 'Shape fill opacity.',
+        help: 'Shape fill opacity.',
         type: '{number}',
         required: false,
         default: defaults.borderWidth,
@@ -205,7 +203,7 @@ const props = [
     },
     {
         key: 'borderWidth',
-        description: 'Shape border width.',
+        help: 'Shape border width.',
         type: '{number}',
         required: false,
         default: defaults.borderWidth,
@@ -214,7 +212,7 @@ const props = [
     },
     {
         key: 'borderColor',
-        description: 'Method to compute border color.',
+        help: 'Method to compute border color.',
         type: '{string|Function}',
         required: false,
         default: defaults.borderColor,
@@ -226,7 +224,7 @@ const props = [
     },
     {
         key: 'gridLevels',
-        description: 'Number of levels to display for grid',
+        help: 'Number of levels to display for grid',
         type: '{number}',
         required: false,
         default: defaults.gridLevels,
@@ -239,7 +237,6 @@ const props = [
     },
     {
         key: 'gridShape',
-        description: 'Determine shape of the grid, must be one of: circular, linear.',
         help: 'Determine shape of the grid.',
         type: '{string}',
         required: false,
@@ -256,26 +253,30 @@ const props = [
     {
         key: 'gridLabel',
         type: '{Function}',
-        description: (
-            <div>
-                An optional function to override label rendering. It must return a{' '}
-                <strong>valid SVG element</strong> and will receive the following props:
-                <pre className="code code-block">{dedent`{
-                    id:     string
-                    # this can be used to determine the label layout,
-                    # if the element should be centered, left/right aligned
-                    anchor: 'start' | 'middle' | 'end'
-                    # angle in degrees
-                    angle:  number
-                }`}</pre>
-                The component will be wrapped inside a <code>g</code> element{' '}
-                <strong>already positioned</strong> where the default label would have been placed.
-            </div>
-        ),
+        group: 'Grid',
+        help: 'Grid label.',
+        description: `
+            An optional function to override label rendering.
+            It must return a **valid SVG element** and will
+            receive the following props:
+            \`\`\`
+            {
+                id:     string
+                # this can be used to determine the label layout,
+                # if the element should be centered, left/right aligned
+                anchor: 'start' | 'middle' | 'end'
+                # angle in degrees
+                angle:  number
+            }
+            \`\`\`
+            The component will be wrapped inside
+            a \`g\` element **already positioned**
+            where the default label would have been placed.
+        `,
     },
     {
         key: 'gridLabelOffset',
-        description: 'Label offset from outer radius.',
+        help: 'Label offset from outer radius.',
         type: '{number}',
         required: false,
         default: defaults.gridLabelOffset,
@@ -290,7 +291,7 @@ const props = [
     {
         key: 'enableDots',
         scopes: '*',
-        description: 'Enable/disable dots.',
+        help: 'Enable/disable dots.',
         type: '{boolean}',
         required: false,
         default: defaults.enableDots,
@@ -299,14 +300,20 @@ const props = [
     },
     {
         key: 'dotSymbol',
-        description:
-            'Overrides default dot circle. The function will receive `size`, `color`, `borderWidth` and `borderColor` props and must return a valid SVG element.',
+        group: 'Dots',
+        help: 'Overrides default dot circle.',
+        description: `
+            Overrides default dot circle.
+            The function will receive \`size\`,
+            \`color\`, \`borderWidth\` and \`borderColor\`
+            props and must return a valid SVG element.
+        `,
         type: '{Function}',
         required: false,
     },
     {
         key: 'dotSize',
-        description: 'Size of the dots.',
+        help: 'Size of the dots.',
         type: '{number}',
         required: false,
         default: dotsDefaults.size,
@@ -321,7 +328,7 @@ const props = [
     {
         key: 'dotColor',
         scopes: '*',
-        description: 'Method to compute dots color.',
+        help: 'Method to compute dots color.',
         type: '{string|Function}',
         required: false,
         default: dotsDefaults.color,
@@ -333,7 +340,7 @@ const props = [
     },
     {
         key: 'dotBorderWidth',
-        description: 'Width of the dots border.',
+        help: 'Width of the dots border.',
         type: '{number}',
         required: false,
         default: dotsDefaults.borderWidth,
@@ -348,7 +355,7 @@ const props = [
     {
         key: 'dotBorderColor',
         scopes: '*',
-        description: 'Method to compute dots border color.',
+        help: 'Method to compute dots border color.',
         type: '{string|Function}',
         required: false,
         default: dotsDefaults.borderColor,
@@ -361,7 +368,7 @@ const props = [
     {
         key: 'enableDotLabel',
         scopes: '*',
-        description: 'Enable/disable dots label.',
+        help: 'Enable/disable dots label.',
         type: '{boolean}',
         required: false,
         default: dotsDefaults.enableLabel,
@@ -370,6 +377,7 @@ const props = [
     },
     {
         key: 'dotLabel',
+        help: 'Dot label.',
         description:
             'Property to use to determine dot label. If a function is provided, it will receive current value and serie and must return a label.',
         type: '{string}',
@@ -392,7 +400,7 @@ const props = [
     },
     {
         key: 'dotLabelYOffset',
-        description: 'Label Y offset from dot shape.',
+        help: 'Label Y offset from dot shape.',
         type: '{number}',
         required: false,
         default: dotDefaults.labelYOffset,
@@ -407,7 +415,7 @@ const props = [
     {
         key: 'isInteractive',
         scopes: ['Radar'],
-        description: 'Enable/disable interactivity.',
+        help: 'Enable/disable interactivity.',
         type: '{boolean}',
         required: false,
         default: defaults.isInteractive,
