@@ -9,7 +9,8 @@
 import React, { useState, useCallback } from 'react'
 import { PieDefaultProps, ResponsivePieCanvas } from '@nivo/pie'
 import { generateProgrammingLanguageStats } from '@nivo/generators'
-import Layout from '../../components/Layout'
+import { useTheme } from '../../theming/context'
+import SEO from '../../components/seo'
 import ComponentPage from '../../components/components/ComponentPage'
 import ComponentHeader from '../../components/components/ComponentHeader'
 import ComponentDescription from '../../components/components/ComponentDescription'
@@ -18,10 +19,9 @@ import ActionsLogger, { useActionsLogger } from '../../components/components/Act
 import ComponentSettings from '../../components/components/ComponentSettings'
 // import Stories from '../../components/components/Stories'
 import generateCode from '../../lib/generateChartCode'
-import pie from '../../data/components/pie/meta.yml'
+import meta from '../../data/components/pie/meta.yml'
 import mapper from '../../data/components/pie/mapper'
 import { groupsByScope } from '../../data/components/pie/props'
-// import nivoTheme from '../../../nivoTheme'
 
 const DATASET_SIZE = 18
 const generateData = () =>
@@ -38,7 +38,8 @@ const initialSettings = {
         left: 80,
     },
 
-    pixelRatio: window && window.devicePixelRatio ? window.devicePixelRatio : 1,
+    pixelRatio:
+        typeof window !== 'undefined' && window.devicePixelRatio ? window.devicePixelRatio : 1,
 
     startAngle: 0,
     endAngle: 360,
@@ -77,7 +78,6 @@ const initialSettings = {
     isInteractive: true,
     'custom tooltip example': false,
     tooltip: null,
-    // theme: nivoTheme,
     'showcase pattern usage': true,
 
     defs: [],
@@ -98,6 +98,7 @@ const initialSettings = {
 }
 
 const PieCanvas = () => {
+    const theme = useTheme()
     const [settings, setSettings] = useState(initialSettings)
     const [data, setData] = useState(generateData())
     const diceRoll = useCallback(() => setData(generateData()), [setData])
@@ -121,22 +122,26 @@ const PieCanvas = () => {
     })
 
     return (
-        <Layout>
-            <ComponentPage>
-                <ComponentHeader chartClass="PieCanvas" tags={pie.PieCanvas.tags} />
-                <ComponentDescription description={pie.PieCanvas.description} />
-                <ComponentTabs chartClass="pie" code={code} data={data} diceRoll={diceRoll}>
-                    <ResponsivePieCanvas data={data} {...mappedSettings} onClick={onClick} />
-                </ComponentTabs>
-                <ActionsLogger actions={actions} isFullWidth={true} />
-                <ComponentSettings
-                    component="PieCanvas"
-                    settings={settings}
-                    onChange={setSettings}
-                    groups={groupsByScope.PieCanvas}
+        <ComponentPage>
+            <SEO title="PieCanvas" keywords={meta.PieCanvas.tags} />
+            <ComponentHeader chartClass="PieCanvas" tags={meta.PieCanvas.tags} />
+            <ComponentDescription description={meta.PieCanvas.description} />
+            <ComponentTabs chartClass="pie" code={code} data={data} diceRoll={diceRoll}>
+                <ResponsivePieCanvas
+                    data={data}
+                    {...mappedSettings}
+                    onClick={onClick}
+                    theme={theme.nivo}
                 />
-            </ComponentPage>
-        </Layout>
+            </ComponentTabs>
+            <ActionsLogger actions={actions} isFullWidth={true} />
+            <ComponentSettings
+                component="PieCanvas"
+                settings={settings}
+                onChange={setSettings}
+                groups={groupsByScope.PieCanvas}
+            />
+        </ComponentPage>
     )
 }
 

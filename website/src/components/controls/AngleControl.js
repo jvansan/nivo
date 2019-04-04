@@ -10,7 +10,7 @@ import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Control from './Control'
-import Label from './Label'
+import PropertyHeader from './PropertyHeader'
 import TextInput from './TextInput'
 import PropertyHelp from './PropertyHelp'
 
@@ -24,6 +24,7 @@ const Row = styled.div`
     grid-column-gap: 9px;
     align-items: center;
     max-width: 240px;
+    margin-bottom: 5px;
 `
 
 const Circle = styled.circle`
@@ -36,17 +37,11 @@ const Marker = styled.circle`
     fill: ${({ theme }) => theme.colors.accent};
 `
 
-const AngleControl = ({
-    id,
-    label,
-    value,
-    start = 0,
-    min = 0,
-    max = 360,
-    onChange,
-    help,
-    description,
-}) => {
+const AngleControl = ({ id, property, value, options, onChange }) => {
+    const start = options.start || 0
+    const min = options.min || 0
+    const max = options.max || 360
+
     const handleChange = useCallback(
         event => {
             onChange(Number(event.target.value))
@@ -55,8 +50,8 @@ const AngleControl = ({
     )
 
     return (
-        <Control>
-            <Label htmlFor={id}>{label}</Label>
+        <Control description={property.description}>
+            <PropertyHeader id={id} {...property} />
             <Row>
                 <TextInput id={id} value={value} onChange={handleChange} unit="°" isNumber={true} />
                 <svg width={size} height={size}>
@@ -71,20 +66,21 @@ const AngleControl = ({
                 </svg>
                 <input type="range" value={value} onChange={handleChange} min={min} max={max} />
             </Row>
-            <PropertyHelp help={help} description={description} />
+            <PropertyHelp>{property.help}</PropertyHelp>
         </Control>
     )
 }
 
 AngleControl.propTypes = {
     id: PropTypes.string.isRequired,
-    label: PropTypes.node.isRequired,
+    property: PropTypes.object.isRequired,
     value: PropTypes.number.isRequired,
-    start: PropTypes.number,
-    min: PropTypes.number,
-    max: PropTypes.number,
+    options: PropTypes.shape({
+        start: PropTypes.number,
+        min: PropTypes.number,
+        max: PropTypes.number,
+    }).isRequired,
     onChange: PropTypes.func.isRequired,
-    help: PropTypes.node.isRequired,
 }
 
 export default AngleControl

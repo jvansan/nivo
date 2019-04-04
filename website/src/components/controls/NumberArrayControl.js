@@ -10,6 +10,7 @@ import React, { Fragment, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Control from './Control'
+import PropertyHeader from './PropertyHeader'
 import Label from './Label'
 import TextInput from './TextInput'
 import PropertyHelp from './PropertyHelp'
@@ -18,23 +19,28 @@ const Range = styled.input`
     max-width: 160px;
 `
 
-const Row = styled.div`
+const Value = styled.div`
+    margin-bottom: 5px;
+    padding-left: 89px;
     display: grid;
-    grid-template-columns: 60px auto;
     grid-column-gap: 9px;
-    max-width: 240px;
+    grid-template-columns: 60px auto;
+
+    & > *:first-child {
+        text-align: right;
+        font-weight: 500;
+    }
 `
 
-const NumberArrayControl = ({
-    label: globalLabel,
-    id,
-    value,
-    onChange,
-    unit,
-    items,
-    help,
-    description,
-}) => {
+const Row = styled.div`
+    display: grid;
+    grid-template-columns: 80px 60px auto;
+    grid-column-gap: 9px;
+    max-width: 240px;
+    margin-bottom: 5px;
+`
+
+const NumberArrayControl = ({ id, property, options: { unit, items }, value, onChange }) => {
     const handleChange = useCallback(
         index => event => {
             const updatedArray = [...value]
@@ -45,63 +51,67 @@ const NumberArrayControl = ({
     )
 
     return (
-        <Control>
-            <Label>{globalLabel}</Label>
-            <div>
-                [
-                {value.map((v, i) => {
-                    return (
-                        <Fragment key={i}>
-                            {i > 0 && <span>, </span>}
-                            <span>{v}</span>
-                        </Fragment>
-                    )
-                })}
-                ]
-            </div>
+        <Control description={property.description}>
+            <PropertyHeader {...property} />
+            <Value>
+                <span>value</span>
+                <code>
+                    [
+                    {value.map((v, i) => {
+                        return (
+                            <Fragment key={i}>
+                                {i > 0 && <span>, </span>}
+                                <code className="code-number">{v}</code>
+                            </Fragment>
+                        )
+                    })}
+                    ]
+                </code>
+            </Value>
             {items.map(({ label, min, max, step }, i) => {
                 const itemId = `${id}-${i}`
 
                 return (
-                    <Fragment key={itemId}>
+                    <Row key={itemId}>
                         <Label htmlFor={itemId}>{label}</Label>
-                        <Row>
-                            <TextInput
-                                id={itemId}
-                                value={value[i]}
-                                isNumber={true}
-                                unit={unit}
-                                onChange={handleChange(i)}
-                            />
-                            <Range
-                                type="range"
-                                value={value[i]}
-                                onChange={handleChange(i)}
-                                min={min}
-                                max={max}
-                                step={step || 1}
-                            />
-                        </Row>
-                    </Fragment>
+                        <TextInput
+                            id={itemId}
+                            value={value[i]}
+                            isNumber={true}
+                            unit={unit}
+                            onChange={handleChange(i)}
+                        />
+                        <Range
+                            type="range"
+                            value={value[i]}
+                            onChange={handleChange(i)}
+                            min={min}
+                            max={max}
+                            step={step || 1}
+                        />
+                    </Row>
                 )
             })}
-            <PropertyHelp help={help} description={description} />
+            <PropertyHelp>{property.help}</PropertyHelp>
         </Control>
     )
 }
 
 NumberArrayControl.propTypes = {
-    label: PropTypes.string.isRequired,
-    help: PropTypes.node.isRequired,
-    unit: PropTypes.string,
-    items: PropTypes.arrayOf(
-        PropTypes.shape({
-            label: PropTypes.node.isRequired,
-            min: PropTypes.number.isRequired,
-            max: PropTypes.number.isRequired,
-            step: PropTypes.number,
-        })
-    ).isRequired,
+    id: PropTypes.string.isRequired,
+    property: PropTypes.object.isRequired,
+    options: PropTypes.shape({
+        unit: PropTypes.string,
+        items: PropTypes.arrayOf(
+            PropTypes.shape({
+                label: PropTypes.node.isRequired,
+                min: PropTypes.number.isRequired,
+                max: PropTypes.number.isRequired,
+                step: PropTypes.number,
+            })
+        ).isRequired,
+    }).isRequired,
+    value: PropTypes.arrayOf(PropTypes.number).isRequired,
     onChange: PropTypes.func.isRequired,
 }
 

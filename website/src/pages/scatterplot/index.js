@@ -8,7 +8,8 @@
  */
 import React, { useState, useCallback } from 'react'
 import { ResponsiveScatterPlot, ScatterPlotDefaultProps } from '@nivo/scatterplot'
-import Layout from '../../components/Layout'
+import { useTheme } from '../../theming/context'
+import SEO from '../../components/seo'
 import ComponentPage from '../../components/components/ComponentPage'
 import ComponentHeader from '../../components/components/ComponentHeader'
 import ComponentDescription from '../../components/components/ComponentDescription'
@@ -17,11 +18,10 @@ import ActionsLogger, { useActionsLogger } from '../../components/components/Act
 import ComponentSettings from '../../components/components/ComponentSettings'
 import Stories from '../../components/components/Stories'
 import generateCode from '../../lib/generateChartCode'
-import scatterplot from '../../data/components/scatterplot/meta.yml'
+import meta from '../../data/components/scatterplot/meta.yml'
 import mapper from '../../data/components/scatterplot/mapper'
 import { groupsByScope } from '../../data/components/scatterplot/props'
 import { generateLightDataSet } from '../../data/components/scatterplot/generator'
-// import nivoTheme from '../../../nivoTheme'
 
 const initialSettings = {
     margin: {
@@ -103,8 +103,6 @@ const initialSettings = {
     'custom tooltip example': false,
     tooltip: null,
 
-    // theme: nivoTheme,
-
     legends: [
         {
             anchor: 'bottom-right',
@@ -132,6 +130,7 @@ const initialSettings = {
 }
 
 const ScatterPlot = () => {
+    const theme = useTheme()
     const [settings, setSettings] = useState(initialSettings)
     const [data, setData] = useState(generateLightDataSet())
     const diceRoll = useCallback(() => setData(generateLightDataSet()), [setData])
@@ -158,23 +157,27 @@ const ScatterPlot = () => {
     )
 
     return (
-        <Layout>
-            <ComponentPage>
-                <ComponentHeader chartClass="ScatterPlot" tags={scatterplot.ScatterPlot.tags} />
-                <ComponentDescription description={scatterplot.ScatterPlot.description} />
-                <ComponentTabs chartClass="scatterplot" code={code} data={data} diceRoll={diceRoll}>
-                    <ResponsiveScatterPlot data={data} {...mappedSettings} onClick={onClick} />
-                </ComponentTabs>
-                <ActionsLogger actions={actions} />
-                <ComponentSettings
-                    component="ScatterPlot"
-                    settings={settings}
-                    onChange={setSettings}
-                    groups={groupsByScope.ScatterPlot}
+        <ComponentPage>
+            <SEO title="ScatterPlot" keywords={meta.ScatterPlot.tags} />
+            <ComponentHeader chartClass="ScatterPlot" tags={meta.ScatterPlot.tags} />
+            <ComponentDescription description={meta.ScatterPlot.description} />
+            <ComponentTabs chartClass="scatterplot" code={code} data={data} diceRoll={diceRoll}>
+                <ResponsiveScatterPlot
+                    data={data}
+                    {...mappedSettings}
+                    theme={theme.nivo}
+                    onClick={onClick}
                 />
-                <Stories stories={scatterplot.ScatterPlot.stories} />
-            </ComponentPage>
-        </Layout>
+            </ComponentTabs>
+            <ActionsLogger actions={actions} />
+            <ComponentSettings
+                component="ScatterPlot"
+                settings={settings}
+                onChange={setSettings}
+                groups={groupsByScope.ScatterPlot}
+            />
+            <Stories stories={meta.ScatterPlot.stories} />
+        </ComponentPage>
     )
 }
 

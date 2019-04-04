@@ -7,9 +7,8 @@
  * file that was distributed with this source code.
  */
 import React from 'react'
-import Helmet from 'react-helmet'
 import { Link } from 'gatsby'
-import Layout from '../../components/Layout'
+import SEO from '../../components/seo'
 import PageContent from '../../components/PageContent'
 import PatternsIllustrations from '../../components/guides/patterns/PatternsIllustrations'
 import PatternsExample from '../../components/guides/patterns/PatternsExample'
@@ -18,8 +17,8 @@ import PatternsLines from '../../components/guides/patterns/PatternsLines'
 import PatternsSquares from '../../components/guides/patterns/PatternsSquares'
 
 const Patterns = () => (
-    <Layout>
-        <Helmet title="Patterns" />
+    <>
+        <SEO title="Patterns Guide" />
         <PageContent>
             <div className="guide__header">
                 <h1 className="page_header">Patterns</h1>
@@ -69,7 +68,7 @@ const Patterns = () => (
                 tooltips involving colored chips will use plain element color.
             </p>
         </div>
-    </Layout>
+    </>
 )
 
 export default Patterns

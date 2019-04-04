@@ -1,29 +1,54 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
 import pick from 'lodash/pick'
 import Control from './Control'
-import Label from './Label'
+import PropertyHeader from './PropertyHeader'
 import PropertyHelp from './PropertyHelp'
+import TextInput from './TextInput'
+
+const SwitchRow = styled.div`
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+
+    & > *:first-child {
+        margin-right: 9px;
+    }
+`
+
+const RangeRow = styled.div`
+    display: grid;
+    grid-template-columns: 60px auto;
+    grid-column-gap: 9px;
+    align-items: center;
+    max-width: 240px;
+    margin-bottom: 5px;
+`
 
 export default class SwitchableRangeControl extends Component {
     static propTypes = {
         id: PropTypes.string.isRequired,
-        label: PropTypes.string.isRequired,
+        property: PropTypes.object.isRequired,
         value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
-        disabledValue: PropTypes.any.isRequired,
-        unit: PropTypes.string,
+        options: PropTypes.shape({
+            unit: PropTypes.string,
+            defaultValue: PropTypes.number.isRequired,
+            disabledValue: PropTypes.any.isRequired,
+            min: PropTypes.number.isRequired,
+            max: PropTypes.number.isRequired,
+            step: PropTypes.number,
+        }).isRequired,
         onChange: PropTypes.func.isRequired,
-        help: PropTypes.node.isRequired,
-        defaultValue: PropTypes.number.isRequired,
-        min: PropTypes.number.isRequired,
-        max: PropTypes.number.isRequired,
-        step: PropTypes.number,
     }
 
     constructor(props) {
         super(props)
 
-        const { value, disabledValue, defaultValue } = this.props
+        const {
+            value,
+            options: { disabledValue, defaultValue },
+        } = this.props
         this.state = {
             isSliderEnabled: value !== disabledValue,
             sliderValue: value === disabledValue ? defaultValue : value,
@@ -31,7 +56,10 @@ export default class SwitchableRangeControl extends Component {
     }
 
     handleSwitchUpdate = e => {
-        const { onChange, disabledValue } = this.props
+        const {
+            onChange,
+            options: { disabledValue },
+        } = this.props
         const { sliderValue } = this.state
         if (e.target.checked === false) {
             this.setState({ isSliderEnabled: true })
@@ -49,57 +77,49 @@ export default class SwitchableRangeControl extends Component {
     }
 
     render() {
-        const { id, disabledValue, label, value, unit, help, description } = this.props
+        const {
+            id,
+            property,
+            options: { disabledValue, unit },
+            value,
+        } = this.props
         const { isSliderEnabled, sliderValue } = this.state
 
         return (
-            <Control>
-                <Label>{label}</Label>
-                <div>
-                    <div className="SwitchableRangeControl">
-                        <div className="SwitchableRangeControl_Header">
-                            <span className="control_label">
-                                {isSliderEnabled && (
-                                    <code className="code code-number">{value}</code>
-                                )}
-                                {isSliderEnabled && unit && (
-                                    <span className="unit">
-                                        &nbsp;
-                                        {unit}
-                                    </span>
-                                )}
-                            </span>
-                            <span className="control-switch">
-                                <input
-                                    className="cmn-toggle"
-                                    id={`${id}.switch`}
-                                    type="checkbox"
-                                    checked={!isSliderEnabled}
-                                    onChange={this.handleSwitchUpdate}
-                                />
-                                <label htmlFor={`${id}.switch`} />
-                            </span>
-                            <span
-                                style={{
-                                    marginLeft: 7,
-                                    color: isSliderEnabled ? '#bbb' : 'inherit',
-                                }}
-                            >
-                                {disabledValue}
-                            </span>
-                        </div>
-                    </div>
-                    {isSliderEnabled && (
+            <Control description={property.description}>
+                <PropertyHeader {...property} />
+                <SwitchRow>
+                    <span className="control-switch">
+                        <input
+                            className="cmn-toggle"
+                            id={`${id}.switch`}
+                            type="checkbox"
+                            checked={!isSliderEnabled}
+                            onChange={this.handleSwitchUpdate}
+                        />
+                        <label htmlFor={`${id}.switch`} />
+                    </span>
+                    <span
+                        style={{
+                            color: isSliderEnabled ? '#bbbbbb' : 'inherit',
+                        }}
+                    >
+                        {disabledValue}
+                    </span>
+                </SwitchRow>
+                {isSliderEnabled && (
+                    <RangeRow>
+                        <TextInput value={value} unit={unit} isNumber={true} disabled={true} />
                         <input
                             id={`${id}.slider`}
                             type="range"
                             value={sliderValue}
                             onChange={this.handleSliderUpdate}
-                            {...pick(this.props, ['min', 'max', 'step'])}
+                            {...pick(this.props.options, ['min', 'max', 'step'])}
                         />
-                    )}
-                </div>
-                <PropertyHelp help={help} description={description} />
+                    </RangeRow>
+                )}
+                <PropertyHelp>{property.help}</PropertyHelp>
             </Control>
         )
     }

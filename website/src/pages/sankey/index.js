@@ -10,7 +10,8 @@ import React, { useState, useCallback } from 'react'
 import random from 'lodash/random'
 import { generateSankeyData } from '@nivo/generators'
 import { ResponsiveSankey, SankeyDefaultProps } from '@nivo/sankey'
-import Layout from '../../components/Layout'
+import { useTheme } from '../../theming/context'
+import SEO from '../../components/seo'
 import ComponentPage from '../../components/components/ComponentPage'
 import ComponentHeader from '../../components/components/ComponentHeader'
 import ComponentDescription from '../../components/components/ComponentDescription'
@@ -19,10 +20,9 @@ import ComponentTabs from '../../components/components/ComponentTabs'
 import ComponentSettings from '../../components/components/ComponentSettings'
 // import Stories from '../../components/components/Stories'
 import generateCode from '../../lib/generateChartCode'
-import sankey from '../../data/components/sankey/meta.yml'
+import meta from '../../data/components/sankey/meta.yml'
 import mapper from '../../data/components/sankey/mapper'
 import { groupsByScope } from '../../data/components/sankey/props'
-//import nivoTheme from '../../../nivoTheme'
 
 const initialSettings = {
     margin: {
@@ -97,6 +97,7 @@ const initialSettings = {
 }
 
 const Sankey = () => {
+    const theme = useTheme()
     const [settings, setSettings] = useState(initialSettings)
     const [data, setData] = useState(generateSankeyData({ nodeCount: 6, maxIterations: 8 }))
     const diceRoll = useCallback(() => {
@@ -117,25 +118,20 @@ const Sankey = () => {
     })
 
     return (
-        <Layout>
-            <ComponentPage>
-                <ComponentHeader chartClass="Sankey" tags={sankey.Sankey.tags} />
-                <ComponentDescription description={sankey.Sankey.description} />
-                <ComponentTabs chartClass="sankey" code={code} data={data} diceRoll={diceRoll}>
-                    <ResponsiveSankey
-                        data={data}
-                        {...mappedSettings}
-                        // theme={nivoTheme}
-                    />
-                </ComponentTabs>
-                <ComponentSettings
-                    component="Sankey"
-                    settings={settings}
-                    onChange={setSettings}
-                    groups={groupsByScope.Sankey}
-                />
-            </ComponentPage>
-        </Layout>
+        <ComponentPage>
+            <SEO title="Sankey" keywords={meta.Sankey.tags} />
+            <ComponentHeader chartClass="Sankey" tags={meta.Sankey.tags} />
+            <ComponentDescription description={meta.Sankey.description} />
+            <ComponentTabs chartClass="sankey" code={code} data={data} diceRoll={diceRoll}>
+                <ResponsiveSankey data={data} {...mappedSettings} theme={theme.nivo} />
+            </ComponentTabs>
+            <ComponentSettings
+                component="Sankey"
+                settings={settings}
+                onChange={setSettings}
+                groups={groupsByScope.Sankey}
+            />
+        </ComponentPage>
     )
 }
 

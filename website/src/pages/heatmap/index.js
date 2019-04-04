@@ -10,7 +10,8 @@ import React, { useState, useCallback } from 'react'
 import { ResponsiveHeatMap, HeatMapDefaultProps } from '@nivo/heatmap'
 import { patternLinesDef } from '@nivo/core'
 import isFunction from 'lodash/isFunction'
-import Layout from '../../components/Layout'
+import { useTheme } from '../../theming/context'
+import SEO from '../../components/seo'
 import ComponentPage from '../../components/components/ComponentPage'
 import ComponentHeader from '../../components/components/ComponentHeader'
 import ComponentDescription from '../../components/components/ComponentDescription'
@@ -19,11 +20,10 @@ import ActionsLogger, { useActionsLogger } from '../../components/components/Act
 import ComponentSettings from '../../components/components/ComponentSettings'
 import Stories from '../../components/components/Stories'
 import generateCode from '../../lib/generateChartCode'
-import heatmap from '../../data/components/heatmap/meta.yml'
+import meta from '../../data/components/heatmap/meta.yml'
 import mapper from '../../data/components/heatmap/mapper'
 import { groupsByScope } from '../../data/components/heatmap/props'
 import { generateLightDataSet } from '../../data/components/heatmap/generator'
-// import nivoTheme from '../../../nivoTheme'
 
 const initialSettings = {
     indexBy: 'country',
@@ -121,6 +121,7 @@ const initialSettings = {
 }
 
 const HeatMap = () => {
+    const theme = useTheme()
     const [settings, setSettings] = useState(initialSettings)
     const [data, setData] = useState(generateLightDataSet())
     const diceRoll = useCallback(() => setData(generateLightDataSet()), [setData])
@@ -151,34 +152,28 @@ const HeatMap = () => {
     )
 
     return (
-        <Layout>
-            <ComponentPage>
-                <ComponentHeader chartClass="HeatMap" tags={heatmap.HeatMap.tags} />
-                <ComponentDescription description={heatmap.HeatMap.description} />
-                <ComponentTabs
-                    chartClass="heatmap"
-                    code={code}
+        <ComponentPage>
+            <SEO title="HeatMap" keywords={meta.HeatMap.tags} />
+            <ComponentHeader chartClass="HeatMap" tags={meta.HeatMap.tags} />
+            <ComponentDescription description={meta.HeatMap.description} />
+            <ComponentTabs chartClass="heatmap" code={code} data={data.data} diceRoll={diceRoll}>
+                <ResponsiveHeatMap
                     data={data.data}
-                    diceRoll={diceRoll}
-                >
-                    <ResponsiveHeatMap
-                        data={data.data}
-                        keys={data.keys}
-                        {...mappedSettings}
-                        onClick={onClick}
-                        //theme={nivoTheme}
-                    />
-                </ComponentTabs>
-                <ActionsLogger actions={actions} />
-                <ComponentSettings
-                    component="HeatMap"
-                    settings={settings}
-                    onChange={setSettings}
-                    groups={groupsByScope.HeatMap}
+                    keys={data.keys}
+                    {...mappedSettings}
+                    onClick={onClick}
+                    theme={theme.nivo}
                 />
-                <Stories stories={heatmap.HeatMap.stories} />
-            </ComponentPage>
-        </Layout>
+            </ComponentTabs>
+            <ActionsLogger actions={actions} />
+            <ComponentSettings
+                component="HeatMap"
+                settings={settings}
+                onChange={setSettings}
+                groups={groupsByScope.HeatMap}
+            />
+            <Stories stories={meta.HeatMap.stories} />
+        </ComponentPage>
     )
 }
 

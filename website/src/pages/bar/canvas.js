@@ -8,7 +8,8 @@
  */
 import React, { useState, useCallback } from 'react'
 import { ResponsiveBarCanvas } from '@nivo/bar'
-import Layout from '../../components/Layout'
+import SEO from '../../components/seo'
+import { useTheme } from '../../theming/context'
 import ComponentPage from '../../components/components/ComponentPage'
 import ComponentHeader from '../../components/components/ComponentHeader'
 import ComponentDescription from '../../components/components/ComponentDescription'
@@ -17,11 +18,10 @@ import ActionsLogger, { useActionsLogger } from '../../components/components/Act
 import ComponentSettings from '../../components/components/ComponentSettings'
 // import Stories from '../../components/components/Stories'
 import generateCode from '../../lib/generateChartCode'
-import bar from '../../data/components/bar/meta.yml'
+import meta from '../../data/components/bar/meta.yml'
 import { generateHeavyDataSet } from '../../data/components/bar/generator'
 import mapper from '../../data/components/bar/mapper'
 import { groupsByScope } from '../../data/components/bar/props'
-// import nivoTheme from '../../../nivoTheme'
 
 const Tooltip = data => {
     /* return custom tooltip */
@@ -106,11 +106,10 @@ const initialSettings = {
     isInteractive: true,
     'custom tooltip example': false,
     tooltip: null,
-
-    //theme: nivoTheme,
 }
 
 const BarCanvas = () => {
+    const theme = useTheme()
     const [settings, setSettings] = useState(initialSettings)
     const [data, setData] = useState(generateHeavyDataSet())
     const diceRoll = useCallback(() => setData(generateHeavyDataSet()), [setData])
@@ -139,33 +138,33 @@ const BarCanvas = () => {
     )
 
     return (
-        <Layout>
-            <ComponentPage>
-                <ComponentHeader chartClass="BarCanvas" tags={bar.BarCanvas.tags} />
-                <ComponentDescription description={bar.BarCanvas.description} />
-                <ComponentTabs
-                    chartClass="bar"
-                    code={code}
+        <ComponentPage>
+            <SEO title="BarCanvas" keywords={meta.BarCanvas.tags} />
+            <ComponentHeader chartClass="BarCanvas" tags={meta.BarCanvas.tags} />
+            <ComponentDescription description={meta.BarCanvas.description} />
+            <ComponentTabs
+                chartClass="bar"
+                code={code}
+                data={data.data}
+                diceRoll={diceRoll}
+                nodeCount={data.data.length * data.keys.length}
+            >
+                <ResponsiveBarCanvas
                     data={data.data}
-                    diceRoll={diceRoll}
-                    nodeCount={data.data.length * data.keys.length}
-                >
-                    <ResponsiveBarCanvas
-                        data={data.data}
-                        keys={data.keys}
-                        {...mappedSettings}
-                        onClick={onClick}
-                    />
-                </ComponentTabs>
-                <ActionsLogger actions={actions} isFullWidth={true} />
-                <ComponentSettings
-                    component="BarCanvas"
-                    settings={settings}
-                    onChange={setSettings}
-                    groups={groupsByScope.BarCanvas}
+                    keys={data.keys}
+                    {...mappedSettings}
+                    theme={theme.nivo}
+                    onClick={onClick}
                 />
-            </ComponentPage>
-        </Layout>
+            </ComponentTabs>
+            <ActionsLogger actions={actions} isFullWidth={true} />
+            <ComponentSettings
+                component="BarCanvas"
+                settings={settings}
+                onChange={setSettings}
+                groups={groupsByScope.BarCanvas}
+            />
+        </ComponentPage>
     )
 }
 

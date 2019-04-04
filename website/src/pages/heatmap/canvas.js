@@ -9,7 +9,8 @@
 import React, { useState, useCallback } from 'react'
 import { ResponsiveHeatMapCanvas } from '@nivo/heatmap'
 import isFunction from 'lodash/isFunction'
-import Layout from '../../components/Layout'
+import { useTheme } from '../../theming/context'
+import SEO from '../../components/seo'
 import ComponentPage from '../../components/components/ComponentPage'
 import ComponentHeader from '../../components/components/ComponentHeader'
 import ComponentDescription from '../../components/components/ComponentDescription'
@@ -18,11 +19,10 @@ import ActionsLogger, { useActionsLogger } from '../../components/components/Act
 import ComponentSettings from '../../components/components/ComponentSettings'
 // import Stories from '../../components/components/Stories'
 import generateCode from '../../lib/generateChartCode'
-import heatmap from '../../data/components/heatmap/meta.yml'
+import meta from '../../data/components/heatmap/meta.yml'
 import mapper from '../../data/components/heatmap/mapper'
 import { groupsByScope } from '../../data/components/heatmap/props'
 import { generateHeavyDataSet } from '../../data/components/heatmap/generator'
-// import nivoTheme from '../../../nivoTheme'
 
 const initialSettings = {
     indexBy: 'country',
@@ -34,7 +34,8 @@ const initialSettings = {
         left: 60,
     },
 
-    pixelRatio: window && window.devicePixelRatio ? window.devicePixelRatio : 1,
+    pixelRatio:
+        typeof window !== 'undefined' && window.devicePixelRatio ? window.devicePixelRatio : 1,
 
     minValue: 'auto',
     maxValue: 'auto',
@@ -111,6 +112,7 @@ const initialSettings = {
 }
 
 const HeatMapCanvas = () => {
+    const theme = useTheme()
     const [settings, setSettings] = useState(initialSettings)
     const [data, setData] = useState(generateHeavyDataSet())
     const diceRoll = useCallback(() => setData(generateHeavyDataSet()), [setData])
@@ -141,34 +143,33 @@ const HeatMapCanvas = () => {
     )
 
     return (
-        <Layout>
-            <ComponentPage>
-                <ComponentHeader chartClass="HeatMapCanvas" tags={heatmap.HeatMapCanvas.tags} />
-                <ComponentDescription description={heatmap.HeatMapCanvas.description} />
-                <ComponentTabs
-                    chartClass="heatmap"
-                    code={code}
+        <ComponentPage>
+            <SEO title="HeatMapCanvas" keywords={meta.HeatMapCanvas.tags} />
+            <ComponentHeader chartClass="HeatMapCanvas" tags={meta.HeatMapCanvas.tags} />
+            <ComponentDescription description={meta.HeatMapCanvas.description} />
+            <ComponentTabs
+                chartClass="heatmap"
+                code={code}
+                data={data.data}
+                diceRoll={diceRoll}
+                nodeCount={data.data.length * data.keys.length}
+            >
+                <ResponsiveHeatMapCanvas
                     data={data.data}
-                    diceRoll={diceRoll}
-                    nodeCount={data.data.length * data.keys.length}
-                >
-                    <ResponsiveHeatMapCanvas
-                        data={data.data}
-                        keys={data.keys}
-                        {...mappedSettings}
-                        onClick={onClick}
-                        //theme={nivoTheme}
-                    />
-                </ComponentTabs>
-                <ActionsLogger actions={actions} isFullWidth={true} />
-                <ComponentSettings
-                    component="HeatMapCanvas"
-                    settings={settings}
-                    onChange={setSettings}
-                    groups={groupsByScope.HeatMapCanvas}
+                    keys={data.keys}
+                    {...mappedSettings}
+                    onClick={onClick}
+                    theme={theme.nivo}
                 />
-            </ComponentPage>
-        </Layout>
+            </ComponentTabs>
+            <ActionsLogger actions={actions} isFullWidth={true} />
+            <ComponentSettings
+                component="HeatMapCanvas"
+                settings={settings}
+                onChange={setSettings}
+                groups={groupsByScope.HeatMapCanvas}
+            />
+        </ComponentPage>
     )
 }
 

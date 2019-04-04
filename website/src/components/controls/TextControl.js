@@ -8,29 +8,25 @@
  */
 import React, { memo, useCallback } from 'react'
 import PropTypes from 'prop-types'
-import classNames from 'classnames'
 import Control from './Control'
-import Label from './Label'
+import PropertyHeader from './PropertyHeader'
 import TextInput from './TextInput'
 import PropertyHelp from './PropertyHelp'
 
-const TextControl = memo(({ id, label, value, onChange, help, description, disabled }) => {
+const TextControl = memo(({ id, property, value, onChange, options }) => {
     const handleUpdate = useCallback(event => onChange(event.target.value), [onChange])
 
     return (
-        <Control>
-            <Label htmlFor={id}>{label}</Label>
+        <Control description={property.description}>
+            <PropertyHeader id={id} {...property} />
             <TextInput
                 id={id}
                 type="text"
-                className={classNames('control-text', {
-                    '_is-disabled': disabled === true,
-                })}
                 value={value}
                 onChange={handleUpdate}
-                disabled={disabled === true}
+                disabled={options.disabled === true}
             />
-            <PropertyHelp help={help} description={description} />
+            <PropertyHelp>{property.help}</PropertyHelp>
         </Control>
     )
 })
@@ -38,11 +34,15 @@ const TextControl = memo(({ id, label, value, onChange, help, description, disab
 TextControl.displayName = 'TextControl'
 TextControl.propTypes = {
     id: PropTypes.string.isRequired,
-    label: PropTypes.string.isRequired,
+    property: PropTypes.object.isRequired,
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
     onChange: PropTypes.func.isRequired,
-    help: PropTypes.node.isRequired,
-    disabled: PropTypes.bool,
+    options: PropTypes.shape({
+        disabled: PropTypes.bool,
+    }).isRequired,
+}
+TextControl.defaultProps = {
+    options: {},
 }
 
 export default TextControl

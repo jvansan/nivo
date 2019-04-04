@@ -33,7 +33,7 @@ const props = [
             If \`title\` is \`undefined\`, \`id\` will be used for
             \`title\`.
         `,
-        type: '{Array.<object>}',
+        type: 'object[]',
         required: true,
     },
     {
@@ -43,7 +43,7 @@ const props = [
         group: 'Base',
         help: 'Chart width.',
         description: 'not required if using `ResponsiveBullet`.',
-        type: '{number}',
+        type: 'number',
         required: true,
         controlType: 'range',
         controlOptions: {
@@ -60,7 +60,7 @@ const props = [
         group: 'Base',
         help: 'Chart height.',
         description: 'not required if using `ResponsiveBullet`.',
-        type: '{number}',
+        type: 'number',
         required: true,
         controlType: 'range',
         controlOptions: {
@@ -75,9 +75,9 @@ const props = [
         scopes: '*',
         group: 'Base',
         help: `How to display items.`,
-        type: '{string}',
+        type: 'string',
         required: false,
-        default: defaults.layout,
+        defaultValue: defaults.layout,
         controlType: 'radio',
         controlOptions: {
             choices: [
@@ -96,16 +96,16 @@ const props = [
             for vertical layout and right instead of left
             for horizontal one.
         `,
-        type: '{boolean}',
+        type: 'boolean',
         required: false,
-        default: defaults.reverse,
+        defaultValue: defaults.reverse,
         controlType: 'switch',
     },
     {
         key: 'margin',
         scopes: '*',
         help: 'Chart margin.',
-        type: '{object}',
+        type: 'object',
         required: false,
         controlType: 'margin',
         group: 'Base',
@@ -114,9 +114,9 @@ const props = [
         key: 'spacing',
         scopes: '*',
         help: 'define spacing between items.',
-        type: '{number}',
+        type: 'number',
         required: false,
-        default: defaults.spacing,
+        defaultValue: defaults.spacing,
         controlType: 'range',
         group: 'Base',
         controlOptions: {
@@ -129,9 +129,9 @@ const props = [
         key: 'measureSize',
         scopes: '*',
         help: 'define size of measure related to item size, expressed as a ratio.',
-        type: '{number}',
+        type: 'number',
         required: false,
-        default: defaults.measureSize,
+        defaultValue: defaults.measureSize,
         controlType: 'range',
         group: 'Base',
         controlOptions: {
@@ -144,9 +144,9 @@ const props = [
         key: 'markerSize',
         scopes: '*',
         help: 'define size of markers related to item size, expressed as a ratio.',
-        type: '{number}',
+        type: 'number',
         required: false,
-        default: defaults.markerSize,
+        defaultValue: defaults.markerSize,
         controlType: 'range',
         group: 'Base',
         controlOptions: {
@@ -158,8 +158,9 @@ const props = [
     {
         key: 'rangeComponent',
         scopes: ['Bullet'],
+        group: 'Style',
         help: 'Custom component for ranges.',
-        type: '{Function}',
+        type: 'Function',
         required: false,
     },
     {
@@ -171,9 +172,9 @@ const props = [
             you can either use categorical colors:
             \`greens\` or sequential form: \`seq:green\`.
         `,
-        type: '{string|Function|Array}',
+        type: 'string | Function | string[]',
         required: false,
-        default: defaults.rangeColors,
+        defaultValue: defaults.rangeColors,
         controlType: 'colors',
         group: 'Style',
         controlOptions: {
@@ -183,8 +184,9 @@ const props = [
     {
         key: 'measureComponent',
         scopes: ['Bullet'],
+        group: 'Style',
         help: 'Custom component for measures.',
-        type: '{Function}',
+        type: 'Function',
         required: false,
     },
     {
@@ -196,9 +198,9 @@ const props = [
             you can either use categorical colors:
             \`greens\` or sequential form: \`seq:green\`.
         `,
-        type: '{string|Function|Array}',
+        type: 'string | Function | string[]',
         required: false,
-        default: defaults.measureColors,
+        defaultValue: defaults.measureColors,
         controlType: 'colors',
         group: 'Style',
         controlOptions: {
@@ -208,8 +210,9 @@ const props = [
     {
         key: 'markerComponent',
         scopes: ['Bullet'],
+        group: 'Style',
         help: 'Custom component for markers.',
-        type: '{Function}',
+        type: 'Function',
         required: false,
     },
     {
@@ -221,9 +224,9 @@ const props = [
             you can either use categorical colors:
             \`greens\` or sequential form: \`seq:green\`.
         `,
-        type: '{string|Function|Array}',
+        type: 'string | Function| string[]',
         required: false,
-        default: defaults.markerColors,
+        defaultValue: defaults.markerColors,
         controlType: 'colors',
         group: 'Style',
         controlOptions: {
@@ -234,9 +237,9 @@ const props = [
         key: 'axisPosition',
         scopes: '*',
         help: `Where to put axis.`,
-        type: `{'before'|'after'}`,
+        type: 'string',
         required: false,
-        default: defaults.axisPosition,
+        defaultValue: defaults.axisPosition,
         controlType: 'radio',
         group: 'Axes',
         controlOptions: {
@@ -247,9 +250,9 @@ const props = [
         key: 'titlePosition',
         scopes: '*',
         help: `Where to put title.`,
-        type: `{'before'|'after'}`,
+        type: 'string',
         required: false,
-        default: defaults.titlePosition,
+        defaultValue: defaults.titlePosition,
         controlType: 'radio',
         group: 'Title',
         controlOptions: {
@@ -260,9 +263,9 @@ const props = [
         key: 'titleAlign',
         scopes: '*',
         help: `title alignment.`,
-        type: `{'start'|'middle'|'end'}`,
+        type: 'string',
         required: false,
-        default: defaults.titleAlign,
+        defaultValue: defaults.titleAlign,
         controlType: 'choices',
         group: 'Title',
         controlOptions: {
@@ -277,9 +280,9 @@ const props = [
         key: 'titleOffsetX',
         scopes: '*',
         help: 'title x offset from bullet edge.',
-        type: '{number}',
+        type: 'number',
         required: false,
-        default: defaults.titleOffset,
+        defaultValue: defaults.titleOffset,
         controlType: 'range',
         group: 'Title',
         controlOptions: {
@@ -292,9 +295,9 @@ const props = [
         key: 'titleOffsetY',
         scopes: '*',
         help: 'title y offset from bullet edge.',
-        type: '{number}',
+        type: 'number',
         required: false,
-        default: defaults.titleOffset,
+        defaultValue: defaults.titleOffset,
         controlType: 'range',
         group: 'Title',
         controlOptions: {
@@ -307,9 +310,9 @@ const props = [
         key: 'titleRotation',
         scopes: '*',
         help: 'title rotation.',
-        type: '{number}',
+        type: 'number',
         required: false,
-        default: defaults.titleRotation,
+        defaultValue: defaults.titleRotation,
         controlType: 'angle',
         group: 'Title',
         controlOptions: {
@@ -322,7 +325,7 @@ const props = [
     {
         key: 'onRangeClick',
         scopes: ['Bullet'],
-        type: '{Function}',
+        type: '(range, event) => void',
         group: 'Interactivity',
         required: false,
         help: 'onClick handler for ranges.',
@@ -333,11 +336,11 @@ const props = [
             The data has the following shape:
             \`\`\`
             {
-                id:    {string},
-                v0:    {number},
-                v1:    {number},
-                index: {number},
-                color: {string},
+                id:    string,
+                v0:    number,
+                v1:    number,
+                index: number,
+                color: string,
             }
             \`\`\`
             
@@ -348,7 +351,7 @@ const props = [
     {
         key: 'onMeasureClick',
         scopes: ['Bullet'],
-        type: '{Function}',
+        type: '(measure, event) => void',
         group: 'Interactivity',
         required: false,
         help: 'onClick handler for measures.',
@@ -359,16 +362,38 @@ const props = [
             The data has the following shape:
             \`\`\`
             {
-                id:    {string},
-                v0:    {number},
-                v1:    {number},
-                index: {number},
-                color: {string},
+                id:    string,
+                v0:    number,
+                v1:    number,
+                index: number,
+                color: string,
             }
             \`\`\`
 
             \`v1\` is the value of the measure while
             \`v0\` is the value of previous measure.
+        `,
+    },
+    {
+        key: 'onMarkerClick',
+        scopes: ['Bullet'],
+        type: '(marker, event) => void',
+        group: 'Interactivity',
+        required: false,
+        help: 'onClick handler for markers.',
+        description: `
+            onClick handler for markers, will receive marker
+            data as first argument & event as second one.
+
+            The data has the following shape:
+            \`\`\`
+            {
+                id:    string,
+                value: number,
+                index: number,
+                color: string,
+            }
+            \`\`\`
         `,
     },
     ...motionProperties(['Bullet'], defaults),

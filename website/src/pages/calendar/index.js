@@ -9,7 +9,8 @@
 import React, { useState, useCallback } from 'react'
 import { ResponsiveCalendar, CalendarDefaultProps } from '@nivo/calendar'
 import { generateDayCounts } from '@nivo/generators'
-import Layout from '../../components/Layout'
+import { useTheme } from '../../theming/context'
+import SEO from '../../components/seo'
 import ComponentPage from '../../components/components/ComponentPage'
 import ComponentHeader from '../../components/components/ComponentHeader'
 import ComponentDescription from '../../components/components/ComponentDescription'
@@ -17,10 +18,9 @@ import ComponentTabs from '../../components/components/ComponentTabs'
 import ActionsLogger, { useActionsLogger } from '../../components/components/ActionsLogger'
 import ComponentSettings from '../../components/components/ComponentSettings'
 import generateCode from '../../lib/generateChartCode'
-import calendar from '../../data/components/calendar/meta.yml'
+import meta from '../../data/components/calendar/meta.yml'
 import mapper from '../../data/components/calendar/mapper'
 import { groupsByScope } from '../../data/components/calendar/props'
-// import nivoTheme from '../../../nivoTheme'
 
 const Tooltip = data => {
     /* return custom tooltip */
@@ -77,11 +77,10 @@ const initialSettings = {
             itemDirection: 'right-to-left',
         },
     ],
-
-    // theme: nivoTheme,
 }
 
 const Calendar = () => {
+    const theme = useTheme()
     const [settings, setSettings] = useState(initialSettings)
     const [data, setData] = useState(generateData())
     const diceRoll = useCallback(() => setData(generateData()), [setData])
@@ -112,28 +111,28 @@ const Calendar = () => {
     )
 
     return (
-        <Layout>
-            <ComponentPage>
-                <ComponentHeader chartClass="Calendar" tags={calendar.Calendar.tags} />
-                <ComponentDescription description={calendar.Calendar.description} />
-                <ComponentTabs chartClass="calendar" code={code} data={data} diceRoll={diceRoll}>
-                    <ResponsiveCalendar
-                        from={settings.from}
-                        to={settings.to}
-                        data={data}
-                        onClick={onDayClick}
-                        {...mappedSettings}
-                    />
-                </ComponentTabs>
-                <ActionsLogger actions={actions} isFullWidth={true} />
-                <ComponentSettings
-                    component="Calendar"
-                    settings={settings}
-                    onChange={setSettings}
-                    groups={groupsByScope.Calendar}
+        <ComponentPage>
+            <SEO title="Calendar" keywords={meta.Calendar.tags} />
+            <ComponentHeader chartClass="Calendar" tags={meta.Calendar.tags} />
+            <ComponentDescription description={meta.Calendar.description} />
+            <ComponentTabs chartClass="calendar" code={code} data={data} diceRoll={diceRoll}>
+                <ResponsiveCalendar
+                    from={settings.from}
+                    to={settings.to}
+                    data={data}
+                    onClick={onDayClick}
+                    {...mappedSettings}
+                    theme={theme.nivo}
                 />
-            </ComponentPage>
-        </Layout>
+            </ComponentTabs>
+            <ActionsLogger actions={actions} isFullWidth={true} />
+            <ComponentSettings
+                component="Calendar"
+                settings={settings}
+                onChange={setSettings}
+                groups={groupsByScope.Calendar}
+            />
+        </ComponentPage>
     )
 }
 

@@ -7,9 +7,8 @@
  * file that was distributed with this source code.
  */
 import React, { Component } from 'react'
-import Helmet from 'react-helmet'
 import { Link } from 'gatsby'
-import Layout from '../../components/Layout'
+import SEO from '../../components/seo'
 import PageContent from '../../components/PageContent'
 import GradientsIllustrations from '../../components/guides/gradients/GradientsIllustrations'
 import GradientsExample from '../../components/guides/gradients/GradientsExample'
@@ -17,8 +16,8 @@ import GradientsExample from '../../components/guides/gradients/GradientsExample
 export default class Gradients extends Component {
     render() {
         return (
-            <Layout>
-                <Helmet title="Gradients" />
+            <>
+                <SEO title="Gradients Guide" />
                 <PageContent>
                     <div className="guide__header">
                         <h1 className="page_header">Gradients</h1>
@@ -61,7 +60,7 @@ export default class Gradients extends Component {
                         tooltips involving colored chips will use plain element color.
                     </p>
                 </div>
-            </Layout>
+            </>
         )
     }
 }

@@ -7,18 +7,19 @@
  * file that was distributed with this source code.
  */
 import React from 'react'
-import { generateChordData } from '@nivo/generators'
-import Layout from '../../components/Layout'
+import SEO from '../../components/seo'
 import ApiClient from '../../components/components/api-client/ApiClient'
 import { groupsByScope } from '../../data/components/heatmap/props'
 import mapper from '../../data/components/heatmap/mapper'
 import { generateLightDataSet } from '../../data/components/heatmap/generator'
+import meta from '../../data/components/heatmap/meta.yml'
 
 const data = generateLightDataSet()
 
 const HeatMapApi = () => {
     return (
-        <Layout>
+        <>
+            <SEO title="HeatMap HTTP API" keywords={[...meta.HeatMap.tags, 'HTTP API']} />
             <ApiClient
                 componentName="HeatMap"
                 chartClass="heatmap"
@@ -105,7 +106,7 @@ const HeatMapApi = () => {
                     },
                 }}
             />
-        </Layout>
+        </>
     )
 }
 

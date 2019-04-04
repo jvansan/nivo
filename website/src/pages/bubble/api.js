@@ -8,16 +8,18 @@
  */
 import React from 'react'
 import { generateLibTree } from '@nivo/generators'
-import Layout from '../../components/Layout'
+import SEO from '../../components/seo'
 import ApiClient from '../../components/components/api-client/ApiClient'
 import { groupsByScope } from '../../data/components/bubble/props'
 import mapper from '../../data/components/bubble/mapper'
+import meta from '../../data/components/bubble/meta.yml'
 
 const root = generateLibTree()
 
 const BubbleApi = () => {
     return (
-        <Layout>
+        <>
+            <SEO title="Bubble HTTP API" keywords={[...meta.Bubble.tags, 'HTTP API']} />
             <ApiClient
                 componentName="Bubble"
                 chartClass="circle-packing"
@@ -56,7 +58,7 @@ const BubbleApi = () => {
                     },
                 }}
             />
-        </Layout>
+        </>
     )
 }
 

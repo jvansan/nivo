@@ -7,16 +7,15 @@
  * file that was distributed with this source code.
  */
 import React from 'react'
-import Helmet from 'react-helmet'
-import Layout from '../../components/Layout'
+import SEO from '../../components/seo'
 import PageContent from '../../components/PageContent'
 import ColorsIllustrations from '../../components/guides/colors/ColorsIllustrations'
 import ColorsRanges from '../../components/guides/colors/ColorsRanges'
 import ColorsColor from '../../components/guides/colors/ColorsColor'
 
 const Colors = () => (
-    <Layout>
-        <Helmet title="Colors" />
+    <>
+        <SEO title="Colors Guide" />
         <PageContent>
             <div className="guide__header">
                 <h1 className="page_header">Colors</h1>
@@ -55,7 +54,7 @@ const Colors = () => (
             </p>
         </div>
         <ColorsColor />
-    </Layout>
+    </>
 )
 
 export default Colors

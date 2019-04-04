@@ -9,15 +9,18 @@
 import React from 'react'
 import { generateWinesTastes } from '@nivo/generators'
 import Layout from '../../components/Layout'
+import SEO from '../../components/seo'
 import ApiClient from '../../components/components/api-client/ApiClient'
 import { groupsByScope } from '../../data/components/radar/props'
 import mapper from '../../data/components/radar/mapper'
+import meta from '../../data/components/radar/meta.yml'
 
 const { data, keys } = generateWinesTastes()
 
 const RadarApi = () => {
     return (
-        <Layout>
+        <>
+            <SEO title="Radar HTTP API" keywords={[...meta.Radar.tags, 'HTTP API']} />
             <ApiClient
                 componentName="Radar"
                 chartClass="radar"
@@ -62,7 +65,7 @@ const RadarApi = () => {
                     fillOpacity: 0.1,
                 }}
             />
-        </Layout>
+        </>
     )
 }
 

@@ -17,6 +17,7 @@ const Unit = styled.span`
     display: flex;
     align-items: center;
     padding: 0 7px;
+    pointer-events: none;
     color: ${({ theme }) => theme.colors.textLight};
 `
 
@@ -39,6 +40,11 @@ const InputElement = styled.input`
         border-color: ${({ theme }) => theme.colors.accent};
         color: ${({ theme }) => theme.colors.text};
         box-shadow: 0 0 0 1px ${({ theme }) => theme.colors.accent};
+    }
+
+    &:disabled {
+        cursor: not-allowed;
+        color: ${({ theme }) => theme.colors.textLight};
     }
 `
 

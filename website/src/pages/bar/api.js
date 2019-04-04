@@ -7,9 +7,10 @@
  * file that was distributed with this source code.
  */
 import React from 'react'
-import Layout from '../../components/Layout'
+import SEO from '../../components/seo'
 import ApiClient from '../../components/components/api-client/ApiClient'
 import { groupsByScope } from '../../data/components/bar/props'
+import meta from '../../data/components/bar/meta.yml'
 import mapper from '../../data/components/bar/mapper'
 import { generateLightDataSet } from '../../data/components/bar/generator'
 
@@ -17,7 +18,8 @@ const { data, keys } = generateLightDataSet()
 
 const BarApi = () => {
     return (
-        <Layout>
+        <>
+            <SEO title="Bar HTTP API" keywords={[...meta.Bar.tags, 'HTTP API']} />
             <ApiClient
                 componentName="Bar"
                 chartClass="bar"
@@ -103,7 +105,7 @@ const BarApi = () => {
                     },
                 }}
             />
-        </Layout>
+        </>
     )
 }
 

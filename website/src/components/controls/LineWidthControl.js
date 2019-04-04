@@ -9,7 +9,7 @@
 import React, { useCallback } from 'react'
 import styled from 'styled-components'
 import Control from './Control'
-import Label from './Label'
+import PropertyHeader from './PropertyHeader'
 import TextInput from './TextInput'
 import PropertyHelp from './PropertyHelp'
 
@@ -21,6 +21,7 @@ const Row = styled.div`
     grid-column-gap: 9px;
     align-items: center;
     max-width: 240px;
+    margin-bottom: 5px;
 `
 
 const Line = styled.line`
@@ -34,7 +35,7 @@ const Marker = styled.line`
     fill: none;
 `
 
-const LineWidthControl = ({ id, label, value, help, description, onChange }) => {
+const LineWidthControl = ({ id, property, value, onChange }) => {
     const handleChange = useCallback(
         event => {
             onChange(Number(event.target.value))
@@ -43,8 +44,8 @@ const LineWidthControl = ({ id, label, value, help, description, onChange }) => 
     )
 
     return (
-        <Control>
-            <Label htmlFor={id}>{label}</Label>
+        <Control description={property.description}>
+            <PropertyHeader id={id} {...property} />
             <Row>
                 <TextInput value={value} onChange={handleChange} unit="px" isNumber={true} />
                 <svg width={size} height={size}>
@@ -59,7 +60,7 @@ const LineWidthControl = ({ id, label, value, help, description, onChange }) => 
                 </svg>
                 <input type="range" value={value} onChange={handleChange} min={0} max={20} />
             </Row>
-            <PropertyHelp help={help} description={description} />
+            <PropertyHelp>{property.help}</PropertyHelp>
         </Control>
     )
 }

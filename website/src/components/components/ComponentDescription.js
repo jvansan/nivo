@@ -10,22 +10,23 @@ import React, { memo } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Markdown from '../Markdown'
+import media from '../../theming/mediaQueries'
 
 const Description = styled.div`
     padding: 0 30px;
     margin-bottom: 40px;
 
-    @media only screen and (min-width: 760px) and (max-width: 1000px) {
+    ${media.tablet`
         & {
             padding: 0 20px;
         }
-    }
+    `}
 
-    @media only screen and (max-width: 760px) {
+    ${media.mobile`
         & {
             padding: 0 20px;
         }
-    }
+    `}
 
     code {
         display: inline-block;

@@ -8,7 +8,8 @@
  */
 import React, { useState, useCallback } from 'react'
 import { ResponsiveChoropleth, ChoroplethDefaultProps } from '@nivo/geo'
-import Layout from '../../components/Layout'
+import { useTheme } from '../../theming/context'
+import SEO from '../../components/seo'
 import ComponentPage from '../../components/components/ComponentPage'
 import ComponentHeader from '../../components/components/ComponentHeader'
 import ComponentDescription from '../../components/components/ComponentDescription'
@@ -17,12 +18,11 @@ import ActionsLogger, { useActionsLogger } from '../../components/components/Act
 import ComponentSettings from '../../components/components/ComponentSettings'
 // import Stories from '../../components/components/Stories'
 import generateCode from '../../lib/generateChartCode'
-import geo from '../../data/components/geo/meta.yml'
+import meta from '../../data/components/geo/meta.yml'
 import mapper from '../../data/components/geo/mapper'
 import { groupsByScope } from '../../data/components/geo/props'
 import { generateChoroplethData } from '../../data/components/geo/generator'
 import countries from '../../data/components/geo/world_countries'
-// import nivoTheme from '../../../nivoTheme'
 
 const Tooltip = data => {
     /* return custom tooltip */
@@ -90,15 +90,10 @@ const initialSettings = {
             ],
         },
     ],
-
-    /*
-    theme: {
-        ...nivoTheme,
-    },
-    */
 }
 
 const Choropleth = () => {
+    const theme = useTheme()
     const [settings, setSettings] = useState(initialSettings)
     const [data, setData] = useState(generateChoroplethData())
     const [actions, logAction] = useActionsLogger()
@@ -135,27 +130,27 @@ const Choropleth = () => {
     )
 
     return (
-        <Layout>
-            <ComponentPage>
-                <ComponentHeader chartClass="Choropleth" tags={geo.Choropleth.tags} />
-                <ComponentDescription description={geo.Choropleth.description} />
-                <ComponentTabs chartClass="choropleth" code={code} data={data} diceRoll={diceRoll}>
-                    <ResponsiveChoropleth
-                        features={countries.features}
-                        data={data}
-                        onClick={onClick}
-                        {...mappedSettings}
-                    />
-                </ComponentTabs>
-                <ActionsLogger actions={actions} isFullWidth={true} />
-                <ComponentSettings
-                    component="Choropleth"
-                    settings={settings}
-                    onChange={setSettings}
-                    groups={groupsByScope.Choropleth}
+        <ComponentPage>
+            <SEO title="Choropleth" keywords={meta.Choropleth.tags} />
+            <ComponentHeader chartClass="Choropleth" tags={meta.Choropleth.tags} />
+            <ComponentDescription description={meta.Choropleth.description} />
+            <ComponentTabs chartClass="choropleth" code={code} data={data} diceRoll={diceRoll}>
+                <ResponsiveChoropleth
+                    features={countries.features}
+                    data={data}
+                    onClick={onClick}
+                    {...mappedSettings}
+                    theme={theme.nivo}
                 />
-            </ComponentPage>
-        </Layout>
+            </ComponentTabs>
+            <ActionsLogger actions={actions} isFullWidth={true} />
+            <ComponentSettings
+                component="Choropleth"
+                settings={settings}
+                onChange={setSettings}
+                groups={groupsByScope.Choropleth}
+            />
+        </ComponentPage>
     )
 }
 

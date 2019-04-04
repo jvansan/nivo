@@ -8,7 +8,8 @@
  */
 import React, { useState, useCallback } from 'react'
 import { ResponsiveWaffle, WaffleDefaultProps } from '@nivo/waffle'
-import Layout from '../../components/Layout'
+import { useTheme } from '../../theming/context'
+import SEO from '../../components/seo'
 import ComponentPage from '../../components/components/ComponentPage'
 import ComponentHeader from '../../components/components/ComponentHeader'
 import ComponentDescription from '../../components/components/ComponentDescription'
@@ -17,10 +18,9 @@ import ActionsLogger, { useActionsLogger } from '../../components/components/Act
 import ComponentSettings from '../../components/components/ComponentSettings'
 // import Stories from '../../components/components/Stories'
 import generateCode from '../../lib/generateChartCode'
-import waffle from '../../data/components/waffle/meta.yml'
+import meta from '../../data/components/waffle/meta.yml'
 import { groupsByScope } from '../../data/components/waffle/props'
 import mapper from '../../data/components/waffle/mapper'
-//import nivoTheme from '../../../nivoTheme'
 
 const generateData = () => [
     {
@@ -105,11 +105,10 @@ const initialSettings = {
             ],
         },
     ],
-
-    // theme: nivoTheme,
 }
 
 const Waffle = () => {
+    const theme = useTheme()
     const [settings, setSettings] = useState(initialSettings)
     const [data, setData] = useState(generateData())
     const diceRoll = useCallback(() => setData(generateData()), [setData])
@@ -147,28 +146,32 @@ const Waffle = () => {
     )
 
     return (
-        <Layout>
-            <ComponentPage>
-                <ComponentHeader chartClass="Waffle" tags={waffle.Waffle.tags} />
-                <ComponentDescription description={waffle.Waffle.description} />
-                <ComponentTabs
-                    chartClass="waffle"
-                    code={code}
+        <ComponentPage>
+            <SEO title="Waffle" keywords={meta.Waffle.tags} />
+            <ComponentHeader chartClass="Waffle" tags={meta.Waffle.tags} />
+            <ComponentDescription description={meta.Waffle.description} />
+            <ComponentTabs
+                chartClass="waffle"
+                code={code}
+                data={data}
+                diceRoll={diceRoll}
+                nodeCount={settings.rows * settings.columns}
+            >
+                <ResponsiveWaffle
                     data={data}
-                    diceRoll={diceRoll}
-                    nodeCount={settings.rows * settings.columns}
-                >
-                    <ResponsiveWaffle data={data} {...mappedSettings} onClick={onClick} />
-                </ComponentTabs>
-                <ActionsLogger actions={actions} isFullWidth={true} />
-                <ComponentSettings
-                    component="Waffle"
-                    settings={settings}
-                    onChange={setSettings}
-                    groups={groupsByScope.Waffle}
+                    {...mappedSettings}
+                    onClick={onClick}
+                    theme={theme.nivo}
                 />
-            </ComponentPage>
-        </Layout>
+            </ComponentTabs>
+            <ActionsLogger actions={actions} isFullWidth={true} />
+            <ComponentSettings
+                component="Waffle"
+                settings={settings}
+                onChange={setSettings}
+                groups={groupsByScope.Waffle}
+            />
+        </ComponentPage>
     )
 }
 

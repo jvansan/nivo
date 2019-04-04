@@ -8,16 +8,18 @@
  */
 import React from 'react'
 import { generateSankeyData } from '@nivo/generators'
-import Layout from '../../components/Layout'
+import SEO from '../../components/seo'
 import ApiClient from '../../components/components/api-client/ApiClient'
 import { groupsByScope } from '../../data/components/sankey/props'
 import mapper from '../../data/components/sankey/mapper'
+import meta from '../../data/components/sankey/meta.yml'
 
 const data = generateSankeyData({ nodeCount: 6, maxIterations: 8 })
 
 const SankeyApi = () => {
     return (
-        <Layout>
+        <>
+            <SEO title="Sankey HTTP API" keywords={[...meta.Sankey.tags, 'HTTP API']} />
             <ApiClient
                 componentName="Sankey"
                 chartClass="sankey"
@@ -65,7 +67,7 @@ const SankeyApi = () => {
                     },
                 }}
             />
-        </Layout>
+        </>
     )
 }
 

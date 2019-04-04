@@ -11,6 +11,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import PointerIcon from 'react-icons/lib/fa/hand-pointer-o'
 import ActionsLoggerLog from './ActionsLoggerLog'
+import media from '../../theming/mediaQueries'
 
 export const useActionsLogger = () => {
     const [actions, setActions] = useState([])
@@ -51,7 +52,7 @@ const Wrapper = styled.div`
     overflow-x: hidden;
     overflow-y: auto;
 
-    @media only screen and (min-width: 760px) and (max-width: 1000px) {
+    ${media.tablet`
         & {
             right: 0;
             bottom: 0;
@@ -68,9 +69,9 @@ const Wrapper = styled.div`
                 `
             }}
         }
-    }
+    `}
 
-    @media only screen and (max-width: 760px) {
+    ${media.mobile`
         & {
             position: relative;
             right: auto;
@@ -80,7 +81,7 @@ const Wrapper = styled.div`
             border-left-width: 0;
             z-index: 0;
         }
-    }
+    `}
 `
 
 const Header = styled.div`

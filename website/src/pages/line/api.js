@@ -8,18 +8,20 @@
  */
 import React from 'react'
 import omit from 'lodash/omit'
-import Layout from '../../components/Layout'
+import SEO from '../../components/seo'
 import ApiClient from '../../components/components/api-client/ApiClient'
 import { groupsByScope } from '../../data/components/line/props'
 import mapper from '../../data/components/line/mapper'
 import defaultSettings from '../../data/components/line/defaults'
 import { generateData } from '../../data/components/line/generator'
+import meta from '../../data/components/line/meta.yml'
 
 const data = generateData()
 
 const LineApi = () => {
     return (
-        <Layout>
+        <>
+            <SEO title="Line HTTP API" keywords={[...meta.Line.tags, 'HTTP API']} />
             <ApiClient
                 componentName="Line"
                 apiPath="/charts/line"
@@ -38,7 +40,7 @@ const LineApi = () => {
                     data: JSON.stringify(data, null, '  '),
                 }}
             />
-        </Layout>
+        </>
     )
 }
 

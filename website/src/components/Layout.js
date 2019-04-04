@@ -7,12 +7,14 @@
  * file that was distributed with this source code.
  */
 import '../styles/index.css'
-import React from 'react'
+import React, { createContext } from 'react'
 import PropTypes from 'prop-types'
 import styled, { ThemeProvider } from 'styled-components'
 import Header from './Header'
 import GlobalStyle from '../theming/GlobalStyle'
 import theme from '../theming/theme'
+import { themeContext } from '../theming/context'
+import media from '../theming/mediaQueries'
 import MiniNav from './nav/MiniNav'
 
 const Content = styled.div`
@@ -24,17 +26,17 @@ const Content = styled.div`
         background: transparent;
     }
 
-    @media only screen and (min-width: 760px) and (max-width: 1000px) {
+    ${media.tablet`
         & {
             margin-left: 0;
         }
-    }
+    `}
 
-    @media only screen and (max-width: 760px) {
+    ${media.mobile`
         & {
             margin-left: 0;
         }
-    }
+    `}
 `
 
 const InnerContent = styled.div`
@@ -45,18 +47,24 @@ const InnerContent = styled.div`
     background-position: top left;
 `
 
-const Layout = ({ children }) => (
-    <ThemeProvider theme={theme.light}>
-        <>
-            <GlobalStyle />
-            <Header />
-            <MiniNav />
-            <Content>
-                <InnerContent>{children}</InnerContent>
-            </Content>
-        </>
-    </ThemeProvider>
-)
+const currentTheme = theme.light
+
+const Layout = ({ children }) => {
+    return (
+        <themeContext.Provider value={currentTheme}>
+            <ThemeProvider theme={currentTheme}>
+                <>
+                    <GlobalStyle />
+                    <Header />
+                    <MiniNav />
+                    <Content>
+                        <InnerContent>{children}</InnerContent>
+                    </Content>
+                </>
+            </ThemeProvider>
+        </themeContext.Provider>
+    )
+}
 
 Layout.propTypes = {
     children: PropTypes.node.isRequired,

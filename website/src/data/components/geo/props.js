@@ -23,7 +23,7 @@ const props = [
             not required if using responsive alternative
             of the component \`<Responsive*/>\`.
         `,
-        type: '{number}',
+        type: 'number',
         required: true,
     },
     {
@@ -35,7 +35,7 @@ const props = [
             not required if using responsive alternative
             of the component \`<Responsive*/>\`.
         `,
-        type: '{number}',
+        type: 'number',
         required: true,
     },
     {
@@ -43,8 +43,8 @@ const props = [
         scopes: ['GeoMapCanvas'],
         help: `Adjust pixel ratio, useful for HiDPI screens.`,
         required: false,
-        default: 'Depends on device',
-        type: `{number}`,
+        defaultValue: 'Depends on device',
+        type: `number`,
         controlType: 'range',
         group: 'Base',
         controlOptions: {
@@ -56,7 +56,7 @@ const props = [
         key: 'label',
         scopes: ['Choropleth', 'ChoroplethCanvas'],
         group: 'Base',
-        type: '{string|Function}',
+        type: 'string | Function',
         required: false,
         help: 'Label accessor.',
         description: `
@@ -65,13 +65,13 @@ const props = [
             a key, if it's a function, it's its responsibility
             to return the label.
         `,
-        default: ChoroplethDefaultProps.label,
+        defaultValue: ChoroplethDefaultProps.label,
     },
     {
         key: 'value',
         scopes: ['Choropleth', 'ChoroplethCanvas'],
         group: 'Base',
-        type: '{string|Function}',
+        type: 'string | Function',
         required: false,
         help: 'Value accessor.',
         description: `
@@ -80,13 +80,13 @@ const props = [
             it as a key, if it's a function, it's its responsibility
             to return the value.
         `,
-        default: ChoroplethDefaultProps.value,
+        defaultValue: ChoroplethDefaultProps.value,
     },
     {
         key: 'valueFormat',
         scopes: ['Choropleth', 'ChoroplethCanvas'],
         group: 'Base',
-        type: '{string|Function}',
+        type: 'string | Function',
         required: false,
         help: 'Value formatter.',
         description: `
@@ -97,7 +97,7 @@ const props = [
             which will be used as a directive for
             [d3-format](https://github.com/d3/d3-format).
         `,
-        default: ChoroplethDefaultProps.value,
+        defaultValue: ChoroplethDefaultProps.value,
     },
     {
         key: 'layers',
@@ -119,13 +119,13 @@ const props = [
             one. Custom layers will also receive the
             computed data/projection.
         `,
-        default: GeoMapDefaultProps.layers,
+        defaultValue: GeoMapDefaultProps.layers,
     },
     {
         key: 'margin',
         scopes: '*',
         help: 'Chart margin.',
-        type: '{object}',
+        type: 'object',
         required: false,
         controlType: 'margin',
         group: 'Base',
@@ -135,7 +135,7 @@ const props = [
         scopes: '*',
         help: 'Defines the projection to use.',
         required: false,
-        default: GeoMapDefaultProps.projectionType,
+        defaultValue: GeoMapDefaultProps.projectionType,
         controlType: 'choices',
         group: 'Projection',
         controlOptions: {
@@ -158,7 +158,8 @@ const props = [
         scopes: '*',
         help: 'Projection scale.',
         required: false,
-        default: GeoMapDefaultProps.projectionScale,
+        defaultValue: GeoMapDefaultProps.projectionScale,
+        type: 'number',
         controlType: 'range',
         group: 'Projection',
         controlOptions: {
@@ -168,11 +169,11 @@ const props = [
     },
     {
         key: 'projectionTranslation',
-        type: '{[x: number, y: number]}',
+        type: '[number, number]',
         scopes: '*',
         help: 'Projection x/y translation.',
         required: false,
-        default: GeoMapDefaultProps.projectionTranslation,
+        defaultValue: GeoMapDefaultProps.projectionTranslation,
         controlType: 'numberArray',
         group: 'Projection',
         controlOptions: {
@@ -195,11 +196,11 @@ const props = [
     },
     {
         key: 'projectionRotation',
-        type: '{[lambda: number, phi: number, gamma: number]}',
+        type: '[number, number, number]',
         scopes: '*',
         help: 'Projection rotation.',
         required: false,
-        default: GeoMapDefaultProps.projectionRotation,
+        defaultValue: GeoMapDefaultProps.projectionRotation,
         controlType: 'numberArray',
         group: 'Projection',
         controlOptions: {
@@ -226,9 +227,9 @@ const props = [
         key: 'colors',
         scopes: ['Choropleth', 'ChoroplethCanvas'],
         help: 'Defines color range.',
-        type: '{string|Function|Array}',
+        type: 'string | Function | string[]',
         required: false,
-        default: 'nivo',
+        defaultValue: 'nivo',
         controlType: 'quantizeColors',
         group: 'Style',
     },
@@ -236,9 +237,9 @@ const props = [
         key: 'unknownColor',
         scopes: ['Choropleth', 'ChoroplethCanvas'],
         help: 'Defines the color to use for features without value.',
-        type: '{string}',
+        type: 'string',
         required: false,
-        default: 'nivo',
+        defaultValue: 'nivo',
         controlType: 'colorPicker',
         group: 'Style',
     },
@@ -246,9 +247,9 @@ const props = [
         key: 'borderWidth',
         scopes: '*',
         help: 'Control border width.',
-        type: '{number}',
+        type: 'number',
         required: false,
-        default: GeoMapDefaultProps.borderWidth,
+        defaultValue: GeoMapDefaultProps.borderWidth,
         controlType: 'lineWidth',
         group: 'Style',
         controlOptions: {
@@ -259,9 +260,9 @@ const props = [
         key: 'borderColor',
         scopes: '*',
         help: 'Method to compute border color.',
-        type: '{string|Function}',
+        type: 'string | Function',
         required: false,
-        default: GeoMapDefaultProps.borderColor,
+        defaultValue: GeoMapDefaultProps.borderColor,
         controlType: 'color',
         group: 'Style',
         controlOptions: {
@@ -272,9 +273,9 @@ const props = [
         key: 'enableGraticule',
         scopes: '*',
         help: 'Enable meridians and parallels, useful for showing projection distortion.',
-        type: '{boolean}',
+        type: 'boolean',
         required: false,
-        default: GeoMapDefaultProps.enableGraticule,
+        defaultValue: GeoMapDefaultProps.enableGraticule,
         controlType: 'switch',
         group: 'Graticule',
     },
@@ -282,9 +283,9 @@ const props = [
         key: 'graticuleLineWidth',
         scopes: '*',
         help: 'Control meridians and parallel lines width.',
-        type: '{number}',
+        type: 'number',
         required: false,
-        default: GeoMapDefaultProps.graticuleLineWidth,
+        defaultValue: GeoMapDefaultProps.graticuleLineWidth,
         controlType: 'lineWidth',
         group: 'Graticule',
         controlOptions: {
@@ -295,9 +296,9 @@ const props = [
         key: 'graticuleLineColor',
         scopes: '*',
         help: 'Control meridians and parallel lines color.',
-        type: '{string}',
+        type: 'string',
         required: false,
-        default: GeoMapDefaultProps.graticuleLineColor,
+        defaultValue: GeoMapDefaultProps.graticuleLineColor,
         controlType: 'colorPicker',
         group: 'Graticule',
     },
@@ -306,9 +307,9 @@ const props = [
         key: 'isInteractive',
         scopes: ['GeoMap', 'GeoMapCanvas', 'Choropleth', 'ChoroplethCanvas'],
         help: 'Enable/disable interactivity.',
-        type: '{boolean}',
+        type: 'boolean',
         required: false,
-        default: GeoMapDefaultProps.isInteractive,
+        defaultValue: GeoMapDefaultProps.isInteractive,
         controlType: 'switch',
         group: 'Interactivity',
     },
@@ -316,7 +317,7 @@ const props = [
         key: 'onClick',
         scopes: ['GeoMap', 'GeoMapCanvas', 'Choropleth', 'ChoroplethCanvas'],
         help: 'onClick handler, it receives clicked node data and style plus mouse event.',
-        type: '{Function}',
+        type: 'Function',
         required: false,
         group: 'Interactivity',
     },
@@ -329,7 +330,7 @@ const props = [
             You can customize the tooltip using the \`tooltip\`
             property and \`theme.tooltip\` object.
         `,
-        type: '{boolean}',
+        type: 'boolean',
         controlType: 'switch',
         group: 'Interactivity',
     },
@@ -337,7 +338,7 @@ const props = [
         key: 'tooltip',
         scopes: ['Choropleth', 'ChoroplethCanvas'],
         group: 'Interactivity',
-        type: '{Function}',
+        type: 'Function',
         required: false,
         help: 'Custom tooltip component.',
         description: `

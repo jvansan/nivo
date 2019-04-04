@@ -27,7 +27,7 @@ class StackOffsetControl extends Component {
                 <label>
                     offset: <code className="code code-string">"{value}"</code>
                 </label>
-                <div className="control-help">Stacking offset type.</div>
+                <div>Stacking offset type.</div>
                 <div>
                     <select value={value} onChange={this.handleOffsetChange}>
                         {offsets.map(offset => (

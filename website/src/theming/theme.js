@@ -83,24 +83,24 @@ export default {
     },
     dark: {
         colors: {
-            background: '#2e2e2e',
+            background: '#111111',
 
-            text: '#eeeeee',
+            text: '#ffffff',
             textLight: '#aaaaaa',
 
             codeText: '#cccccc',
             titleText: 'e25d47',
             link: '#e25d47',
 
-            border: '#111111',
-            borderLight: '#1a1a1a',
+            border: '#333333',
+            borderLight: '#111111',
 
             accent: '#e25d47',
             accentLight: '#f88d81',
             accentDark: '#b44230',
 
-            cardBackground: '#222222',
-            cardAltBackground: '#292929',
+            cardBackground: '#000000',
+            cardAltBackground: '#222222',
 
             inputBackground: '#333333',
             inputBorder: '#111111',

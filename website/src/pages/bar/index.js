@@ -9,7 +9,8 @@
 import React, { useState, useCallback } from 'react'
 import { patternDotsDef, patternLinesDef } from '@nivo/core'
 import { ResponsiveBar, BarDefaultProps } from '@nivo/bar'
-import Layout from '../../components/Layout'
+import SEO from '../../components/seo'
+import { useTheme } from '../../theming/context'
 import ComponentPage from '../../components/components/ComponentPage'
 import ComponentHeader from '../../components/components/ComponentHeader'
 import ComponentDescription from '../../components/components/ComponentDescription'
@@ -18,11 +19,10 @@ import ActionsLogger, { useActionsLogger } from '../../components/components/Act
 import ComponentSettings from '../../components/components/ComponentSettings'
 import Stories from '../../components/components/Stories'
 import generateCode from '../../lib/generateChartCode'
-import bar from '../../data/components/bar/meta.yml'
+import meta from '../../data/components/bar/meta.yml'
 import { generateLightDataSet } from '../../data/components/bar/generator'
 import mapper from '../../data/components/bar/mapper'
 import { groupsByScope } from '../../data/components/bar/props'
-//import nivoTheme from '../../../nivoTheme'
 
 const Tooltip = () => {
     /* return custom tooltip */
@@ -154,11 +154,10 @@ const initialSettings = {
             ],
         },
     ],
-
-    //theme: nivoTheme,
 }
 
 const Bar = () => {
+    const theme = useTheme()
     const [settings, setSettings] = useState(initialSettings)
     const [data, setData] = useState(generateLightDataSet())
     const diceRoll = useCallback(() => setData(generateLightDataSet()), [setData])
@@ -187,28 +186,28 @@ const Bar = () => {
     )
 
     return (
-        <Layout>
-            <ComponentPage>
-                <ComponentHeader chartClass="Bar" tags={bar.Bar.tags} />
-                <ComponentDescription description={bar.Bar.description} />
-                <ComponentTabs chartClass="bar" code={code} data={data.data} diceRoll={diceRoll}>
-                    <ResponsiveBar
-                        data={data.data}
-                        keys={data.keys}
-                        {...mappedSettings}
-                        onClick={onClick}
-                    />
-                </ComponentTabs>
-                <ActionsLogger actions={actions} />
-                <ComponentSettings
-                    component="Bar"
-                    settings={settings}
-                    onChange={setSettings}
-                    groups={groupsByScope.Bar}
+        <ComponentPage>
+            <SEO title="Bar" keywords={meta.Bar.tags} />
+            <ComponentHeader chartClass="Bar" tags={meta.Bar.tags} />
+            <ComponentDescription description={meta.Bar.description} />
+            <ComponentTabs chartClass="bar" code={code} data={data.data} diceRoll={diceRoll}>
+                <ResponsiveBar
+                    data={data.data}
+                    keys={data.keys}
+                    {...mappedSettings}
+                    theme={theme.nivo}
+                    onClick={onClick}
                 />
-                <Stories stories={bar.Bar.stories} />
-            </ComponentPage>
-        </Layout>
+            </ComponentTabs>
+            <ActionsLogger actions={actions} />
+            <ComponentSettings
+                component="Bar"
+                settings={settings}
+                onChange={setSettings}
+                groups={groupsByScope.Bar}
+            />
+            <Stories stories={meta.Bar.stories} />
+        </ComponentPage>
     )
 }
 

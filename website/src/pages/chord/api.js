@@ -8,10 +8,11 @@
  */
 import React from 'react'
 import { generateChordData } from '@nivo/generators'
-import Layout from '../../components/Layout'
+import SEO from '../../components/seo'
 import ApiClient from '../../components/components/api-client/ApiClient'
 import { groupsByScope } from '../../data/components/chord/props'
 import mapper from '../../data/components/chord/mapper'
+import meta from '../../data/components/chord/meta.yml'
 
 const MATRIX_SIZE = 5
 
@@ -19,7 +20,8 @@ const data = generateChordData({ size: MATRIX_SIZE })
 
 const ChordApi = () => {
     return (
-        <Layout>
+        <>
+            <SEO title="Chord HTTP API" keywords={[...meta.Chord.tags, 'HTTP API']} />
             <ApiClient
                 componentName="Chord"
                 chartClass="chord"
@@ -69,7 +71,7 @@ const ChordApi = () => {
                     },
                 }}
             />
-        </Layout>
+        </>
     )
 }
 

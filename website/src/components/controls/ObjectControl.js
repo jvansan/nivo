@@ -9,36 +9,40 @@
 import React, { PureComponent, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import ChartControls from './ChartControls'
+import ControlsGroup from './ControlsGroup'
+import PropertyHeader from './PropertyHeader'
+import { Cell, Toggle, Help } from './styled'
 
-const Header = styled.div`
-    grid-column: span 3;
-    padding: 9px 20px;
+const Title = styled.div`
+    white-space: nowrap;
     font-weight: 600;
-    font-size: 14px;
-    cursor: pointer;
-    user-select: none;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: var(--accent-color);
-    user-select: none;
-    opacity: ${({ isOpened }) => (isOpened ? 1 : 0.7)};
-    border-bottom: 1px solid ${({ theme }) => theme.colors.borderLight};
+    color: ${({ theme }) => theme.colors.accentLight};
+`
 
-    &:hover {
-        color: var(--accent-color-darker);
-    }
+const Header = styled(Cell)`
+    cursor: pointer;
+    border-bottom: 1px solid ${({ theme }) => theme.colors.borderLight};
 
     &:last-child {
         border-bottom-width: 0;
+    }
+
+    &:hover {
+        background: ${({ theme }) => theme.colors.cardAltBackground};
+
+        ${Title} {
+            color: ${({ theme }) => theme.colors.accent};
+        }
+    }
+
+    ${Title} {
+        ${({ isOpened, theme }) => (isOpened ? `color: ${theme.colors.accent};` : '')}
     }
 `
 
 export default class ObjectControl extends PureComponent {
     static propTypes = {
-        label: PropTypes.string.isRequired,
-        help: PropTypes.node.isRequired,
+        property: PropTypes.object.isRequired,
         onChange: PropTypes.func.isRequired,
         value: PropTypes.object.isRequired,
         props: PropTypes.array.isRequired,
@@ -59,20 +63,19 @@ export default class ObjectControl extends PureComponent {
     }
 
     render() {
-        const { label, help, value, props, onChange } = this.props
+        const { property, value, props, onChange } = this.props
         const { isOpened } = this.state
 
         return (
             <Fragment>
                 <Header isOpened={isOpened} onClick={this.handleToggle}>
-                    <div>
-                        {label}
-                        <div className="control-help">{help}</div>
-                    </div>
+                    <PropertyHeader {...property} />
+                    <Help>{property.help}</Help>
+                    <Toggle isOpened={isOpened} />
                 </Header>
                 {isOpened && (
-                    <ChartControls
-                        name={label}
+                    <ControlsGroup
+                        name={property.key}
                         controls={props}
                         settings={value}
                         onChange={onChange}

@@ -10,7 +10,7 @@ import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Control from './Control'
-import Label from './Label'
+import PropertyHeader from './PropertyHeader'
 import TextInput from './TextInput'
 import PropertyHelp from './PropertyHelp'
 
@@ -21,10 +21,11 @@ const Row = styled.div`
     grid-template-columns: 60px ${size}px auto;
     grid-column-gap: 9px;
     align-items: center;
-    max-width: 200px;
+    max-width: 240px;
+    margin-bottom: 5px;
 `
 
-const OpacityControl = ({ id, label, value, onChange, help, description }) => {
+const OpacityControl = ({ id, property, value, onChange }) => {
     const handleChange = useCallback(
         event => {
             onChange(Number(event.target.value))
@@ -33,8 +34,8 @@ const OpacityControl = ({ id, label, value, onChange, help, description }) => {
     )
 
     return (
-        <Control>
-            <Label htmlFor={id}>{label}</Label>
+        <Control description={property.description}>
+            <PropertyHeader id={id} {...property} />
             <Row>
                 <TextInput value={value} onChange={handleChange} isNumber={true} />
                 <svg width={size} height={size}>
@@ -61,13 +62,16 @@ const OpacityControl = ({ id, label, value, onChange, help, description }) => {
                     step={0.05}
                 />
             </Row>
-            <PropertyHelp help={help} description={description} />
+            <PropertyHelp>{property.help}</PropertyHelp>
         </Control>
     )
 }
 
 OpacityControl.propTypes = {
-    help: PropTypes.node.isRequired,
+    id: PropTypes.string.isRequired,
+    property: PropTypes.object.isRequired,
+    value: PropTypes.number.isRequired,
+    onChange: PropTypes.func.isRequired,
 }
 
 export default OpacityControl

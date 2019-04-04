@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import pick from 'lodash/pick'
 import Control from './Control'
-import Label from './Label'
 import TextInput from './TextInput'
+import PropertyHeader from './PropertyHeader'
 import PropertyHelp from './PropertyHelp'
 
 const Row = styled.div`
@@ -12,19 +12,21 @@ const Row = styled.div`
     grid-template-columns: 60px auto;
     grid-column-gap: 9px;
     max-width: 240px;
+    margin-bottom: 5px;
 `
 
 export default class RangeControl extends Component {
     static propTypes = {
         id: PropTypes.string.isRequired,
-        label: PropTypes.string.isRequired,
+        property: PropTypes.object.isRequired,
         value: PropTypes.number.isRequired,
-        unit: PropTypes.string,
         onChange: PropTypes.func.isRequired,
-        help: PropTypes.node.isRequired,
-        min: PropTypes.number.isRequired,
-        max: PropTypes.number.isRequired,
-        step: PropTypes.number,
+        options: PropTypes.shape({
+            unit: PropTypes.string,
+            min: PropTypes.number.isRequired,
+            max: PropTypes.number.isRequired,
+            step: PropTypes.number,
+        }).isRequired,
     }
 
     shouldComponentUpdate(nextProps) {
@@ -36,16 +38,16 @@ export default class RangeControl extends Component {
     }
 
     render() {
-        const { id, label, value, unit, help, description } = this.props
+        const { id, property, options, value } = this.props
 
         return (
-            <Control>
-                <Label htmlFor={id}>{label}</Label>
+            <Control description={property.description}>
+                <PropertyHeader id={id} {...property} />
                 <Row>
                     <TextInput
                         id={id}
                         value={value}
-                        unit={unit}
+                        unit={options.unit}
                         isNumber={true}
                         onChange={this.handleChange}
                     />
@@ -53,10 +55,10 @@ export default class RangeControl extends Component {
                         type="range"
                         value={value}
                         onChange={this.handleChange}
-                        {...pick(this.props, ['min', 'max', 'step'])}
+                        {...pick(options, ['min', 'max', 'step'])}
                     />
                 </Row>
-                <PropertyHelp help={help} description={description} />
+                <PropertyHelp>{property.help}</PropertyHelp>
             </Control>
         )
     }

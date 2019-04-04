@@ -26,7 +26,7 @@ class InnerRadiusControl extends Component {
                 <label>
                     innerRadius: <code className="code code-number">{value}</code>
                 </label>
-                <div className="control-help">{help}</div>
+                <div>{help}</div>
                 <input
                     type="range"
                     min="0"

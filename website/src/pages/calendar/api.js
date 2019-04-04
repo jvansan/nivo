@@ -8,10 +8,11 @@
  */
 import React from 'react'
 import { generateDayCounts } from '@nivo/generators'
-import Layout from '../../components/Layout'
+import SEO from '../../components/seo'
 import ApiClient from '../../components/components/api-client/ApiClient'
 import mapper from '../../data/components/calendar/mapper'
 import { groupsByScope } from '../../data/components/calendar/props'
+import meta from '../../data/components/calendar/meta.yml'
 
 const from = new Date(2015, 3, 1)
 const to = new Date(2018, 7, 12)
@@ -20,7 +21,8 @@ const data = generateData()
 
 const CalendarApi = () => {
     return (
-        <Layout>
+        <>
+            <SEO title="Calendar HTTP API" keywords={[...meta.Calendar.tags, 'HTTP API']} />
             <ApiClient
                 componentName="Calendar"
                 chartClass="calendar"
@@ -51,7 +53,7 @@ const CalendarApi = () => {
                     monthLegendOffset: 10,
                 }}
             />
-        </Layout>
+        </>
     )
 }
 

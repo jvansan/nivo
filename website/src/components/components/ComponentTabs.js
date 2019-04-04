@@ -9,6 +9,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import media from '../../theming/mediaQueries'
 
 const tabs = ['chart', 'code', 'data']
 
@@ -26,7 +27,7 @@ const Wrapper = styled.div`
     background: ${({ theme }) => theme.colors.cardBackground};
     border-bottom: 1px solid ${({ theme }) => theme.colors.border};
 
-    @media only screen and (min-width: 760px) and (max-width: 1000px) {
+    ${media.tablet`
         & {
             top: ${({ theme }) => theme.dimensions.headerHeight}px;
             right: 0;
@@ -34,9 +35,9 @@ const Wrapper = styled.div`
             --innerHeight: calc(100% - ${({ theme }) => theme.dimensions.headerHeight}px);
             height: calc(var(--innerHeight) * 0.55);
         }
-    }
+    `}
 
-    @media only screen and (max-width: 760px) {
+    ${media.mobile`
         & {
             position: relative;
             top: auto;
@@ -46,7 +47,7 @@ const Wrapper = styled.div`
             z-index: 0;
             border-top: 1px solid ${({ theme }) => theme.colors.border};
         }
-    }
+    `}
 `
 
 const Nav = styled.nav`

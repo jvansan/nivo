@@ -11,7 +11,8 @@ import cloneDeep from 'lodash/cloneDeep'
 import { patternLinesDef } from '@nivo/core'
 import { ResponsiveBubble, BubbleDefaultProps } from '@nivo/circle-packing'
 import { generateLibTree } from '@nivo/generators'
-import Layout from '../../components/Layout'
+import { useTheme } from '../../theming/context'
+import SEO from '../../components/seo'
 import ComponentPage from '../../components/components/ComponentPage'
 import ComponentHeader from '../../components/components/ComponentHeader'
 import ComponentDescription from '../../components/components/ComponentDescription'
@@ -20,10 +21,9 @@ import ActionsLogger, { useActionsLogger } from '../../components/components/Act
 import ComponentSettings from '../../components/components/ComponentSettings'
 import Stories from '../../components/components/Stories'
 import generateCode from '../../lib/generateChartCode'
-import bubble from '../../data/components/bubble/meta.yml'
+import meta from '../../data/components/bubble/meta.yml'
 import mapper from '../../data/components/bubble/mapper'
 import { groupsByScope } from '../../data/components/bubble/props'
-//import nivoTheme from '../../../nivoTheme'
 
 const initialSettings = {
     margin: {
@@ -73,6 +73,7 @@ const initialSettings = {
 }
 
 const Bubble = () => {
+    const theme = useTheme()
     const [settings, setSettings] = useState(initialSettings)
     const [data, setData] = useState(generateLibTree())
     const diceRoll = useCallback(() => setData(generateLibTree()), [setData])
@@ -96,33 +97,27 @@ const Bubble = () => {
     })
 
     return (
-        <Layout>
-            <ComponentPage>
-                <ComponentHeader chartClass="Bubble" tags={bubble.Bubble.tags} />
-                <ComponentDescription description={bubble.Bubble.description} />
-                <ComponentTabs
-                    chartClass="circle-packing"
-                    code={code}
-                    data={data}
-                    diceRoll={diceRoll}
-                >
-                    <ResponsiveBubble
-                        root={cloneDeep(data)}
-                        {...mappedSettings}
-                        //theme={nivoTheme}
-                        onClick={onClick}
-                    />
-                </ComponentTabs>
-                <ActionsLogger actions={actions} />
-                <ComponentSettings
-                    component="Bubble"
-                    settings={settings}
-                    onChange={setSettings}
-                    groups={groupsByScope.Bubble}
+        <ComponentPage>
+            <SEO title="Bubble" keywords={meta.Bubble.tags} />
+            <ComponentHeader chartClass="Bubble" tags={meta.Bubble.tags} />
+            <ComponentDescription description={meta.Bubble.description} />
+            <ComponentTabs chartClass="circle-packing" code={code} data={data} diceRoll={diceRoll}>
+                <ResponsiveBubble
+                    root={cloneDeep(data)}
+                    {...mappedSettings}
+                    theme={theme.nivo}
+                    onClick={onClick}
                 />
-                <Stories stories={bubble.Bubble.stories} />
-            </ComponentPage>
-        </Layout>
+            </ComponentTabs>
+            <ActionsLogger actions={actions} />
+            <ComponentSettings
+                component="Bubble"
+                settings={settings}
+                onChange={setSettings}
+                groups={groupsByScope.Bubble}
+            />
+            <Stories stories={meta.Bubble.stories} />
+        </ComponentPage>
     )
 }
 

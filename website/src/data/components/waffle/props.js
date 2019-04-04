@@ -35,19 +35,19 @@ const props = [
             Chart data, which must conform to this structure:
             \`\`\`
             Array<{
-                id:    {string|number},
-                value: {number},
-                label: {string|number},
+                id:    string | number
+                value: number
+                label: string | number
             }>
             \`\`\`
         `,
-        type: '{Array<Object>}',
+        type: 'object[]',
         required: true,
     },
     {
         key: 'hiddenIds',
         scopes: '*',
-        type: 'Array<{string | number}>',
+        type: 'Array<string | number>',
         help: 'Hide parts of the data by id',
         description: `
             Hide parts of the data by id, this can be used
@@ -58,7 +58,7 @@ const props = [
             it to the component.
         `,
         required: false,
-        default: defaults.hiddenIds,
+        defaultValue: defaults.hiddenIds,
     },
     {
         key: 'rows',
@@ -90,9 +90,9 @@ const props = [
         key: 'fillDirection',
         scopes: '*',
         help: `How to fill the waffle.`,
-        type: '{string}',
+        type: 'string',
         required: false,
-        default: defaults.fillDirection,
+        defaultValue: defaults.fillDirection,
         controlType: 'choices',
         group: 'Base',
         controlOptions: {
@@ -128,7 +128,7 @@ const props = [
             of the component
             \`<Responsive*/>\`.
         `,
-        type: '{number}',
+        type: 'number',
         required: true,
     },
     {
@@ -141,7 +141,7 @@ const props = [
             of the component
             \`<Responsive*/>\`.
         `,
-        type: '{number}',
+        type: 'number',
         required: true,
     },
     {
@@ -149,8 +149,8 @@ const props = [
         scopes: ['WaffleCanvas'],
         help: `Adjust pixel ratio, useful for HiDPI screens.`,
         required: false,
-        default: 'Depends on device',
-        type: `{number}`,
+        defaultValue: 'Depends on device',
+        type: `number`,
         controlType: 'range',
         group: 'Base',
         controlOptions: {
@@ -162,7 +162,7 @@ const props = [
         key: 'margin',
         scopes: '*',
         help: 'Chart margin.',
-        type: '{object}',
+        type: 'object',
         required: false,
         controlType: 'margin',
         group: 'Base',
@@ -171,7 +171,7 @@ const props = [
         key: 'cellComponent',
         scopes: ['Waffle', 'WaffleHtml'],
         help: 'Override default cell component.',
-        type: '{Function}',
+        type: 'Function',
         required: false,
         controlType: 'choices',
         group: 'Style',
@@ -186,9 +186,9 @@ const props = [
         key: 'colors',
         scopes: '*',
         help: 'Defines how to compute node color.',
-        type: '{string|Function|Array}',
+        type: 'string | Function | string[]',
         required: false,
-        default: 'nivo',
+        defaultValue: 'nivo',
         controlType: 'colors',
         group: 'Style',
     },
@@ -197,9 +197,9 @@ const props = [
         scopes: '*',
         help:
             'Property to use to determine node color. If a function is provided, it will receive current node data and must return a color.',
-        type: '{string|Function}',
+        type: 'string | Function',
         required: false,
-        default: 'id',
+        defaultValue: 'id',
         controlType: 'choices',
         group: 'Style',
         controlOptions: {
@@ -219,9 +219,9 @@ const props = [
         key: 'emptyColor',
         scopes: '*',
         help: 'Defines empty cells color.',
-        type: '{string}',
+        type: 'string',
         required: false,
-        default: defaults.emptyColor,
+        defaultValue: defaults.emptyColor,
         controlType: 'colorPicker',
         group: 'Style',
     },
@@ -230,8 +230,8 @@ const props = [
         scopes: '*',
         help: 'Empty cells opacity.',
         required: false,
-        default: defaults.emptyOpacity,
-        type: '{number}',
+        defaultValue: defaults.emptyOpacity,
+        type: 'number',
         controlType: 'opacity',
         group: 'Style',
     },
@@ -239,9 +239,9 @@ const props = [
         key: 'borderWidth',
         scopes: '*',
         help: 'Control cell border width.',
-        type: '{number}',
+        type: 'number',
         required: false,
-        default: defaults.borderWidth,
+        defaultValue: defaults.borderWidth,
         controlType: 'lineWidth',
         group: 'Style',
     },
@@ -249,9 +249,9 @@ const props = [
         key: 'borderColor',
         scopes: '*',
         help: 'Method to compute cell border color.',
-        type: '{string|Function}',
+        type: 'string | Function',
         required: false,
-        default: defaults.borderColor,
+        defaultValue: defaults.borderColor,
         controlType: 'color',
         group: 'Style',
         controlOptions: {
@@ -263,9 +263,9 @@ const props = [
         key: 'isInteractive',
         scopes: ['Waffle', 'WaffleHtml', 'WaffleCanvas'],
         help: 'Enable/disable interactivity.',
-        type: '{boolean}',
+        type: 'boolean',
         required: false,
-        default: defaults.isInteractive,
+        defaultValue: defaults.isInteractive,
         controlType: 'switch',
         group: 'Interactivity',
     },
@@ -273,30 +273,15 @@ const props = [
         key: 'onClick',
         scopes: ['Waffle', 'WaffleHtml', 'WaffleCanvas'],
         group: 'Interactivity',
-        help: 'onClick handler.',
-        description: 'onClick handler, it receives clicked node data and style plus mouse event.',
-        type: '{Function}',
+        help: 'onClick handler, it receives clicked node data and style plus mouse event.',
+        type: 'Function',
         required: false,
-    },
-    {
-        key: 'custom tooltip example',
-        scopes: ['Waffle', 'WaffleHtml', 'WaffleCanvas'],
-        excludeFromDoc: true,
-        help: 'Showcase custom tooltip.',
-        description: `
-            You can customize the tooltip using
-            the \`tooltip\` property and
-            \`theme.tooltip\` object.
-        `,
-        type: '{boolean}',
-        controlType: 'switch',
-        group: 'Interactivity',
     },
     {
         key: 'tooltip',
         scopes: ['Waffle', 'WaffleHtml', 'WaffleCanvas'],
         group: 'Interactivity',
-        type: '{Function}',
+        type: 'Function',
         required: false,
         help: 'Custom tooltip component',
         description: `
@@ -306,23 +291,34 @@ const props = [
             \`\`\`
             {
                 id:         {string|number},
-                value:      {number},
+                value:      number,
                 label:      {string|number},
-                color:      {string},
-                position:   {number},
-                row:        {number},
-                column:     {number},
-                groupIndex: {number},
-                startAt:    {number},
-                endAt:      {number},
+                color:      string,
+                position:   number,
+                row:        number,
+                column:     number,
+                groupIndex: number,
+                startAt:    number,
+                endAt:      number,
             }
             \`\`\`
+            You can customize the tooltip style
+            using the \`theme.tooltip\` object.
         `,
+    },
+    {
+        key: 'custom tooltip example',
+        scopes: ['Waffle', 'WaffleHtml', 'WaffleCanvas'],
+        excludeFromDoc: true,
+        help: 'Showcase custom tooltip.',
+        type: 'boolean',
+        controlType: 'switch',
+        group: 'Interactivity',
     },
     {
         key: 'legends',
         scopes: ['Waffle', 'WaffleCanvas'],
-        type: '{Array<object>}',
+        type: 'object[]',
         help: `Optional chart's legends.`,
         group: 'Legends',
         controlType: 'array',

@@ -25,15 +25,16 @@ const props = [
             Chart data, which must conform to this structure:
             \`\`\`
             Array<{
-                id: {string|number}
+                id:   string | number
                 data: Array<{
-                    x: {number|string|Date}
-                    y: {number|string|Date}
+                    x: number | string | Date
+                    y: number | string | Date
                 }>
             }>
             \`\`\`
         `,
         required: true,
+        type: 'object[]',
     },
     {
         key: 'width',
@@ -44,7 +45,7 @@ const props = [
             not required if using
             \`<ResponsiveLine/>\`.
         `,
-        type: '{number}',
+        type: 'number',
         required: true,
         controlType: 'range',
         group: 'Base',
@@ -64,7 +65,7 @@ const props = [
             not required if using
             \`<ResponsiveLine/>\`.
         `,
-        type: '{number}',
+        type: 'number',
         required: true,
         controlType: 'range',
         group: 'Base',
@@ -79,7 +80,7 @@ const props = [
         key: 'margin',
         scopes: '*',
         help: 'Chart margin.',
-        type: '{object}',
+        type: 'object',
         required: false,
         controlType: 'margin',
         group: 'Base',
@@ -100,7 +101,7 @@ const props = [
             computed data and must return a valid SVG element.
         `,
         required: false,
-        default: defaults.layers,
+        defaultValue: defaults.layers,
     },
     {
         key: 'curve',
@@ -109,9 +110,9 @@ const props = [
         description: `
             Defines the curve factory to use for the line generator.
         `,
-        type: '{string}',
+        type: 'string',
         required: false,
-        default: defaults.curve,
+        defaultValue: defaults.curve,
         controlType: 'choices',
         group: 'Base',
         controlOptions: {
@@ -124,7 +125,7 @@ const props = [
     {
         key: 'xScale',
         scopes: '*',
-        type: '{object}',
+        type: 'object',
         help: `X scale configuration.`,
         group: 'Base',
         controlType: 'object',
@@ -132,8 +133,8 @@ const props = [
             props: [
                 {
                     key: 'type',
-                    description: `Scale type.`,
-                    type: '{string}',
+                    help: `Scale type.`,
+                    type: 'string',
                     controlType: 'choices',
                     controlOptions: {
                         disabled: true,
@@ -149,7 +150,7 @@ const props = [
     {
         key: 'yScale',
         scopes: '*',
-        type: '{object}',
+        type: 'object',
         help: `Y scale configuration.`,
         group: 'Base',
         controlType: 'object',
@@ -157,8 +158,8 @@ const props = [
             props: [
                 {
                     key: 'type',
-                    description: `Scale type.`,
-                    type: '{string}',
+                    help: `Scale type.`,
+                    type: 'string',
                     controlType: 'choices',
                     controlOptions: {
                         disabled: true,
@@ -171,16 +172,16 @@ const props = [
                 {
                     key: 'stacked',
                     scopes: '*',
-                    description: 'Enable/disable stacked mode.',
-                    type: '{boolean}',
+                    help: 'Enable/disable stacked mode.',
+                    type: 'boolean',
                     required: false,
                     controlType: 'switch',
                 },
                 {
                     key: 'min',
-                    description: 'Minimum scale value.',
+                    help: 'Minimum scale value.',
                     required: false,
-                    type: `{number|'auto'}`,
+                    type: `number | 'auto'`,
                     controlType: 'switchableRange',
                     controlOptions: {
                         disabledValue: 'auto',
@@ -191,9 +192,9 @@ const props = [
                 },
                 {
                     key: 'max',
-                    description: 'Maximum scale value.',
+                    help: 'Maximum scale value.',
                     required: false,
-                    type: `{number|'auto'}`,
+                    type: `number | 'auto'`,
                     controlType: 'switchableRange',
                     controlOptions: {
                         disabledValue: 'auto',
@@ -209,9 +210,9 @@ const props = [
         key: 'colors',
         scopes: '*',
         help: 'Defines color range.',
-        type: '{string|Function|Array}',
+        type: 'string | Function | string[]',
         required: false,
-        default: defaults.colors,
+        defaultValue: defaults.colors,
         controlType: 'colors',
         group: 'Style',
     },
@@ -222,7 +223,7 @@ const props = [
         description:
             'Property to use to determine node color. If a function is provided, it will receive current node data and must return a color.',
         required: false,
-        default: defaults.colorBy,
+        defaultValue: defaults.colorBy,
         controlType: 'choices',
         group: 'Style',
         controlOptions: {
@@ -242,9 +243,9 @@ const props = [
         key: 'lineWidth',
         scopes: '*',
         help: 'Line width.',
-        type: '{number}',
+        type: 'number',
         required: false,
-        default: defaults.lineWidth,
+        defaultValue: defaults.lineWidth,
         controlType: 'lineWidth',
         group: 'Style',
     },
@@ -252,9 +253,9 @@ const props = [
         key: 'enableArea',
         scopes: '*',
         help: 'Enable/disable area below each line.',
-        type: '{boolean}',
+        type: 'boolean',
         required: false,
-        default: defaults.enableArea,
+        defaultValue: defaults.enableArea,
         controlType: 'switch',
         group: 'Style',
     },
@@ -268,9 +269,9 @@ const props = [
             position of the baseline but the value used
             to compute it.
         `,
-        type: '{number|string|Date}',
+        type: 'number | string | Date',
         required: false,
-        default: defaults.areaBaselineValue,
+        defaultValue: defaults.areaBaselineValue,
         controlType: 'range',
         group: 'Style',
         controlOptions: {
@@ -284,8 +285,8 @@ const props = [
         scopes: '*',
         help: 'Area opacity (0~1), depends on enableArea.',
         required: false,
-        default: defaults.areaOpacity,
-        type: '{number}',
+        defaultValue: defaults.areaOpacity,
+        type: 'number',
         controlType: 'opacity',
         group: 'Style',
     },
@@ -298,9 +299,9 @@ const props = [
             see
             [MDN documentation](https://developer.mozilla.org/fr/docs/Web/CSS/mix-blend-mode).
         `,
-        type: '{string}',
+        type: 'string',
         required: false,
-        default: defaults.areaBlendMode,
+        defaultValue: defaults.areaBlendMode,
         controlType: 'choices',
         group: 'Style',
         controlOptions: {
@@ -331,9 +332,9 @@ const props = [
         key: 'enableDots',
         scopes: '*',
         help: 'Enable/disable dots.',
-        type: '{boolean}',
+        type: 'boolean',
         required: false,
-        default: defaults.enableDots,
+        defaultValue: defaults.enableDots,
         controlType: 'switch',
         group: 'Dots',
     },
@@ -341,15 +342,15 @@ const props = [
         key: 'dotSymbol',
         help:
             'Overrides default dot circle. The function will receive `size`, `color`, `borderWidth` and `borderColor` props and must return a valid SVG element.',
-        type: '{Function}',
+        type: 'Function',
         required: false,
     },
     {
         key: 'dotSize',
         help: 'Size of the dots.',
-        type: '{number}',
+        type: 'number',
         required: false,
-        default: defaults.dotSize,
+        defaultValue: defaults.dotSize,
         controlType: 'range',
         group: 'Dots',
         controlOptions: {
@@ -362,9 +363,9 @@ const props = [
         key: 'dotColor',
         scopes: '*',
         help: 'Method to compute dots color.',
-        type: '{string|Function}',
+        type: 'string | Function',
         required: false,
-        default: defaults.dotColor,
+        defaultValue: defaults.dotColor,
         controlType: 'color',
         group: 'Dots',
         controlOptions: {
@@ -374,9 +375,9 @@ const props = [
     {
         key: 'dotBorderWidth',
         help: 'Width of the dots border.',
-        type: '{number}',
+        type: 'number',
         required: false,
-        default: defaults.dotBorderWidth,
+        defaultValue: defaults.dotBorderWidth,
         controlType: 'lineWidth',
         group: 'Dots',
     },
@@ -384,9 +385,9 @@ const props = [
         key: 'dotBorderColor',
         scopes: '*',
         help: 'Method to compute dots border color.',
-        type: '{string|Function}',
+        type: 'string | Function',
         required: false,
-        default: defaults.dotBorderColor,
+        defaultValue: defaults.dotBorderColor,
         controlType: 'color',
         group: 'Dots',
         controlOptions: {
@@ -397,9 +398,9 @@ const props = [
         key: 'enableDotLabel',
         scopes: '*',
         help: 'Enable/disable dots label.',
-        type: '{boolean}',
+        type: 'boolean',
         required: false,
-        default: defaults.enableDotLabel,
+        defaultValue: defaults.enableDotLabel,
         controlType: 'switch',
         group: 'Dots',
     },
@@ -407,7 +408,7 @@ const props = [
         key: 'dotLabel',
         help:
             'Property to use to determine dot label. If a function is provided, it will receive current value and serie and must return a label.',
-        type: '{string}',
+        type: 'string',
         required: false,
         controlType: 'choices',
         group: 'Dots',
@@ -421,9 +422,9 @@ const props = [
     {
         key: 'dotLabelYOffset',
         help: 'Label Y offset from dot shape.',
-        type: '{number}',
+        type: 'number',
         required: false,
-        default: dotDefaults.labelYOffset,
+        defaultValue: dotDefaults.labelYOffset,
         controlType: 'range',
         group: 'Dots',
         controlOptions: {
@@ -436,9 +437,9 @@ const props = [
         key: 'enableGridX',
         scopes: '*',
         help: 'Enable/disable x grid.',
-        type: '{boolean}',
+        type: 'boolean',
         required: false,
-        default: defaults.enableGridX,
+        defaultValue: defaults.enableGridX,
         controlType: 'switch',
         group: 'Grid & Axes',
     },
@@ -447,16 +448,16 @@ const props = [
         scopes: '*',
         group: 'Grid & Axes',
         help: 'Specify values to use for vertical grid lines.',
-        type: 'Array<{number|string}>',
+        type: 'Array<number | string>',
         required: false,
     },
     {
         key: 'enableGridY',
         scopes: '*',
         help: 'Enable/disable y grid.',
-        type: '{boolean}',
+        type: 'boolean',
         required: false,
-        default: defaults.enableGridY,
+        defaultValue: defaults.enableGridY,
         controlType: 'switch',
         group: 'Grid & Axes',
     },
@@ -465,7 +466,7 @@ const props = [
         scopes: '*',
         group: 'Grid & Axes',
         help: 'Specify values to use for horizontal grid lines.',
-        type: 'Array<{number|string}>',
+        type: 'Array<number | string>',
         required: false,
     },
     ...axesProperties,
@@ -473,9 +474,9 @@ const props = [
         key: 'isInteractive',
         scopes: ['Line'],
         help: 'Enable/disable interactivity.',
-        type: '{boolean}',
+        type: 'boolean',
         required: false,
-        default: defaults.isInteractive,
+        defaultValue: defaults.isInteractive,
         controlType: 'switch',
         group: 'Interactivity',
     },
@@ -483,24 +484,25 @@ const props = [
         key: 'enableStackTooltip',
         scopes: ['Line'],
         help: `Enable/disable stack tooltip ('isInteractive' must also be 'true').`,
-        type: '{boolean}',
+        type: 'boolean',
         required: false,
-        default: defaults.enableStackTooltip,
+        defaultValue: defaults.enableStackTooltip,
         controlType: 'switch',
         group: 'Interactivity',
     },
     {
         key: 'tooltip',
         scopes: ['Line'],
+        group: 'Interactivity',
         help: `Method to create custom tooltip`,
-        type: '{Function}',
+        type: 'Function',
         required: false,
-        default: defaults.tooltip,
+        defaultValue: defaults.tooltip,
     },
     {
         key: 'legends',
         scopes: ['Line'],
-        type: '{Array<object>}',
+        type: 'object[]',
         help: `Optional chart's legends.`,
         group: 'Legends',
         controlType: 'array',
@@ -509,6 +511,8 @@ const props = [
             shouldCreate: true,
             addLabel: 'add legend',
             shouldRemove: true,
+            getItemTitle: (index, legend) =>
+                `legend[${index}]: ${legend.anchor}, ${legend.direction}`,
             defaults: {
                 anchor: 'left',
                 direction: 'column',

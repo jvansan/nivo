@@ -19,12 +19,12 @@ const props = [
             Chart data, which must conform to this structure:
             \`\`\`
             Array<{
-                id:    {string|number},
-                value: {number}
+                id:    string | number,
+                value: number
             }>
             \`\`\`
         `,
-        type: '{Array<Object>}',
+        type: 'object[]',
         required: true,
     },
     {
@@ -36,7 +36,7 @@ const props = [
             not required if using
             \`<ResponsivePie/>\`.
         `,
-        type: '{number}',
+        type: 'number',
         required: true,
         controlType: 'range',
         group: 'Base',
@@ -56,7 +56,7 @@ const props = [
             not required if using
             \`<ResponsivePie/>\`.
         `,
-        type: '{number}',
+        type: 'number',
         required: true,
         controlType: 'range',
         group: 'Base',
@@ -72,8 +72,8 @@ const props = [
         scopes: ['PieCanvas'],
         help: `Adjust pixel ratio, useful for HiDPI screens.`,
         required: false,
-        default: 'Depends on device',
-        type: `{number}`,
+        defaultValue: 'Depends on device',
+        type: `number`,
         controlType: 'range',
         group: 'Base',
         controlOptions: {
@@ -85,9 +85,9 @@ const props = [
         key: 'startAngle',
         scopes: ['Pie', 'PieCanvas'],
         help: 'Start angle, useful to make gauges for example.',
-        type: '{number}',
+        type: 'number',
         required: false,
-        default: defaults.startAngle,
+        defaultValue: defaults.startAngle,
         controlType: 'angle',
         group: 'Base',
         controlOptions: {
@@ -101,9 +101,9 @@ const props = [
         key: 'endAngle',
         scopes: ['Pie', 'PieCanvas'],
         help: 'End angle, useful to make gauges for example.',
-        type: '{number}',
+        type: 'number',
         required: false,
-        default: defaults.endAngle,
+        defaultValue: defaults.endAngle,
         controlType: 'angle',
         group: 'Base',
         controlOptions: {
@@ -117,18 +117,18 @@ const props = [
         key: 'fit',
         scopes: ['Pie', 'PieCanvas'],
         help: `If 'true', pie will be omptimized to occupy more space when using partial pie.`,
-        type: '{boolean}',
+        type: 'boolean',
         required: false,
-        default: defaults.fit,
+        defaultValue: defaults.fit,
         controlType: 'switch',
         group: 'Base',
     },
     {
         key: 'innerRadius',
         help: `Donut chart if greater than 0. Value should be between 0~1 as it's a ratio from original radius.`,
-        type: '{number}',
+        type: 'number',
         required: false,
-        default: defaults.innerRadius,
+        defaultValue: defaults.innerRadius,
         controlType: 'range',
         group: 'Base',
         controlOptions: {
@@ -140,9 +140,9 @@ const props = [
     {
         key: 'padAngle',
         help: 'Padding between each pie slice.',
-        type: '{number}',
+        type: 'number',
         required: false,
-        default: defaults.padAngle,
+        defaultValue: defaults.padAngle,
         controlType: 'range',
         group: 'Base',
         controlOptions: {
@@ -155,9 +155,9 @@ const props = [
     {
         key: 'cornerRadius',
         help: 'Rounded slices.',
-        type: '{number}',
+        type: 'number',
         required: false,
-        default: defaults.cornerRadius,
+        defaultValue: defaults.cornerRadius,
         controlType: 'range',
         group: 'Base',
         controlOptions: {
@@ -171,9 +171,9 @@ const props = [
         key: 'sortByValue',
         scopes: ['Pie', 'PieCanvas'],
         help: `If 'true', arcs will be ordered according to their associated value.`,
-        type: '{boolean}',
+        type: 'boolean',
         required: false,
-        default: defaults.sortByValue,
+        defaultValue: defaults.sortByValue,
         controlType: 'switch',
         group: 'Base',
     },
@@ -181,7 +181,7 @@ const props = [
         key: 'margin',
         scopes: '*',
         help: 'Chart margin.',
-        type: '{object}',
+        type: 'object',
         required: false,
         controlType: 'margin',
         group: 'Base',
@@ -189,9 +189,9 @@ const props = [
     {
         key: 'colors',
         help: 'Defines color range.',
-        type: '{string|Function|Array}',
+        type: 'string | Function | string[]',
         required: false,
-        default: defaults.colors,
+        defaultValue: defaults.colors,
         controlType: 'colors',
         group: 'Style',
     },
@@ -203,9 +203,9 @@ const props = [
             If a function is provided, it will receive
             current node data and must return a color.
         `,
-        type: '{string|Function}',
+        type: 'string | Function',
         required: false,
-        default: defaults.colorBy,
+        defaultValue: defaults.colorBy,
         controlType: 'choices',
         group: 'Style',
         controlOptions: {
@@ -233,25 +233,25 @@ const props = [
             [dedicated guide](self:/guides/patterns)
             for further information.
         `,
-        type: '{boolean}',
+        type: 'boolean',
         controlType: 'switch',
         group: 'Style',
     },
     {
         key: 'borderWidth',
         help: 'Slices border width.',
-        type: '{number}',
+        type: 'number',
         required: false,
-        default: defaults.borderWidth,
+        defaultValue: defaults.borderWidth,
         controlType: 'lineWidth',
         group: 'Style',
     },
     {
         key: 'borderColor',
         help: 'Method to compute border color.',
-        type: '{string|Function}',
+        type: 'string | Function',
         required: false,
-        default: defaults.borderColor,
+        defaultValue: defaults.borderColor,
         controlType: 'color',
         group: 'Style',
         controlOptions: {
@@ -261,19 +261,23 @@ const props = [
     {
         key: 'enableRadialLabels',
         help: 'Enable/disable radial labels.',
-        type: '{boolean}',
+        type: 'boolean',
         required: false,
-        default: defaults.enableRadialLabels,
+        defaultValue: defaults.enableRadialLabels,
         controlType: 'switch',
         group: 'Radial labels',
     },
     {
         key: 'radialLabel',
-        help:
-            'Defines how to get label text, can be a string (used to access current node data property) or a function which will receive the actual node data.',
-        type: '{string|Function}',
+        help: 'Radial label',
+        description: `
+            Defines how to get label text,
+            can be a string (used to access current node data property)
+            or a function which will receive the actual node data.
+        `,
+        type: 'string | Function',
         required: false,
-        default: 'id',
+        defaultValue: 'id',
         controlType: 'choices',
         group: 'Radial labels',
         controlOptions: {
@@ -286,9 +290,9 @@ const props = [
     {
         key: 'radialLabelsSkipAngle',
         help: `Skip label if corresponding slice's angle is lower than provided value.`,
-        type: '{number}',
+        type: 'number',
         required: false,
-        default: 0,
+        defaultValue: 0,
         controlType: 'range',
         group: 'Radial labels',
         controlOptions: {
@@ -301,7 +305,7 @@ const props = [
     {
         key: 'radialLabelsLinkOffset',
         help: `Link offset from pie outer radius, useful to have links overlapping pie slices.`,
-        type: '{number}',
+        type: 'number',
         required: false,
         controlType: 'range',
         group: 'Radial labels',
@@ -315,7 +319,7 @@ const props = [
     {
         key: 'radialLabelsLinkDiagonalLength',
         help: `Link diagonal length.`,
-        type: '{number}',
+        type: 'number',
         required: false,
         controlType: 'range',
         group: 'Radial labels',
@@ -329,7 +333,7 @@ const props = [
     {
         key: 'radialLabelsLinkHorizontalLength',
         help: `Links horizontal length.`,
-        type: '{number}',
+        type: 'number',
         required: false,
         controlType: 'range',
         group: 'Radial labels',
@@ -343,7 +347,7 @@ const props = [
     {
         key: 'radialLabelsTextXOffset',
         help: `X offset from links' end.`,
-        type: '{number}',
+        type: 'number',
         required: false,
         controlType: 'range',
         group: 'Radial labels',
@@ -357,7 +361,7 @@ const props = [
     {
         key: 'radialLabelsLinkStrokeWidth',
         help: 'Links stroke width.',
-        type: '{number}',
+        type: 'number',
         required: false,
         controlType: 'lineWidth',
         group: 'Radial labels',
@@ -365,9 +369,9 @@ const props = [
     {
         key: 'radialLabelsTextColor',
         help: 'Defines how to compute radial label text color.',
-        type: '{string|Function}',
+        type: 'string | Function',
         required: false,
-        default: defaults.radialLabelsTextColor,
+        defaultValue: defaults.radialLabelsTextColor,
         controlType: 'color',
         group: 'Radial labels',
         controlOptions: {
@@ -377,9 +381,9 @@ const props = [
     {
         key: 'radialLabelsLinkColor',
         help: 'Defines how to compute radial label link color.',
-        type: '{string|Function}',
+        type: 'string | Function',
         required: false,
-        default: defaults.radialLabelsLinkColor,
+        defaultValue: defaults.radialLabelsLinkColor,
         controlType: 'color',
         group: 'Radial labels',
         controlOptions: {
@@ -389,9 +393,9 @@ const props = [
     {
         key: 'enableSlicesLabels',
         help: 'Enable/disable slices labels.',
-        type: '{boolean}',
+        type: 'boolean',
         required: false,
-        default: defaults.enableSlicesLabels,
+        defaultValue: defaults.enableSlicesLabels,
         controlType: 'switch',
         group: 'Slices labels',
     },
@@ -399,9 +403,9 @@ const props = [
         key: 'sliceLabel',
         help:
             'Defines how to get label text, can be a string (used to access current node data property) or a function which will receive the actual node data.',
-        type: '{string|Function}',
+        type: 'string | Function',
         required: false,
-        default: 'value',
+        defaultValue: 'value',
         controlType: 'choices',
         group: 'Slices labels',
         controlOptions: {
@@ -414,9 +418,9 @@ const props = [
     {
         key: 'slicesLabelsSkipAngle',
         help: `Skip label if corresponding slice's angle is lower than provided value.`,
-        type: '{number}',
+        type: 'number',
         required: false,
-        default: 0,
+        defaultValue: 0,
         controlType: 'range',
         group: 'Slices labels',
         controlOptions: {
@@ -429,9 +433,9 @@ const props = [
     {
         key: 'slicesLabelsTextColor',
         help: 'Defines how to compute slice label text color.',
-        type: '{string|Function}',
+        type: 'string | Function',
         required: false,
-        default: 'theme',
+        defaultValue: 'theme',
         controlType: 'color',
         group: 'Slices labels',
         controlOptions: {
@@ -443,9 +447,9 @@ const props = [
         scopes: ['Pie', 'PieCanvas'],
         group: 'Interactivity',
         help: 'Enable/disable interactivity.',
-        type: '{boolean}',
+        type: 'boolean',
         required: false,
-        default: defaults.isInteractive,
+        defaultValue: defaults.isInteractive,
         controlType: 'switch',
     },
     {
@@ -455,14 +459,14 @@ const props = [
         help: 'onClick handler.',
         description:
             'onClick handler for pie slices, it receives clicked slice data and mouse event.',
-        type: '{Function}',
+        type: 'Function',
         required: false,
     },
     {
         key: 'tooltip',
         scopes: ['Pie', 'PieCanvas'],
         group: 'Interactivity',
-        type: '{Function}',
+        type: 'Function',
         required: false,
         help: 'Custom tooltip component',
         description: `
@@ -472,11 +476,13 @@ const props = [
             \`\`\`
             {
                 id:    {string|number},
-                value: {number},
+                value: number,
                 label: {string|number},
-                color: {string}
+                color: string
             }
             \`\`\`
+            You can customize the style of the tooltip using
+            the \`theme.tooltip\` object.
         `,
     },
     {
@@ -484,12 +490,7 @@ const props = [
         scopes: ['Pie', 'PieCanvas'],
         excludeFromDoc: true,
         help: 'Showcase custom tooltip.',
-        description: `
-            You can customize the tooltip using their
-            \`tooltip\` property and
-            \`theme.tooltip\` object.
-        `,
-        type: '{boolean}',
+        type: 'boolean',
         controlType: 'switch',
         group: 'Interactivity',
     },

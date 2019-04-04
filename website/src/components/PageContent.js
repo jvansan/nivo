@@ -7,20 +7,21 @@
  * file that was distributed with this source code.
  */
 import styled from 'styled-components'
+import media from '../theming/mediaQueries'
 
 export default styled.div`
     margin: 0 50px;
     position: relative;
 
-    @media only screen and (min-width: 760px) and (max-width: 1000px) {
+    ${media.tablet`
         & {
             margin: 0 30px;
         }
-    }
+    `}
 
-    @media only screen and (max-width: 760px) {
+    ${media.mobile`
         & {
             margin: 0 15px;
         }
-    }
+    `}
 `

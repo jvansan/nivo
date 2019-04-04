@@ -18,7 +18,7 @@ const props = [
         key: 'root',
         scopes: '*',
         help: 'The hierarchical data object.',
-        type: '{Object}',
+        type: 'object',
         required: true,
         group: 'Base',
     },
@@ -31,9 +31,9 @@ const props = [
             invoked for each node and will receive the node as
             first argument, it must return the node value.
         `,
-        type: '{string|Function}',
+        type: 'string | Function',
         required: false,
-        default: defaults.identity,
+        defaultValue: defaults.identity,
         group: 'Base',
     },
     {
@@ -45,9 +45,9 @@ const props = [
             invoked for each node and will receive the node as
             first argument, it must return the node value.
         `,
-        type: '{string|Function}',
+        type: 'string | Function',
         required: false,
-        default: 'value',
+        defaultValue: 'value',
         group: 'Base',
     },
     {
@@ -58,7 +58,7 @@ const props = [
         description: `
             not required if using \`<ResponsiveBubble/>\`.
         `,
-        type: '{number}',
+        type: 'number',
         required: true,
         controlType: 'range',
         group: 'Base',
@@ -77,7 +77,7 @@ const props = [
         description: `
             not required if using \`<ResponsiveBubble/>\`.
         `,
-        type: '{number}',
+        type: 'number',
         required: true,
         controlType: 'range',
         group: 'Base',
@@ -93,8 +93,8 @@ const props = [
         scopes: ['BubbleCanvas'],
         help: `Adjust pixel ratio, useful for HiDPI screens.`,
         required: false,
-        default: 'Depends on device',
-        type: `{number}`,
+        defaultValue: 'Depends on device',
+        type: `number`,
         controlType: 'range',
         group: 'Base',
         controlOptions: {
@@ -106,9 +106,9 @@ const props = [
         key: 'leavesOnly',
         scopes: '*',
         help: 'Only render leaf nodes (skip parent nodes).',
-        type: '{boolean}',
+        type: 'boolean',
         required: false,
-        default: defaults.leavesOnly,
+        defaultValue: defaults.leavesOnly,
         controlType: 'switch',
         group: 'Base',
     },
@@ -116,7 +116,7 @@ const props = [
         key: 'margin',
         scopes: '*',
         help: 'Chart margin.',
-        type: '{object}',
+        type: 'object',
         required: false,
         controlType: 'margin',
         group: 'Base',
@@ -132,9 +132,9 @@ const props = [
             and is expressed in pixels. See the
             [official d3 documentation](https://github.com/d3/d3-hierarchy#pack_padding).
         `,
-        type: '{number}',
+        type: 'number',
         required: false,
-        default: defaults.padding,
+        defaultValue: defaults.padding,
         controlType: 'range',
         group: 'Base',
         controlOptions: {
@@ -151,9 +151,9 @@ const props = [
             colors used to colorize the circles,
             [see dedicated documentation](self:/guides/colors).
         `,
-        type: '{string|Function|Array}',
+        type: 'string | Function | string[]',
         required: false,
-        default: 'nivo',
+        defaultValue: 'nivo',
         controlType: 'colors',
         group: 'Style',
     },
@@ -166,9 +166,9 @@ const props = [
             If a function is provided, it will receive current
             node data and must return a valide color.
         `,
-        type: '{string|Function}',
+        type: 'string | Function',
         required: false,
-        default: 'depth',
+        defaultValue: 'depth',
         controlType: 'choices',
         group: 'Style',
         controlOptions: {
@@ -192,9 +192,9 @@ const props = [
         key: 'borderWidth',
         scopes: '*',
         help: 'Width of circle border.',
-        type: '{number}',
+        type: 'number',
         required: false,
-        default: defaults.borderWidth,
+        defaultValue: defaults.borderWidth,
         controlType: 'lineWidth',
         group: 'Style',
     },
@@ -206,9 +206,9 @@ const props = [
             how to compute border color,
             [see dedicated documentation](self:/guides/colors).
         `,
-        type: '{string|Function}',
+        type: 'string | Function',
         required: false,
-        default: defaults.borderColor,
+        defaultValue: defaults.borderColor,
         controlType: 'color',
         group: 'Style',
         controlOptions: {
@@ -220,9 +220,9 @@ const props = [
         key: 'enableLabel',
         scopes: '*',
         help: 'Enable/disable labels.',
-        type: '{boolean}',
+        type: 'boolean',
         required: false,
-        default: defaults.enableLabel,
+        defaultValue: defaults.enableLabel,
         controlType: 'switch',
         group: 'Labels',
     },
@@ -235,9 +235,9 @@ const props = [
             can be a string (used to access current node data property)
             or a function which will receive the actual node data.
         `,
-        type: '{string|Function}',
+        type: 'string | Function',
         required: false,
-        default: defaults.label,
+        defaultValue: defaults.label,
         controlType: 'choices',
         group: 'Labels',
         controlOptions: {
@@ -250,12 +250,13 @@ const props = [
     {
         key: 'labelFormat',
         scopes: '*',
+        group: 'Labels',
         help: 'Labels formatting.',
         description: `
             How to format label,
             [see d3.format() documentation](https://github.com/d3/d3-format/blob/master/README.md#format).
         `,
-        group: 'Labels',
+        type: 'string | Function',
     },
     {
         key: 'labelTextColor',
@@ -265,9 +266,9 @@ const props = [
             how to compute label text color,
             [see dedicated documentation](self:/guides/colors).
         `,
-        type: '{string|Function}',
+        type: 'string | Function',
         required: false,
-        default: defaults.labelTextColor,
+        defaultValue: defaults.labelTextColor,
         controlType: 'color',
         group: 'Labels',
         controlOptions: {
@@ -278,9 +279,9 @@ const props = [
         key: 'labelSkipRadius',
         scopes: '*',
         help: 'Skip label rendering if node radius is lower than given value, 0 to disable.',
-        type: '{number}',
+        type: 'number',
         required: false,
-        default: defaults.labelSkipRadius,
+        defaultValue: defaults.labelSkipRadius,
         controlType: 'range',
         group: 'Labels',
         controlOptions: {
@@ -293,9 +294,9 @@ const props = [
         key: 'isInteractive',
         scopes: ['Bubble', 'BubbleHtml'],
         help: 'Enable/disable interactivity.',
-        type: '{boolean}',
+        type: 'boolean',
         required: false,
-        default: defaults.isInteractive,
+        defaultValue: defaults.isInteractive,
         controlType: 'switch',
         group: 'Interactivity',
     },
@@ -303,9 +304,9 @@ const props = [
         key: 'isZoomable',
         scopes: ['Bubble', 'BubbleHtml'],
         help: `Enable/disable zooming ('isInteractive' must also be 'true').`,
-        type: '{boolean}',
+        type: 'boolean',
         required: false,
-        default: defaults.isZoomable,
+        defaultValue: defaults.isZoomable,
         controlType: 'switch',
         group: 'Interactivity',
     },
@@ -313,7 +314,7 @@ const props = [
         key: 'onClick',
         scopes: ['Bubble', 'BubbleHtml'],
         help: 'onClick handler, it receives clicked node data and mouse event.',
-        type: '{Function}',
+        type: 'Function',
         required: false,
     },
     ...motionProperties(['Bubble', 'BubbleHtml'], defaults),

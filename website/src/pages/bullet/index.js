@@ -10,7 +10,8 @@ import React, { useState, useCallback } from 'react'
 import shuffle from 'lodash/shuffle'
 import { ResponsiveBullet, BulletDefaultProps } from '@nivo/bullet'
 import { generateBulletData } from '@nivo/generators'
-import Layout from '../../components/Layout'
+import { useTheme } from '../../theming/context'
+import SEO from '../../components/seo'
 import ComponentPage from '../../components/components/ComponentPage'
 import ComponentHeader from '../../components/components/ComponentHeader'
 import ComponentDescription from '../../components/components/ComponentDescription'
@@ -19,9 +20,8 @@ import ActionsLogger, { useActionsLogger } from '../../components/components/Act
 import ComponentSettings from '../../components/components/ComponentSettings'
 import Stories from '../../components/components/Stories'
 import generateCode from '../../lib/generateChartCode'
-import bullet from '../../data/components/bullet/meta.yml'
+import meta from '../../data/components/bullet/meta.yml'
 import { groupsByScope } from '../../data/components/bullet/props'
-// import nivoTheme from '../../../nivoTheme'
 
 const generateData = () => [
     generateBulletData('temp.', shuffle([100, 120, 140])[0]),
@@ -55,10 +55,10 @@ const initialSettings = {
     animate: true,
     motionStiffness: 90,
     motionDamping: 12,
-    //theme: nivoTheme,
 }
 
 const Bullet = () => {
+    const theme = useTheme()
     const [settings, setSettings] = useState(initialSettings)
     const [data, setData] = useState(generateData())
     const [actions, logAction] = useActionsLogger()
@@ -100,29 +100,29 @@ const Bullet = () => {
     })
 
     return (
-        <Layout>
-            <ComponentPage>
-                <ComponentHeader chartClass="Bullet" tags={bullet.Bullet.tags} />
-                <ComponentDescription description={bullet.Bullet.description} />
-                <ComponentTabs chartClass="bullet" code={code} data={data} diceRoll={diceRoll}>
-                    <ResponsiveBullet
-                        data={data}
-                        {...settings}
-                        onRangeClick={onRangeClick}
-                        onMeasureClick={onMeasureClick}
-                        onMarkerClick={onMarkerClick}
-                    />
-                </ComponentTabs>
-                <ActionsLogger actions={actions} />
-                <ComponentSettings
-                    component="Bullet"
-                    settings={settings}
-                    onChange={setSettings}
-                    groups={groupsByScope.Bullet}
+        <ComponentPage>
+            <SEO title="Bullet" keywords={meta.Bullet.tags} />
+            <ComponentHeader chartClass="Bullet" tags={meta.Bullet.tags} />
+            <ComponentDescription description={meta.Bullet.description} />
+            <ComponentTabs chartClass="bullet" code={code} data={data} diceRoll={diceRoll}>
+                <ResponsiveBullet
+                    data={data}
+                    {...settings}
+                    onRangeClick={onRangeClick}
+                    onMeasureClick={onMeasureClick}
+                    onMarkerClick={onMarkerClick}
+                    theme={theme.nivo}
                 />
-                <Stories stories={bullet.Bullet.stories} />
-            </ComponentPage>
-        </Layout>
+            </ComponentTabs>
+            <ActionsLogger actions={actions} />
+            <ComponentSettings
+                component="Bullet"
+                settings={settings}
+                onChange={setSettings}
+                groups={groupsByScope.Bullet}
+            />
+            <Stories stories={meta.Bullet.stories} />
+        </ComponentPage>
     )
 }
 

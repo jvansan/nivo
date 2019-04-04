@@ -8,10 +8,11 @@
  */
 import React from 'react'
 import { generateProgrammingLanguageStats } from '@nivo/generators'
-import Layout from '../../components/Layout'
+import SEO from '../../components/seo'
 import ApiClient from '../../components/components/api-client/ApiClient'
 import { groupsByScope } from '../../data/components/pie/props'
 import mapper from '../../data/components/pie/mapper'
+import meta from '../../data/components/pie/meta.yml'
 
 const DATASET_SIZE = 12
 const generateData = () =>
@@ -24,7 +25,8 @@ const data = generateData()
 
 const PieApi = () => {
     return (
-        <Layout>
+        <>
+            <SEO title="Pie HTTP API" keywords={[...meta.Pie.tags, 'HTTP API']} />
             <ApiClient
                 componentName="Pie"
                 chartClass="pie"
@@ -76,7 +78,7 @@ const PieApi = () => {
                     data: JSON.stringify(data, null, '  '),
                 }}
             />
-        </Layout>
+        </>
     )
 }
 

@@ -6,38 +6,41 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-import React, { Component } from 'react'
-import Helmet from 'react-helmet'
-import Layout from '../../components/Layout'
+import React from 'react'
+import { themeContext } from '@nivo/core'
+import { useTheme } from '../../theming/context'
+import SEO from '../../components/seo'
 import PageContent from '../../components/PageContent'
 import LegendPosition from '../../components/guides/legends/LegendPosition'
 import LegendDirection from '../../components/guides/legends/LegendDirection'
 import LegendItemDirection from '../../components/guides/legends/LegendItemDirection'
 import SymbolShape from '../../components/guides/legends/SymbolShape'
 
-export default class Legends extends Component {
-    render() {
-        return (
-            <Layout>
-                <Helmet title="Legends" />
-                <PageContent>
-                    <div className="guide__header">
-                        <h1 className="page_header">Legends</h1>
-                    </div>
-                </PageContent>
-                <div className="guide__description text-content">
-                    <p>Let's see how to add legends to your charts.</p>
-                    <p>
-                        Legend components are available via the <code>@nivo/legends</code> package,
-                        however it's added as a dependency for most chart packages supporting them,
-                        in most cases you won't have to add it as a direct dependency.
-                    </p>
-                    <LegendPosition />
-                    <LegendDirection />
-                    <LegendItemDirection />
-                    <SymbolShape />
+const Legends = () => {
+    const theme = useTheme()
+
+    return (
+        <themeContext.Provider value={theme.nivo}>
+            <SEO title="Legends Guide" />
+            <PageContent>
+                <div className="guide__header">
+                    <h1 className="page_header">Legends</h1>
                 </div>
-            </Layout>
-        )
-    }
+            </PageContent>
+            <div className="guide__description text-content">
+                <p>Let's see how to add legends to your charts.</p>
+                <p>
+                    Legend components are available via the <code>@nivo/legends</code> package,
+                    however it's added as a dependency for most chart packages supporting them, in
+                    most cases you won't have to add it as a direct dependency.
+                </p>
+                <LegendPosition />
+                <LegendDirection />
+                <LegendItemDirection />
+                <SymbolShape />
+            </div>
+        </themeContext.Provider>
+    )
 }
+
+export default Legends

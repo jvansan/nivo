@@ -11,6 +11,7 @@ import snakeCase from 'lodash/kebabCase'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import VisitIcon from 'react-icons/lib/md/keyboard-arrow-right'
+import media from '../../theming/mediaQueries'
 import config from '../../data/config'
 
 const buildStoryLink = ({ kind, story }) =>
@@ -44,7 +45,7 @@ const Wrapper = styled.div`
     overflow-x: hidden;
     overflow-y: auto;
 
-    @media only screen and (min-width: 760px) and (max-width: 1000px) {
+    ${media.tablet`
         & {
             --innerHeight: calc(100% - ${({ theme }) => theme.dimensions.headerHeight}px);
             height: calc(var(--innerHeight) * 0.45);
@@ -64,9 +65,9 @@ const Wrapper = styled.div`
                 `
             }}
         }
-    }
+    `}
 
-    @media only screen and (max-width: 760px) {
+    ${media.mobile`
         & {
             position: relative;
             bottom: auto;
@@ -76,7 +77,7 @@ const Wrapper = styled.div`
             border-left: none;
             border-top: 1px solid ${({ theme }) => theme.colors.border};
         }
-    }
+    `}
 `
 
 const Header = styled.div`

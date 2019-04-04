@@ -38,7 +38,7 @@ const props = [
             skills for each user by language
             (3 layers and 4 dimensions).
         `,
-        type: '{Array.<Object|Array>}',
+        type: 'Array<object | Array>',
         required: true,
     },
     {
@@ -50,9 +50,9 @@ const props = [
             Key to use to index the data, this key
             must exist in each data item.
         `,
-        type: '{string|number}',
+        type: 'string | number',
         required: false,
-        default: defaults.indexBy,
+        defaultValue: defaults.indexBy,
     },
     {
         key: 'keys',
@@ -63,9 +63,9 @@ const props = [
             Keys to use to determine each serie.
             Those keys should exist in each data item.
         `,
-        type: '{Array.<string|number>}',
+        type: 'Array<string | number>',
         required: false,
-        default: defaults.keys,
+        defaultValue: defaults.keys,
     },
     {
         key: 'maxValue',
@@ -77,8 +77,8 @@ const props = [
             the provided data.
         `,
         required: false,
-        default: defaults.maxValue,
-        type: '{number|string}',
+        defaultValue: defaults.maxValue,
+        type: 'number | string',
         controlType: 'switchableRange',
         group: 'Base',
         controlOptions: {
@@ -97,7 +97,7 @@ const props = [
             not required if using
             \`<ResponsiveRadar/>\`.
         `,
-        type: '{number}',
+        type: 'number',
         required: true,
         controlType: 'range',
         group: 'Base',
@@ -114,10 +114,10 @@ const props = [
         docScopes: '*',
         help: 'Chart height.',
         description: `
-        not required if using
-        \`<ResponsiveRadar/>\`.
+            not required if using
+            \`<ResponsiveRadar/>\`.
         `,
-        type: '{number}',
+        type: 'number',
         required: true,
         controlType: 'range',
         group: 'Base',
@@ -136,9 +136,9 @@ const props = [
             Defines the curve factory to use
             for the line generator.
         `,
-        type: '{string}',
+        type: 'string',
         required: false,
-        default: defaults.curve,
+        defaultValue: defaults.curve,
         controlType: 'choices',
         group: 'Base',
         controlOptions: {
@@ -151,9 +151,9 @@ const props = [
     {
         key: 'colors',
         help: 'Defines how to compute slice color.',
-        type: '{string|Function|Array}',
+        type: 'string | Function | string[]',
         required: false,
-        default: 'nivo',
+        defaultValue: 'nivo',
         controlType: 'colors',
         group: 'Base',
     },
@@ -169,9 +169,9 @@ const props = [
             and pick a color from colors according
             to this key.
         `,
-        type: '{string|Function}',
+        type: 'string | Function',
         required: false,
-        default: 'key',
+        defaultValue: 'key',
         controlType: 'choices',
         group: 'Base',
         controlOptions: {
@@ -187,7 +187,7 @@ const props = [
         key: 'margin',
         scopes: '*',
         help: 'Chart margin.',
-        type: '{object}',
+        type: 'object',
         required: false,
         controlType: 'margin',
         group: 'Base',
@@ -195,27 +195,27 @@ const props = [
     {
         key: 'fillOpacity',
         help: 'Shape fill opacity.',
-        type: '{number}',
+        type: 'number',
         required: false,
-        default: defaults.borderWidth,
+        defaultValue: defaults.fillOpacity,
         controlType: 'opacity',
         group: 'Base',
     },
     {
         key: 'borderWidth',
         help: 'Shape border width.',
-        type: '{number}',
+        type: 'number',
         required: false,
-        default: defaults.borderWidth,
+        defaultValue: defaults.borderWidth,
         controlType: 'lineWidth',
         group: 'Base',
     },
     {
         key: 'borderColor',
         help: 'Method to compute border color.',
-        type: '{string|Function}',
+        type: 'string | Function',
         required: false,
-        default: defaults.borderColor,
+        defaultValue: defaults.borderColor,
         controlType: 'color',
         group: 'Base',
         controlOptions: {
@@ -225,9 +225,9 @@ const props = [
     {
         key: 'gridLevels',
         help: 'Number of levels to display for grid',
-        type: '{number}',
+        type: 'number',
         required: false,
-        default: defaults.gridLevels,
+        defaultValue: defaults.gridLevels,
         controlType: 'range',
         group: 'Grid',
         controlOptions: {
@@ -238,9 +238,9 @@ const props = [
     {
         key: 'gridShape',
         help: 'Determine shape of the grid.',
-        type: '{string}',
+        type: 'string',
         required: false,
-        default: defaults.gridShape,
+        defaultValue: defaults.gridShape,
         controlType: 'choices',
         group: 'Grid',
         controlOptions: {
@@ -252,7 +252,7 @@ const props = [
     },
     {
         key: 'gridLabel',
-        type: '{Function}',
+        type: 'Function',
         group: 'Grid',
         help: 'Grid label.',
         description: `
@@ -277,9 +277,9 @@ const props = [
     {
         key: 'gridLabelOffset',
         help: 'Label offset from outer radius.',
-        type: '{number}',
+        type: 'number',
         required: false,
-        default: defaults.gridLabelOffset,
+        defaultValue: defaults.gridLabelOffset,
         controlType: 'range',
         group: 'Grid',
         controlOptions: {
@@ -292,9 +292,9 @@ const props = [
         key: 'enableDots',
         scopes: '*',
         help: 'Enable/disable dots.',
-        type: '{boolean}',
+        type: 'boolean',
         required: false,
-        default: defaults.enableDots,
+        defaultValue: defaults.enableDots,
         controlType: 'switch',
         group: 'Dots',
     },
@@ -308,15 +308,15 @@ const props = [
             \`color\`, \`borderWidth\` and \`borderColor\`
             props and must return a valid SVG element.
         `,
-        type: '{Function}',
+        type: 'Function',
         required: false,
     },
     {
         key: 'dotSize',
         help: 'Size of the dots.',
-        type: '{number}',
+        type: 'number',
         required: false,
-        default: dotsDefaults.size,
+        defaultValue: dotsDefaults.size,
         controlType: 'range',
         group: 'Dots',
         controlOptions: {
@@ -329,9 +329,9 @@ const props = [
         key: 'dotColor',
         scopes: '*',
         help: 'Method to compute dots color.',
-        type: '{string|Function}',
+        type: 'string | Function',
         required: false,
-        default: dotsDefaults.color,
+        defaultValue: dotsDefaults.color,
         controlType: 'color',
         group: 'Dots',
         controlOptions: {
@@ -341,9 +341,9 @@ const props = [
     {
         key: 'dotBorderWidth',
         help: 'Width of the dots border.',
-        type: '{number}',
+        type: 'number',
         required: false,
-        default: dotsDefaults.borderWidth,
+        defaultValue: dotsDefaults.borderWidth,
         controlType: 'range',
         group: 'Dots',
         controlOptions: {
@@ -356,9 +356,9 @@ const props = [
         key: 'dotBorderColor',
         scopes: '*',
         help: 'Method to compute dots border color.',
-        type: '{string|Function}',
+        type: 'string | Function',
         required: false,
-        default: dotsDefaults.borderColor,
+        defaultValue: dotsDefaults.borderColor,
         controlType: 'color',
         group: 'Dots',
         controlOptions: {
@@ -369,9 +369,9 @@ const props = [
         key: 'enableDotLabel',
         scopes: '*',
         help: 'Enable/disable dots label.',
-        type: '{boolean}',
+        type: 'boolean',
         required: false,
-        default: dotsDefaults.enableLabel,
+        defaultValue: dotsDefaults.enableLabel,
         controlType: 'switch',
         group: 'Dots',
     },
@@ -380,9 +380,9 @@ const props = [
         help: 'Dot label.',
         description:
             'Property to use to determine dot label. If a function is provided, it will receive current value and serie and must return a label.',
-        type: '{string}',
+        type: 'string',
         required: false,
-        default: dotsDefaults.label,
+        defaultValue: dotsDefaults.label,
         controlType: 'choices',
         group: 'Dots',
         controlOptions: {
@@ -401,9 +401,9 @@ const props = [
     {
         key: 'dotLabelYOffset',
         help: 'Label Y offset from dot shape.',
-        type: '{number}',
+        type: 'number',
         required: false,
-        default: dotDefaults.labelYOffset,
+        defaultValue: dotDefaults.labelYOffset,
         controlType: 'range',
         group: 'Dots',
         controlOptions: {
@@ -416,9 +416,9 @@ const props = [
         key: 'isInteractive',
         scopes: ['Radar'],
         help: 'Enable/disable interactivity.',
-        type: '{boolean}',
+        type: 'boolean',
         required: false,
-        default: defaults.isInteractive,
+        defaultValue: defaults.isInteractive,
         controlType: 'switch',
         group: 'Interactivity',
     },

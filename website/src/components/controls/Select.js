@@ -7,6 +7,8 @@ class Select extends Component {
         const { theme, ...rest } = this.props
 
         const styles = {
+            control: styles => ({ ...styles, marginBottom: '5px' }),
+            /*
             option: (base, state) => ({
                 ...base,
             }),
@@ -24,6 +26,7 @@ class Select extends Component {
                 background: theme.colors.cardBackground,
                 borderColor: theme.colors.border,
             }),
+            */
         }
 
         return <ReactSelect styles={styles} {...rest} />

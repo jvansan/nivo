@@ -10,17 +10,17 @@ import React, { memo, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import className from 'classnames'
 import Control from './Control'
-import Label from './Label'
+import PropertyHeader from './PropertyHeader'
 import PropertyHelp from './PropertyHelp'
 
-const RadioControl = memo(({ label, value, onChange, choices, help, description }) => {
+const RadioControl = memo(({ property, options, value, onChange }) => {
     const handleUpdate = useCallback(event => onChange(event.target.value), [onChange])
 
     return (
-        <Control>
-            <Label>{label}</Label>
+        <Control description={property.description}>
+            <PropertyHeader {...property} />
             <div className="control-radio">
-                {choices.map(choice => (
+                {options.choices.map(choice => (
                     <label
                         className={className('control-radio-item', {
                             '_is-active': value === choice.value,
@@ -37,23 +37,23 @@ const RadioControl = memo(({ label, value, onChange, choices, help, description 
                     </label>
                 ))}
             </div>
-            <PropertyHelp help={help} description={description} />
+            <PropertyHelp>{property.help}</PropertyHelp>
         </Control>
     )
 })
 
 RadioControl.displayName = 'RadioControl'
 RadioControl.propTypes = {
-    label: PropTypes.string.isRequired,
+    property: PropTypes.object.isRequired,
     value: PropTypes.string.isRequired,
-    help: PropTypes.node.isRequired,
-    description: PropTypes.node,
-    choices: PropTypes.arrayOf(
-        PropTypes.shape({
-            value: PropTypes.string.isRequired,
-            label: PropTypes.string.isRequired,
-        })
-    ).isRequired,
+    options: PropTypes.shape({
+        choices: PropTypes.arrayOf(
+            PropTypes.shape({
+                value: PropTypes.string.isRequired,
+                label: PropTypes.string.isRequired,
+            })
+        ).isRequired,
+    }).isRequired,
     onChange: PropTypes.func.isRequired,
 }
 

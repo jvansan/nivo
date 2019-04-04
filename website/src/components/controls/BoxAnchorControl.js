@@ -8,7 +8,7 @@
  */
 import React from 'react'
 import Control from './Control'
-import Label from './Label'
+import PropertyHeader from './PropertyHeader'
 import PropertyHelp from './PropertyHelp'
 
 const boxWidth = 80
@@ -31,10 +31,10 @@ const anchors = [
     ['left', 0, boxHeight / 2],
 ]
 
-const BoxAnchorControl = ({ label, value, onChange, help, description }) => {
+const BoxAnchorControl = ({ property, value, onChange }) => {
     return (
-        <Control>
-            <Label>{label}</Label>
+        <Control description={property.description}>
+            <PropertyHeader {...property} />
             <div>
                 <svg
                     width={boxWidth + boxPadding * 2}
@@ -86,7 +86,7 @@ const BoxAnchorControl = ({ label, value, onChange, help, description }) => {
                     </g>
                 </svg>
             </div>
-            <PropertyHelp help={help} description={description} />
+            <PropertyHelp>{property.help}</PropertyHelp>
         </Control>
     )
 }

@@ -9,7 +9,8 @@
 import React, { useState, useCallback } from 'react'
 import omit from 'lodash/omit'
 import { ResponsiveTreeMapCanvas, TreeMapCanvasDefaultProps } from '@nivo/treemap'
-import Layout from '../../components/Layout'
+import { useTheme } from '../../theming/context'
+import SEO from '../../components/seo'
 import ComponentPage from '../../components/components/ComponentPage'
 import ComponentHeader from '../../components/components/ComponentHeader'
 import ComponentDescription from '../../components/components/ComponentDescription'
@@ -18,11 +19,10 @@ import ActionsLogger, { useActionsLogger } from '../../components/components/Act
 import ComponentSettings from '../../components/components/ComponentSettings'
 // import Stories from '../../components/components/Stories'
 import generateCode from '../../lib/generateChartCode'
-import treemap from '../../data/components/treemap/meta.yml'
+import meta from '../../data/components/treemap/meta.yml'
 import mapper from '../../data/components/treemap/mapper'
 import { groupsByScope } from '../../data/components/treemap/props'
 import { generateHeavyDataSet } from '../../data/components/treemap/generator'
-//import nivoTheme from '../../../nivoTheme'
 
 const initialSettings = {
     tile: 'squarify',
@@ -37,7 +37,8 @@ const initialSettings = {
         left: 10,
     },
 
-    pixelRatio: window && window.devicePixelRatio ? window.devicePixelRatio : 1,
+    pixelRatio:
+        typeof window !== 'undefined' && window.devicePixelRatio ? window.devicePixelRatio : 1,
 
     enableLabel: true,
     labelFormat: '.0s',
@@ -60,6 +61,7 @@ const initialSettings = {
 }
 
 const TreeMapCanvas = () => {
+    const theme = useTheme()
     const [settings, setSettings] = useState(initialSettings)
     const [data, setData] = useState(generateHeavyDataSet())
     const diceRoll = useCallback(() => setData(generateHeavyDataSet()), [setData])
@@ -84,33 +86,32 @@ const TreeMapCanvas = () => {
     })
 
     return (
-        <Layout>
-            <ComponentPage>
-                <ComponentHeader chartClass="TreeMapCanvas" tags={treemap.TreeMapCanvas.tags} />
-                <ComponentDescription description={treemap.TreeMapCanvas.description} />
-                <ComponentTabs
-                    chartClass="treemap"
-                    code={code}
-                    data={data.root}
-                    diceRoll={diceRoll}
-                    nodeCount={data.nodeCount}
-                >
-                    <ResponsiveTreeMapCanvas
-                        root={data.root}
-                        {...mappedSettings}
-                        //theme={nivoTheme}
-                        onClick={onClick}
-                    />
-                </ComponentTabs>
-                <ActionsLogger actions={actions} isFullWidth={true} />
-                <ComponentSettings
-                    component="TreeMapCanvas"
-                    settings={settings}
-                    onChange={setSettings}
-                    groups={groupsByScope.TreeMapCanvas}
+        <ComponentPage>
+            <SEO title="TreeMapCanvas" keywords={meta.TreeMapCanvas.tags} />
+            <ComponentHeader chartClass="TreeMapCanvas" tags={meta.TreeMapCanvas.tags} />
+            <ComponentDescription description={meta.TreeMapCanvas.description} />
+            <ComponentTabs
+                chartClass="treemap"
+                code={code}
+                data={data.root}
+                diceRoll={diceRoll}
+                nodeCount={data.nodeCount}
+            >
+                <ResponsiveTreeMapCanvas
+                    root={data.root}
+                    {...mappedSettings}
+                    theme={theme.nivo}
+                    onClick={onClick}
                 />
-            </ComponentPage>
-        </Layout>
+            </ComponentTabs>
+            <ActionsLogger actions={actions} isFullWidth={true} />
+            <ComponentSettings
+                component="TreeMapCanvas"
+                settings={settings}
+                onChange={setSettings}
+                groups={groupsByScope.TreeMapCanvas}
+            />
+        </ComponentPage>
     )
 }
 

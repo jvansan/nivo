@@ -6,17 +6,11 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import ControlsGroup from '../controls/ControlsGroup'
 import media from '../../theming/mediaQueries'
-
-const Container = styled.div`
-    background: ${({ theme }) => theme.colors.cardBackground};
-    color: ${({ theme }) => theme.colors.text};
-    // border-top: 1px solid ${({ theme }) => theme.colors.border};
-`
 
 const Group = styled.div`
     // border-top: 1px solid ${({ theme }) => theme.colors.border};
@@ -54,34 +48,26 @@ const Title = styled.div`
     `}
 `
 
-export default class ComponentSettings extends Component {
-    static propTypes = {
-        component: PropTypes.string.isRequired,
-        settings: PropTypes.object.isRequired,
-        onChange: PropTypes.func.isRequired,
-        groups: PropTypes.array.isRequired,
-    }
-
-    render() {
-        const { component, settings, onChange, groups } = this.props
-
+const ControlsGroups = ({ groups, value, onChange }) => {
+    return groups.map(group => {
         return (
-            <Container>
-                {groups.map(group => {
-                    return (
-                        <Group key={group.name}>
-                            <Title>{group.name}</Title>
-                            <ControlsGroup
-                                component={component}
-                                name={group.name}
-                                controls={group.properties}
-                                settings={settings}
-                                onChange={onChange}
-                            />
-                        </Group>
-                    )
-                })}
-            </Container>
+            <Group key={group.name}>
+                <Title>{group.name}</Title>
+                <ControlsGroup
+                    name={group.name}
+                    controls={group.properties}
+                    settings={value}
+                    onChange={onChange}
+                />
+            </Group>
         )
-    }
+    })
 }
+
+ControlsGroups.propTypes = {
+    groups: PropTypes.array.isRequired,
+    value: PropTypes.object.isRequired,
+    onChange: PropTypes.func.isRequired,
+}
+
+export default ControlsGroups

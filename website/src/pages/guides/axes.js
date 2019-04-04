@@ -7,9 +7,8 @@
  * file that was distributed with this source code.
  */
 import React, { Component } from 'react'
-import Helmet from 'react-helmet'
 import { Link } from 'gatsby'
-import Layout from '../../components/Layout'
+import SEO from '../../components/seo'
 import PageContent from '../../components/PageContent'
 import AxesPosition from '../../components/guides/axes/AxesPosition'
 import AxesTicks from '../../components/guides/axes/AxesTicks'
@@ -18,8 +17,8 @@ import AxesLegend from '../../components/guides/axes/AxesLegend'
 export default class Axes extends Component {
     render() {
         return (
-            <Layout>
-                <Helmet title="Axes" />
+            <>
+                <SEO title="Axes Guide" />
                 <PageContent>
                     <div className="guide__header">
                         <h1 className="page_header">Axes</h1>
@@ -44,7 +43,7 @@ export default class Axes extends Component {
                 <AxesPosition />
                 <AxesTicks />
                 <AxesLegend />
-            </Layout>
+            </>
         )
     }
 }

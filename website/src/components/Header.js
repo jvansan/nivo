@@ -11,6 +11,7 @@ import styled from 'styled-components'
 import { Link } from 'gatsby'
 import GitHubIcon from 'react-icons/lib/fa/github'
 import TwitterIcon from 'react-icons/lib/fa/twitter'
+import media from '../theming/mediaQueries'
 import * as nav from '../data/nav'
 
 const Container = styled.header`
@@ -36,17 +37,17 @@ const HeaderNav = styled.nav`
     justify-content: flex-end;
     align-items: center;
 
-    @media only screen and (min-width: 760px) and (max-width: 1000px) {
+    ${media.tablet`
         & {
             right: ${({ theme }) => theme.dimensions.contentMarginSmall}px;
         }
-    }
+    `}
 
-    @media only screen and (max-width: 760px) {
+    ${media.mobile`
         & {
             display: none;
         }
-    }
+    `}
 `
 
 export default class Header extends Component {

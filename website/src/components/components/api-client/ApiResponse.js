@@ -8,6 +8,7 @@
  */
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import media from '../../../theming/mediaQueries'
 
 const Container = styled.div`
     position: fixed;
@@ -23,7 +24,7 @@ const Container = styled.div`
     overflow-x: hidden;
     overflow-y: auto;
 
-    @media only screen and (min-width: 760px) and (max-width: 1000px) {
+    ${media.tablet`
         & {
             right: 0;
             bottom: 0;
@@ -31,9 +32,9 @@ const Container = styled.div`
             height: calc(var(--innerHeight) * 0.45);
             width: 60%;
         }
-    }
+    `}
 
-    @media only screen and (max-width: 760px) {
+    ${media.mobile`
         & {
             position: relative;
             right: auto;
@@ -43,7 +44,7 @@ const Container = styled.div`
             border-left-width: 0;
             z-index: 0;
         }
-    }
+    `}
 `
 
 class ApiResponse extends Component {

@@ -6,37 +6,74 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-import React from 'react'
-import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import dedent from 'dedent-js'
-import Markdown from '../Markdown'
+//import dedent from 'dedent-js'
+//import Markdown from '../Markdown'
 
-const Help = styled.div`
-    font-size: 12px;
-    color: #777;
-    margin: 0;
-    line-height: 16px;
-    grid-column-start: 2;
+export default styled.span`
+    font-size: 13px;
+    line-height: 1.6em;
+    color: ${({ theme }) => theme.colors.textLight};
 `
 
-const PropertyHelp = ({ help, description }) => {
-    return (
-        <>
-            <Help>{help}</Help>
-            <span />
-            {description && (
-                <div>
-                    <Markdown source={dedent(description)} />
-                </div>
-            )}
-        </>
-    )
-}
+const More = styled.span`
+    cursor: pointer;
+    display: inline-block;
+    margin-left: 9px;
+    color: ${({ theme }) => theme.colors.link};
 
-PropertyHelp.propTypes = {
-    help: PropTypes.string.isRequired,
-    description: PropTypes.string,
-}
+    &:hover {
+        text-decoration: underline;
+    }
+`
 
-export default PropertyHelp
+const Less = styled.span`
+    cursor: pointer;
+    display: inline-block;
+    color: ${({ theme }) => theme.colors.link};
+
+    &:hover {
+        text-decoration: underline;
+    }
+`
+
+const Description = styled.div`
+    grid-column-start: 2;
+    line-height: 1.6em;
+
+    p {
+        margin: 7px 0;
+    }
+    p:first-child {
+        margin-top: 0;
+    }
+`
+
+// const PropertyHelp = ({ help }) => {
+//     const [isOpened, setIsOpened] = useState(false)
+//     const hasDescription = description !== undefined
+
+//     return (
+//         <>
+//             {!isOpened && (
+//                 <Help>{help}
+//                 </Help>
+//             )}
+//             {hasDescription && isOpened && (
+//                 <>
+//                     <Description>
+//                         <Markdown source={dedent(description)} />
+//                         <Less onClick={() => setIsOpened(false)}>less</Less>
+//                     </Description>
+//                 </>
+//             )}
+//         </>
+//     )
+// }
+
+// PropertyHelp.propTypes = {
+//     help: PropTypes.string.isRequired,
+//     description: PropTypes.string,
+// }
+
+// export default PropertyHelp

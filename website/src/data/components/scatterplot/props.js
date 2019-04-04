@@ -23,10 +23,10 @@ const props = [
             Chart data, which must conform to this structure:
             \`\`\`
             Array<{
-                id: {string|number}
+                id:   string | number
                 data: Array<{
-                    x: {number|string|Date}
-                    y: {number|string|Date}
+                    x: number | string | Date
+                    y: number | string | Date
                 }>
             }>
             \`\`\`
@@ -41,7 +41,7 @@ const props = [
     {
         key: 'xScale',
         scopes: '*',
-        type: '{object}',
+        type: 'object',
         help: `X scale configuration.`,
         group: 'Base',
         controlType: 'object',
@@ -49,8 +49,8 @@ const props = [
             props: [
                 {
                     key: 'type',
-                    description: `Scale type, supports linear, point and time scales.`,
-                    type: '{string}',
+                    help: `Scale type, supports linear, point and time scales.`,
+                    type: 'string',
                     controlType: 'choices',
                     controlOptions: {
                         disabled: true,
@@ -62,9 +62,9 @@ const props = [
                 },
                 {
                     key: 'min',
-                    description: 'Minimum scale value.',
+                    help: 'Minimum scale value.',
                     required: false,
-                    type: `{number|'auto'}`,
+                    type: `number | 'auto'`,
                     controlType: 'switchableRange',
                     controlOptions: {
                         disabledValue: 'auto',
@@ -75,9 +75,9 @@ const props = [
                 },
                 {
                     key: 'max',
-                    description: 'Maximum scale value.',
+                    help: 'Maximum scale value.',
                     required: false,
-                    type: `{number|'auto'}`,
+                    type: `number | 'auto'`,
                     controlType: 'switchableRange',
                     controlOptions: {
                         disabledValue: 'auto',
@@ -92,7 +92,7 @@ const props = [
     {
         key: 'yScale',
         scopes: '*',
-        type: '{object}',
+        type: 'object',
         help: `Y scale configuration.`,
         group: 'Base',
         controlType: 'object',
@@ -100,8 +100,8 @@ const props = [
             props: [
                 {
                     key: 'type',
-                    description: `Scale type, supports linear, point and time scales.`,
-                    type: '{string}',
+                    help: `Scale type, supports linear, point and time scales.`,
+                    type: 'string',
                     controlType: 'choices',
                     controlOptions: {
                         disabled: true,
@@ -113,9 +113,9 @@ const props = [
                 },
                 {
                     key: 'min',
-                    description: 'Minimum scale value.',
+                    help: 'Minimum scale value.',
                     required: false,
-                    type: `{number|'auto'}`,
+                    type: `number | 'auto'`,
                     controlType: 'switchableRange',
                     controlOptions: {
                         disabledValue: 'auto',
@@ -126,9 +126,9 @@ const props = [
                 },
                 {
                     key: 'max',
-                    description: 'Maximum scale value.',
+                    help: 'Maximum scale value.',
                     required: false,
-                    type: `{number|'auto'}`,
+                    type: `number | 'auto'`,
                     controlType: 'switchableRange',
                     controlOptions: {
                         disabledValue: 'auto',
@@ -151,7 +151,7 @@ const props = [
             please add margin to make sure they're visible.
         `,
         help: 'Chart width.',
-        type: '{number}',
+        type: 'number',
         required: true,
         controlType: 'range',
         group: 'Base',
@@ -173,7 +173,7 @@ const props = [
             please add margin to make sure they're visible.
         `,
         help: 'Chart height.',
-        type: '{number}',
+        type: 'number',
         required: true,
         controlType: 'range',
         group: 'Base',
@@ -199,15 +199,15 @@ const props = [
             computed data and must return a valid SVG element.
         `,
         required: false,
-        default: defaults.layers,
+        defaultValue: defaults.layers,
     },
     {
         key: 'pixelRatio',
         scopes: ['ScatterPlotCanvas'],
         help: `Adjust pixel ratio, useful for HiDPI screens.`,
         required: false,
-        default: 'Depends on device',
-        type: `{number}`,
+        defaultValue: 'Depends on device',
+        type: `number`,
         controlType: 'range',
         group: 'Base',
         controlOptions: {
@@ -219,7 +219,7 @@ const props = [
         key: 'margin',
         scopes: '*',
         help: 'Chart margin.',
-        type: '{object}',
+        type: 'object',
         required: false,
         controlType: 'margin',
         group: 'Base',
@@ -228,9 +228,9 @@ const props = [
         key: 'colors',
         scopes: '*',
         help: 'Defines color range.',
-        type: '{string|Function|Array}',
+        type: 'string | Function | string[]',
         required: false,
-        default: 'nivo',
+        defaultValue: 'nivo',
         controlType: 'colors',
         group: 'Style',
     },
@@ -242,8 +242,9 @@ const props = [
             If a function is provided, it will receive
             current node data and must return a color.
         `,
+        type: 'string | Function',
         required: false,
-        default: defaults.colorBy,
+        defaultValue: defaults.colorBy,
         controlType: 'choices',
         group: 'Style',
         controlOptions: {
@@ -264,8 +265,8 @@ const props = [
         scopes: '*',
         help: `Symbol size.`,
         required: false,
-        default: defaults.symbolSize,
-        type: `{number}`,
+        defaultValue: defaults.symbolSize,
+        type: `number`,
         controlType: 'range',
         group: 'Symbols',
         controlOptions: {
@@ -278,9 +279,9 @@ const props = [
         key: 'enableGridX',
         scopes: '*',
         help: 'Enable/disable x grid.',
-        type: '{boolean}',
+        type: 'boolean',
         required: false,
-        default: defaults.enableGridX,
+        defaultValue: defaults.enableGridX,
         controlType: 'switch',
         group: 'Grid & Axes',
     },
@@ -288,9 +289,9 @@ const props = [
         key: 'enableGridY',
         scopes: '*',
         help: 'Enable/disable y grid.',
-        type: '{boolean}',
+        type: 'boolean',
         required: false,
-        default: defaults.enableGridY,
+        defaultValue: defaults.enableGridY,
         controlType: 'switch',
         group: 'Grid & Axes',
     },
@@ -299,9 +300,9 @@ const props = [
         key: 'isInteractive',
         scopes: ['ScatterPlot', 'ScatterPlotCanvas'],
         help: 'Enable/disable interactivity.',
-        type: '{boolean}',
+        type: 'boolean',
         required: false,
-        default: defaults.isInteractive,
+        defaultValue: defaults.isInteractive,
         controlType: 'switch',
         group: 'Interactivity',
     },
@@ -309,9 +310,9 @@ const props = [
         key: 'useMesh',
         scopes: ['ScatterPlot', 'ScatterPlotCanvas'],
         help: 'Use a mesh to detect mouse interactions.',
-        type: '{boolean}',
+        type: 'boolean',
         required: false,
-        default: defaults.useMesh,
+        defaultValue: defaults.useMesh,
         controlType: 'switch',
         group: 'Interactivity',
     },
@@ -319,9 +320,9 @@ const props = [
         key: 'debugMesh',
         scopes: ['ScatterPlot', 'ScatterPlotCanvas'],
         help: 'Display mesh used to detect mouse interactions (voronoi cells).',
-        type: '{boolean}',
+        type: 'boolean',
         required: false,
-        default: defaults.debugMesh,
+        defaultValue: defaults.debugMesh,
         controlType: 'switch',
         group: 'Interactivity',
     },
@@ -329,23 +330,24 @@ const props = [
         key: 'tooltip',
         scopes: ['ScatterPlot'],
         group: 'Interactivity',
-        type: '{Function}',
+        type: 'Function',
         required: false,
         help: 'Custom tooltip component',
         description: `
             A function allowing complete tooltip customisation,
             it must return a valid HTML element and will
             receive the following data:
-
             \`\`\`
             {
-                id:    {string|number},
-                serie: {string|number},
-                color: {string},
-                x:     {number},
-                y:     {number},
+                id:    string | number
+                serie: string | number
+                color: string
+                x:     number
+                y:     number
             }
             \`\`\`
+            You can also customize the tooltip style
+            using the \`theme.tooltip\` object.
         `,
     },
     {
@@ -354,48 +356,39 @@ const props = [
         group: 'Interactivity',
         excludeFromDoc: true,
         help: 'Showcase custom tooltip.',
-        description: `
-            You can customize the tooltip using the
-            \`tooltip\` property and
-            \`theme.tooltip\` object.
-        `,
-        type: '{boolean}',
+        type: 'boolean',
         controlType: 'switch',
     },
     {
         key: 'onMouseEnter',
         scopes: ['ScatterPlot', 'ScatterPlotCanvas'],
         group: 'Interactivity',
-        help: 'onMouseEnter handler.',
-        description: 'onMouseEnter handler, it receives target node data and mouse event.',
-        type: '{Function}',
+        help: 'onMouseEnter handler, it receives target node data and mouse event.',
+        type: '(node, event) => void',
         required: false,
     },
     {
         key: 'onMouseMove',
         scopes: ['ScatterPlot', 'ScatterPlotCanvas'],
         group: 'Interactivity',
-        help: 'onMouseMove handler.',
-        description: 'onMouseMove handler, it receives target node data and mouse event.',
-        type: '{Function}',
+        help: 'onMouseMove handler, it receives target node data and mouse event.',
+        type: '(node, event) => void',
         required: false,
     },
     {
         key: 'onMouseLeave',
         scopes: ['ScatterPlot', 'ScatterPlotCanvas'],
         group: 'Interactivity',
-        help: 'onMouseLeave handler.',
-        description: 'onMouseLeave handler, it receives target node data and mouse event.',
-        type: '{Function}',
+        help: 'onMouseLeave handler, it receives target node data and mouse event.',
+        type: '(node, event) => void',
         required: false,
     },
     {
         key: 'onClick',
         scopes: ['ScatterPlot', 'ScatterPlotCanvas'],
         group: 'Interactivity',
-        help: 'onClick handler.',
-        description: 'onClick handler, it receives target node data and mouse event.',
-        type: '{Function}',
+        help: 'onClick handler, it receives target node data and mouse event.',
+        type: '(node, event) => void',
         required: false,
     },
     ...motionProperties(['ScatterPlot'], defaults),

@@ -6,36 +6,51 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-import React from 'react'
+import React, { useState, useCallback } from 'react'
 import styled from 'styled-components'
+import RightIcon from 'react-icons/lib/md/keyboard-arrow-right'
+import DownIcon from 'react-icons/lib/md/keyboard-arrow-down'
+import PropertyDescription from './PropertyDescription'
+import { Cell } from './styled'
 
-const Container = styled.div`
-    display: grid;
-    grid-template-columns: 1fr 3fr;
-    padding: 9px 20px;
-    grid-column-gap: 16px;
-    grid-row-gap: 7px;
+const Container = styled(Cell)`
     border-bottom: 1px solid ${({ theme }) => theme.colors.borderLight};
 
     &:last-child {
         border-bottom-width: 0;
     }
-
-    @media only screen and (min-width: 760px) and (max-width: 1000px) {
-        & {
-            padding: 9px 10px;
-        }
-    }
-
-    @media only screen and (max-width: 760px) {
-        & {
-            padding: 9px 10px;
-        }
-    }
 `
 
-const Control = ({ children }) => {
-    return <Container>{children}</Container>
+const Toggle = styled.span`
+    display: block;
+    position: absolute;
+    background: red;
+    width: 20px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    padding-top: 11px;
+    padding-left: 1px;
+    cursor: pointer;
+    background: ${({ theme }) => theme.colors.borderLight};
+`
+
+const Control = ({ description, children }) => {
+    const [showDescription, setShowDescription] = useState(false)
+    const toggle = useCallback(() => setShowDescription(flag => !flag), [setShowDescription])
+
+    return (
+        <Container>
+            {description !== undefined && (
+                <Toggle onClick={toggle}>
+                    {showDescription && <DownIcon size={18} />}
+                    {!showDescription && <RightIcon size={18} />}
+                </Toggle>
+            )}
+            {children}
+            {showDescription && <PropertyDescription description={description} />}
+        </Container>
+    )
 }
 
 export default Control

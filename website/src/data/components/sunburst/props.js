@@ -19,7 +19,7 @@ const props = [
             \`<ResponsiveSunburst/>\`.
         `,
         help: 'Chart width.',
-        type: '{number}',
+        type: 'number',
         required: true,
         controlType: 'range',
         group: 'Base',
@@ -39,7 +39,7 @@ const props = [
             \`<ResponsiveSunburst/>\`.
         `,
         help: 'Chart height.',
-        type: '{number}',
+        type: 'number',
         required: true,
         controlType: 'range',
         group: 'Base',
@@ -54,7 +54,7 @@ const props = [
         key: 'margin',
         scopes: '*',
         help: 'Chart margin.',
-        type: '{object}',
+        type: 'object',
         required: false,
         controlType: 'margin',
         group: 'Base',
@@ -71,9 +71,9 @@ const props = [
             first argument, it must return the node
             identity (string).
         `,
-        type: '{string|Function}',
+        type: 'string | Function',
         required: false,
-        default: defaults.identity,
+        defaultValue: defaults.identity,
     },
     {
         key: 'value',
@@ -87,16 +87,17 @@ const props = [
             first argument, it must return the node
             value (number).
         `,
-        type: '{string|Function}',
+        type: 'string | Function',
         required: false,
-        default: defaults.value,
+        defaultValue: defaults.value,
     },
     {
         key: 'colors',
         help: 'Defines how to compute node color.',
         required: false,
-        default: 'nivo',
+        defaultValue: 'nivo',
         controlType: 'colors',
+        type: 'string | Function | string[]',
         group: 'Base',
     },
     {
@@ -106,9 +107,9 @@ const props = [
             If a function is provided, it will receive current
             node data and must return a color
         `,
-        type: '{string|Function}',
+        type: 'string | Function',
         required: false,
-        default: 'id',
+        defaultValue: 'id',
         controlType: 'choices',
         group: 'Base',
         controlOptions: {
@@ -127,27 +128,27 @@ const props = [
     {
         key: 'childColor',
         help: 'Defines how to compute child nodes color.',
-        type: '{string|Function}',
+        type: 'string | Function',
         required: false,
-        default: defaults.childColor,
+        defaultValue: defaults.childColor,
         controlType: 'color',
         group: 'Base',
     },
     {
         key: 'borderWidth',
         help: 'Node border width.',
-        type: '{number}',
+        type: 'number',
         required: false,
-        default: defaults.borderWidth,
+        defaultValue: defaults.borderWidth,
         controlType: 'lineWidth',
         group: 'Base',
     },
     {
         key: 'cornerRadius',
         help: 'Round node shape.',
-        type: '{number}',
+        type: 'number',
         required: false,
-        default: defaults.cornerRadius,
+        defaultValue: defaults.cornerRadius,
         controlType: 'range',
         group: 'Base',
         controlOptions: {
@@ -163,7 +164,7 @@ const props = [
         help: 'Enable/disable interactivity.',
         type: '{boolean}',
         required: false,
-        default: defaults.isInteractive,
+        defaultValue: defaults.isInteractive,
         controlType: 'switch',
         group: 'Interactivity',
     },

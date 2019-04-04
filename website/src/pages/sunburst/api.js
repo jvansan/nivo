@@ -8,16 +8,18 @@
  */
 import React from 'react'
 import { generateLibTree } from '@nivo/generators'
-import Layout from '../../components/Layout'
+import SEO from '../../components/seo'
 import ApiClient from '../../components/components/api-client/ApiClient'
 import { groupsByScope } from '../../data/components/sunburst/props'
 import mapper from '../../data/components/sunburst/mapper'
+import meta from '../../data/components/sunburst/meta.yml'
 
 const data = generateLibTree()
 
 const SunburstApi = () => {
     return (
-        <Layout>
+        <>
+            <SEO title="Sunburst HTTP API" keywords={[...meta.Sunburst.tags, 'HTTP API']} />
             <ApiClient
                 componentName="Sunburst"
                 chartClass="sunburst"
@@ -52,7 +54,7 @@ const SunburstApi = () => {
                     },
                 }}
             />
-        </Layout>
+        </>
     )
 }
 

@@ -8,7 +8,8 @@
  */
 import React, { useState, useCallback } from 'react'
 import { ResponsiveGeoMap, GeoMapDefaultProps } from '@nivo/geo'
-import Layout from '../../components/Layout'
+import { useTheme } from '../../theming/context'
+import SEO from '../../components/seo'
 import ComponentPage from '../../components/components/ComponentPage'
 import ComponentHeader from '../../components/components/ComponentHeader'
 import ComponentDescription from '../../components/components/ComponentDescription'
@@ -17,11 +18,10 @@ import ComponentTabs from '../../components/components/ComponentTabs'
 import ComponentSettings from '../../components/components/ComponentSettings'
 // import Stories from '../../components/components/Stories'
 import generateCode from '../../lib/generateChartCode'
-import geo from '../../data/components/geo/meta.yml'
+import meta from '../../data/components/geo/meta.yml'
 import mapper from '../../data/components/geo/mapper'
 import { groupsByScope } from '../../data/components/geo/props'
 import countries from '../../data/components/geo/world_countries'
-// import nivoTheme from '../../../nivoTheme'
 
 const initialSettings = {
     margin: {
@@ -48,16 +48,10 @@ const initialSettings = {
     graticuleLineColor: '#666666',
 
     isInteractive: true,
-
-    /*
-    theme: {
-        ...nivoTheme,
-        background: '#999999',
-    },
-    */
 }
 
 const GeoMap = () => {
+    const theme = useTheme()
     const [settings, setSettings] = useState(initialSettings)
     const onClick = useCallback((feature, event) => {
         alert(
@@ -82,25 +76,25 @@ const GeoMap = () => {
     )
 
     return (
-        <Layout>
-            <ComponentPage>
-                <ComponentHeader chartClass="GeoMap" tags={geo.GeoMap.tags} />
-                <ComponentDescription description={geo.GeoMap.description} />
-                <ComponentTabs chartClass="geomap" code={code}>
-                    <ResponsiveGeoMap
-                        features={countries.features}
-                        onClick={onClick}
-                        {...mappedSettings}
-                    />
-                </ComponentTabs>
-                <ComponentSettings
-                    component="GeoMap"
-                    settings={settings}
-                    onChange={setSettings}
-                    groups={groupsByScope.GeoMap}
+        <ComponentPage>
+            <SEO title="GeoMap" keywords={meta.GeoMap.tags} />
+            <ComponentHeader chartClass="GeoMap" tags={meta.GeoMap.tags} />
+            <ComponentDescription description={meta.GeoMap.description} />
+            <ComponentTabs chartClass="geomap" code={code}>
+                <ResponsiveGeoMap
+                    features={countries.features}
+                    onClick={onClick}
+                    {...mappedSettings}
+                    theme={theme.nivo}
                 />
-            </ComponentPage>
-        </Layout>
+            </ComponentTabs>
+            <ComponentSettings
+                component="GeoMap"
+                settings={settings}
+                onChange={setSettings}
+                groups={groupsByScope.GeoMap}
+            />
+        </ComponentPage>
     )
 }
 

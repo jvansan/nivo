@@ -20,7 +20,7 @@ const props = [
         key: 'data',
         scopes: '*',
         help: 'Chart data.',
-        type: '{Array.<Object>}',
+        type: 'object[]',
         required: true,
         group: 'Base',
     },
@@ -35,18 +35,18 @@ const props = [
             You can also provide a function which will
             receive the data item and must return the desired index.
         `,
-        type: '{string|Function}',
+        type: 'string | Function',
         required: false,
-        default: defaults.indexBy,
+        defaultValue: defaults.indexBy,
         group: 'Base',
     },
     {
         key: 'keys',
         scopes: '*',
         help: 'Keys to use to determine each serie.',
-        type: '{Array.<string>}',
+        type: 'string[]',
         required: false,
-        default: defaults.keys,
+        defaultValue: defaults.keys,
         group: 'Base',
     },
     {
@@ -59,7 +59,7 @@ const props = [
             Also note that width exclude left/right axes,
             please add margin to make sure they're visible.
         `,
-        type: '{number}',
+        type: 'number',
         required: true,
         controlType: 'range',
         group: 'Base',
@@ -80,7 +80,7 @@ const props = [
             Also note that width exclude left/right axes,
             please add margin to make sure they're visible.
         `,
-        type: '{number}',
+        type: 'number',
         required: true,
         controlType: 'range',
         group: 'Base',
@@ -104,8 +104,9 @@ const props = [
             the chart computed data and must return a valid SVG
             element.
         `,
+        type: 'Array<string | Function>',
         required: false,
-        default: defaults.layers,
+        defaultValue: defaults.layers,
         group: 'Base',
     },
     {
@@ -113,8 +114,8 @@ const props = [
         scopes: ['BarCanvas'],
         help: `Adjust pixel ratio, useful for HiDPI screens.`,
         required: false,
-        default: 'Depends on device',
-        type: `{number}`,
+        defaultValue: 'Depends on device',
+        type: `number`,
         controlType: 'range',
         group: 'Base',
         controlOptions: {
@@ -126,9 +127,9 @@ const props = [
         key: 'groupMode',
         scopes: '*',
         help: `How to group bars.`,
-        type: '{string}',
+        type: 'string',
         required: false,
-        default: defaults.groupMode,
+        defaultValue: defaults.groupMode,
         controlType: 'radio',
         group: 'Base',
         controlOptions: {
@@ -142,9 +143,9 @@ const props = [
         key: 'layout',
         scopes: '*',
         help: `How to display bars.`,
-        type: '{string}',
+        type: 'string',
         required: false,
-        default: defaults.layout,
+        defaultValue: defaults.layout,
         controlType: 'radio',
         group: 'Base',
         controlOptions: {
@@ -159,9 +160,9 @@ const props = [
         scopes: '*',
         help:
             'Reverse bars, starts on top instead of bottom for vertical layout and right instead of left for horizontal one.',
-        type: '{boolean}',
+        type: 'boolean',
         required: false,
-        default: defaults.reverse,
+        defaultValue: defaults.reverse,
         controlType: 'switch',
         group: 'Base',
     },
@@ -174,8 +175,8 @@ const props = [
             will use min value from the provided data.
         `,
         required: false,
-        default: defaults.minValue,
-        type: '{number|string}',
+        defaultValue: defaults.minValue,
+        type: 'number | string',
         controlType: 'switchableRange',
         group: 'Base',
         controlOptions: {
@@ -194,8 +195,8 @@ const props = [
             will use max value from the provided data.
         `,
         required: false,
-        default: defaults.maxValue,
-        type: '{number|string}',
+        defaultValue: defaults.maxValue,
+        type: 'number | string',
         controlType: 'switchableRange',
         group: 'Base',
         controlOptions: {
@@ -209,7 +210,7 @@ const props = [
         key: 'margin',
         scopes: '*',
         help: 'Chart margin.',
-        type: '{object}',
+        type: 'object',
         required: false,
         controlType: 'margin',
         group: 'Base',
@@ -218,9 +219,9 @@ const props = [
         key: 'padding',
         scopes: '*',
         help: 'Padding between each bar (ratio).',
-        type: '{number}',
+        type: 'number',
         required: false,
-        default: defaults.padding,
+        defaultValue: defaults.padding,
         controlType: 'range',
         group: 'Base',
         controlOptions: {
@@ -233,9 +234,9 @@ const props = [
         key: 'innerPadding',
         scopes: '*',
         help: 'Padding between grouped/stacked bars.',
-        type: '{number}',
+        type: 'number',
         required: false,
-        default: defaults.innerPadding,
+        defaultValue: defaults.innerPadding,
         controlType: 'range',
         group: 'Base',
         controlOptions: {
@@ -248,9 +249,9 @@ const props = [
         key: 'colors',
         scopes: '*',
         help: 'Defines color range.',
-        type: '{string|Function|Array}',
+        type: 'string | Function | string[]',
         required: false,
-        default: 'nivo',
+        defaultValue: 'nivo',
         controlType: 'colors',
         group: 'Style',
     },
@@ -264,7 +265,7 @@ const props = [
             it will receive current node data and must return a color.
         `,
         required: false,
-        default: 'id',
+        defaultValue: 'id',
         controlType: 'choices',
         group: 'Style',
         controlOptions: {
@@ -288,9 +289,9 @@ const props = [
         key: 'borderRadius',
         scopes: ['Bar', 'api'],
         help: 'Rectangle border radius.',
-        type: '{number}',
+        type: 'number',
         required: false,
-        default: defaults.borderRadius,
+        defaultValue: defaults.borderRadius,
         controlType: 'range',
         group: 'Style',
         controlOptions: {
@@ -303,9 +304,9 @@ const props = [
         key: 'borderWidth',
         scopes: '*',
         help: 'Width of bar border.',
-        type: '{number}',
+        type: 'number',
         required: false,
-        default: defaults.borderWidth,
+        defaultValue: defaults.borderWidth,
         controlType: 'lineWidth',
         group: 'Style',
     },
@@ -317,9 +318,9 @@ const props = [
             how to compute border color,
             [see dedicated documentation](self:/guides/colors).
         `,
-        type: '{string|Function}',
+        type: 'string | Function',
         required: false,
-        default: defaults.borderColor,
+        defaultValue: defaults.borderColor,
         controlType: 'color',
         group: 'Style',
         controlOptions: {
@@ -331,30 +332,40 @@ const props = [
         key: 'enableLabel',
         scopes: '*',
         help: 'Enable/disable labels.',
-        type: '{boolean}',
+        type: 'boolean',
         required: false,
-        default: defaults.enableLabel,
+        defaultValue: defaults.enableLabel,
         controlType: 'switch',
         group: 'Labels',
     },
     {
         key: 'label',
         scopes: '*',
+        group: 'Labels',
         help: 'Define how bar labels are computed.',
         description: `
-            Define how bar labels are computed. By default it will use the bar's value. It
-            accepts a string which will be used to access a specific bar data property, such as{' '}
-            <code className="code-string">'value'</code> or{' '}
-            <code className="code-string">'id'</code>. You can also use a funtion if you want to
-            add more logic, this function will receive the current bar's data and must return
-            the computed label which, depending on the context, should return a string or an svg
-            element (Bar) or a string (BarCanvas). For example let's say you want to use a label
-            with both the id and the value, you can achieve this with{' '}
-            <code>{\`label={d => \`\${d.id}: \${d.value}\`}\`}</code>.
+            Define how bar labels are computed.
+            
+            By default it will use the bar's value.
+            It accepts a string which will be used to access
+            a specific bar data property, such as
+            \`'value'\` or \`'id'\`.
+            
+            You can also use a funtion if you want to
+            add more logic, this function will receive
+            the current bar's data and must return
+            the computed label which, depending on the context,
+            should return a string or an svg element (Bar) or
+            a string (BarCanvas). For example let's say you want
+            to use a label with both the id and the value,
+            you can achieve this with:
+            \`\`\`
+            label={d => \`\${d.id}: \${d.value}\`}
+            \`\`\`
         `,
-        type: '{string|Function}',
+        type: 'string | Function',
         required: false,
-        default: defaults.label,
+        defaultValue: defaults.label,
     },
     {
         key: 'labelFormat',
@@ -370,15 +381,15 @@ const props = [
                 see d3.format() documentation
             </a>.
         `,
-        type: '{string|Function}',
+        type: 'string | Function',
     },
     {
         key: 'labelSkipWidth',
         scopes: '*',
         help: 'Skip label if bar width is lower than provided value, ignored if 0.',
-        type: '{number}',
+        type: 'number',
         required: false,
-        default: defaults.labelSkipWidth,
+        defaultValue: defaults.labelSkipWidth,
         controlType: 'range',
         group: 'Labels',
         controlOptions: {
@@ -391,9 +402,9 @@ const props = [
         key: 'labelSkipHeight',
         scopes: '*',
         help: 'Skip label if bar height is lower than provided value, ignored if 0.',
-        type: '{number}',
+        type: 'number',
         required: false,
-        default: defaults.labelSkipHeight,
+        defaultValue: defaults.labelSkipHeight,
         controlType: 'range',
         group: 'Labels',
         controlOptions: {
@@ -406,9 +417,9 @@ const props = [
         key: 'labelTextColor',
         scopes: '*',
         help: 'Defines how to compute label text color.',
-        type: '{string|Function}',
+        type: 'string | Function',
         required: false,
-        default: defaults.labelTextColor,
+        defaultValue: defaults.labelTextColor,
         controlType: 'color',
         group: 'Labels',
         controlOptions: {
@@ -418,35 +429,37 @@ const props = [
     {
         key: 'enableGridX',
         scopes: '*',
-        help: 'Enable/disable x grid.',
-        type: '{boolean}',
-        required: false,
-        default: defaults.enableGridX,
-        controlType: 'switch',
         group: 'Grid & Axes',
+        help: 'Enable/disable x grid.',
+        type: 'boolean',
+        required: false,
+        defaultValue: defaults.enableGridX,
+        controlType: 'switch',
     },
     {
         key: 'gridXValues',
         scopes: '*',
+        group: 'Grid & Axes',
         help: 'Specify values to use for vertical grid lines.',
-        type: 'Array<{number|string}>',
+        type: 'Array<number | string>',
         required: false,
     },
     {
         key: 'enableGridY',
         scopes: '*',
-        help: 'Enable/disable y grid.',
-        type: '{boolean}',
-        required: false,
-        default: defaults.enableGridY,
-        controlType: 'switch',
         group: 'Grid & Axes',
+        help: 'Enable/disable y grid.',
+        type: 'boolean',
+        required: false,
+        defaultValue: defaults.enableGridY,
+        controlType: 'switch',
     },
     {
         key: 'gridYValues',
         scopes: '*',
+        group: 'Grid & Axes',
         help: 'Specify values to use for horizontal grid lines.',
-        type: 'Array<{number|string}>',
+        type: 'Array<number | string>',
         required: false,
     },
     ...axesProperties,
@@ -454,22 +467,9 @@ const props = [
         key: 'isInteractive',
         scopes: ['Bar', 'BarCanvas'],
         help: 'Enable/disable interactivity.',
-        type: '{boolean}',
+        type: 'boolean',
         required: false,
-        default: defaults.isInteractive,
-        controlType: 'switch',
-        group: 'Interactivity',
-    },
-    {
-        key: 'custom tooltip example',
-        scopes: ['Bar', 'BarCanvas'],
-        excludeFromDoc: true,
-        help: 'Showcase custom tooltip component.',
-        description: `
-            You can customize the tooltip using the \`tooltip\`
-            property and \`theme.tooltip\` object.
-        `,
-        type: '{boolean}',
+        defaultValue: defaults.isInteractive,
         controlType: 'switch',
         group: 'Interactivity',
     },
@@ -477,7 +477,7 @@ const props = [
         key: 'tooltip',
         scopes: ['Bar', 'BarCanvas'],
         group: 'Interactivity',
-        type: '{Function}',
+        type: 'Function',
         required: false,
         help: 'Tooltip custom component',
         description: `
@@ -486,21 +486,31 @@ const props = [
             the following data:
             \`\`\`
             {
-                id:         {string|number},
-                value:      {number},
-                index:      {number},
-                indexValue: {string|number},
-                color:      {string},
+                id:         string | number,
+                value:      number,
+                index:      number,
+                indexValue: string | number,
+                color:      string,
                 // datum associated to the current index (raw data)
-                data:       {object}
+                data:       object
             }
             \`\`\`
+            You can also customize the style of the tooltip
+            using the \`theme.tooltip\` object.
         `,
+    },
+    {
+        key: 'custom tooltip example',
+        scopes: ['Bar', 'BarCanvas'],
+        group: 'Interactivity',
+        help: 'Showcase custom tooltip component.',
+        type: 'boolean',
+        controlType: 'switch',
     },
     {
         key: 'onClick',
         scopes: ['Bar', 'BarCanvas'],
-        type: '{Function}',
+        type: 'Function',
         required: false,
         help: 'onClick handler',
         description: `
@@ -509,12 +519,12 @@ const props = [
             <pre className="code code-block">
                 {
                     id:         {string|number},
-                    value:      {number},
-                    index:      {number},
+                    value:      number,
+                    index:      number,
                     indexValue: {string|number},
-                    color:      {string},
+                    color:      string,
                     // datum associated to the current index (raw data)
-                    data:       {object}
+                    data:       object
                 }
             </pre>
         `,
@@ -522,7 +532,7 @@ const props = [
     {
         key: 'legends',
         scopes: ['Bar'],
-        type: '{Array<object>}',
+        type: 'object[]',
         help: `Optional chart's legends.`,
         group: 'Legends',
         controlType: 'array',
@@ -531,6 +541,8 @@ const props = [
             shouldCreate: true,
             addLabel: 'add legend',
             shouldRemove: true,
+            getItemTitle: (index, legend) =>
+                `legend[${index}]: ${legend.anchor}, ${legend.direction}`,
             defaults: {
                 dataFrom: 'keys',
                 anchor: 'top-left',

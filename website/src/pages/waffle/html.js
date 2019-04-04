@@ -8,7 +8,8 @@
  */
 import React, { useState, useCallback } from 'react'
 import { ResponsiveWaffleHtml, WaffleDefaultProps } from '@nivo/waffle'
-import Layout from '../../components/Layout'
+import { useTheme } from '../../theming/context'
+import SEO from '../../components/seo'
 import ComponentPage from '../../components/components/ComponentPage'
 import ComponentHeader from '../../components/components/ComponentHeader'
 import ComponentDescription from '../../components/components/ComponentDescription'
@@ -17,10 +18,9 @@ import ActionsLogger, { useActionsLogger } from '../../components/components/Act
 import ComponentSettings from '../../components/components/ComponentSettings'
 // import Stories from '../../components/components/Stories'
 import generateCode from '../../lib/generateChartCode'
-import waffle from '../../data/components/waffle/meta.yml'
+import meta from '../../data/components/waffle/meta.yml'
 import { groupsByScope } from '../../data/components/waffle/props'
 import mapper from '../../data/components/waffle/mapper'
-//import nivoTheme from '../../../nivoTheme'
 
 const generateData = () => [
     {
@@ -58,7 +58,6 @@ const initialSettings = {
         left: 10,
     },
 
-    //theme: nivoTheme,
     cellComponent: 'default',
     emptyColor: '#cccccc',
     emptyOpacity: 1,
@@ -80,6 +79,7 @@ const initialSettings = {
 }
 
 const WaffleHtml = () => {
+    const theme = useTheme()
     const [settings, setSettings] = useState(initialSettings)
     const [data, setData] = useState(generateData())
     const diceRoll = useCallback(() => setData(generateData()), [setData])
@@ -117,28 +117,32 @@ const WaffleHtml = () => {
     )
 
     return (
-        <Layout>
-            <ComponentPage>
-                <ComponentHeader chartClass="WaffleHtml" tags={waffle.WaffleHtml.tags} />
-                <ComponentDescription description={waffle.WaffleHtml.description} />
-                <ComponentTabs
-                    chartClass="waffle"
-                    code={code}
+        <ComponentPage>
+            <SEO title="WaffleHtml" keywords={meta.WaffleHtml.tags} />
+            <ComponentHeader chartClass="WaffleHtml" tags={meta.WaffleHtml.tags} />
+            <ComponentDescription description={meta.WaffleHtml.description} />
+            <ComponentTabs
+                chartClass="waffle"
+                code={code}
+                data={data}
+                diceRoll={diceRoll}
+                nodeCount={settings.rows * settings.columns}
+            >
+                <ResponsiveWaffleHtml
                     data={data}
-                    diceRoll={diceRoll}
-                    nodeCount={settings.rows * settings.columns}
-                >
-                    <ResponsiveWaffleHtml data={data} {...mappedSettings} onClick={onClick} />
-                </ComponentTabs>
-                <ActionsLogger actions={actions} isFullWidth={true} />
-                <ComponentSettings
-                    component="WaffleHtml"
-                    settings={settings}
-                    onChange={setSettings}
-                    groups={groupsByScope.WaffleHtml}
+                    {...mappedSettings}
+                    onClick={onClick}
+                    theme={theme.nivo}
                 />
-            </ComponentPage>
-        </Layout>
+            </ComponentTabs>
+            <ActionsLogger actions={actions} isFullWidth={true} />
+            <ComponentSettings
+                component="WaffleHtml"
+                settings={settings}
+                onChange={setSettings}
+                groups={groupsByScope.WaffleHtml}
+            />
+        </ComponentPage>
     )
 }
 

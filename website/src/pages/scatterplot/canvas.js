@@ -8,7 +8,8 @@
  */
 import React, { useState, useCallback } from 'react'
 import { ResponsiveScatterPlotCanvas, ScatterPlotDefaultProps } from '@nivo/scatterplot'
-import Layout from '../../components/Layout'
+import { useTheme } from '../../theming/context'
+import SEO from '../../components/seo'
 import ComponentPage from '../../components/components/ComponentPage'
 import ComponentHeader from '../../components/components/ComponentHeader'
 import ComponentDescription from '../../components/components/ComponentDescription'
@@ -17,7 +18,7 @@ import ActionsLogger, { useActionsLogger } from '../../components/components/Act
 import ComponentSettings from '../../components/components/ComponentSettings'
 import Stories from '../../components/components/Stories'
 import generateCode from '../../lib/generateChartCode'
-import scatterplot from '../../data/components/scatterplot/meta.yml'
+import meta from '../../data/components/scatterplot/meta.yml'
 import mapper from '../../data/components/scatterplot/mapper'
 import { groupsByScope } from '../../data/components/scatterplot/props'
 import { generateHeavyDataSet } from '../../data/components/scatterplot/generator'
@@ -42,7 +43,8 @@ const initialSettings = {
         max: 'auto',
     },
 
-    pixelRatio: window && window.devicePixelRatio ? window.devicePixelRatio : 1,
+    pixelRatio:
+        typeof window !== 'undefined' && window.devicePixelRatio ? window.devicePixelRatio : 1,
 
     colors: 'nivo',
     colorBy: 'serie.id',
@@ -117,6 +119,7 @@ const initialSettings = {
 }
 
 const ScatterPlotCanvas = () => {
+    const theme = useTheme()
     const [settings, setSettings] = useState(initialSettings)
     const [data, setData] = useState(generateHeavyDataSet())
     const diceRoll = useCallback(() => setData(generateHeavyDataSet()), [setData])
@@ -143,37 +146,33 @@ const ScatterPlotCanvas = () => {
     )
 
     return (
-        <Layout>
-            <ComponentPage>
-                <ComponentHeader
-                    chartClass="ScatterPlotCanvas"
-                    tags={scatterplot.ScatterPlotCanvas.tags}
-                />
-                <ComponentDescription description={scatterplot.ScatterPlotCanvas.description} />
-                <ComponentTabs
-                    chartClass="scatterplot"
-                    code={code}
+        <ComponentPage>
+            <SEO title="ScatterPlotCanvas" keywords={meta.ScatterPlotCanvas.tags} />
+            <ComponentHeader chartClass="ScatterPlotCanvas" tags={meta.ScatterPlotCanvas.tags} />
+            <ComponentDescription description={meta.ScatterPlotCanvas.description} />
+            <ComponentTabs
+                chartClass="scatterplot"
+                code={code}
+                data={data}
+                diceRoll={diceRoll}
+                nodeCount={data.length * data[0].data.length}
+            >
+                <ResponsiveScatterPlotCanvas
                     data={data}
-                    diceRoll={diceRoll}
-                    nodeCount={data.length * data[0].data.length}
-                >
-                    <ResponsiveScatterPlotCanvas
-                        data={data}
-                        {...mappedSettings}
-                        // theme={nivoTheme}
-                        onClick={onClick}
-                    />
-                </ComponentTabs>
-                <ActionsLogger actions={actions} />
-                <ComponentSettings
-                    component="ScatterPlotCanvas"
-                    settings={settings}
-                    onChange={setSettings}
-                    groups={groupsByScope.ScatterPlotCanvas}
+                    {...mappedSettings}
+                    theme={theme.nivo}
+                    onClick={onClick}
                 />
-                <Stories stories={scatterplot.ScatterPlotCanvas.stories} />
-            </ComponentPage>
-        </Layout>
+            </ComponentTabs>
+            <ActionsLogger actions={actions} />
+            <ComponentSettings
+                component="ScatterPlotCanvas"
+                settings={settings}
+                onChange={setSettings}
+                groups={groupsByScope.ScatterPlotCanvas}
+            />
+            <Stories stories={meta.ScatterPlotCanvas.stories} />
+        </ComponentPage>
     )
 }
 

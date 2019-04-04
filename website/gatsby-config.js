@@ -1,8 +1,16 @@
+/*
+ * This file is part of the nivo project.
+ *
+ * (c) 2016 Raphaël Benitte
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `nivo`,
+    description: `Supercharged React dataviz components, built on top of d3js.`,
+    author: `Raphaël Benitte`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -22,8 +30,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `nivo`,
+        short_name: `nvio`,
         start_url: `/`,
         background_color: `#663399`,
         theme_color: `#663399`,

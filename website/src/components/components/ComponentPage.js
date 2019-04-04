@@ -7,6 +7,7 @@
  * file that was distributed with this source code.
  */
 import styled from 'styled-components'
+import media from '../../theming/mediaQueries'
 
 const ComponentPage = styled.div`
     margin-right: 60%;
@@ -15,7 +16,7 @@ const ComponentPage = styled.div`
         content: ' ';
         position: fixed;
         top: ${({ theme }) => theme.dimensions.headerHeight}px;
-        box-shadow: ${({ theme }) => theme.cardShadow};
+        box-shadow: ${({ theme }) => theme.topCardShadow};
         right: 0;
         bottom: 0;
         --innerWidth: calc(100% - ${({ theme }) => theme.dimensions.miniNavWidth}px);
@@ -23,23 +24,23 @@ const ComponentPage = styled.div`
         background: rgba(0, 0, 0, 0);
     }
 
-    @media only screen and (min-width: 760px) and (max-width: 1000px) {
+    ${media.tablet`
         & {
             margin-right: 60%;
             &:after {
                 width: 60%;
             }
         }
-    }
+    `}
 
-    @media only screen and (max-width: 760px) {
+    ${media.mobile`
         & {
             margin: 0;
             &:after {
                 display: none;
             }
         }
-    }
+    `}
 `
 
 export default ComponentPage

@@ -9,6 +9,7 @@
 import React, { memo } from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
+import media from '../../theming/mediaQueries'
 
 const Container = styled.div`
     flex-direction: column;
@@ -21,17 +22,17 @@ const Container = styled.div`
     height: 130px;
     padding: 0 30px;
 
-    @media only screen and (min-width: 760px) and (max-width: 1000px) {
+    ${media.tablet`
         & {
             padding: 0 20px;
         }
-    }
+    `}
 
-    @media only screen and (max-width: 760px) {
+    ${media.mobile`
         & {
             padding: 0 20px;
         }
-    }
+    `}
 `
 
 const Title = styled.h1`
@@ -39,17 +40,17 @@ const Title = styled.h1`
     align-items: center;
     width: 100%;
 
-    @media only screen and (min-width: 760px) and (max-width: 1000px) {
+    ${media.tablet`
         .chart__title {
             justify-content: space-between;
         }
-    }
+    `}
 
-    @media only screen and (max-width: 760px) {
+    ${media.mobile`
         .chart__title {
             justify-content: space-between;
         }
-    }
+    `}
 `
 
 const ComponentHeader = memo(({ chartClass, tags }) => {

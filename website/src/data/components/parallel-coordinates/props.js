@@ -16,13 +16,13 @@ const props = [
         scopes: '*',
         group: 'Base',
         help: 'Chart data.',
-        type: '{Array<{object|Array}>}',
+        type: 'Array<object | Array>',
         required: true,
     },
     {
         key: 'variables',
         scopes: '*',
-        type: '{Array<object>}',
+        type: 'object[]',
         help: 'Variables configuration.',
         description: `
             Variables configuration, define accessor (\`key\`)
@@ -42,7 +42,7 @@ const props = [
             props: [
                 {
                     key: 'key',
-                    description: 'Variable key, used to access to corresponding datum value.',
+                    help: 'Variable key, used to access to corresponding datum value.',
                     controlType: 'text',
                     controlOptions: {
                         disabled: true,
@@ -50,7 +50,7 @@ const props = [
                 },
                 {
                     key: 'type',
-                    description: `Variable type, must be one of: 'linear', 'point'.`,
+                    help: `Variable type, must be one of: 'linear', 'point'.`,
                     controlType: 'text',
                     controlOptions: {
                         disabled: true,
@@ -58,8 +58,8 @@ const props = [
                 },
                 {
                     key: 'min',
-                    description: 'Min value of linear scale.',
-                    type: `{number|'auto'}`,
+                    help: 'Min value of linear scale.',
+                    type: `number | 'auto'`,
                     controlType: 'switchableRange',
                     controlOptions: {
                         when: ({ type }) => type === 'linear',
@@ -71,8 +71,8 @@ const props = [
                 },
                 {
                     key: 'max',
-                    description: 'Max value of linear scale.',
-                    type: `{number|'auto'}`,
+                    help: 'Max value of linear scale.',
+                    type: `number | 'auto'`,
                     controlType: 'switchableRange',
                     controlOptions: {
                         when: ({ type }) => type === 'linear',
@@ -84,8 +84,8 @@ const props = [
                 },
                 {
                     key: 'padding',
-                    description: 'Outer padding (0~1).',
-                    type: `{number}`,
+                    help: 'Outer padding (0~1).',
+                    type: `number`,
                     controlType: 'range',
                     controlOptions: {
                         when: ({ type }) => type === 'point',
@@ -106,7 +106,7 @@ const props = [
             not required if using
             \`ResponsiveParallelCoords\`.
         `,
-        type: '{number}',
+        type: 'number',
         required: true,
         controlType: 'range',
         group: 'Base',
@@ -126,7 +126,7 @@ const props = [
             not required if using
             \`ResponsiveParallelCoords\`.
         `,
-        type: '{number}',
+        type: 'number',
         required: true,
         controlType: 'range',
         group: 'Base',
@@ -142,8 +142,8 @@ const props = [
         scopes: ['ParallelCoordinatesCanvas'],
         help: `Adjust pixel ratio, useful for HiDPI screens.`,
         required: false,
-        default: 'Depends on device',
-        type: `{number}`,
+        defaultValue: 'Depends on device',
+        type: `number`,
         controlType: 'range',
         group: 'Base',
         controlOptions: {
@@ -155,7 +155,7 @@ const props = [
         key: 'margin',
         scopes: '*',
         help: 'Chart margin.',
-        type: '{object}',
+        type: 'object',
         required: false,
         controlType: 'margin',
         group: 'Base',
@@ -164,9 +164,9 @@ const props = [
         key: 'layout',
         scopes: '*',
         help: `Chart layout.`,
-        type: '{string}',
+        type: 'string',
         required: false,
-        default: defaults.layout,
+        defaultValue: defaults.layout,
         controlType: 'radio',
         group: 'Base',
         controlOptions: {
@@ -183,9 +183,9 @@ const props = [
         description: `
             Defines the curve factory to use for the line generator.
         `,
-        type: '{string}',
+        type: 'string',
         required: false,
-        default: defaults.curve,
+        defaultValue: defaults.curve,
         controlType: 'choices',
         group: 'Base',
         controlOptions: {
@@ -201,7 +201,7 @@ const props = [
         help: `Axes plan.`,
         type: `{'foreground'|'background'}`,
         required: false,
-        default: defaults.axesPlan,
+        defaultValue: defaults.axesPlan,
         controlType: 'radio',
         group: 'Base',
         controlOptions: {
@@ -217,7 +217,7 @@ const props = [
         help: `Axes ticks position.`,
         type: `{'before'|'after'}`,
         required: false,
-        default: defaults.axesTicksPosition,
+        defaultValue: defaults.axesTicksPosition,
         controlType: 'radio',
         group: 'Base',
         controlOptions: {
@@ -230,7 +230,7 @@ const props = [
         help: 'Defines color range.',
         type: '{string|Function|Array}',
         required: false,
-        default: defaults.colors,
+        defaultValue: defaults.colors,
         controlType: 'colors',
         group: 'Style',
     },
@@ -240,7 +240,7 @@ const props = [
         help:
             'Property used to determine line color. If a function is provided, it will receive current line data and must return a valid color.',
         required: false,
-        default: defaults.colorBy,
+        defaultValue: defaults.colorBy,
         controlType: 'choices',
         group: 'Style',
         controlOptions: {
@@ -264,9 +264,9 @@ const props = [
         key: 'strokeWidth',
         scopes: '*',
         help: 'Lines stroke width.',
-        type: '{number}',
+        type: 'number',
         required: false,
-        default: defaults.strokeWidth,
+        defaultValue: defaults.strokeWidth,
         controlType: 'lineWidth',
         group: 'Style',
     },
@@ -274,9 +274,9 @@ const props = [
         key: 'lineOpacity',
         scopes: '*',
         help: 'Lines opacity.',
-        type: '{number}',
+        type: 'number',
         required: false,
-        default: defaults.lineOpacity,
+        defaultValue: defaults.lineOpacity,
         controlType: 'opacity',
         group: 'Style',
     },

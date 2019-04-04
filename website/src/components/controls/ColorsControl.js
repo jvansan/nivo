@@ -10,11 +10,12 @@ import React, { PureComponent } from 'react'
 import range from 'lodash/range'
 import PropTypes from 'prop-types'
 import { colorSchemeIds, colorSchemes, colorInterpolatorIds, colorInterpolators } from '@nivo/core'
-import Select from 'react-select'
+import { components } from 'react-select'
 import ColorsControlItem from './ColorsControlItem'
 import Control from './Control'
-import Label from './Label'
+import PropertyHeader from './PropertyHeader'
 import PropertyHelp from './PropertyHelp'
+import Select from './Select'
 
 const colors = colorSchemeIds.map(id => ({
     id,
@@ -26,28 +27,41 @@ const sequentialColors = colorInterpolatorIds.map(id => ({
     colors: range(0, 1, 0.05).map(t => colorInterpolators[id](t)),
 }))
 
+const SingleValue = props => {
+    //console.log(props)
+
+    return (
+        <components.SingleValue {...props}>
+            <div>CRAP</div>
+        </components.SingleValue>
+    )
+}
+
+const Option = props => {
+    return (
+        <components.Option {...props}>
+            <ColorsControlItem id={props.value} colors={props.data.colors} />
+        </components.Option>
+    )
+}
+
 export default class ColorsControl extends PureComponent {
     static propTypes = {
-        label: PropTypes.string.isRequired,
+        property: PropTypes.object.isRequired,
         onChange: PropTypes.func.isRequired,
         value: PropTypes.string.isRequired,
-        includeSequential: PropTypes.bool.isRequired,
-        help: PropTypes.node.isRequired,
+        options: PropTypes.shape({
+            includeSequential: PropTypes.bool,
+        }).isRequired,
     }
 
     static defaultProps = {
-        label: 'colors',
-        help: 'Chart color range.',
-        includeSequential: false,
+        options: {},
     }
 
     handleColorsChange = value => {
         const { onChange } = this.props
         onChange(value.value)
-    }
-
-    renderOption(option) {
-        return <ColorsControlItem id={option.value} colors={option.colors} />
     }
 
     renderValue(value) {
@@ -67,33 +81,42 @@ export default class ColorsControl extends PureComponent {
     }
 
     render() {
-        const { label, value, includeSequential, help, description } = this.props
+        const { property, value, includeSequential } = this.props
 
         let options = colors
         if (includeSequential === true) {
             options = options.concat(sequentialColors)
         }
 
+        /*
+        console.log({
+            value,
+            options: options.map(({ id, colors }) => ({
+                label: id,
+                value: id,
+                colors,
+            })),
+        })
+        */
+
         return (
-            <Control>
-                <Label>
-                    {label}
-                    :&nbsp;
-                    <code className="code code-string">'{value}'</code>
-                </Label>
+            <Control description={property.description}>
+                <PropertyHeader {...property} />
                 <Select
                     options={options.map(({ id, colors }) => ({
                         label: id,
                         value: id,
                         colors,
                     }))}
-                    optionRenderer={this.renderOption}
-                    valueRenderer={this.renderValue}
                     onChange={this.handleColorsChange}
                     value={value}
-                    clearable={false}
+                    isSearchable
+                    components={{
+                        SingleValue,
+                        Option,
+                    }}
                 />
-                <PropertyHelp help={help} description={description} />
+                <PropertyHelp>{property.help}</PropertyHelp>
             </Control>
         )
     }

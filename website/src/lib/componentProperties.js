@@ -6,8 +6,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-import React from 'react'
-import { Link } from 'gatsby'
 import upperFirst from 'lodash/upperFirst'
 import uniq from 'lodash/uniq'
 import { defaultAnimate, defaultMotionStiffness, defaultMotionDamping } from '@nivo/core'
@@ -16,26 +14,25 @@ export const defsProperties = scopes => [
     {
         key: 'defs',
         scopes,
-        description: (
-            <span>
-                define SVG defs, supports <Link to="/guides/gradients">gradients</Link> and{' '}
-                <Link to="/guides/patterns">patterns</Link>.
-            </span>
-        ),
-        type: '{Array.<Object>}',
+        help: 'define SVG defs.',
+        description: `
+            define SVG defs, supports
+            [gradients](self:/guides/gradients) and
+            [patterns](self:/guides/patterns).
+        `,
+        type: 'object[]',
         required: false,
     },
     {
         key: 'fill',
         scopes,
-        description: (
-            <span>
-                define rules to apply SVG defs, supports{' '}
-                <Link to="/guides/gradients">gradients</Link> and{' '}
-                <Link to="/guides/patterns">patterns</Link>.
-            </span>
-        ),
-        type: '{Array.<Object>}',
+        help: 'define rules to apply SVG defs',
+        description: `
+            define rules to apply SVG defs, supports
+            [gradients](self:/guides/gradients) and
+            [patterns](self:/guides/patterns).
+        `,
+        type: 'object[]',
         required: false,
     },
 ]
@@ -45,9 +42,9 @@ export const motionProperties = (scopes, defaults) => [
         key: 'animate',
         scopes,
         help: 'Enable/disable transitions.',
-        type: '{boolean}',
+        type: 'boolean',
         required: false,
-        default: defaults.animate !== undefined ? defaults.animate : defaultAnimate,
+        defaultValue: defaults.animate !== undefined ? defaults.animate : defaultAnimate,
         controlType: 'switch',
         group: 'Motion',
     },
@@ -55,9 +52,9 @@ export const motionProperties = (scopes, defaults) => [
         key: 'motionStiffness',
         scopes,
         help: 'Motion stiffness.',
-        type: '{number}',
+        type: 'number',
         required: false,
-        default:
+        defaultValue:
             defaults.motionStiffness !== undefined
                 ? defaults.motionStiffness
                 : defaultMotionStiffness,
@@ -73,9 +70,9 @@ export const motionProperties = (scopes, defaults) => [
         key: 'motionDamping',
         scopes,
         help: 'Motion damping.',
-        type: '{number}',
+        type: 'number',
         required: false,
-        default:
+        defaultValue:
             defaults.motionDamping !== undefined ? defaults.motionDamping : defaultMotionDamping,
         controlType: 'range',
         group: 'Motion',
@@ -110,8 +107,8 @@ export const axesProperties = [
         ...properties,
         {
             key: `axis${axisKey}`,
-            description: `${axisKey} axis configuration.`,
-            type: '{object}',
+            help: `${axisKey} axis configuration.`,
+            type: 'object',
             required: false,
             group: 'Grid & Axes',
             controlType: 'object',
@@ -119,14 +116,14 @@ export const axesProperties = [
                 props: [
                     {
                         key: `enable`,
-                        description: `enable ${axisKey} axis.`,
+                        help: `enable ${axisKey} axis, it's not an actual prop (demo only).`,
                         controlType: 'switch',
                         excludeFromDoc: true,
                     },
                     {
                         key: `tickSize`,
-                        description: `${axisKey} axis tick size.`,
-                        type: '{number}',
+                        help: `${axisKey} axis tick size.`,
+                        type: 'number',
                         controlType: 'range',
                         controlOptions: {
                             unit: 'px',
@@ -136,8 +133,8 @@ export const axesProperties = [
                     },
                     {
                         key: `tickPadding`,
-                        description: `${axisKey} axis tick padding.`,
-                        type: '{number}',
+                        help: `${axisKey} axis tick padding.`,
+                        type: 'number',
                         controlType: 'range',
                         controlOptions: {
                             unit: 'px',
@@ -147,25 +144,25 @@ export const axesProperties = [
                     },
                     {
                         key: `tickRotation`,
-                        description: `${axisKey} axis tick rotation.`,
-                        type: '{number}',
-                        controlType: 'range',
+                        help: `${axisKey} axis tick rotation.`,
+                        type: 'number',
+                        controlType: 'angle',
                         controlOptions: {
-                            unit: '°',
+                            start: 90,
                             min: -90,
                             max: 90,
                         },
                     },
                     {
                         key: `legend`,
-                        description: `${axisKey} axis legend.`,
-                        type: '{number}',
+                        help: `${axisKey} axis legend.`,
+                        type: 'string',
                         controlType: 'text',
                     },
                     {
                         key: `legendOffset`,
-                        description: `${axisKey} axis legend offset from axis.`,
-                        type: '{number}',
+                        help: `${axisKey} axis legend offset from axis.`,
+                        type: 'number',
                         controlType: 'range',
                         controlOptions: {
                             unit: 'px',
@@ -182,16 +179,16 @@ export const axesProperties = [
 export const getLegendsProps = () => [
     {
         key: 'anchor',
-        description: `Defines legend anchor relative to chart's viewport.`,
-        type: '{string}',
+        help: `Defines legend anchor relative to chart's viewport.`,
+        type: 'string',
         controlType: 'boxAnchor',
         controlOptions: {},
     },
     {
         key: 'direction',
-        description: `Legend direction, must be one of 'column', 'row'.`,
-        type: `{'column'|'row'}`,
-        controlType: 'choices',
+        help: `Legend direction, must be one of 'column', 'row'.`,
+        type: `'column' | 'row'`,
+        controlType: 'radio',
         controlOptions: {
             choices: [
                 {
@@ -207,13 +204,14 @@ export const getLegendsProps = () => [
     },
     {
         key: 'justify',
-        description: `Justify symbol and label.`,
+        help: `Justify symbol and label.`,
         controlType: 'switch',
+        type: 'boolean',
     },
     {
         key: 'translateX',
-        description: `Legend block x translation.`,
-        type: `{number}`,
+        help: `Legend block x translation.`,
+        type: `number`,
         controlType: 'range',
         controlOptions: {
             min: -200,
@@ -223,8 +221,8 @@ export const getLegendsProps = () => [
     },
     {
         key: 'translateY',
-        description: `Legend block y translation.`,
-        type: `{number}`,
+        help: `Legend block y translation.`,
+        type: `number`,
         controlType: 'range',
         controlOptions: {
             min: -200,
@@ -234,8 +232,8 @@ export const getLegendsProps = () => [
     },
     {
         key: 'itemWidth',
-        description: `Legend item width.`,
-        type: `{number}`,
+        help: `Legend item width.`,
+        type: `number`,
         controlType: 'range',
         controlOptions: {
             min: 10,
@@ -245,8 +243,8 @@ export const getLegendsProps = () => [
     },
     {
         key: 'itemHeight',
-        description: `Legend item height.`,
-        type: `{number}`,
+        help: `Legend item height.`,
+        type: `number`,
         controlType: 'range',
         controlOptions: {
             min: 10,
@@ -256,8 +254,8 @@ export const getLegendsProps = () => [
     },
     {
         key: 'itemsSpacing',
-        description: `Spacing between each item.`,
-        type: `{number}`,
+        help: `Spacing between each item.`,
+        type: `number`,
         controlType: 'range',
         controlOptions: {
             min: 0,
@@ -267,8 +265,8 @@ export const getLegendsProps = () => [
     },
     {
         key: 'symbolSize',
-        description: `Item symbol size.`,
-        type: `{number}`,
+        help: `Item symbol size.`,
+        type: `number`,
         controlType: 'range',
         controlOptions: {
             min: 2,
@@ -278,8 +276,8 @@ export const getLegendsProps = () => [
     },
     {
         key: 'itemDirection',
-        description: `Item layout, must be one of 'left-to-right', 'right-to-left', 'top-to-bottom', 'bottom-to-top'.`,
-        type: `{string}`,
+        help: `Item layout direction.`,
+        type: `string`,
         controlType: 'choices',
         controlOptions: {
             choices: ['left-to-right', 'right-to-left', 'top-to-bottom', 'bottom-to-top'].map(

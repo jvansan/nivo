@@ -7,17 +7,19 @@
  * file that was distributed with this source code.
  */
 import React from 'react'
-import Layout from '../../components/Layout'
+import SEO from '../../components/seo'
 import ApiClient from '../../components/components/api-client/ApiClient'
 import { groupsByScope } from '../../data/components/treemap/props'
 import mapper from '../../data/components/treemap/mapper'
 import { generateLightDataSet } from '../../data/components/treemap/generator'
+import meta from '../../data/components/treemap/meta.yml'
 
 const data = generateLightDataSet()
 
 const TreeMapApi = () => {
     return (
-        <Layout>
+        <>
+            <SEO title="TreeMap HTTP API" keywords={[...meta.TreeMap.tags, 'HTTP API']} />
             <ApiClient
                 componentName="TreeMap"
                 chartClass="treemap"
@@ -59,7 +61,7 @@ const TreeMapApi = () => {
                     value: 'loc',
                 }}
             />
-        </Layout>
+        </>
     )
 }
 

@@ -11,6 +11,7 @@ import { Link } from 'gatsby'
 import styled from 'styled-components'
 import MiniNavLink from './MiniNavLink'
 import logoImg from '../../assets/icons/nivo-logo.png'
+import media from '../../theming/mediaQueries'
 import * as nav from '../../data/nav'
 
 const Wrapper = styled.aside`
@@ -23,17 +24,17 @@ const Wrapper = styled.aside`
     z-index: 30;
     background: ${({ theme }) => theme.colors.cardBackground};
 
-    @media only screen and (min-width: 760px) and (max-width: 1000px) {
+    ${media.tablet`
         & {
             display: none;
         }
-    }
+    `}
 
-    @media only screen and (max-width: 760px) {
+    ${media.mobile`
         & {
             display: none;
         }
-    }
+    `}
 `
 
 const Container = styled.div`

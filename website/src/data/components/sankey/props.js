@@ -19,18 +19,18 @@ const props = [
             Chart data, which must conform to this structure:
             \`\`\`
             {
-                nodes: Array.<{
-                    id: {string|number}
+                nodes: Array<{
+                    id: string | number
                 }>,
-                links: Array.<{
-                    source: {string|number}, // ref to node id
-                    target: {string|number}, // ref to node id
-                    value: {number}
+                links: Array<{
+                    source: string | number, // ref to node id
+                    target: string | number, // ref to node id
+                    value:  number
                 }}>
             }
             \`\`\`
         `,
-        type: '{Object}',
+        type: 'object',
         required: true,
     },
     {
@@ -42,7 +42,7 @@ const props = [
             \`<ResponsiveSankey/>\`.
         `,
         help: 'Chart width.',
-        type: '{number}',
+        type: 'number',
         required: true,
         controlType: 'range',
         group: 'Base',
@@ -62,7 +62,7 @@ const props = [
             \`<ResponsiveSankey/>\`.
         `,
         help: 'Chart height.',
-        type: '{number}',
+        type: 'number',
         required: true,
         controlType: 'range',
         group: 'Base',
@@ -77,9 +77,9 @@ const props = [
         key: 'layout',
         scopes: ['Sankey'],
         help: `Control sankey layout direction.`,
-        type: '{string}',
+        type: 'string',
         required: false,
-        default: defaults.layout,
+        defaultValue: defaults.layout,
         controlType: 'radio',
         group: 'Base',
         controlOptions: {
@@ -100,9 +100,9 @@ const props = [
             [official d3 documentation](https://github.com/d3/d3-sankey#sankey_nodeAlign)
             for further information.
         `,
-        type: '{string}',
+        type: 'string',
         required: false,
-        default: defaults.align,
+        defaultValue: defaults.align,
         controlType: 'choices',
         controlOptions: {
             choices: sankeyAlignmentPropKeys.map(key => ({
@@ -129,9 +129,9 @@ const props = [
             for further information.
         `,
         help: 'Node sorting method.',
-        type: '{string|Function}',
+        type: 'string | Function',
         required: false,
-        default: defaults.sort,
+        defaultValue: defaults.sort,
         controlType: 'choices',
         group: 'Base',
         controlOptions: {
@@ -145,9 +145,9 @@ const props = [
         key: 'colors',
         scopes: '*',
         help: 'Defines how to compute nodes color.',
-        type: '{string|Function|Array}',
+        type: 'string | Function | string[]',
         required: false,
-        default: 'nivo',
+        defaultValue: 'nivo',
         controlType: 'colors',
         group: 'Base',
     },
@@ -155,7 +155,7 @@ const props = [
         key: 'margin',
         scopes: '*',
         help: 'Chart margin.',
-        type: '{object}',
+        type: 'object',
         required: false,
         controlType: 'margin',
         group: 'Base',
@@ -165,8 +165,8 @@ const props = [
         scopes: ['Sankey'],
         help: 'Node thickness.',
         required: false,
-        default: defaults.nodeThickness,
-        type: '{number}',
+        defaultValue: defaults.nodeThickness,
+        type: 'number',
         controlType: 'range',
         group: 'Nodes',
         controlOptions: {
@@ -180,8 +180,8 @@ const props = [
         scopes: '*',
         help: 'Node opacity (0~1).',
         required: false,
-        default: defaults.nodeOpacity,
-        type: '{number}',
+        defaultValue: defaults.nodeOpacity,
+        type: 'number',
         controlType: 'opacity',
         group: 'Nodes',
     },
@@ -190,8 +190,8 @@ const props = [
         scopes: ['Sankey'],
         help: 'Node opacity on hover (0~1).',
         required: false,
-        default: defaults.nodeHoverOpacity,
-        type: '{number}',
+        defaultValue: defaults.nodeHoverOpacity,
+        type: 'number',
         controlType: 'opacity',
         group: 'Nodes',
     },
@@ -200,8 +200,8 @@ const props = [
         scopes: ['Sankey'],
         help: 'Spacing between nodes at an identical level.',
         required: false,
-        default: defaults.nodeSpacing,
-        type: '{number}',
+        defaultValue: defaults.nodeSpacing,
+        type: 'number',
         controlType: 'range',
         group: 'Nodes',
         controlOptions: {
@@ -215,8 +215,8 @@ const props = [
         scopes: ['Sankey'],
         help: 'Node inner padding, distance from link, substracted from nodeThickness.',
         required: false,
-        default: defaults.nodePaddingX,
-        type: '{number}',
+        defaultValue: defaults.nodePaddingX,
+        type: 'number',
         controlType: 'range',
         group: 'Nodes',
         controlOptions: {
@@ -230,8 +230,8 @@ const props = [
         scopes: '*',
         help: 'Node border width.',
         required: false,
-        default: defaults.nodeBorderWidth,
-        type: '{number}',
+        defaultValue: defaults.nodeBorderWidth,
+        type: 'number',
         controlType: 'lineWidth',
         group: 'Nodes',
     },
@@ -243,9 +243,9 @@ const props = [
             [see dedicated documentation](self:/guides/colors).
         `,
         help: 'Method to compute node border color.',
-        type: '{string|Function}',
+        type: 'string | Function',
         required: false,
-        default: defaults.nodeBorderColor,
+        defaultValue: defaults.nodeBorderColor,
         controlType: 'color',
         group: 'Nodes',
         controlOptions: {
@@ -257,8 +257,8 @@ const props = [
         scopes: '*',
         help: 'Link opacity (0~1).',
         required: false,
-        default: defaults.linkOpacity,
-        type: '{number}',
+        defaultValue: defaults.linkOpacity,
+        type: 'number',
         controlType: 'opacity',
         group: 'Links',
     },
@@ -267,8 +267,8 @@ const props = [
         scopes: ['Sankey'],
         help: 'Link opacity on hover(0~1).',
         required: false,
-        default: defaults.linkHoverOpacity,
-        type: '{number}',
+        defaultValue: defaults.linkHoverOpacity,
+        type: 'number',
         controlType: 'opacity',
         group: 'Links',
     },
@@ -277,8 +277,8 @@ const props = [
         scopes: '*',
         help: 'Contract link width.',
         required: false,
-        default: defaults.linkContract,
-        type: '{number}',
+        defaultValue: defaults.linkContract,
+        type: 'number',
         controlType: 'range',
         group: 'Links',
         controlOptions: {
@@ -295,9 +295,9 @@ const props = [
             Defines CSS \`mix-blend-mode\` property for links, see
             [MDN documentation](https://developer.mozilla.org/fr/docs/Web/CSS/mix-blend-mode).
         `,
-        type: '{string}',
+        type: 'string',
         required: false,
-        default: defaults.linkBlendMode,
+        defaultValue: defaults.linkBlendMode,
         controlType: 'choices',
         group: 'Links',
         controlOptions: {
@@ -328,9 +328,9 @@ const props = [
         key: 'enableLinkGradient',
         scopes: ['Sankey'],
         help: 'Enable/disable gradient from source/target nodes instead of plain color.',
-        type: '{boolean}',
+        type: 'boolean',
         required: false,
-        default: defaults.enableLinkGradient,
+        defaultValue: defaults.enableLinkGradient,
         controlType: 'switch',
         group: 'Links',
     },
@@ -338,9 +338,9 @@ const props = [
         key: 'enableLabels',
         scopes: '*',
         help: 'Enable/disable labels.',
-        type: '{boolean}',
+        type: 'boolean',
         required: false,
-        default: defaults.enableLabels,
+        defaultValue: defaults.enableLabels,
         controlType: 'switch',
         group: 'Labels',
     },
@@ -348,9 +348,9 @@ const props = [
         key: 'labelPosition',
         scopes: '*',
         help: 'Label position.',
-        type: '{string}',
+        type: 'string',
         required: false,
-        default: defaults.labelPosition,
+        defaultValue: defaults.labelPosition,
         controlType: 'radio',
         group: 'Labels',
         controlOptions: {
@@ -365,8 +365,8 @@ const props = [
         scopes: '*',
         help: 'Label padding from node.',
         required: false,
-        default: defaults.labelPadding,
-        type: '{number}',
+        defaultValue: defaults.labelPadding,
+        type: 'number',
         controlType: 'range',
         group: 'Labels',
         controlOptions: {
@@ -383,9 +383,9 @@ const props = [
             how to compute label text color,
             [see dedicated documentation](self:/guides/colors).
         `,
-        type: '{string|Function}',
+        type: 'string | Function',
         required: false,
-        default: defaults.labelTextColor,
+        defaultValue: defaults.labelTextColor,
         controlType: 'color',
         group: 'Labels',
         controlOptions: {
@@ -396,9 +396,9 @@ const props = [
         key: 'labelOrientation',
         scopes: '*',
         help: 'Label orientation.',
-        type: '{string}',
+        type: 'string',
         required: false,
-        default: defaults.labelOrientation,
+        defaultValue: defaults.labelOrientation,
         controlType: 'radio',
         group: 'Labels',
         controlOptions: {
@@ -412,9 +412,9 @@ const props = [
         key: 'isInteractive',
         scopes: ['Sankey'],
         help: 'Enable/disable interactivity.',
-        type: '{boolean}',
+        type: 'boolean',
         required: false,
-        default: defaults.isInteractive,
+        defaultValue: defaults.isInteractive,
         controlType: 'switch',
         group: 'Interactivity',
     },
